@@ -86,7 +86,7 @@ namespace TelegramTypes {
 		inline void unpinChatMessage(const Json::Value& chat_id, const std::optional<__int64>& message_id = 0);
 		inline void unpinAllChatMessages(const Json::Value& chat_id);
 		inline void leaveChat(const Json::Value& chat_id);
-		inline Json::Value getChat(const Json::Value& chat_id);
+		inline Json::Value getChat(const std::string& chat_id);
 		inline Json::Value getChatAdministrators(const Json::Value& chat_id);
 		inline Json::Value getChatMembersCount(const Json::Value& chat_id);
 		inline Json::Value getChatMember(const __int64& user_id, const Json::Value& chat_id);
@@ -1544,14 +1544,10 @@ inline void TelegramTypes::API::leaveChat(const Json::Value& chat_id) {
 	std::string tosend = generalToken + "/leaveChat?" + text;
 	sendQuery(tosend);
 }
-inline Json::Value TelegramTypes::API::getChat(const Json::Value& chat_id) {
+inline Json::Value TelegramTypes::API::getChat(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + "" + chat_id + "&";
 	std::string tosend = generalToken + "/getChat?" + text;
 	CURL* curl;
 	CURLcode res;
