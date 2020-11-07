@@ -26,32 +26,4 @@ C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.
 C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,90): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
 C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,140): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
 C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,188): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-  TelegramAPI.cpp
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(183,15): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(184,12): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(696,45): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(696,89): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(696,144): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(709,40): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(732,46): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(732,90): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(732,140): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(732,188): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(735,46): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(735,90): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(735,140): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(735,188): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(765,45): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(765,89): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(765,144): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(778,40): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(801,46): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(801,90): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(801,140): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(801,188): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,46): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,90): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,140): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(804,188): warning C4244: 'argomento': conversione da '__int64' a 'const unsigned int'. Possibile perdita di dati.
-  Generazione del codice in corso...
   Telegram-Bot-Api-Cpp.vcxproj -> C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Debug\Telegram-Bot-Api-Cpp.exe

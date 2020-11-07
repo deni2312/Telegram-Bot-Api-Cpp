@@ -8,7 +8,6 @@ TelegramBot::TelegramAPI::TelegramAPI(std::string token)
 	std::cout << "The bot has started successfully!" << std::endl;
 	tokl = token;
 	api = TelegramTypes::API(buildString());
-	isInline = false;
 }
 void TelegramBot::TelegramAPI::callback(std::function<void(TelegramTypes::API&, TelegramTypes::MessageReceive&)> func)
 {
@@ -22,11 +21,9 @@ void TelegramBot::TelegramAPI::callback(std::function<void(TelegramTypes::API&, 
 				Json::Value values2;
 				values2 = Json::Value(values["result"][0]);
 				if (values2["message"].isNull()) {
-					isInline = true;
 					values2 = values2["inline_query"];
 				}
 				else {
-					isInline = false;
 					values2 = values2["message"];
 				}
 				func(api, values2);
@@ -34,10 +31,7 @@ void TelegramBot::TelegramAPI::callback(std::function<void(TelegramTypes::API&, 
 		}
 	}
 }
-bool TelegramBot::TelegramAPI::getIsInline()
-{
-	return isInline;
-}
+
 void TelegramBot::TelegramAPI::LOGA()
 {
 }

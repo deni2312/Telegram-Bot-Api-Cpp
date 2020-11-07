@@ -13,7 +13,7 @@ namespace TelegramBot {
 	public:
 		TelegramAPI(std::string token);
 		void callback(std::function<void(TelegramTypes::API&, TelegramTypes::MessageReceive&)> func);
-		bool getIsInline();
+		
 		void LOGA();
 		~TelegramAPI();
 	private: 
@@ -22,7 +22,7 @@ namespace TelegramBot {
 		int onUpdate;
 		std::string tokl;
 		long long int offset;
-		bool isInline;
+		
 		TelegramTypes::API api=TelegramTypes::API("");
 		void update();
 		std::string buildString();
