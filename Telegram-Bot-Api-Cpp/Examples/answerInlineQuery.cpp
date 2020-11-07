@@ -9,7 +9,6 @@ void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& messa
 		toSend["id"] = "first";
 		toSend["title"] = "hey";
 		toSend["input_message_content"]["message_text"] = "hey";
-		std::cout << message;
 		api.answerInlineQuery(toSend, message["id"].asString());
 	}
 	catch (std::string& error) {
