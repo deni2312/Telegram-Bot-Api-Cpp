@@ -1,0 +1,16 @@
+﻿################################################################################
+# Il file gitignore è stato creato automaticamente da Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/WTelApi
+/packages
+/Release
+/Debug
+/WTelApi/Debug
+/WTelApi/Release
+/x64
+/WTelApi/x64
+/WTelApi/good.mp3
+/WTelApi/abcp.txt
+/WTelApi/photo.png
+/.vs

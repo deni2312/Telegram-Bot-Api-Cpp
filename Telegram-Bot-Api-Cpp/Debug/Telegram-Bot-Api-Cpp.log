@@ -1,0 +1,60 @@
+﻿D:\Visual Studio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (WTelApi.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(183,15): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(184,12): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,45): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,89): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,144): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(709,40): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,45): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,89): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,144): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(778,40): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+  TelegramAPI.cpp
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(183,15): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(184,12): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,45): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,89): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(696,144): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(709,40): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(732,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(735,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,45): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,89): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(765,144): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(778,40): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(801,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,46): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,90): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,140): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Telegram-Bot-Api-Cpp\include\types.h(804,188): warning C4244: 'argument': conversion from '__int64' to 'const unsigned int', possible loss of data
+  Generating Code...
+jsoncpp.lib(json_reader.obj) : warning LNK4099: PDB 'jsoncpp_lib_static.pdb' was not found with 'jsoncpp.lib(json_reader.obj)' or at 'C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Debug\jsoncpp_lib_static.pdb'; linking object as if no debug info
+jsoncpp.lib(json_value.obj) : warning LNK4099: PDB 'jsoncpp_lib_static.pdb' was not found with 'jsoncpp.lib(json_value.obj)' or at 'C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Debug\jsoncpp_lib_static.pdb'; linking object as if no debug info
+jsoncpp.lib(json_writer.obj) : warning LNK4099: PDB 'jsoncpp_lib_static.pdb' was not found with 'jsoncpp.lib(json_writer.obj)' or at 'C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Debug\jsoncpp_lib_static.pdb'; linking object as if no debug info
+  Telegram-Bot-Api-Cpp.vcxproj -> C:\Users\poles\Desktop\C++\Telegram-Bot API-C++\Debug\Telegram-Bot-Api-Cpp.exe

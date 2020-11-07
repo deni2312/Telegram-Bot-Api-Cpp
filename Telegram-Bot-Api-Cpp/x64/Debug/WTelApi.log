@@ -1,0 +1,30 @@
+﻿  main.cpp
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(216,24): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1119,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1134,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1174,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1227,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1242,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1282,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  inlineTeleg.cpp
+  WTelApi.cpp
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(216,24): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1119,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1134,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1174,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1227,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1242,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
+C:\Users\poles\Desktop\C++\WTelApi\WTelApi\include\types.h(1282,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  types.cpp
+  utils.cpp
+  Generazione del codice in corso...
+main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_init non risolto nella funzione "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl curlReq(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?curlReq@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@Z)
+WTelApi.obj : error LNK2001: simbolo esterno curl_easy_init non risolto
+main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_setopt non risolto nella funzione "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl curlReq(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?curlReq@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@Z)
+WTelApi.obj : error LNK2001: simbolo esterno curl_easy_setopt non risolto
+main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_perform non risolto nella funzione "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl curlReq(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?curlReq@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@Z)
+WTelApi.obj : error LNK2001: simbolo esterno curl_easy_perform non risolto
+main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_cleanup non risolto nella funzione "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl curlReq(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?curlReq@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@Z)
+WTelApi.obj : error LNK2001: simbolo esterno curl_easy_cleanup non risolto
+libcurl.lib : warning LNK4272: il tipo 'x86' del computer della libreria è in conflitto con il tipo 'x64' del computer di destinazione
+C:\Users\poles\Desktop\C++\WTelApi\x64\Debug\WTelApi.exe : fatal error LNK1120: 4 esterni non risolti
