@@ -9,5 +9,3 @@ int main()
 	TelegramBot::TelegramAPI handler("your-token");
 	handler.callback(sendSomething);
 }
-
-

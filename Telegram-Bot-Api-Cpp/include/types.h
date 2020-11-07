@@ -60,49 +60,49 @@ namespace TelegramTypes {
 		inline void sendVideo(const std::string& chat_id, const std::string& mime_type, const std::string& video, const std::optional<__int64>& duration = 0, const std::optional<__int64>& width = 0, const std::optional<__int64>& height = 0, const std::optional<std::string>& mime_thumb = "", const std::optional<std::string>& thumb = "", const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<bool>& supports_streaming = false, const std::optional<bool>& disable_notification = 0, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<std::string>& reply_markup = "");
 		inline void sendMediaGroup(const std::string& chat_id, const std::string& mime_type, const std::vector<std::shared_ptr<InputMediaPhoto>>& media, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0);
 		inline void sendMediaGroup(const std::string& chat_id, const std::string& mime_type, const std::vector<std::shared_ptr<InputMediaVideo>>& media, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0);
-		inline void copyMessage(const Json::Value& from_chat_id, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<__int64>& message_id = 0, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& caption_entities = nullptr);
-		inline void sendLocation(const float& latitude, const float& longitude, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<__int64>& live_period = 0, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& proximity_alert_radius = 0, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<__int64>& heading = 0);
-		inline void editMessageLiveLocation(const float& latitude, const float& longitude, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& inline_message_id = "", const std::optional<__int64>& message_id = 0, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& heading = 0, const std::optional<__int64>& proximity_alert_radius = 0, const std::optional<Json::Value>& chat_id = nullptr);
-		inline void stopMessageLiveLocation(const std::optional<Json::Value>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void sendVenue(const float& latitude, const float& longitude, const std::string& title, const std::string& address, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& foursquare_id = "", const std::optional<std::string>& google_place_id = "", const std::optional<std::string>& google_place_type = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<std::string>& foursquare_type = "");
-		inline void sendContact(const std::string& phone_number, const std::string& first_name, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& last_name = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<std::string>& vcard = "");
-		inline void sendPoll(const std::string& question, const Json::Value& options, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& explanation_parse_mode = "", const std::optional<__int64>& open_period = 0, const std::optional<std::string>& type = "", const std::optional<__int64>& close_date = 0, const std::optional<__int64>& correct_option_id = 0, const std::optional<bool>& is_closed = false, const std::optional<bool>& allows_multiple_answers = false, const std::optional<std::string>& explanation = "", const std::optional<Json::Value>& explanation_entities = nullptr, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<bool>& is_anonymous = false);
-		inline void sendDice(const Json::Value& chat_id, const std::optional<std::string>& emoji = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void sendChatAction(const Json::Value& chat_id, const std::optional<std::string>& action = "");
+		inline void copyMessage(const Json::Value& from_chat_id, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<__int64>& message_id = 0, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& caption_entities = nullptr);
+		inline void sendLocation(const float& latitude, const float& longitude, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<__int64>& live_period = 0, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& proximity_alert_radius = 0, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<__int64>& heading = 0);
+		inline void editMessageLiveLocation(const float& latitude, const float& longitude, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& inline_message_id = "", const std::optional<__int64>& message_id = 0, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& heading = 0, const std::optional<__int64>& proximity_alert_radius = 0, const std::optional<std::string>& chat_id = nullptr);
+		inline void stopMessageLiveLocation(const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void sendVenue(const float& latitude, const float& longitude, const std::string& title, const std::string& address, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& foursquare_id = "", const std::optional<std::string>& google_place_id = "", const std::optional<std::string>& google_place_type = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<std::string>& foursquare_type = "");
+		inline void sendContact(const std::string& phone_number, const std::string& first_name, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& last_name = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<std::string>& vcard = "");
+		inline void sendPoll(const std::string& question, const Json::Value& options, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& explanation_parse_mode = "", const std::optional<__int64>& open_period = 0, const std::optional<std::string>& type = "", const std::optional<__int64>& close_date = 0, const std::optional<__int64>& correct_option_id = 0, const std::optional<bool>& is_closed = false, const std::optional<bool>& allows_multiple_answers = false, const std::optional<std::string>& explanation = "", const std::optional<Json::Value>& explanation_entities = nullptr, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<bool>& is_anonymous = false);
+		inline void sendDice(const std::string& chat_id, const std::optional<std::string>& emoji = "", const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void sendChatAction(const std::string& chat_id, const std::optional<std::string>& action = "");
 		inline Json::Value getUserProfilePhotos(const __int64& user_id, const std::optional<__int64>& offset = 0, const std::optional<__int64>& limit = 0);
 		inline Json::Value getFile(const std::string& file_id);
-		inline void kickChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<__int64>& until_date = 0);
-		inline void unbanChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<bool>& only_if_banned = false);
-		inline void restrictChatMember(const __int64& user_id, const Json::Value& permissions, const Json::Value& chat_id, const std::optional<__int64>& until_date = 0);
-		inline void promoteChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<bool>& can_promote_members = false, const std::optional<bool>& can_change_info = false, const std::optional<bool>& can_post_messages = false, const std::optional<bool>& is_anonymous = false, const std::optional<bool>& can_delete_messages = false, const std::optional<bool>& can_invite_users = false, const std::optional<bool>& can_restrict_members = false, const std::optional<bool>& can_pin_messages = false, const std::optional<bool>& can_edit_messages = false);
-		inline void setChatAdministratorCustomTitle(const __int64& user_id, const std::string& custom_title, const Json::Value& chat_id);
-		inline void setChatPermissions(const Json::Value& permissions, const Json::Value& chat_id);
-		inline void exportChatInviteLink(const Json::Value& chat_id);
-		inline void setChatPhoto(const Json::Value& photo, const Json::Value& chat_id);
-		inline void deleteChatPhoto(const Json::Value& chat_id);
-		inline void setChatTitle(const std::string& title, const Json::Value& chat_id);
-		inline void setChatDescription(const Json::Value& chat_id, const std::optional<std::string>& description = "");
-		inline void pinChatMessage(const __int64& message_id, const Json::Value& chat_id, const std::optional<bool>& disable_notification = false);
-		inline void unpinChatMessage(const Json::Value& chat_id, const std::optional<__int64>& message_id = 0);
-		inline void unpinAllChatMessages(const Json::Value& chat_id);
-		inline void leaveChat(const Json::Value& chat_id);
+		inline void kickChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<__int64>& until_date = 0);
+		inline void unbanChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<bool>& only_if_banned = false);
+		inline void restrictChatMember(const __int64& user_id, const Json::Value& permissions, const std::string& chat_id, const std::optional<__int64>& until_date = 0);
+		inline void promoteChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<bool>& can_promote_members = false, const std::optional<bool>& can_change_info = false, const std::optional<bool>& can_post_messages = false, const std::optional<bool>& is_anonymous = false, const std::optional<bool>& can_delete_messages = false, const std::optional<bool>& can_invite_users = false, const std::optional<bool>& can_restrict_members = false, const std::optional<bool>& can_pin_messages = false, const std::optional<bool>& can_edit_messages = false);
+		inline void setChatAdministratorCustomTitle(const __int64& user_id, const std::string& custom_title, const std::string& chat_id);
+		inline void setChatPermissions(const Json::Value& permissions, const std::string& chat_id);
+		inline void exportChatInviteLink(const std::string& chat_id);
+		inline void setChatPhoto(const Json::Value& photo, const std::string& chat_id);
+		inline void deleteChatPhoto(const std::string& chat_id);
+		inline void setChatTitle(const std::string& title, const std::string& chat_id);
+		inline void setChatDescription(const std::string& chat_id, const std::optional<std::string>& description = "");
+		inline void pinChatMessage(const __int64& message_id, const std::string& chat_id, const std::optional<bool>& disable_notification = false);
+		inline void unpinChatMessage(const std::string& chat_id, const std::optional<__int64>& message_id = 0);
+		inline void unpinAllChatMessages(const std::string& chat_id);
+		inline void leaveChat(const std::string& chat_id);
 		inline Json::Value getChat(const std::string& chat_id);
-		inline Json::Value getChatAdministrators(const Json::Value& chat_id);
-		inline Json::Value getChatMembersCount(const Json::Value& chat_id);
-		inline Json::Value getChatMember(const __int64& user_id, const Json::Value& chat_id);
-		inline void setChatStickerSet(const std::string& sticker_set_name, const Json::Value& chat_id);
-		inline void deleteChatStickerSet(const Json::Value& chat_id);
+		inline Json::Value getChatAdministrators(const std::string& chat_id);
+		inline Json::Value getChatMembersCount(const std::string& chat_id);
+		inline Json::Value getChatMember(const __int64& user_id, const std::string& chat_id);
+		inline void setChatStickerSet(const std::string& sticker_set_name, const std::string& chat_id);
+		inline void deleteChatStickerSet(const std::string& chat_id);
 		inline void answerCallbackQuery(const std::string& callback_query_id, const std::optional<std::string>& text = "", const std::optional<bool>& show_alert = false, const std::optional<std::string>& url = "", const std::optional<__int64>& cache_time = 0);
 		inline void setMyCommands(const Json::Value& commands);
-		inline Json::Value getMyCommands(const std::string& text, const std::optional<Json::Value>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& entities = nullptr, const std::optional<bool>& disable_web_page_preview = false, const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void editMessageCaption(const std::optional<Json::Value>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = nullptr, const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void editMessageMedia(const Json::Value& media, const std::optional<Json::Value>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void editMessageReplyMarkup(const std::optional<Json::Value>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void stopPoll(const __int64& message_id, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void deleteMessage(const __int64& message_id, const Json::Value& chat_id);
+		inline Json::Value getMyCommands(const std::string& text, const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& entities = nullptr, const std::optional<bool>& disable_web_page_preview = false, const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void editMessageCaption(const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = nullptr, const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void editMessageMedia(const Json::Value& media, const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void editMessageReplyMarkup(const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void stopPoll(const __int64& message_id, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void deleteMessage(const __int64& message_id, const std::string& chat_id);
 		inline void StickerSet(const std::string& title, const Json::Value& stickers, const std::string& name, const std::optional<bool>& is_animated = false, const std::optional<bool>& contains_masks = false, const std::optional<Json::Value>& thumb = nullptr);
 		inline void MaskPosition(const float& x_shift, const float& y_shift, const float& scale, const std::string& point);
-		inline void sendSticker(const Json::Value& sticker, const Json::Value& chat_id, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& reply_markup = nullptr);
+		inline void sendSticker(const Json::Value& sticker, const std::string& chat_id, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& reply_markup = nullptr);
 		inline Json::Value getStickerSet(const std::string& name);
 		inline void uploadStickerFile(const Json::Value& png_sticker, const __int64& user_id);
 		inline void createNewStickerSet(const std::string& emojis, const std::string& title, const __int64& user_id, const std::optional<std::string>& name = "", const std::optional<Json::Value>& png_sticker = nullptr, const std::optional<Json::Value>& tgs_sticker = nullptr, const std::optional<bool>& contains_masks = false, const std::optional<Json::Value>& mask_position = nullptr);
@@ -808,7 +808,7 @@ inline void TelegramTypes::API::sendMediaGroup(const std::string& chat_id, const
 		sendQuery(tosend);
 	}
 }
-inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<__int64>& message_id, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& caption_entities) {
+inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, const std::string& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<__int64>& message_id, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& caption_entities) {
 	std::string text;
 	text = "";
 	std::string result;
@@ -816,9 +816,7 @@ inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, con
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, from_chat_id);
 	text = text + "from_chat_id=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -864,16 +862,12 @@ inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, con
 	std::string tosend = generalToken + "/copyMessage?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendLocation(const float& latitude, const float& longitude, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<__int64>& live_period, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& proximity_alert_radius, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<__int64>& heading) {
+inline void TelegramTypes::API::sendLocation(const float& latitude, const float& longitude, const std::string& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<__int64>& live_period, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& proximity_alert_radius, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<__int64>& heading) {
 	std::string text;
 	text = "";
 	text = text + "=" + std::to_string(latitude) + "&";
 	text = text + "=" + std::to_string(longitude) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -915,7 +909,7 @@ inline void TelegramTypes::API::sendLocation(const float& latitude, const float&
 	std::string tosend = generalToken + "/sendLocation?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::editMessageLiveLocation(const float& latitude, const float& longitude, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& inline_message_id, const std::optional<__int64>& message_id, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& heading, const std::optional<__int64>& proximity_alert_radius, const std::optional<Json::Value>& chat_id) {
+inline void TelegramTypes::API::editMessageLiveLocation(const float& latitude, const float& longitude, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& inline_message_id, const std::optional<__int64>& message_id, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& heading, const std::optional<__int64>& proximity_alert_radius, const std::optional<std::string>& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "=" + std::to_string(latitude) + "&";
@@ -943,24 +937,17 @@ inline void TelegramTypes::API::editMessageLiveLocation(const float& latitude, c
 		text = text + "proximity_alert_radius=" + std::to_string(proximity_alert_radius.value()) + "&";
 	}
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text = text + "chat_id=" + "[" + result + "]" + "&";
+		
+		text = text + "chat_id=" + chat_id.value() + "&";
 	}
 	std::string tosend = generalToken + "/editMessageLiveLocation?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::stopMessageLiveLocation(const std::optional<Json::Value>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::stopMessageLiveLocation(const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text = text + "chat_id=" + "[" + result + "]" + "&";
+		text = text + "chat_id=" + chat_id.value() + "&";
 	}
 	if (message_id.has_value()) {
 		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
@@ -978,18 +965,14 @@ inline void TelegramTypes::API::stopMessageLiveLocation(const std::optional<Json
 	std::string tosend = generalToken + "/stopMessageLiveLocation?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendVenue(const float& latitude, const float& longitude, const std::string& title, const std::string& address, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& foursquare_id, const std::optional<std::string>& google_place_id, const std::optional<std::string>& google_place_type, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<std::string>& foursquare_type) {
+inline void TelegramTypes::API::sendVenue(const float& latitude, const float& longitude, const std::string& title, const std::string& address, const std::string& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& foursquare_id, const std::optional<std::string>& google_place_id, const std::optional<std::string>& google_place_type, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<std::string>& foursquare_type) {
 	std::string text;
 	text = "";
 	text = text + "=" + std::to_string(latitude) + "&";
 	text = text + "=" + std::to_string(longitude) + "&";
 	text = text + "title=" + title + "&";
 	text = text + "address=" + address + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -1031,16 +1014,12 @@ inline void TelegramTypes::API::sendVenue(const float& latitude, const float& lo
 	std::string tosend = generalToken + "/sendVenue?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendContact(const std::string& phone_number, const std::string& first_name, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& last_name, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<std::string>& vcard) {
+inline void TelegramTypes::API::sendContact(const std::string& phone_number, const std::string& first_name, const std::string& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& last_name, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<std::string>& vcard) {
 	std::string text;
 	text = "";
 	text = text + "phone_number=" + phone_number + "&";
 	text = text + "first_name=" + first_name + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -1076,7 +1055,7 @@ inline void TelegramTypes::API::sendContact(const std::string& phone_number, con
 	std::string tosend = generalToken + "/sendContact?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendPoll(const std::string& question, const Json::Value& options, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& explanation_parse_mode, const std::optional<__int64>& open_period, const std::optional<std::string>& type, const std::optional<__int64>& close_date, const std::optional<__int64>& correct_option_id, const std::optional<bool>& is_closed, const std::optional<bool>& allows_multiple_answers, const std::optional<std::string>& explanation, const std::optional<Json::Value>& explanation_entities, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<bool>& is_anonymous) {
+inline void TelegramTypes::API::sendPoll(const std::string& question, const Json::Value& options, const std::string& chat_id, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& explanation_parse_mode, const std::optional<__int64>& open_period, const std::optional<std::string>& type, const std::optional<__int64>& close_date, const std::optional<__int64>& correct_option_id, const std::optional<bool>& is_closed, const std::optional<bool>& allows_multiple_answers, const std::optional<std::string>& explanation, const std::optional<Json::Value>& explanation_entities, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<bool>& is_anonymous) {
 	std::string text;
 	text = "";
 	text = text + "question=" + question + "&";
@@ -1085,9 +1064,7 @@ inline void TelegramTypes::API::sendPoll(const std::string& question, const Json
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, options);
 	text = text + "options=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -1166,14 +1143,10 @@ inline void TelegramTypes::API::sendPoll(const std::string& question, const Json
 	std::string tosend = generalToken + "/sendPoll?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendDice(const Json::Value& chat_id, const std::optional<std::string>& emoji, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::sendDice(const std::string& chat_id, const std::optional<std::string>& emoji, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" +  chat_id + "&";
 	if (emoji.has_value()) {
 		text = text + "emoji=" + emoji.value() + "&";
 	}
@@ -1206,14 +1179,10 @@ inline void TelegramTypes::API::sendDice(const Json::Value& chat_id, const std::
 	std::string tosend = generalToken + "/sendDice?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendChatAction(const Json::Value& chat_id, const std::optional<std::string>& action) {
+inline void TelegramTypes::API::sendChatAction(const std::string& chat_id, const std::optional<std::string>& action) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (action.has_value()) {
 		text = text + "action=" + action.value() + "&";
 	}
@@ -1262,30 +1231,22 @@ inline Json::Value TelegramTypes::API::getFile(const std::string& file_id) {
 	}
 	return Json::Value(readBuffer);
 }
-inline void TelegramTypes::API::kickChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<__int64>& until_date) {
+inline void TelegramTypes::API::kickChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<__int64>& until_date) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (until_date.has_value()) {
 		text = text + "until_date=" + std::to_string(until_date.value()) + "&";
 	}
 	std::string tosend = generalToken + "/kickChatMember?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::unbanChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<bool>& only_if_banned) {
+inline void TelegramTypes::API::unbanChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<bool>& only_if_banned) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (only_if_banned.has_value()) {
 		if (only_if_banned.value()) {
 			text = text + "only_if_banned=true&";
@@ -1297,7 +1258,7 @@ inline void TelegramTypes::API::unbanChatMember(const __int64& user_id, const Js
 	std::string tosend = generalToken + "/unbanChatMember?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::restrictChatMember(const __int64& user_id, const Json::Value& permissions, const Json::Value& chat_id, const std::optional<__int64>& until_date) {
+inline void TelegramTypes::API::restrictChatMember(const __int64& user_id, const Json::Value& permissions, const std::string& chat_id, const std::optional<__int64>& until_date) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
@@ -1306,24 +1267,18 @@ inline void TelegramTypes::API::restrictChatMember(const __int64& user_id, const
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
 	text = text + "permissions=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (until_date.has_value()) {
 		text = text + "until_date=" + std::to_string(until_date.value()) + "&";
 	}
 	std::string tosend = generalToken + "/restrictChatMember?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::promoteChatMember(const __int64& user_id, const Json::Value& chat_id, const std::optional<bool>& can_promote_members, const std::optional<bool>& can_change_info, const std::optional<bool>& can_post_messages, const std::optional<bool>& is_anonymous, const std::optional<bool>& can_delete_messages, const std::optional<bool>& can_invite_users, const std::optional<bool>& can_restrict_members, const std::optional<bool>& can_pin_messages, const std::optional<bool>& can_edit_messages) {
+inline void TelegramTypes::API::promoteChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<bool>& can_promote_members, const std::optional<bool>& can_change_info, const std::optional<bool>& can_post_messages, const std::optional<bool>& is_anonymous, const std::optional<bool>& can_delete_messages, const std::optional<bool>& can_invite_users, const std::optional<bool>& can_restrict_members, const std::optional<bool>& can_pin_messages, const std::optional<bool>& can_edit_messages) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (can_promote_members.has_value()) {
 		if (can_promote_members.value()) {
 			text = text + "can_promote_members=true&";
@@ -1399,20 +1354,16 @@ inline void TelegramTypes::API::promoteChatMember(const __int64& user_id, const 
 	std::string tosend = generalToken + "/promoteChatMember?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::setChatAdministratorCustomTitle(const __int64& user_id, const std::string& custom_title, const Json::Value& chat_id) {
+inline void TelegramTypes::API::setChatAdministratorCustomTitle(const __int64& user_id, const std::string& custom_title, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	text = text + "custom_title=" + custom_title + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatAdministratorCustomTitle?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::setChatPermissions(const Json::Value& permissions, const Json::Value& chat_id) {
+inline void TelegramTypes::API::setChatPermissions(const Json::Value& permissions, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	std::string result;
@@ -1420,24 +1371,20 @@ inline void TelegramTypes::API::setChatPermissions(const Json::Value& permission
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
 	text = text + "permissions=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPermissions?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::exportChatInviteLink(const Json::Value& chat_id) {
+inline void TelegramTypes::API::exportChatInviteLink(const std::string& chat_id) {
 	std::string text;
 	text = "";
 	std::string result;
 	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/exportChatInviteLink?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::setChatPhoto(const Json::Value& photo, const Json::Value& chat_id) {
+inline void TelegramTypes::API::setChatPhoto(const Json::Value& photo, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	std::string result;
@@ -1445,58 +1392,40 @@ inline void TelegramTypes::API::setChatPhoto(const Json::Value& photo, const Jso
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, photo);
 	text = text + "photo=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPhoto?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::deleteChatPhoto(const Json::Value& chat_id) {
+inline void TelegramTypes::API::deleteChatPhoto(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/deleteChatPhoto?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::setChatTitle(const std::string& title, const Json::Value& chat_id) {
+inline void TelegramTypes::API::setChatTitle(const std::string& title, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "title=" + title + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatTitle?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::setChatDescription(const Json::Value& chat_id, const std::optional<std::string>& description) {
+inline void TelegramTypes::API::setChatDescription(const std::string& chat_id, const std::optional<std::string>& description) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (description.has_value()) {
 		text = text + "description=" + description.value() + "&";
 	}
 	std::string tosend = generalToken + "/setChatDescription?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::pinChatMessage(const __int64& message_id, const Json::Value& chat_id, const std::optional<bool>& disable_notification) {
+inline void TelegramTypes::API::pinChatMessage(const __int64& message_id, const std::string& chat_id, const std::optional<bool>& disable_notification) {
 	std::string text;
 	text = "";
 	text = text + "message_id=" + std::to_string(message_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (disable_notification.has_value()) {
 		if (disable_notification.value()) {
 			text = text + "disable_notification=true&";
@@ -1508,39 +1437,27 @@ inline void TelegramTypes::API::pinChatMessage(const __int64& message_id, const 
 	std::string tosend = generalToken + "/pinChatMessage?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::unpinChatMessage(const Json::Value& chat_id, const std::optional<__int64>& message_id) {
+inline void TelegramTypes::API::unpinChatMessage(const std::string& chat_id, const std::optional<__int64>& message_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (message_id.has_value()) {
 		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
 	}
 	std::string tosend = generalToken + "/unpinChatMessage?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::unpinAllChatMessages(const Json::Value& chat_id) {
+inline void TelegramTypes::API::unpinAllChatMessages(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/unpinAllChatMessages?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::leaveChat(const Json::Value& chat_id) {
+inline void TelegramTypes::API::leaveChat(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/leaveChat?" + text;
 	sendQuery(tosend);
 }
@@ -1562,14 +1479,10 @@ inline Json::Value TelegramTypes::API::getChat(const std::string& chat_id) {
 	}
 	return Json::Value(readBuffer);
 }
-inline Json::Value TelegramTypes::API::getChatAdministrators(const Json::Value& chat_id) {
+inline Json::Value TelegramTypes::API::getChatAdministrators(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/getChatAdministrators?" + text;
 	CURL* curl;
 	CURLcode res;
@@ -1584,14 +1497,10 @@ inline Json::Value TelegramTypes::API::getChatAdministrators(const Json::Value& 
 	}
 	return Json::Value(readBuffer);
 }
-inline Json::Value TelegramTypes::API::getChatMembersCount(const Json::Value& chat_id) {
+inline Json::Value TelegramTypes::API::getChatMembersCount(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/getChatMembersCount?" + text;
 	CURL* curl;
 	CURLcode res;
@@ -1606,15 +1515,11 @@ inline Json::Value TelegramTypes::API::getChatMembersCount(const Json::Value& ch
 	}
 	return Json::Value(readBuffer);
 }
-inline Json::Value TelegramTypes::API::getChatMember(const __int64& user_id, const Json::Value& chat_id) {
+inline Json::Value TelegramTypes::API::getChatMember(const __int64& user_id, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/getChatMember?" + text;
 	CURL* curl;
 	CURLcode res;
@@ -1629,26 +1534,18 @@ inline Json::Value TelegramTypes::API::getChatMember(const __int64& user_id, con
 	}
 	return Json::Value(readBuffer);
 }
-inline void TelegramTypes::API::setChatStickerSet(const std::string& sticker_set_name, const Json::Value& chat_id) {
+inline void TelegramTypes::API::setChatStickerSet(const std::string& sticker_set_name, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "sticker_set_name=" + sticker_set_name + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatStickerSet?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::deleteChatStickerSet(const Json::Value& chat_id) {
+inline void TelegramTypes::API::deleteChatStickerSet(const std::string& chat_id) {
 	std::string text;
 	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/deleteChatStickerSet?" + text;
 	sendQuery(tosend);
 }
@@ -1687,16 +1584,12 @@ inline void TelegramTypes::API::setMyCommands(const Json::Value& commands) {
 	std::string tosend = generalToken + "/setMyCommands?" + text;
 	sendQuery(tosend);
 }
-inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, const std::optional<Json::Value>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& entities, const std::optional<bool>& disable_web_page_preview, const std::optional<Json::Value>& reply_markup) {
+inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& entities, const std::optional<bool>& disable_web_page_preview, const std::optional<Json::Value>& reply_markup) {
 	std::string text1;
 	text1 = "";
-	text1 = text1 + "text=" + text + "&";
+	text1 = text1 + "text=" + text1 + "&";
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text1 = text1 + "chat_id=" + "[" + result + "]" + "&";
+		text1 = text1 + "chat_id=" + chat_id.value() + "&";
 	}
 	if (message_id.has_value()) {
 		text1 = text1 + "message_id=" + std::to_string(message_id.value()) + "&";
@@ -1743,15 +1636,12 @@ inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, co
 	}
 	return Json::Value(readBuffer);
 }
-inline void TelegramTypes::API::editMessageCaption(const std::optional<Json::Value>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::editMessageCaption(const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text = text + "chat_id=" + "[" + result + "]" + "&";
+		
+		text = text + "chat_id="  + chat_id.value() + "&";
 	}
 	if (message_id.has_value()) {
 		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
@@ -1782,7 +1672,7 @@ inline void TelegramTypes::API::editMessageCaption(const std::optional<Json::Val
 	std::string tosend = generalToken + "/editMessageCaption?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const std::optional<Json::Value>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	std::string result;
@@ -1791,11 +1681,7 @@ inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const
 	result = Json::writeString(wbuilder, media);
 	text = text + "media=" + "[" + result + "]&";
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text = text + "chat_id=" + "[" + result + "]" + "&";
+		text = text + "chat_id=" + chat_id.value() + "&";
 	}
 	if (message_id.has_value()) {
 		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
@@ -1813,15 +1699,11 @@ inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const
 	std::string tosend = generalToken + "/editMessageMedia?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::editMessageReplyMarkup(const std::optional<Json::Value>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::editMessageReplyMarkup(const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	if (chat_id.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, chat_id.value());
-		text = text + "chat_id=" + "[" + result + "]" + "&";
+		text = text + "chat_id=" + chat_id.value() + "&";
 	}
 	if (message_id.has_value()) {
 		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
@@ -1839,15 +1721,11 @@ inline void TelegramTypes::API::editMessageReplyMarkup(const std::optional<Json:
 	std::string tosend = generalToken + "/editMessageReplyMarkup?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::stopPoll(const __int64& message_id, const Json::Value& chat_id, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::stopPoll(const __int64& message_id, const std::string& chat_id, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	text = text + "message_id=" + std::to_string(message_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
@@ -1858,15 +1736,11 @@ inline void TelegramTypes::API::stopPoll(const __int64& message_id, const Json::
 	std::string tosend = generalToken + "/stopPoll?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::deleteMessage(const __int64& message_id, const Json::Value& chat_id) {
+inline void TelegramTypes::API::deleteMessage(const __int64& message_id, const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "message_id=" + std::to_string(message_id) + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/deleteMessage?" + text;
 	sendQuery(tosend);
 }
@@ -1916,7 +1790,7 @@ inline void TelegramTypes::API::MaskPosition(const float& x_shift, const float& 
 	std::string tosend = generalToken + "/MaskPosition?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const Json::Value& chat_id, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& reply_markup) {
+inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const std::string& chat_id, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
 	std::string result;
@@ -1924,9 +1798,7 @@ inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const Js
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, sticker);
 	text = text + "sticker=" + "[" + result + "]&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, chat_id);
-	text = text + "chat_id=" + "[" + result + "]&";
+	text = text + "chat_id=" +  chat_id + "&";
 	if (disable_notification.has_value()) {
 		if (disable_notification.value()) {
 			text = text + "disable_notification=true&";

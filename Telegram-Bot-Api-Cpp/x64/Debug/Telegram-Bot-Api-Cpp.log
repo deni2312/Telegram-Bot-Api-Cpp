@@ -1,12 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: la directory intermedia (x64\Debug\) contiene file condivisi da un altro progetto (WTelApi.vcxproj). Tale condizione può comportare un comportamento di pulizia e ricompilazione non corretto.
-  main.cpp
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(182,24): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(695,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(706,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(730,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(764,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(775,26): warning C4018: '<': errata corrispondenza tra signed e unsigned
-C:\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\Telegram-Bot-Api-Cpp\include\types.h(799,25): warning C4018: '<': errata corrispondenza tra signed e unsigned
 main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_init non risolto nella funzione "private: void __cdecl TelegramTypes::API::sendQuery(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &)" (?sendQuery@API@TelegramTypes@@AEAAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
 TelegramAPI.obj : error LNK2001: simbolo esterno curl_easy_init non risolto
 main.obj : error LNK2019: riferimento al simbolo esterno curl_easy_setopt non risolto nella funzione "private: void __cdecl TelegramTypes::API::sendQuery(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &)" (?sendQuery@API@TelegramTypes@@AEAAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
