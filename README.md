@@ -13,8 +13,8 @@
   * [Contacts](#contacts)
 
 ## Getting started.
-
-This API is tested with C++ 17, Visual Studio 2017/2019.
+### Windows
+This API is tested with C++ 17, on linux and on Visual Studio 2017/2019.
 
 <h2> Steps </h2>
 
@@ -35,6 +35,15 @@ This API is tested with C++ 17, Visual Studio 2017/2019.
 <p align="left">
   <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image3.PNG" width="300" alt="accessibility text">
 </p>
+
+
+### Linux
+To compile on linux:  
+
+```bash
+cd linux
+g++ main.cpp src/TelegramAPI.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
+```
 
 ## Writing your first bot
 
@@ -65,7 +74,7 @@ int main()
 ## General API Documentation
 
 ### Usage
-#### Windows
+
 The **api** paramater contains all methods of Telegram APIs, and **message** paramater contains the message sent by the user.  
 The **message** paramater is the JSON rappresentation of the message sent by the user, and for example if you need to access the chat-id paramater you can simply type : 
 ```c++
@@ -87,16 +96,6 @@ Then:
 <p align="left">
   <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image6.PNG" width="600" alt="accessibility text">
 </p>
-
-#### Linux
-To compile on linux:  
-```bash
-cd linux
-g++ main.cpp src/TelegramAPI.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
-```
-
-
-
 Or check the examples folder.
 
 ### Error Handling
