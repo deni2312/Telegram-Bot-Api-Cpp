@@ -100,8 +100,6 @@ namespace TelegramTypes {
 		inline void editMessageReplyMarkup(const std::optional<std::string>& chat_id = nullptr, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "", const std::optional<Json::Value>& reply_markup = nullptr);
 		inline void stopPoll(const __int64& message_id, const std::string& chat_id, const std::optional<Json::Value>& reply_markup = nullptr);
 		inline void deleteMessage(const __int64& message_id, const std::string& chat_id);
-		inline void StickerSet(const std::string& title, const Json::Value& stickers, const std::string& name, const std::optional<bool>& is_animated = false, const std::optional<bool>& contains_masks = false, const std::optional<Json::Value>& thumb = nullptr);
-		inline void MaskPosition(const float& x_shift, const float& y_shift, const float& scale, const std::string& point);
 		inline void sendSticker(const Json::Value& sticker, const std::string& chat_id, const std::optional<bool>& disable_notification = false, const std::optional<__int64>& reply_to_message_id = 0, const std::optional<bool>& allow_sending_without_reply = false, const std::optional<Json::Value>& reply_markup = nullptr);
 		inline Json::Value getStickerSet(const std::string& name);
 		inline void uploadStickerFile(const Json::Value& png_sticker, const __int64& user_id);
@@ -111,58 +109,10 @@ namespace TelegramTypes {
 		inline void deleteStickerFromSet(const std::string& sticker);
 		inline void setStickerSetThumb(const __int64& user_id, const std::string& name, const std::optional<Json::Value>& thumb = nullptr);
 		inline void answerInlineQuery(const Json::Value& results, const std::string& inline_query_id, const std::optional<__int64>& cache_time = 0, const std::optional<bool>& is_personal = false, const std::optional<std::string>& next_offset = "", const std::optional<std::string>& switch_pm_text = "", const std::optional<std::string>& switch_pm_parameter = "");
-		inline void InlineQueryResult(const std::string& id, const std::string& title, const Json::Value& input_message_content, const std::optional<__int64>& thumb_height = 0, const std::optional<std::string>& url = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<bool>& hide_url = false, const std::optional<std::string>& description = "", const std::optional<std::string>& thumb_url = "", const std::optional<__int64>& thumb_width = 0, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultPhoto(const std::string& id, const std::string& photo_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& title = "", const std::optional<__int64>& photo_height = 0, const std::optional<__int64>& photo_width = 0, const std::optional<std::string>& description = "", const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultGif(const std::string& id, const std::string& gif_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_mime_type = "", const std::optional<std::string>& type = "", const std::optional<std::string>& caption = "", const std::optional<__int64>& gif_width = 0, const std::optional<std::string>& title = "", const std::optional<__int64>& gif_height = 0, const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<__int64>& gif_duration = 0);
-		inline void InlineQueryResultMpeg4Gif(const std::string& id, const std::string& mpeg4_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_mime_type = "", const std::optional<std::string>& type = "", const std::optional<std::string>& caption = "", const std::optional<__int64>& mpeg4_width = 0, const std::optional<std::string>& title = "", const std::optional<__int64>& mpeg4_height = 0, const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<__int64>& mpeg4_duration = 0);
-		inline void InlineQueryResultVideo(const std::string& id, const std::string& video_url, const std::string& mime_type, const std::string& thumb_url, const std::string& title, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& parse_mode = "", const std::optional<std::string>& caption = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<__int64>& video_width = 0, const std::optional<__int64>& video_height = 0, const std::optional<__int64>& video_duration = 0, const std::optional<std::string>& description = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultAudio(const std::string& id, const std::string& audio_url, const std::string& title, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& parse_mode = "", const std::optional<std::string>& caption = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<std::string>& performer = "", const std::optional<__int64>& audio_duration = 0, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultVoice(const std::string& id, const std::string& voice_url, const std::string& title, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& parse_mode = "", const std::optional<std::string>& caption = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<__int64>& voice_duration = 0, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultDocument(const std::string& id, const std::string& title, const std::string& document_url, const std::string& mime_type, const std::optional<__int64>& thumb_height = 0, const std::optional<std::string>& type = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& description = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_url = "", const std::optional<__int64>& thumb_width = 0, const std::optional<Json::Value>& caption_entities = {});
-		inline void InlineQueryResultLocation(const std::string& id, const float& latitude, const float& longitude, const std::string& title, const std::optional<__int64>& thumb_height = 0, const std::optional<__int64>& heading = 0, const std::optional<__int64>& live_period = 0, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& proximity_alert_radius = 0, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_url = "", const std::optional<__int64>& thumb_width = 0, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultVenue(const std::string& id, const float& latitude, const float& longitude, const std::string& title, const std::string& address, const std::optional<__int64>& thumb_height = 0, const std::optional<std::string>& foursquare_type = "", const std::optional<std::string>& foursquare_id = "", const std::optional<std::string>& google_place_id = "", const std::optional<std::string>& google_place_type = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_url = "", const std::optional<__int64>& thumb_width = 0, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultContact(const std::string& id, const std::string& phone_number, const std::string& first_name, const std::optional<__int64>& thumb_height = 0, const std::optional<std::string>& vcard = "", const std::optional<std::string>& last_name = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& thumb_url = "", const std::optional<__int64>& thumb_width = 0, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultGame(const std::string& id, const std::string& game_short_name, const std::optional<std::string>& type = "", const std::optional<Json::Value>& reply_markup = nullptr);
-		inline void InlineQueryResultCachedPhoto(const std::string& id, const std::string& photo_file_id, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& description = "", const std::optional<std::string>& title = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedGif(const std::string& id, const std::string& gif_file_id, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& title = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedMpeg4Gif(const std::string& id, const std::string& mpeg4_file_id, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& title = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedSticker(const std::string& id, const std::string& sticker_file_id, const std::optional<std::string>& type = "", const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<Json::Value>& input_message_content = nullptr);
-		inline void InlineQueryResultCachedDocument(const std::string& id, const std::string& title, const std::string& document_file_id, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& description = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedVideo(const std::string& id, const std::string& video_file_id, const std::string& title, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& description = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedVoice(const std::string& id, const std::string& voice_file_id, const std::string& title, const std::optional<Json::Value>& input_message_content = nullptr, const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<std::string>& type = "");
-		inline void InlineQueryResultCachedAudio(const std::string& id, const std::string& audio_file_id, const std::optional<std::string>& type = "", const std::optional<std::string>& caption = "", const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& caption_entities = {}, const std::optional<Json::Value>& reply_markup = nullptr, const std::optional<Json::Value>& input_message_content = nullptr);
-		inline void InputMessageContent(const std::string& message_text, const std::optional<std::string>& parse_mode = "", const std::optional<Json::Value>& entities = {}, const std::optional<bool>& disable_web_page_preview = false);
-		inline void InputLocationMessageContent(const float& longitude, const float& latitude, const std::optional<float>& horizontal_accuracy = 0, const std::optional<__int64>& live_period = 0, const std::optional<__int64>& heading = 0, const std::optional<__int64>& proximity_alert_radius = 0);
-		inline void InputVenueMessageContent(const float& longitude, const std::string& title, const std::string& address, const float& latitude, const std::optional<std::string>& foursquare_id = "", const std::optional<std::string>& foursquare_type = "", const std::optional<std::string>& google_place_id = "", const std::optional<std::string>& google_place_type = "");
-		inline void InputContactMessageContent(const std::string& first_name, const std::string& phone_number, const std::optional<std::string>& last_name = "", const std::optional<std::string>& vcard = "");
-		inline void ChosenInlineResult(const Json::Value& from, const std::string& query, const std::string& result_id, const std::optional<Json::Value>& location = nullptr, const std::optional<std::string>& inline_message_id = "");
 		inline void answerShippingQuery(const bool& ok, const std::string& shipping_query_id, const std::optional<Json::Value>& shipping_options = {}, const std::optional<std::string>& error_message = "");
 		inline void answerPreCheckoutQuery(const std::string& pre_checkout_query_id, const std::optional<bool>& ok = false, const std::optional<std::string>& error_message = "");
-		inline void LabeledPrice(const std::string& label, const std::optional<__int64>& amount = 0);
-		inline void Invoice(const std::string& description, const std::string& start_parameter, const std::string& currency, const std::string& title, const std::optional<__int64>& total_amount = 0);
-		inline void ShippingAddress(const std::string& state, const std::string& city, const std::string& street_line1, const std::string& street_line2, const std::string& post_code, const std::string& country_code);
-		inline void OrderInfo(const std::optional<std::string>& name = "", const std::optional<std::string>& phone_number = "", const std::optional<std::string>& email = "", const std::optional<Json::Value>& shipping_address = nullptr);
-		inline void ShippingOption(const std::string& title, const Json::Value& prices, const std::string& id);
-		inline void SuccessfulPayment(const std::string& provider_payment_charge_id, const std::string& invoice_payload, const std::string& telegram_payment_charge_id, const std::string& currency, const std::optional<__int64>& total_amount = 0, const std::optional<std::string>& shipping_option_id = "", const std::optional<Json::Value>& order_info = nullptr);
-		inline void ShippingQuery(const Json::Value& from, const std::string& invoice_payload, const Json::Value& shipping_address, const std::string& id);
-		inline void PreCheckoutQuery(const Json::Value& from, const std::string& currency, const std::string& invoice_payload, const std::string& id, const std::optional<__int64>& total_amount = 0, const std::optional<std::string>& shipping_option_id = "", const std::optional<Json::Value>& order_info = nullptr);
-		inline void PassportFile(const std::string& file_unique_id, const __int64& file_size, const __int64& file_date, const std::string& file_id);
-		inline void EncryptedPassportElement(const std::string& type, const std::string& hash, const std::optional<std::string>& phone_number = "", const std::optional<std::string>& email = "", const std::optional<Json::Value>& files = {}, const std::optional<std::string>& data = "", const std::optional<Json::Value>& reverse_side = nullptr, const std::optional<Json::Value>& selfie = nullptr, const std::optional<Json::Value>& translation = {}, const std::optional<Json::Value>& front_side = nullptr);
-		inline void EncryptedCredentials(const std::string& hash, const std::string& secret, const std::string& data);
 		inline void setPassportDataErrors(const Json::Value& errors, const __int64& user_id);
-		inline void PassportElementError(const std::string& type, const std::string& field_name, const std::string& data_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorFrontSide(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorReverseSide(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorSelfie(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorFile(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorFiles(const std::string& type, const Json::Value& file_hashes, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorTranslationFile(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorTranslationFiles(const std::string& type, const Json::Value& file_hashes, const std::string& message, const std::optional<std::string>& source = "");
-		inline void PassportElementErrorUnspecified(const std::string& type, const std::string& element_hash, const std::string& message, const std::optional<std::string>& source = "");
-		inline void Game(const std::string& description, const Json::Value& photo, const std::string& title, const std::optional<std::string>& text = "", const std::optional<Json::Value>& text_entities = {}, const std::optional<Json::Value>& animation = nullptr);
-		inline void CallbackGame(const __int64& score, const __int64& user_id, const std::optional<bool>& force = false, const std::optional<bool>& disable_edit_message = false, const std::optional<__int64>& chat_id = 0, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "");
 		inline Json::Value getGameHighScores(const __int64& user_id, const std::optional<__int64>& chat_id = 0, const std::optional<__int64>& message_id = 0, const std::optional<std::string>& inline_message_id = "");
-		inline void GameHighScore(const Json::Value& user, const __int64& score, const __int64& position);
 		~API() {};
 	private:
 		std::string generalToken = "";
@@ -203,7 +153,7 @@ inline void TelegramTypes::API::sendMessage(const std::string& chat_id, const st
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/sendMessage?" + text;
 	sendQuery(tosend);
@@ -815,14 +765,14 @@ inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, con
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, from_chat_id);
-	text = text + "from_chat_id=" + "[" + result + "]&";
+	text = text + "from_chat_id=" + result +"&";
 	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (caption.has_value()) {
 		text = text + "caption=" + caption.value() + "&";
@@ -857,7 +807,7 @@ inline void TelegramTypes::API::copyMessage(const Json::Value& from_chat_id, con
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
+		text = text + "caption_entities=" + result +"&";
 	}
 	std::string tosend = generalToken + "/copyMessage?" + text;
 	sendQuery(tosend);
@@ -873,7 +823,7 @@ inline void TelegramTypes::API::sendLocation(const float& latitude, const float&
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (live_period.has_value()) {
 		text = text + "live_period=" + std::to_string(live_period.value()) + "&";
@@ -919,7 +869,7 @@ inline void TelegramTypes::API::editMessageLiveLocation(const float& latitude, c
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (inline_message_id.has_value()) {
 		text = text + "inline_message_id=" + inline_message_id.value() + "&";
@@ -960,7 +910,7 @@ inline void TelegramTypes::API::stopMessageLiveLocation(const std::optional<std:
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/stopMessageLiveLocation?" + text;
 	sendQuery(tosend);
@@ -978,7 +928,7 @@ inline void TelegramTypes::API::sendVenue(const float& latitude, const float& lo
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (foursquare_id.has_value()) {
 		text = text + "foursquare_id=" + foursquare_id.value() + "&";
@@ -1025,7 +975,7 @@ inline void TelegramTypes::API::sendContact(const std::string& phone_number, con
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (last_name.has_value()) {
 		text = text + "last_name=" + last_name.value() + "&";
@@ -1063,14 +1013,14 @@ inline void TelegramTypes::API::sendPoll(const std::string& question, const Json
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, options);
-	text = text + "options=" + "[" + result + "]&";
+	text = text + "options=" + result +"&";
 	text = text + "chat_id=" + chat_id + "&";
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	if (explanation_parse_mode.has_value()) {
 		text = text + "explanation_parse_mode=" + explanation_parse_mode.value() + "&";
@@ -1111,7 +1061,7 @@ inline void TelegramTypes::API::sendPoll(const std::string& question, const Json
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, explanation_entities.value());
-		text = text + "explanation_entities=" + "[" + result + "]" + "&";
+		text = text + "explanation_entities=" + result +"&";
 	}
 	if (disable_notification.has_value()) {
 		if (disable_notification.value()) {
@@ -1174,7 +1124,7 @@ inline void TelegramTypes::API::sendDice(const std::string& chat_id, const std::
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/sendDice?" + text;
 	sendQuery(tosend);
@@ -1266,7 +1216,7 @@ inline void TelegramTypes::API::restrictChatMember(const __int64& user_id, const
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
-	text = text + "permissions=" + "[" + result + "]&";
+	text = text + "permissions=" + result +"&";
 	text = text + "chat_id=" + chat_id + "&";
 	if (until_date.has_value()) {
 		text = text + "until_date=" + std::to_string(until_date.value()) + "&";
@@ -1370,7 +1320,7 @@ inline void TelegramTypes::API::setChatPermissions(const Json::Value& permission
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
-	text = text + "permissions=" + "[" + result + "]&";
+	text = text + "permissions=" + result +"&";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPermissions?" + text;
 	sendQuery(tosend);
@@ -1391,7 +1341,7 @@ inline void TelegramTypes::API::setChatPhoto(const Json::Value& photo, const std
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, photo);
-	text = text + "photo=" + "[" + result + "]&";
+	text = text + "photo=" + result +"&";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPhoto?" + text;
 	sendQuery(tosend);
@@ -1580,7 +1530,7 @@ inline void TelegramTypes::API::setMyCommands(const Json::Value& commands) {
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, commands);
-	text = text + "commands=" + "[" + result + "]&";
+	text = text + "commands=" + result +"&";
 	std::string tosend = generalToken + "/setMyCommands?" + text;
 	sendQuery(tosend);
 }
@@ -1605,7 +1555,7 @@ inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, co
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, entities.value());
-		text1 = text1 + "entities=" + "[" + result + "]" + "&";
+		text1 = text1 + "entities=" + result +"&";
 	}
 	if (disable_web_page_preview.has_value()) {
 		if (disable_web_page_preview.value()) {
@@ -1620,7 +1570,7 @@ inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, co
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text1 = text1 + "reply_markup=" + "[" + result + "]" + "&";
+		text1 = text1 + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/getMyCommands?" + text1;
 	CURL* curl;
@@ -1660,14 +1610,14 @@ inline void TelegramTypes::API::editMessageCaption(const std::optional<std::stri
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]" + "&";
+		text = text + "caption_entities=" + result +"&";
 	}
 	if (reply_markup.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/editMessageCaption?" + text;
 	sendQuery(tosend);
@@ -1679,7 +1629,7 @@ inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, media);
-	text = text + "media=" + "[" + result + "]&";
+	text = text + "media=" + result +"&";
 	if (chat_id.has_value()) {
 		text = text + "chat_id=" + chat_id.value() + "&";
 	}
@@ -1694,7 +1644,7 @@ inline void TelegramTypes::API::editMessageMedia(const Json::Value& media, const
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/editMessageMedia?" + text;
 	sendQuery(tosend);
@@ -1716,7 +1666,7 @@ inline void TelegramTypes::API::editMessageReplyMarkup(const std::optional<std::
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/editMessageReplyMarkup?" + text;
 	sendQuery(tosend);
@@ -1731,7 +1681,7 @@ inline void TelegramTypes::API::stopPoll(const __int64& message_id, const std::s
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/stopPoll?" + text;
 	sendQuery(tosend);
@@ -1744,52 +1694,6 @@ inline void TelegramTypes::API::deleteMessage(const __int64& message_id, const s
 	std::string tosend = generalToken + "/deleteMessage?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::StickerSet(const std::string& title, const Json::Value& stickers, const std::string& name, const std::optional<bool>& is_animated, const std::optional<bool>& contains_masks, const std::optional<Json::Value>& thumb) {
-	std::string text;
-	text = "";
-	text = text + "title=" + title + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, stickers);
-	text = text + "stickers=" + "[" + result + "]&";
-	text = text + "name=" + name + "&";
-	if (is_animated.has_value()) {
-		if (is_animated.value()) {
-			text = text + "is_animated=true&";
-		}
-		else {
-			text = text + "is_animated=false&";
-		}
-	}
-	if (contains_masks.has_value()) {
-		if (contains_masks.value()) {
-			text = text + "contains_masks=true&";
-		}
-		else {
-			text = text + "contains_masks=false&";
-		}
-	}
-	if (thumb.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, thumb.value());
-		text = text + "thumb=" + "[" + result + "]" + "&";
-	}
-	std::string tosend = generalToken + "/StickerSet?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::MaskPosition(const float& x_shift, const float& y_shift, const float& scale, const std::string& point) {
-	std::string text;
-	text = "";
-	text = text + "=" + std::to_string(x_shift) + "&";
-	text = text + "=" + std::to_string(y_shift) + "&";
-	text = text + "=" + std::to_string(scale) + "&";
-	text = text + "point=" + point + "&";
-	std::string tosend = generalToken + "/MaskPosition?" + text;
-	sendQuery(tosend);
-}
 inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const std::string& chat_id, const std::optional<bool>& disable_notification, const std::optional<__int64>& reply_to_message_id, const std::optional<bool>& allow_sending_without_reply, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
 	text = "";
@@ -1797,7 +1701,7 @@ inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const st
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, sticker);
-	text = text + "sticker=" + "[" + result + "]&";
+	text = text + "sticker=" + result +"&";
 	text = text + "chat_id=" +  chat_id + "&";
 	if (disable_notification.has_value()) {
 		if (disable_notification.value()) {
@@ -1823,7 +1727,7 @@ inline void TelegramTypes::API::sendSticker(const Json::Value& sticker, const st
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]" + "&";
+		text = text + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/sendSticker?" + text;
 	sendQuery(tosend);
@@ -1853,7 +1757,7 @@ inline void TelegramTypes::API::uploadStickerFile(const Json::Value& png_sticker
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, png_sticker);
-	text = text + "png_sticker=" + "[" + result + "]&";
+	text = text + "png_sticker=" + result +"&";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	std::string tosend = generalToken + "/uploadStickerFile?" + text;
 	sendQuery(tosend);
@@ -1872,14 +1776,14 @@ inline void TelegramTypes::API::createNewStickerSet(const std::string& emojis, c
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, png_sticker.value());
-		text = text + "png_sticker=" + "[" + result + "]" + "&";
+		text = text + "png_sticker=" + result +"&";
 	}
 	if (tgs_sticker.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, tgs_sticker.value());
-		text = text + "tgs_sticker=" + "[" + result + "]" + "&";
+		text = text + "tgs_sticker=" + result +"&";
 	}
 	if (contains_masks.has_value()) {
 		if (contains_masks.value()) {
@@ -1894,7 +1798,7 @@ inline void TelegramTypes::API::createNewStickerSet(const std::string& emojis, c
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, mask_position.value());
-		text = text + "mask_position=" + "[" + result + "]" + "&";
+		text = text + "mask_position=" + result +"&";
 	}
 	std::string tosend = generalToken + "/createNewStickerSet?" + text;
 	sendQuery(tosend);
@@ -1910,21 +1814,21 @@ inline void TelegramTypes::API::addStickerToSet(const std::string& name, const s
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, png_sticker.value());
-		text = text + "png_sticker=" + "[" + result + "]" + "&";
+		text = text + "png_sticker=" + result +"&";
 	}
 	if (tgs_sticker.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, tgs_sticker.value());
-		text = text + "tgs_sticker=" + "[" + result + "]" + "&";
+		text = text + "tgs_sticker=" + result +"&";
 	}
 	if (mask_position.has_value()) {
 		std::string result;
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, mask_position.value());
-		text = text + "mask_position=" + "[" + result + "]" + "&";
+		text = text + "mask_position=" + result +"&";
 	}
 	std::string tosend = generalToken + "/addStickerToSet?" + text;
 	sendQuery(tosend);
@@ -1954,7 +1858,7 @@ inline void TelegramTypes::API::setStickerSetThumb(const __int64& user_id, const
 		Json::StreamWriterBuilder wbuilder;
 		wbuilder["indentation"] = "";
 		result = Json::writeString(wbuilder, thumb.value());
-		text = text + "thumb=" + "[" + result + "]" + "&";
+		text = text + "thumb=" + result +"&";
 	}
 	std::string tosend = generalToken + "/setStickerSetThumb?" + text;
 	sendQuery(tosend);
@@ -1983,7 +1887,7 @@ inline void TelegramTypes::API::answerInlineQuery(const Json::Value& results, co
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, results);
-	text = text + "results=" + "[" + result + "]&";
+	text = text + "results=" +  result + "&";
 	text = text + "inline_query_id=" + inline_query_id + "&";
 	if (cache_time.has_value()) {
 		text = text + "cache_time=" + std::to_string(cache_time.value()) + "&";
@@ -2006,975 +1910,6 @@ inline void TelegramTypes::API::answerInlineQuery(const Json::Value& results, co
 		text = text + "switch_pm_parameter=" + switch_pm_parameter.value() + "&";
 	}
 	std::string tosend = generalToken + "/answerInlineQuery?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResult(const std::string& id, const std::string& title, const Json::Value& input_message_content, const std::optional<__int64>& thumb_height, const std::optional<std::string>& url, const std::optional<Json::Value>& reply_markup, const std::optional<bool>& hide_url, const std::optional<std::string>& description, const std::optional<std::string>& thumb_url, const std::optional<__int64>& thumb_width, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "title=" + title + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, input_message_content);
-	text = text + "input_message_content=" + "[" + result + "]&";
-	if (thumb_height.has_value()) {
-		text = text + "thumb_height=" + std::to_string(thumb_height.value()) + "&";
-	}
-	if (url.has_value()) {
-		text = text + "url=" + url.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (hide_url.has_value()) {
-		if (hide_url.value()) {
-			text = text + "hide_url=true&";
-		}
-		else {
-			text = text + "hide_url=false&";
-		}
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (thumb_url.has_value()) {
-		text = text + "thumb_url=" + thumb_url.value() + "&";
-	}
-	if (thumb_width.has_value()) {
-		text = text + "thumb_width=" + std::to_string(thumb_width.value()) + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResult?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultPhoto(const std::string& id, const std::string& photo_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& title, const std::optional<__int64>& photo_height, const std::optional<__int64>& photo_width, const std::optional<std::string>& description, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "photo_url=" + photo_url + "&";
-	text = text + "thumb_url=" + thumb_url + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (photo_height.has_value()) {
-		text = text + "photo_height=" + std::to_string(photo_height.value()) + "&";
-	}
-	if (photo_width.has_value()) {
-		text = text + "photo_width=" + std::to_string(photo_width.value()) + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultPhoto?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultGif(const std::string& id, const std::string& gif_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_mime_type, const std::optional<std::string>& type, const std::optional<std::string>& caption, const std::optional<__int64>& gif_width, const std::optional<std::string>& title, const std::optional<__int64>& gif_height, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<__int64>& gif_duration) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "gif_url=" + gif_url + "&";
-	text = text + "thumb_url=" + thumb_url + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_mime_type.has_value()) {
-		text = text + "thumb_mime_type=" + thumb_mime_type.value() + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (gif_width.has_value()) {
-		text = text + "gif_width=" + std::to_string(gif_width.value()) + "&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (gif_height.has_value()) {
-		text = text + "gif_height=" + std::to_string(gif_height.value()) + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (gif_duration.has_value()) {
-		text = text + "gif_duration=" + std::to_string(gif_duration.value()) + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultGif?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultMpeg4Gif(const std::string& id, const std::string& mpeg4_url, const std::string& thumb_url, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_mime_type, const std::optional<std::string>& type, const std::optional<std::string>& caption, const std::optional<__int64>& mpeg4_width, const std::optional<std::string>& title, const std::optional<__int64>& mpeg4_height, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<__int64>& mpeg4_duration) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "mpeg4_url=" + mpeg4_url + "&";
-	text = text + "thumb_url=" + thumb_url + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_mime_type.has_value()) {
-		text = text + "thumb_mime_type=" + thumb_mime_type.value() + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (mpeg4_width.has_value()) {
-		text = text + "mpeg4_width=" + std::to_string(mpeg4_width.value()) + "&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (mpeg4_height.has_value()) {
-		text = text + "mpeg4_height=" + std::to_string(mpeg4_height.value()) + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (mpeg4_duration.has_value()) {
-		text = text + "mpeg4_duration=" + std::to_string(mpeg4_duration.value()) + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultMpeg4Gif?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultVideo(const std::string& id, const std::string& video_url, const std::string& mime_type, const std::string& thumb_url, const std::string& title, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& parse_mode, const std::optional<std::string>& caption, const std::optional<Json::Value>& caption_entities, const std::optional<__int64>& video_width, const std::optional<__int64>& video_height, const std::optional<__int64>& video_duration, const std::optional<std::string>& description, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "video_url=" + video_url + "&";
-	text = text + "mime_type=" + mime_type + "&";
-	text = text + "thumb_url=" + thumb_url + "&";
-	text = text + "title=" + title + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (video_width.has_value()) {
-		text = text + "video_width=" + std::to_string(video_width.value()) + "&";
-	}
-	if (video_height.has_value()) {
-		text = text + "video_height=" + std::to_string(video_height.value()) + "&";
-	}
-	if (video_duration.has_value()) {
-		text = text + "video_duration=" + std::to_string(video_duration.value()) + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultVideo?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultAudio(const std::string& id, const std::string& audio_url, const std::string& title, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& parse_mode, const std::optional<std::string>& caption, const std::optional<Json::Value>& caption_entities, const std::optional<std::string>& performer, const std::optional<__int64>& audio_duration, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "audio_url=" + audio_url + "&";
-	text = text + "title=" + title + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (performer.has_value()) {
-		text = text + "performer=" + performer.value() + "&";
-	}
-	if (audio_duration.has_value()) {
-		text = text + "audio_duration=" + std::to_string(audio_duration.value()) + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultAudio?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultVoice(const std::string& id, const std::string& voice_url, const std::string& title, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& parse_mode, const std::optional<std::string>& caption, const std::optional<Json::Value>& caption_entities, const std::optional<__int64>& voice_duration, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "voice_url=" + voice_url + "&";
-	text = text + "title=" + title + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (voice_duration.has_value()) {
-		text = text + "voice_duration=" + std::to_string(voice_duration.value()) + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultVoice?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultDocument(const std::string& id, const std::string& title, const std::string& document_url, const std::string& mime_type, const std::optional<__int64>& thumb_height, const std::optional<std::string>& type, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& caption, const std::optional<std::string>& description, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_url, const std::optional<__int64>& thumb_width, const std::optional<Json::Value>& caption_entities) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "title=" + title + "&";
-	text = text + "document_url=" + document_url + "&";
-	text = text + "mime_type=" + mime_type + "&";
-	if (thumb_height.has_value()) {
-		text = text + "thumb_height=" + std::to_string(thumb_height.value()) + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_url.has_value()) {
-		text = text + "thumb_url=" + thumb_url.value() + "&";
-	}
-	if (thumb_width.has_value()) {
-		text = text + "thumb_width=" + std::to_string(thumb_width.value()) + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultDocument?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultLocation(const std::string& id, const float& latitude, const float& longitude, const std::string& title, const std::optional<__int64>& thumb_height, const std::optional<__int64>& heading, const std::optional<__int64>& live_period, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& proximity_alert_radius, const std::optional<Json::Value>& reply_markup, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_url, const std::optional<__int64>& thumb_width, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "=" + std::to_string(latitude) + "&";
-	text = text + "=" + std::to_string(longitude) + "&";
-	text = text + "title=" + title + "&";
-	if (thumb_height.has_value()) {
-		text = text + "thumb_height=" + std::to_string(thumb_height.value()) + "&";
-	}
-	if (heading.has_value()) {
-		text = text + "heading=" + std::to_string(heading.value()) + "&";
-	}
-	if (live_period.has_value()) {
-		text = text + "live_period=" + std::to_string(live_period.value()) + "&";
-	}
-	if (horizontal_accuracy.has_value()) {
-		text = text + "=" + std::to_string(horizontal_accuracy.value()) + "&";
-	}
-	if (proximity_alert_radius.has_value()) {
-		text = text + "proximity_alert_radius=" + std::to_string(proximity_alert_radius.value()) + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_url.has_value()) {
-		text = text + "thumb_url=" + thumb_url.value() + "&";
-	}
-	if (thumb_width.has_value()) {
-		text = text + "thumb_width=" + std::to_string(thumb_width.value()) + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultLocation?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultVenue(const std::string& id, const float& latitude, const float& longitude, const std::string& title, const std::string& address, const std::optional<__int64>& thumb_height, const std::optional<std::string>& foursquare_type, const std::optional<std::string>& foursquare_id, const std::optional<std::string>& google_place_id, const std::optional<std::string>& google_place_type, const std::optional<Json::Value>& reply_markup, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_url, const std::optional<__int64>& thumb_width, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "=" + std::to_string(latitude) + "&";
-	text = text + "=" + std::to_string(longitude) + "&";
-	text = text + "title=" + title + "&";
-	text = text + "address=" + address + "&";
-	if (thumb_height.has_value()) {
-		text = text + "thumb_height=" + std::to_string(thumb_height.value()) + "&";
-	}
-	if (foursquare_type.has_value()) {
-		text = text + "foursquare_type=" + foursquare_type.value() + "&";
-	}
-	if (foursquare_id.has_value()) {
-		text = text + "foursquare_id=" + foursquare_id.value() + "&";
-	}
-	if (google_place_id.has_value()) {
-		text = text + "google_place_id=" + google_place_id.value() + "&";
-	}
-	if (google_place_type.has_value()) {
-		text = text + "google_place_type=" + google_place_type.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_url.has_value()) {
-		text = text + "thumb_url=" + thumb_url.value() + "&";
-	}
-	if (thumb_width.has_value()) {
-		text = text + "thumb_width=" + std::to_string(thumb_width.value()) + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultVenue?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultContact(const std::string& id, const std::string& phone_number, const std::string& first_name, const std::optional<__int64>& thumb_height, const std::optional<std::string>& vcard, const std::optional<std::string>& last_name, const std::optional<Json::Value>& reply_markup, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& thumb_url, const std::optional<__int64>& thumb_width, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "phone_number=" + phone_number + "&";
-	text = text + "first_name=" + first_name + "&";
-	if (thumb_height.has_value()) {
-		text = text + "thumb_height=" + std::to_string(thumb_height.value()) + "&";
-	}
-	if (vcard.has_value()) {
-		text = text + "vcard=" + vcard.value() + "&";
-	}
-	if (last_name.has_value()) {
-		text = text + "last_name=" + last_name.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (thumb_url.has_value()) {
-		text = text + "thumb_url=" + thumb_url.value() + "&";
-	}
-	if (thumb_width.has_value()) {
-		text = text + "thumb_width=" + std::to_string(thumb_width.value()) + "&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultContact?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultGame(const std::string& id, const std::string& game_short_name, const std::optional<std::string>& type, const std::optional<Json::Value>& reply_markup) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "game_short_name=" + game_short_name + "&";
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultGame?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedPhoto(const std::string& id, const std::string& photo_file_id, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& description, const std::optional<std::string>& title, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "photo_file_id=" + photo_file_id + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedPhoto?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedGif(const std::string& id, const std::string& gif_file_id, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& title, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "gif_file_id=" + gif_file_id + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedGif?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedMpeg4Gif(const std::string& id, const std::string& mpeg4_file_id, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& title, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "mpeg4_file_id=" + mpeg4_file_id + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (title.has_value()) {
-		text = text + "title=" + title.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedMpeg4Gif?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedSticker(const std::string& id, const std::string& sticker_file_id, const std::optional<std::string>& type, const std::optional<Json::Value>& reply_markup, const std::optional<Json::Value>& input_message_content) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "sticker_file_id=" + sticker_file_id + "&";
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedSticker?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedDocument(const std::string& id, const std::string& title, const std::string& document_file_id, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& description, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "title=" + title + "&";
-	text = text + "document_file_id=" + document_file_id + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedDocument?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedVideo(const std::string& id, const std::string& video_file_id, const std::string& title, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& description, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "video_file_id=" + video_file_id + "&";
-	text = text + "title=" + title + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (description.has_value()) {
-		text = text + "description=" + description.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedVideo?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedVoice(const std::string& id, const std::string& voice_file_id, const std::string& title, const std::optional<Json::Value>& input_message_content, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<std::string>& type) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "voice_file_id=" + voice_file_id + "&";
-	text = text + "title=" + title + "&";
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedVoice?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InlineQueryResultCachedAudio(const std::string& id, const std::string& audio_file_id, const std::optional<std::string>& type, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup, const std::optional<Json::Value>& input_message_content) {
-	std::string text;
-	text = "";
-	text = text + "id=" + id + "&";
-	text = text + "audio_file_id=" + audio_file_id + "&";
-	if (type.has_value()) {
-		text = text + "type=" + type.value() + "&";
-	}
-	if (caption.has_value()) {
-		text = text + "caption=" + caption.value() + "&";
-	}
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (caption_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, caption_entities.value());
-		text = text + "caption_entities=" + "[" + result + "]&";
-	}
-	if (reply_markup.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reply_markup.value());
-		text = text + "reply_markup=" + "[" + result + "]&";
-	}
-	if (input_message_content.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, input_message_content.value());
-		text = text + "input_message_content=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/InlineQueryResultCachedAudio?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InputMessageContent(const std::string& message_text, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& entities, const std::optional<bool>& disable_web_page_preview) {
-	std::string text;
-	text = "";
-	text = text + "message_text=" + message_text + "&";
-	if (parse_mode.has_value()) {
-		text = text + "parse_mode=" + parse_mode.value() + "&";
-	}
-	if (entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, entities.value());
-		text = text + "entities=" + "[" + result + "]&";
-	}
-	if (disable_web_page_preview.has_value()) {
-		if (disable_web_page_preview.value()) {
-			text = text + "disable_web_page_preview=true&";
-		}
-		else {
-			text = text + "disable_web_page_preview=false&";
-		}
-	}
-	std::string tosend = generalToken + "/InputMessageContent?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InputLocationMessageContent(const float& longitude, const float& latitude, const std::optional<float>& horizontal_accuracy, const std::optional<__int64>& live_period, const std::optional<__int64>& heading, const std::optional<__int64>& proximity_alert_radius) {
-	std::string text;
-	text = "";
-	text = text + "=" + std::to_string(longitude) + "&";
-	text = text + "=" + std::to_string(latitude) + "&";
-	if (horizontal_accuracy.has_value()) {
-		text = text + "=" + std::to_string(horizontal_accuracy.value()) + "&";
-	}
-	if (live_period.has_value()) {
-		text = text + "live_period=" + std::to_string(live_period.value()) + "&";
-	}
-	if (heading.has_value()) {
-		text = text + "heading=" + std::to_string(heading.value()) + "&";
-	}
-	if (proximity_alert_radius.has_value()) {
-		text = text + "proximity_alert_radius=" + std::to_string(proximity_alert_radius.value()) + "&";
-	}
-	std::string tosend = generalToken + "/InputLocationMessageContent?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InputVenueMessageContent(const float& longitude, const std::string& title, const std::string& address, const float& latitude, const std::optional<std::string>& foursquare_id, const std::optional<std::string>& foursquare_type, const std::optional<std::string>& google_place_id, const std::optional<std::string>& google_place_type) {
-	std::string text;
-	text = "";
-	text = text + "=" + std::to_string(longitude) + "&";
-	text = text + "title=" + title + "&";
-	text = text + "address=" + address + "&";
-	text = text + "=" + std::to_string(latitude) + "&";
-	if (foursquare_id.has_value()) {
-		text = text + "foursquare_id=" + foursquare_id.value() + "&";
-	}
-	if (foursquare_type.has_value()) {
-		text = text + "foursquare_type=" + foursquare_type.value() + "&";
-	}
-	if (google_place_id.has_value()) {
-		text = text + "google_place_id=" + google_place_id.value() + "&";
-	}
-	if (google_place_type.has_value()) {
-		text = text + "google_place_type=" + google_place_type.value() + "&";
-	}
-	std::string tosend = generalToken + "/InputVenueMessageContent?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::InputContactMessageContent(const std::string& first_name, const std::string& phone_number, const std::optional<std::string>& last_name, const std::optional<std::string>& vcard) {
-	std::string text;
-	text = "";
-	text = text + "first_name=" + first_name + "&";
-	text = text + "phone_number=" + phone_number + "&";
-	if (last_name.has_value()) {
-		text = text + "last_name=" + last_name.value() + "&";
-	}
-	if (vcard.has_value()) {
-		text = text + "vcard=" + vcard.value() + "&";
-	}
-	std::string tosend = generalToken + "/InputContactMessageContent?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::ChosenInlineResult(const Json::Value& from, const std::string& query, const std::string& result_id, const std::optional<Json::Value>& location, const std::optional<std::string>& inline_message_id) {
-	std::string text;
-	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, from);
-	text = text + "from=" + "[" + result + "]&";
-	text = text + "query=" + query + "&";
-	text = text + "result_id=" + result_id + "&";
-	if (location.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, location.value());
-		text = text + "location=" + "[" + result + "]&";
-	}
-	if (inline_message_id.has_value()) {
-		text = text + "inline_message_id=" + inline_message_id.value() + "&";
-	}
-	std::string tosend = generalToken + "/ChosenInlineResult?" + text;
 	sendQuery(tosend);
 }
 inline void TelegramTypes::API::answerShippingQuery(const bool& ok, const std::string& shipping_query_id, const std::optional<Json::Value>& shipping_options, const std::optional<std::string>& error_message) {
@@ -3018,213 +1953,6 @@ inline void TelegramTypes::API::answerPreCheckoutQuery(const std::string& pre_ch
 	std::string tosend = generalToken + "/answerPreCheckoutQuery?" + text;
 	sendQuery(tosend);
 }
-inline void TelegramTypes::API::LabeledPrice(const std::string& label, const std::optional<__int64>& amount) {
-	std::string text;
-	text = "";
-	text = text + "label=" + label + "&";
-	if (amount.has_value()) {
-		text = text + "amount=" + std::to_string(amount.value()) + "&";
-	}
-	std::string tosend = generalToken + "/LabeledPrice?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::Invoice(const std::string& description, const std::string& start_parameter, const std::string& currency, const std::string& title, const std::optional<__int64>& total_amount) {
-	std::string text;
-	text = "";
-	text = text + "description=" + description + "&";
-	text = text + "start_parameter=" + start_parameter + "&";
-	text = text + "currency=" + currency + "&";
-	text = text + "title=" + title + "&";
-	if (total_amount.has_value()) {
-		text = text + "total_amount=" + std::to_string(total_amount.value()) + "&";
-	}
-	std::string tosend = generalToken + "/Invoice?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::ShippingAddress(const std::string& state, const std::string& city, const std::string& street_line1, const std::string& street_line2, const std::string& post_code, const std::string& country_code) {
-	std::string text;
-	text = "";
-	text = text + "state=" + state + "&";
-	text = text + "city=" + city + "&";
-	text = text + "street_line1=" + street_line1 + "&";
-	text = text + "street_line2=" + street_line2 + "&";
-	text = text + "post_code=" + post_code + "&";
-	text = text + "country_code=" + country_code + "&";
-	std::string tosend = generalToken + "/ShippingAddress?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::OrderInfo(const std::optional<std::string>& name, const std::optional<std::string>& phone_number, const std::optional<std::string>& email, const std::optional<Json::Value>& shipping_address) {
-	std::string text;
-	text = "";
-	if (name.has_value()) {
-		text = text + "name=" + name.value() + "&";
-	}
-	if (phone_number.has_value()) {
-		text = text + "phone_number=" + phone_number.value() + "&";
-	}
-	if (email.has_value()) {
-		text = text + "email=" + email.value() + "&";
-	}
-	if (shipping_address.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, shipping_address.value());
-		text = text + "shipping_address=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/OrderInfo?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::ShippingOption(const std::string& title, const Json::Value& prices, const std::string& id) {
-	std::string text;
-	text = "";
-	text = text + "title=" + title + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, prices);
-	text = text + "prices=" + "[" + result + "]&";
-	text = text + "id=" + id + "&";
-	std::string tosend = generalToken + "/ShippingOption?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::SuccessfulPayment(const std::string& provider_payment_charge_id, const std::string& invoice_payload, const std::string& telegram_payment_charge_id, const std::string& currency, const std::optional<__int64>& total_amount, const std::optional<std::string>& shipping_option_id, const std::optional<Json::Value>& order_info) {
-	std::string text;
-	text = "";
-	text = text + "provider_payment_charge_id=" + provider_payment_charge_id + "&";
-	text = text + "invoice_payload=" + invoice_payload + "&";
-	text = text + "telegram_payment_charge_id=" + telegram_payment_charge_id + "&";
-	text = text + "currency=" + currency + "&";
-	if (total_amount.has_value()) {
-		text = text + "total_amount=" + std::to_string(total_amount.value()) + "&";
-	}
-	if (shipping_option_id.has_value()) {
-		text = text + "shipping_option_id=" + shipping_option_id.value() + "&";
-	}
-	if (order_info.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, order_info.value());
-		text = text + "order_info=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/SuccessfulPayment?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::ShippingQuery(const Json::Value& from, const std::string& invoice_payload, const Json::Value& shipping_address, const std::string& id) {
-	std::string text;
-	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, from);
-	text = text + "from=" + "[" + result + "]&";
-	text = text + "invoice_payload=" + invoice_payload + "&";
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, shipping_address);
-	text = text + "shipping_address=" + "[" + result + "]&";
-	text = text + "id=" + id + "&";
-	std::string tosend = generalToken + "/ShippingQuery?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PreCheckoutQuery(const Json::Value& from, const std::string& currency, const std::string& invoice_payload, const std::string& id, const std::optional<__int64>& total_amount, const std::optional<std::string>& shipping_option_id, const std::optional<Json::Value>& order_info) {
-	std::string text;
-	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, from);
-	text = text + "from=" + "[" + result + "]&";
-	text = text + "currency=" + currency + "&";
-	text = text + "invoice_payload=" + invoice_payload + "&";
-	text = text + "id=" + id + "&";
-	if (total_amount.has_value()) {
-		text = text + "total_amount=" + std::to_string(total_amount.value()) + "&";
-	}
-	if (shipping_option_id.has_value()) {
-		text = text + "shipping_option_id=" + shipping_option_id.value() + "&";
-	}
-	if (order_info.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, order_info.value());
-		text = text + "order_info=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/PreCheckoutQuery?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportFile(const std::string& file_unique_id, const __int64& file_size, const __int64& file_date, const std::string& file_id) {
-	std::string text;
-	text = "";
-	text = text + "file_unique_id=" + file_unique_id + "&";
-	text = text + "file_size=" + std::to_string(file_size) + "&";
-	text = text + "file_date=" + std::to_string(file_date) + "&";
-	text = text + "file_id=" + file_id + "&";
-	std::string tosend = generalToken + "/PassportFile?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::EncryptedPassportElement(const std::string& type, const std::string& hash, const std::optional<std::string>& phone_number, const std::optional<std::string>& email, const std::optional<Json::Value>& files, const std::optional<std::string>& data, const std::optional<Json::Value>& reverse_side, const std::optional<Json::Value>& selfie, const std::optional<Json::Value>& translation, const std::optional<Json::Value>& front_side) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "hash=" + hash + "&";
-	if (phone_number.has_value()) {
-		text = text + "phone_number=" + phone_number.value() + "&";
-	}
-	if (email.has_value()) {
-		text = text + "email=" + email.value() + "&";
-	}
-	if (files.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, files.value());
-		text = text + "files=" + "[" + result + "]&";
-	}
-	if (data.has_value()) {
-		text = text + "data=" + data.value() + "&";
-	}
-	if (reverse_side.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, reverse_side.value());
-		text = text + "reverse_side=" + "[" + result + "]&";
-	}
-	if (selfie.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, selfie.value());
-		text = text + "selfie=" + "[" + result + "]&";
-	}
-	if (translation.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, translation.value());
-		text = text + "translation=" + "[" + result + "]&";
-	}
-	if (front_side.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, front_side.value());
-		text = text + "front_side=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/EncryptedPassportElement?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::EncryptedCredentials(const std::string& hash, const std::string& secret, const std::string& data) {
-	std::string text;
-	text = "";
-	text = text + "hash=" + hash + "&";
-	text = text + "secret=" + secret + "&";
-	text = text + "data=" + data + "&";
-	std::string tosend = generalToken + "/EncryptedCredentials?" + text;
-	sendQuery(tosend);
-}
 inline void TelegramTypes::API::setPassportDataErrors(const Json::Value& errors, const __int64& user_id) {
 	std::string text;
 	text = "";
@@ -3235,186 +1963,6 @@ inline void TelegramTypes::API::setPassportDataErrors(const Json::Value& errors,
 	text = text + "errors=" + "[" + result + "]&";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	std::string tosend = generalToken + "/setPassportDataErrors?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementError(const std::string& type, const std::string& field_name, const std::string& data_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "field_name=" + field_name + "&";
-	text = text + "data_hash=" + data_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementError?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorFrontSide(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "file_hash=" + file_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorFrontSide?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorReverseSide(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "file_hash=" + file_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorReverseSide?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorSelfie(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "file_hash=" + file_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorSelfie?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorFile(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "file_hash=" + file_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorFile?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorFiles(const std::string& type, const Json::Value& file_hashes, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, file_hashes);
-	text = text + "file_hashes=" + "[" + result + "]&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorFiles?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorTranslationFile(const std::string& type, const std::string& file_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "file_hash=" + file_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorTranslationFile?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorTranslationFiles(const std::string& type, const Json::Value& file_hashes, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, file_hashes);
-	text = text + "file_hashes=" + "[" + result + "]&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorTranslationFiles?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::PassportElementErrorUnspecified(const std::string& type, const std::string& element_hash, const std::string& message, const std::optional<std::string>& source) {
-	std::string text;
-	text = "";
-	text = text + "type=" + type + "&";
-	text = text + "element_hash=" + element_hash + "&";
-	text = text + "message=" + message + "&";
-	if (source.has_value()) {
-		text = text + "source=" + source.value() + "&";
-	}
-	std::string tosend = generalToken + "/PassportElementErrorUnspecified?" + text;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::Game(const std::string& description, const Json::Value& photo, const std::string& title, const std::optional<std::string>& text, const std::optional<Json::Value>& text_entities, const std::optional<Json::Value>& animation) {
-	std::string text1;
-	text1 = "";
-	text1 = text1 + "description=" + description + "&";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, photo);
-	text1 = text1 + "photo=" + "[" + result + "]&";
-	text1 = text1 + "title=" + title + "&";
-	if (text.has_value()) {
-		text1 = text1 + "text=" + text.value() + "&";
-	}
-	if (text_entities.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, text_entities.value());
-		text1 = text1 + "text_entities=" + "[" + result + "]&";
-	}
-	if (animation.has_value()) {
-		std::string result;
-		Json::StreamWriterBuilder wbuilder;
-		wbuilder["indentation"] = "";
-		result = Json::writeString(wbuilder, animation.value());
-		text1 = text1 + "animation=" + "[" + result + "]&";
-	}
-	std::string tosend = generalToken + "/Game?" + text1;
-	sendQuery(tosend);
-}
-inline void TelegramTypes::API::CallbackGame(const __int64& score, const __int64& user_id, const std::optional<bool>& force, const std::optional<bool>& disable_edit_message, const std::optional<__int64>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id) {
-	std::string text;
-	text = "";
-	text = text + "score=" + std::to_string(score) + "&";
-	text = text + "user_id=" + std::to_string(user_id) + "&";
-	if (force.has_value()) {
-		if (force.value()) {
-			text = text + "force=true&";
-		}
-		else {
-			text = text + "force=false&";
-		}
-	}
-	if (disable_edit_message.has_value()) {
-		if (disable_edit_message.value()) {
-			text = text + "disable_edit_message=true&";
-		}
-		else {
-			text = text + "disable_edit_message=false&";
-		}
-	}
-	if (chat_id.has_value()) {
-		text = text + "chat_id=" + std::to_string(chat_id.value()) + "&";
-	}
-	if (message_id.has_value()) {
-		text = text + "message_id=" + std::to_string(message_id.value()) + "&";
-	}
-	if (inline_message_id.has_value()) {
-		text = text + "inline_message_id=" + inline_message_id.value() + "&";
-	}
-	std::string tosend = generalToken + "/CallbackGame?" + text;
 	sendQuery(tosend);
 }
 inline Json::Value TelegramTypes::API::getGameHighScores(const __int64& user_id, const std::optional<__int64>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id) {
@@ -3443,17 +1991,4 @@ inline Json::Value TelegramTypes::API::getGameHighScores(const __int64& user_id,
 		curl_easy_cleanup(curl);
 	}
 	return Json::Value(readBuffer);
-}
-inline void TelegramTypes::API::GameHighScore(const Json::Value& user, const __int64& score, const __int64& position) {
-	std::string text;
-	text = "";
-	std::string result;
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "";
-	result = Json::writeString(wbuilder, user);
-	text = text + "user=" + "[" + result + "]&";
-	text = text + "score=" + std::to_string(score) + "&";
-	text = text + "position=" + std::to_string(position) + "&";
-	std::string tosend = generalToken + "/GameHighScore?" + text;
-	sendQuery(tosend);
 }
