@@ -5,10 +5,10 @@ void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& messa
 
 	try {
 		Json::Value toSend;
-		toSend["type"] = "article";
-		toSend["id"] = "first";
-		toSend["title"] = "hey";
-		toSend["input_message_content"]["message_text"] = "hey";
+		toSend[0]["type"] = "article";
+		toSend[0]["id"] = "first";
+		toSend[0]["title"] = "hey";
+		toSend[0]["input_message_content"]["message_text"] = "hey";
 		api.answerInlineQuery(toSend, message["id"].asString());
 	}
 	catch (std::string& error) {
