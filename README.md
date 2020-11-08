@@ -14,7 +14,7 @@
 
 ## Getting started.
 
-This API is tested with C++ 17, Visual Studio 2017/2019.
+This API is tested with C++ 17, on linux and on Visual Studio 2017/2019.
 
 <h2> Steps </h2>
 
