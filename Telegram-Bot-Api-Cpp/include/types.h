@@ -117,6 +117,7 @@ namespace TelegramTypes {
 	private:
 		std::string generalToken = "";
 		inline void sendQuery(std::string& query);
+		inline Json::Value getQuery(std::string& query);
 	};
 }
 inline size_t WriteCallback(char* contents, size_t size, size_t nmemb, void* userp)
@@ -1150,36 +1151,16 @@ inline Json::Value TelegramTypes::API::getUserProfilePhotos(const __int64& user_
 		text = text + "limit=" + std::to_string(limit.value()) + "&";
 	}
 	std::string tosend = generalToken + "/getUserProfilePhotos?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline Json::Value TelegramTypes::API::getFile(const std::string& file_id) {
 	std::string text;
 	text = "";
 	text = text + "file_id=" + file_id + "&";
 	std::string tosend = generalToken + "/getFile?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline void TelegramTypes::API::kickChatMember(const __int64& user_id, const std::string& chat_id, const std::optional<__int64>& until_date) {
 	std::string text;
@@ -1416,36 +1397,16 @@ inline Json::Value TelegramTypes::API::getChat(const std::string& chat_id) {
 	text = "";
 	text = text + "chat_id=" + "" + chat_id + "&";
 	std::string tosend = generalToken + "/getChat?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline Json::Value TelegramTypes::API::getChatAdministrators(const std::string& chat_id) {
 	std::string text;
 	text = "";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/getChatAdministrators?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline Json::Value TelegramTypes::API::getChatMembersCount(const std::string& chat_id) {
 	std::string text;
@@ -1471,18 +1432,8 @@ inline Json::Value TelegramTypes::API::getChatMember(const __int64& user_id, con
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/getChatMember?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline void TelegramTypes::API::setChatStickerSet(const std::string& sticker_set_name, const std::string& chat_id) {
 	std::string text;
@@ -1573,18 +1524,8 @@ inline Json::Value TelegramTypes::API::getMyCommands(const std::string& text, co
 		text1 = text1 + "reply_markup=" + result +"&";
 	}
 	std::string tosend = generalToken + "/getMyCommands?" + text1;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline void TelegramTypes::API::editMessageCaption(const std::optional<std::string>& chat_id, const std::optional<__int64>& message_id, const std::optional<std::string>& inline_message_id, const std::optional<std::string>& caption, const std::optional<std::string>& parse_mode, const std::optional<Json::Value>& caption_entities, const std::optional<Json::Value>& reply_markup) {
 	std::string text;
@@ -1737,18 +1678,8 @@ inline Json::Value TelegramTypes::API::getStickerSet(const std::string& name) {
 	text = "";
 	text = text + "name=" + name + "&";
 	std::string tosend = generalToken + "/getStickerSet?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
 inline void TelegramTypes::API::uploadStickerFile(const Json::Value& png_sticker, const __int64& user_id) {
 	std::string text;
@@ -1880,6 +1811,21 @@ inline void TelegramTypes::API::sendQuery(std::string& query)
 		throw readBuffer;
 	}
 }
+inline Json::Value TelegramTypes::API::getQuery(std::string & query)
+{
+	CURL* curl;
+	CURLcode res;
+	std::string readBuffer;
+	curl = curl_easy_init();
+	if (curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, query.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+		res = curl_easy_perform(curl);
+		curl_easy_cleanup(curl);
+	}
+	return Json::Value(readBuffer);
+}
 inline void TelegramTypes::API::answerInlineQuery(const Json::Value& results, const std::string& inline_query_id, const std::optional<__int64>& cache_time, const std::optional<bool>& is_personal, const std::optional<std::string>& next_offset, const std::optional<std::string>& switch_pm_text, const std::optional<std::string>& switch_pm_parameter) {
 	std::string text;
 	text = "";
@@ -1979,16 +1925,6 @@ inline Json::Value TelegramTypes::API::getGameHighScores(const __int64& user_id,
 		text = text + "inline_message_id=" + inline_message_id.value() + "&";
 	}
 	std::string tosend = generalToken + "/getGameHighScores?" + text;
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-	curl = curl_easy_init();
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, tosend.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		res = curl_easy_perform(curl);
-		curl_easy_cleanup(curl);
-	}
-	return Json::Value(readBuffer);
+	
+	return getQuery(tosend);
 }
