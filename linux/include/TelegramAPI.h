@@ -1,9 +1,13 @@
 #pragma once
 
 #include <sstream>
+
 #include <array>
+
 #include <fstream>
+
 #include <vector>
+
 #include "types.h"
 
 namespace TelegramBot {
