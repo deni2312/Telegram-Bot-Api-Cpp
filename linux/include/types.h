@@ -1,11 +1,12 @@
 #pragma once
+
 #include <string>
 
 #include <functional>
 
 #include <iostream>
 
-#include <json/json.h>
+#include <jsoncpp/json/json.h>
 
 #include <vector>
 
@@ -19,10 +20,12 @@
 
 #define CURL_STATICLIB
 
-#include "../curl/curl.h"
+#include <curl/curl.h>
 
 namespace TelegramTypes {
 	using MessageReceive = Json::Value;
+	
+	using __int64 = int64_t;
 	struct InputMediaPhoto {
 		std::string type;
 		std::string media;
