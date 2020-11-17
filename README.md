@@ -13,10 +13,12 @@
   * [Contacts](#contacts)
 
 ## Getting started.
-### Windows
-This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
 
 <h2> Steps </h2>
+
+This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
+
+### Windows
 
 * Clone the repository
 
@@ -36,6 +38,7 @@ This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
   <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image3.PNG" width="300" alt="accessibility text">
 </p>
 
+Reboot Visual Studio.
 
 ### Linux
 To compile on linux:  
