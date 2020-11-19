@@ -47,7 +47,7 @@ To compile on linux:
     * Jsoncpp
 ```bash
 cd linux
-g++ main.cpp src/TelegramAPI.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
+g++ main.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
 ```
 
 ## Writing your first bot
