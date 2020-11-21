@@ -17,21 +17,21 @@ namespace TelegramBot {
 	public:
 		TelegramAPI(std::string token);
 		inline void callback(std::function<void(TelegramTypes::API&, TelegramTypes::MessageReceive&)> func);
-		
+
 		inline void LOGA();
 		~TelegramAPI();
-	private: 
+	private:
 		Json::Value values;
 		bool firstCall;
 		int onUpdate;
 		std::string tokl;
 		long long int offset;
 		std::mutex nmop;
-		TelegramTypes::API api=TelegramTypes::API("");
+		TelegramTypes::API api = TelegramTypes::API("");
 		inline void update();
 		inline std::string buildString();
 	};
-	
+
 }
 
 
@@ -48,18 +48,17 @@ inline void TelegramBot::TelegramAPI::callback(std::function<void(TelegramTypes:
 	while (1) {
 		update();
 		if (onUpdate == 1) {
-			std::thread([&]() {
-				std::lock_guard<std::mutex> gi(nmop);
-				Json::Value values2;
-				values2 = Json::Value(values["result"][0]);
-				if (values2["message"].isNull()) {
-					values2 = values2["inline_query"];
-				}
-				else {
-					values2 = values2["message"];
-				}
-				func(api, values2);
-			}).detach();
+
+			Json::Value values2;
+			values2 = Json::Value(values["result"][0]);
+			if (values2["message"].isNull()) {
+				values2 = values2["inline_query"];
+			}
+			else {
+				values2 = values2["message"];
+			}
+			func(api, values2);
+
 		}
 	}
 }
