@@ -110,4 +110,4 @@ To handle errors you only need to catch `std::string& e` and the output of `e` w
 ### Contacts
 
 You can contact us on Telegram for any issue or doubt.  
-<a href="https://t.me/deni2312"> @deni2312 </a><a href="https://t.me/jaguar114"> @jaguar114 </a> <a href="https://t.me/FerroDaStiroOfficial"> @FerroDaStiroOfficial </a>
+<a href="https://t.me/deni2312"> @deni2312 </a><a href="https://t.me/jaguar114"> @jaguar114 </a> <a href="https://t.me/Ferro_nvm"> @Ferro_nvm </a>
