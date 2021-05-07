@@ -170,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\TelegramAPI.cpp" />
+    <ClCompile Include="src\types.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
