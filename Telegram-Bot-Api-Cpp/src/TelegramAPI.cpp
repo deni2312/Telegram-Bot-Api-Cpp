@@ -31,7 +31,7 @@ TelegramBot::TelegramAPI::TelegramAPI(std::string token): tokl{token}
 		offset = parsed["result"][0]["update_id"].asInt64();
 	}
 }
-void TelegramBot::TelegramAPI::callback(std::function<void(TelegramTypes::API&, TelegramTypes::MessageReceive&)> func)
+void TelegramBot::TelegramAPI::callback(const std::function<void(const TelegramTypes::API&, const TelegramTypes::MessageReceive&)> func)
 {
 	offset = 0;
 	std::thread threadupdate;

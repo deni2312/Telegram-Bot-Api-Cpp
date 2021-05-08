@@ -19,7 +19,7 @@ namespace TelegramBot {
 	class TelegramAPI {
 	public:
 		TelegramAPI(std::string token);
-		void callback(std::function<void(TelegramTypes::API&, TelegramTypes::MessageReceive&)> func);
+		void callback(const std::function<void(const TelegramTypes::API&, const TelegramTypes::MessageReceive&)> func);
 		inline void LOGA();
 		~TelegramAPI();
 	private:

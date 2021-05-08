@@ -2,7 +2,7 @@
 #include <iostream>
 #include "include/TelegramAPI.h"
 
-void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& message) {
+void sendSomething(const TelegramTypes::API& api, const TelegramTypes::MessageReceive& message) {
 }
 
 int main()
