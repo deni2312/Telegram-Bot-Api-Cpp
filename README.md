@@ -48,7 +48,14 @@ To compile on linux:
 ```bash
 cd linux
 g++ main.cpp src/TelegramAPI.cpp src/types.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
-```
+```  
+With CMake:  
+```bash
+mkdir build
+cd build
+cmake ..
+```  
+
 
 ## Writing your first bot
 
