@@ -11,3 +11,6 @@
 /x64
 /Telegram-Bot-Api-Cpp/x64
 /.vs
+/.vscode
+/build
+
