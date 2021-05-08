@@ -28,7 +28,7 @@ This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
 
 * Set the link
 
-<p align="left">
+<p align="left"> 
   <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image2.PNG" width="300" alt="accessibility text">
 </p>
 
