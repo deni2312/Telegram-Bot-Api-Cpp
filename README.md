@@ -40,7 +40,7 @@ This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
 
 Reboot Visual Studio.
 
-### Linux
+### Linux 
 To compile on linux:  
   * Dependencies
     * Libcurl
