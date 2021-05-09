@@ -1,0 +1,12 @@
+name: compile
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install libcurl4-gnutls-dev
+      - run: sudo apt-get install libjsoncpp-dev
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: g++ linux/main.cpp src/TelegramAPI.cpp src/types.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
