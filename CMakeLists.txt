@@ -4,7 +4,7 @@ project(TelegramBotApiCpp VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(TelegramBotApiCpp linux/main.cpp linux/src/TelegramAPI.cpp linux/src/types.cpp)
+add_executable(TelegramBotApiCpp telegram/main.cpp telegram/src/TelegramAPI.cpp telegram/src/types.cpp)
 
 target_link_libraries( TelegramBotApiCpp curl pthread jsoncpp)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
