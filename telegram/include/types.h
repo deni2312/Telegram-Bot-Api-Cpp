@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-#include <jsoncpp/json/json.h>
+
 
 #ifdef _WIN32
 	#include <json/json.h>
@@ -15,9 +15,6 @@
 	#include <jsoncpp/json/json.h>
 #endif
 
-#ifdef _WIN64
-	#include <json/json.h>
-#endif
 
 #include <vector>
 
@@ -73,7 +70,10 @@ namespace Telegram{
 				std::string caption;
 				std::string parse_mode;
 			};
-			struct Error{
+			struct Error : public std::exception{
+				Error(std::string error);
+				const char* what() const noexcept override;
+			private:
 				std::string message;
 			};
 			class API {
@@ -175,18 +175,18 @@ namespace Telegram{
 					const __int64 & reply_to_message_id = 0) const;
 				void copyMessage(const Json::Value & from_chat_id,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const std::string & caption = "",
 					const std::string & parse_mode = "",
 					const __int64 & message_id = 0,
 					const bool & disable_notification = false,
 					const __int64 & reply_to_message_id = 0,
 					const bool & allow_sending_without_reply = false,
-					const Json::Value & caption_entities = nullptr) const;
+					const Json::Value & caption_entities = "") const;
 				void sendLocation(const float & latitude,
 					const float & longitude,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const __int64 & live_period = 0,
 					const float & horizontal_accuracy = 0,
 					const __int64 & proximity_alert_radius = 0,
@@ -196,7 +196,7 @@ namespace Telegram{
 					const __int64 & heading = 0) const;
 				void editMessageLiveLocation(const float & latitude,
 					const float & longitude,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const std::string & inline_message_id = "",
 					const __int64 & message_id = 0,
 					const float & horizontal_accuracy = 0,
@@ -206,13 +206,13 @@ namespace Telegram{
 				void stopMessageLiveLocation(const std::string & chat_id = nullptr,
 					const __int64 & message_id = 0,
 					const std::string & inline_message_id = "",
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void sendVenue(const float & latitude,
 					const float & longitude,
 					const std::string & title,
 					const std::string & address,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const std::string & foursquare_id = "",
 					const std::string & google_place_id = "",
 					const std::string & google_place_type = "",
@@ -223,7 +223,7 @@ namespace Telegram{
 				void sendContact(const std::string & phone_number,
 					const std::string & first_name,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const std::string & last_name = "",
 					const bool & disable_notification = false,
 					const __int64 & reply_to_message_id = 0,
@@ -232,7 +232,7 @@ namespace Telegram{
 				void sendPoll(const std::string & question,
 					const Json::Value & options,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr,
+					const Json::Value & reply_markup = "",
 					const std::string & explanation_parse_mode = "",
 					const __int64 & open_period = 0,
 					const std::string & type = "",
@@ -241,7 +241,7 @@ namespace Telegram{
 					const bool & is_closed = false,
 					const bool & allows_multiple_answers = false,
 					const std::string & explanation = "",
-					const Json::Value & explanation_entities = nullptr,
+					const Json::Value & explanation_entities = "",
 					const bool & disable_notification = false,
 					const __int64 & reply_to_message_id = 0,
 					const bool & allow_sending_without_reply = false,
@@ -251,7 +251,7 @@ namespace Telegram{
 					const bool & disable_notification = false,
 					const __int64 & reply_to_message_id = 0,
 					const bool & allow_sending_without_reply = false,
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void sendChatAction(const std::string & chat_id,
 					const std::string & action = "") const;
 				Json::Value getUserProfilePhotos(const __int64 & user_id,
@@ -318,28 +318,28 @@ namespace Telegram{
 					const __int64 & message_id = 0,
 					const std::string & inline_message_id = "",
 					const std::string & parse_mode = "",
-					const Json::Value & entities = nullptr,
+					const Json::Value & entities = "",
 					const bool & disable_web_page_preview = false,
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void editMessageCaption(const std::string & chat_id = nullptr,
 					const __int64 & message_id = 0,
 					const std::string & inline_message_id = "",
 					const std::string & caption = "",
 					const std::string & parse_mode = "",
-					const Json::Value & caption_entities = nullptr,
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & caption_entities = "",
+					const Json::Value & reply_markup = "") const;
 				void editMessageMedia(const Json::Value & media,
 					const std::string & chat_id = nullptr,
 					const __int64 & message_id = 0,
 					const std::string & inline_message_id = "",
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void editMessageReplyMarkup(const std::string & chat_id = nullptr,
 					const __int64 & message_id = 0,
 					const std::string & inline_message_id = "",
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void stopPoll(const __int64 & message_id,
 					const std::string & chat_id,
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				void deleteMessage(const __int64 & message_id,
 					const std::string & chat_id) const;
 				void sendSticker(const Json::Value & sticker,
@@ -347,7 +347,7 @@ namespace Telegram{
 					const bool & disable_notification = false,
 					const __int64 & reply_to_message_id = 0,
 					const bool & allow_sending_without_reply = false,
-					const Json::Value & reply_markup = nullptr) const;
+					const Json::Value & reply_markup = "") const;
 				Json::Value getStickerSet(const std::string & name);
 				void uploadStickerFile(const Json::Value & png_sticker,
 					const __int64 & user_id);
@@ -355,22 +355,22 @@ namespace Telegram{
 					const std::string & title,
 					const __int64 & user_id,
 					const std::string & name = "",
-					const Json::Value & png_sticker = nullptr,
-					const Json::Value & tgs_sticker = nullptr,
+					const Json::Value & png_sticker = "",
+					const Json::Value & tgs_sticker = "",
 					const bool & contains_masks = false,
-					const Json::Value & mask_position = nullptr) const;
+					const Json::Value & mask_position = "") const;
 				void addStickerToSet(const std::string & name,
 					const std::string & emojis,
 					const __int64 & user_id,
-					const Json::Value & png_sticker = nullptr,
-					const Json::Value & tgs_sticker = nullptr,
-					const Json::Value & mask_position = nullptr) const;
+					const Json::Value & png_sticker = "",
+					const Json::Value & tgs_sticker = "",
+					const Json::Value & mask_position = "") const;
 				void setStickerPositionInSet(const __int64 & position,
 					const std::string & sticker);
 				void deleteStickerFromSet(const std::string & sticker);
 				void setStickerSetThumb(const __int64 & user_id,
 					const std::string & name,
-					const Json::Value & thumb = nullptr) const;
+					const Json::Value & thumb = "") const;
 				void answerInlineQuery(const Json::Value & results,
 					const std::string & inline_query_id,
 					const __int64 & cache_time = 0,

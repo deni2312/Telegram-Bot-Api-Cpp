@@ -1693,7 +1693,7 @@ void Telegram::Bot::Types::API::sendQuery(std::string& query) const {
 		curl_easy_cleanup(curl);
 	}
 	if (readBuffer.find("\"ok\":false") != std::string::npos) {
-		throw Error{readBuffer};
+		throw Error(readBuffer);
 	}
 }
 Json::Value Telegram::Bot::Types::API::getQuery(std::string& query) const {
@@ -1807,4 +1807,13 @@ Json::Value Telegram::Bot::Types::API::getGameHighScores(const __int64& user_id,
 	std::string tosend = generalToken + "/getGameHighScores?" + text;
 
 	return getQuery(tosend);
+}
+
+Telegram::Bot::Types::Error::Error(std::string error):message{error}
+{
+}
+
+const char* Telegram::Bot::Types::Error::what() const noexcept
+{
+	return message.c_str();
 }
