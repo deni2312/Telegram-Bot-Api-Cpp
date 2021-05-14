@@ -17,28 +17,26 @@
 <h2> Steps </h2>
 
 This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
-
+ 
 ### Windows
 
-* Clone the repository
+* Install dependencies with VCPKG  
+ ```bash
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+bootstrap-vcpkg.bat
+vcpkg install jsoncpp
+vcpkg install curl
+vcpkg integrate install
+```  
 
-<p align="left">
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image1.PNG" width="300" alt="accessibility text">
-</p>
+* Clone the repository  
+git clone https://github.com/deni2312/Telegram-Bot-Api-Cpp.git
 
-* Set the link
 
-<p align="left"> 
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image2.PNG" width="300" alt="accessibility text">
-</p>
+* Open CMakeFile on Visual Studio  
+Files->Open->CMake->Telegram Directory
 
-* Set the debug mode and x86
-
-<p align="left">
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image3.PNG" width="300" alt="accessibility text">
-</p>
-
-Reboot Visual Studio.
 
 ### Linux 
 To compile on linux:  
@@ -46,7 +44,8 @@ To compile on linux:
     * Libcurl
     * Jsoncpp
 ```bash
-cd linux
+git clone https://github.com/deni2312/Telegram-Bot-Api-Cpp.git
+cd telegram
 g++ main.cpp src/TelegramAPI.cpp src/types.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
 ```  
 With CMake:  
@@ -65,18 +64,18 @@ cmake ..
 #include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(TelegramTypes::API &api, TelegramTypes::MessageReceive &message) {
+void sendSomething(Telegram::Bot::Types::API &api, Telegram::Bot::Types::MessageReceive &message) {
 	try {
 		api.sendMessage(message["chat"]["id"].asString(),"Hello World!");
 	}
-	catch (std::string &error) {
-		std::cerr << error;
+	catch (Telegram::Bot::Types::Error &error) {
+		std::cerr << error.what();
 	}
 }
 
 int main()
 {
-	TelegramBot::TelegramAPI handler("your-token");
+	Telegram::Bot::Connector handler("your-token");
 	handler.callback(sendSomething);
 }
 
@@ -112,7 +111,7 @@ Or check the examples folder.
 
 ### Error Handling
 
-To handle errors you only need to catch `std::string& e` and the output of `e` will be the JSON error returned by Telegram.
+To handle errors you only need to catch `Telegram::Bot::Types::Error &e` and the output of `e.what()` will be the JSON error returned by Telegram.
 
 ### Contacts
 
