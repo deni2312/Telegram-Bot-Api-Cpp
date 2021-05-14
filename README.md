@@ -17,7 +17,7 @@
 <h2> Steps </h2>
 
 This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
-
+ 
 ### Windows
 
 * Install dependencies with VCPKG  
