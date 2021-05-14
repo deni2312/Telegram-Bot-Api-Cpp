@@ -31,8 +31,9 @@ vcpkg integrate install
 ```  
 
 * Clone the repository  
+```bash
 git clone https://github.com/deni2312/Telegram-Bot-Api-Cpp.git
-
+```  
 
 * Open CMakeFile on Visual Studio  
 Files->Open->CMake->Telegram Directory
