@@ -1,4 +1,10 @@
-cmake_minimum_required(VERSION 3.0.0)
+if (MSVC)
+    cmake_minimum_required(VERSION 3.0.0)
+endif (MSVC)
+if (UNIX)
+    cmake_minimum_required(VERSION 3.8.0)
+endif (UNIX)
+
 project(TelegramBotApiCpp VERSION 0.1.0)
 
 include(CTest)
