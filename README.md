@@ -75,7 +75,7 @@ void sendSomething(Telegram::Bot::Types::API &api, Telegram::Bot::Types::Message
 
 int main()
 {
-	Telegram::Bot::API handler("your-token");
+	Telegram::Bot::Connector handler("your-token");
 	handler.callback(sendSomething);
 }
 
