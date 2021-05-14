@@ -68,8 +68,8 @@ void sendSomething(Telegram::Bot::Types::API &api, Telegram::Bot::Types::Message
 	try {
 		api.sendMessage(message["chat"]["id"].asString(),"Hello World!");
 	}
-	catch (std::string &error) {
-		std::cerr << error;
+	catch (Telegram::Bot::Types::Error &error) {
+		std::cerr << error.what();
 	}
 }
 
@@ -111,7 +111,7 @@ Or check the examples folder.
 
 ### Error Handling
 
-To handle errors you only need to catch `std::string& e` and the output of `e` will be the JSON error returned by Telegram.
+To handle errors you only need to catch `Telegram::Bot::Types::Error &e` and the output of `e.what()` will be the JSON error returned by Telegram.
 
 ### Contacts
 
