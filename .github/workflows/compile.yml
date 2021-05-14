@@ -10,6 +10,4 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: g++ telegram/main.cpp telegram/src/TelegramAPI.cpp telegram/src/types.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
-      - run: mkdir build
-      - run: cd build
       - run: cmake ..
