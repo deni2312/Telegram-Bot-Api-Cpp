@@ -1,7 +1,7 @@
 #include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& message) {
+void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
 	try {//if the second peremeter is a void string it will send the link of the photo, otherwise it will takes as third peremeter the directory of the photo
 		Json::Value file;
 		file = api.getFile("your-file-id");
@@ -15,7 +15,7 @@ void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& messa
 int main()
 {
 
-	TelegramBot::TelegramAPI handler("your-token");
+	Telegram::Bot::Connector handler("your-token");
 	handler.callback(sendSomething);
 }
 

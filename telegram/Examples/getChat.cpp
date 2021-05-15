@@ -1,7 +1,7 @@
 #include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& message) {
+void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
 	try {
 		Json::Value file;
 		file = api.getChat(message["chat"]["id"].asString());
@@ -15,7 +15,7 @@ void sendSomething(TelegramTypes::API& api, TelegramTypes::MessageReceive& messa
 int main()
 {
 
-	TelegramBot::TelegramAPI handler("your-token");
+	Telegram::Bot::Connector handler("your-token");
 	handler.callback(sendSomething);
 }
 
