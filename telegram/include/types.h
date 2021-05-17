@@ -74,6 +74,7 @@ namespace Telegram{
 			};
 			class API {
 			public:
+				
 				API(std::string link="") : generalToken(link) {};
 				void sendMessage(const std::string & chat_id,
 					const std::string & msgp,

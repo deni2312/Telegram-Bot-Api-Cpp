@@ -18,6 +18,8 @@ namespace Telegram{
 	namespace Bot {
 		class Connector {
 		public:
+			Connector() = delete;
+			Connector& operator=(const Connector& connector) = delete;
 			Connector(std::string token);
 			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)> func);
 			inline void LOGA();
