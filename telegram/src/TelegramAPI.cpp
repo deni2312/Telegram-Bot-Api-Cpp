@@ -46,7 +46,7 @@ void Telegram::Bot::Connector::callback(const std::function<void(const Telegram:
 		if (size > 0) {
 			Json::Value values2;
 			block.lock();
-			values2 = values.back()["result"][0];
+			values2 = std::move(values.back()["result"][0]);
 			values.pop();
 			block.unlock();
 			if (values2["message"].isNull()) {
@@ -90,7 +90,7 @@ void Telegram::Bot::Connector::update()
 		if (parsed["ok"].asString() == "true" && parsed["result"][0]["update_id"].asString() != "") {
 			offset = parsed["result"][0]["update_id"].asInt64();
 			block.lock();
-			values.push(parsed);
+			values.push(std::move(parsed));
 			block.unlock();
 		}
 	}
