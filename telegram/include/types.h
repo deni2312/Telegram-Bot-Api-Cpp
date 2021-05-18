@@ -392,8 +392,9 @@ namespace Telegram{
 			private:
 
 				std::string generalToken = "";
-				void sendQuery(std::string & query) const ;
-				Json::Value getQuery(std::string & query) const;
+				void sendQuery(const std::string & query) const;
+				Json::Value getQuery(const std::string & query) const;
+				const std::string encode_text(const std::string& s) const;
 			};
 		}
 	}
