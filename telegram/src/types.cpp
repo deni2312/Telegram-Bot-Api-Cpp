@@ -35,7 +35,7 @@ void Telegram::Bot::Types::API::sendMessage(const std::string& chat_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "&reply_markup=" + result + "&";
 
 	std::string tosend = generalToken + "/sendMessage?" + text;
 	sendQuery(tosend);
