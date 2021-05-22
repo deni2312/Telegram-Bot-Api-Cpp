@@ -35,8 +35,8 @@ void Telegram::Bot::Types::API::sendMessage(const std::string& chat_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "&reply_markup=" + result + "&";
-
+	text = text + "&reply_markup=" + (result.size()==2?"":result) + "&";
+	
 	std::string tosend = generalToken + "/sendMessage?" + text;
 	sendQuery(tosend);
 }
@@ -723,12 +723,12 @@ void Telegram::Bot::Types::API::copyMessage(const Json::Value& from_chat_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, from_chat_id);
-	text = text + "from_chat_id=" + result + "&";
+	text = text + "from_chat_id=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 
 	text = text + "caption=" + encode_text(caption) + "&";
 
@@ -758,7 +758,7 @@ void Telegram::Bot::Types::API::copyMessage(const Json::Value& from_chat_id,
 
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, caption_entities);
-	text = text + "caption_entities=" + result + "&";
+	text = text + "caption_entities=" + (result.size()==2?"":result) + "&";
 
 	std::string tosend = generalToken + "/copyMessage?" + text;
 	sendQuery(tosend);
@@ -784,7 +784,7 @@ void Telegram::Bot::Types::API::sendLocation(const float& latitude,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 
 	text = text + "live_period=" + std::to_string(live_period) + "&";
 
@@ -835,7 +835,7 @@ void Telegram::Bot::Types::API::editMessageLiveLocation(const float& latitude,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 
 	text = text + "inline_message_id=" + inline_message_id + "&";
 
@@ -865,7 +865,7 @@ void Telegram::Bot::Types::API::stopMessageLiveLocation(const std::string& chat_
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/stopMessageLiveLocation?" + text;
 	sendQuery(tosend);
 }
@@ -893,7 +893,7 @@ void Telegram::Bot::Types::API::sendVenue(const float& latitude,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	text = text + "foursquare_id=" + foursquare_id + "&";
 	text = text + "google_place_id=" + google_place_id + "&";
 	text = text + "google_place_type=" + google_place_type + "&";
@@ -936,7 +936,7 @@ void Telegram::Bot::Types::API::sendContact(const std::string& phone_number,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	text = text + "last_name=" + last_name + "&";
 	if (disable_notification) {
 		text = text + "disable_notification=true&";
@@ -981,11 +981,11 @@ void Telegram::Bot::Types::API::sendPoll(const std::string& question,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, options);
-	text = text + "options=" + result + "&";
+	text = text + "options=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	text = text + "explanation_parse_mode=" + explanation_parse_mode + "&";
 	text = text + "open_period=" + std::to_string(open_period) + "&";
 	text = text + "type=" + type + "&";
@@ -1008,7 +1008,7 @@ void Telegram::Bot::Types::API::sendPoll(const std::string& question,
 	text = text + "explanation=" + explanation + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, explanation_entities);
-	text = text + "explanation_entities=" + result + "&";
+	text = text + "explanation_entities=" + (result.size()==2?"":result) + "&";
 	if (disable_notification) {
 		text = text + "disable_notification=true&";
 	}
@@ -1058,7 +1058,7 @@ void Telegram::Bot::Types::API::sendDice(const std::string& chat_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/sendDice?" + text;
 	sendQuery(tosend);
 }
@@ -1129,7 +1129,7 @@ void Telegram::Bot::Types::API::restrictChatMember(const __int64& user_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
-	text = text + "permissions=" + result + "&";
+	text = text + "permissions=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	text = text + "until_date=" + std::to_string(until_date) + "&";
 	std::string tosend = generalToken + "/restrictChatMember?" + text;
@@ -1226,7 +1226,7 @@ void Telegram::Bot::Types::API::setChatPermissions(const Json::Value& permission
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, permissions);
-	text = text + "permissions=" + result + "&";
+	text = text + "permissions=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPermissions?" + text;
 	sendQuery(tosend);
@@ -1248,7 +1248,7 @@ void Telegram::Bot::Types::API::setChatPhoto(const Json::Value& photo,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, photo);
-	text = text + "photo=" + result + "&";
+	text = text + "photo=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	std::string tosend = generalToken + "/setChatPhoto?" + text;
 	sendQuery(tosend);
@@ -1408,7 +1408,7 @@ void Telegram::Bot::Types::API::setMyCommands(const Json::Value& commands) {
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, commands);
-	text = text + "commands=" + result + "&";
+	text = text + "commands=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/setMyCommands?" + text;
 	sendQuery(tosend);
 }
@@ -1431,7 +1431,7 @@ Json::Value Telegram::Bot::Types::API::getMyCommands(const std::string& text,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, entities);
-	text1 = text1 + "entities=" + result + "&";
+	text1 = text1 + "entities=" + (result.size()==2?"":result) + "&";
 	if (disable_web_page_preview) {
 		text1 = text1 + "disable_web_page_preview=true&";
 	}
@@ -1440,7 +1440,7 @@ Json::Value Telegram::Bot::Types::API::getMyCommands(const std::string& text,
 	}
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text1 = text1 + "reply_markup=" + result + "&";
+	text1 = text1 + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/getMyCommands?" + text1;
 
 	return getQuery(tosend);
@@ -1464,10 +1464,10 @@ void Telegram::Bot::Types::API::editMessageCaption(const std::string& chat_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, caption_entities);
-	text = text + "caption_entities=" + result + "&";
+	text = text + "caption_entities=" + (result.size()==2?"":result) + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/editMessageCaption?" + text;
 	sendQuery(tosend);
 }
@@ -1482,13 +1482,13 @@ void Telegram::Bot::Types::API::editMessageMedia(const Json::Value& media,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, media);
-	text = text + "media=" + result + "&";
+	text = text + "media=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	text = text + "message_id=" + std::to_string(message_id) + "&";
 	text = text + "inline_message_id=" + inline_message_id + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/editMessageMedia?" + text;
 	sendQuery(tosend);
 }
@@ -1505,7 +1505,7 @@ void Telegram::Bot::Types::API::editMessageReplyMarkup(const std::string& chat_i
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/editMessageReplyMarkup?" + text;
 	sendQuery(tosend);
 }
@@ -1520,7 +1520,7 @@ void Telegram::Bot::Types::API::stopPoll(const __int64& message_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/stopPoll?" + text;
 	sendQuery(tosend);
 }
@@ -1545,7 +1545,7 @@ void Telegram::Bot::Types::API::sendSticker(const Json::Value& sticker,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, sticker);
-	text = text + "sticker=" + result + "&";
+	text = text + "sticker=" + (result.size()==2?"":result) + "&";
 	text = text + "chat_id=" + chat_id + "&";
 	if (disable_notification) {
 		text = text + "disable_notification=true&";
@@ -1562,7 +1562,7 @@ void Telegram::Bot::Types::API::sendSticker(const Json::Value& sticker,
 	}
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, reply_markup);
-	text = text + "reply_markup=" + result + "&";
+	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/sendSticker?" + text;
 	sendQuery(tosend);
 }
@@ -1582,7 +1582,7 @@ void Telegram::Bot::Types::API::uploadStickerFile(const Json::Value& png_sticker
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, png_sticker);
-	text = text + "png_sticker=" + result + "&";
+	text = text + "png_sticker=" + (result.size()==2?"":result) + "&";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	std::string tosend = generalToken + "/uploadStickerFile?" + text;
 	sendQuery(tosend);
@@ -1605,10 +1605,10 @@ void Telegram::Bot::Types::API::createNewStickerSet(const std::string& emojis,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, png_sticker);
-	text = text + "png_sticker=" + result + "&";
+	text = text + "png_sticker=" + (result.size()==2?"":result) + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, tgs_sticker);
-	text = text + "tgs_sticker=" + result + "&";
+	text = text + "tgs_sticker=" + (result.size()==2?"":result) + "&";
 	if (contains_masks) {
 		text = text + "contains_masks=true&";
 	}
@@ -1617,7 +1617,7 @@ void Telegram::Bot::Types::API::createNewStickerSet(const std::string& emojis,
 	}
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, mask_position);
-	text = text + "mask_position=" + result + "&";
+	text = text + "mask_position=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/createNewStickerSet?" + text;
 	sendQuery(tosend);
 }
@@ -1636,13 +1636,13 @@ void Telegram::Bot::Types::API::addStickerToSet(const std::string& name,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, png_sticker);
-	text = text + "png_sticker=" + result + "&";
+	text = text + "png_sticker=" + (result.size()==2?"":result) + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, tgs_sticker);
-	text = text + "tgs_sticker=" + result + "&";
+	text = text + "tgs_sticker=" + (result.size()==2?"":result) + "&";
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, mask_position);
-	text = text + "mask_position=" + result + "&";
+	text = text + "mask_position=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/addStickerToSet?" + text;
 	sendQuery(tosend);
 }
@@ -1673,7 +1673,7 @@ void Telegram::Bot::Types::API::setStickerSetThumb(const __int64& user_id,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, thumb);
-	text = text + "thumb=" + result + "&";
+	text = text + "thumb=" + (result.size()==2?"":result) + "&";
 	std::string tosend = generalToken + "/setStickerSetThumb?" + text;
 	sendQuery(tosend);
 }
@@ -1729,7 +1729,7 @@ void Telegram::Bot::Types::API::answerInlineQuery(const Json::Value& results,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, results);
-	text = text + "results=" + result + "&";
+	text = text + "results=" + (result.size()==2?"":result) + "&";
 	text = text + "inline_query_id=" + inline_query_id + "&";
 	text = text + "cache_time=" + std::to_string(cache_time) + "&";
 	if (is_personal) {
@@ -1761,7 +1761,7 @@ void Telegram::Bot::Types::API::answerShippingQuery(const bool& ok,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, shipping_options);
-	text = text + "shipping_options=" + "[" + result + "]&";
+	text = text + "shipping_options=" + "[" + (result.size()==2?"":result) + "]&";
 	text = text + "error_message=" + error_message + "&";
 	std::string tosend = generalToken + "/answerShippingQuery?" + text;
 	sendQuery(tosend);
@@ -1792,7 +1792,7 @@ void Telegram::Bot::Types::API::setPassportDataErrors(const Json::Value& errors,
 	Json::StreamWriterBuilder wbuilder;
 	wbuilder["indentation"] = "";
 	result = Json::writeString(wbuilder, errors);
-	text = text + "errors=" + "[" + result + "]&";
+	text = text + "errors=" + "[" + (result.size()==2?"":result) + "]&";
 	text = text + "user_id=" + std::to_string(user_id) + "&";
 	std::string tosend = generalToken + "/setPassportDataErrors?" + text;
 	sendQuery(tosend);
