@@ -11,3 +11,4 @@ jobs:
         uses: actions/checkout@v2
       - run: g++ telegram/main.cpp telegram/src/TelegramAPI.cpp telegram/src/types.cpp telegram/src/network/HTTPrequest.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
       - run: cmake .
+      - run: echo ""
