@@ -47,7 +47,7 @@ To compile on linux:
 ```bash
 git clone https://github.com/deni2312/Telegram-Bot-Api-Cpp.git
 cd telegram
-g++ main.cpp src/TelegramAPI.cpp src/types.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
+g++ main.cpp src/TelegramAPI.cpp src/types.cpp src/network/HTTPrequest.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
 ```  
 With CMake:  
 ```bash
