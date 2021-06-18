@@ -31,7 +31,7 @@ namespace Telegram{
 			std::string tokl;
 			long long int offset;
 			std::mutex block;
-			Telegram::Bot::Types::API api;
+			std::shared_ptr<Telegram::Bot::Types::API> api;
 			void update();
 			std::unique_ptr<HTTPrequest> request;
 			inline std::string buildString() const;

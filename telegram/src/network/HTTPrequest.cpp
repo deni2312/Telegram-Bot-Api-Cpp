@@ -1,8 +1,8 @@
 #include "..\..\include\network\HTTPrequest.h"
 
-HTTPrequest::HTTPrequest(const std::string& link):link{link}
+HTTPrequest::HTTPrequest(const std::string& link) :link{ link }, curl(curl_easy_init(), &curl_easy_cleanup)
 {
-	curl = curl_easy_init();
+	
 }
 
 inline size_t WriteaCallback(char* contents, size_t size, size_t nmemb, void* userp)
@@ -16,10 +16,13 @@ const std::string HTTPrequest::sendHttp(const std::string& query)
 	std::string l;
 	std::string readBuffer;
 	l = link + query;
-	curl_easy_setopt(curl, CURLOPT_URL, l.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteaCallback);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-	res = curl_easy_perform(curl);
+	curl_easy_setopt(curl.get(), CURLOPT_URL, l.c_str());
+	curl_easy_setopt(curl.get(), CURLOPT_WRITEFUNCTION, WriteaCallback);
+	curl_easy_setopt(curl.get(), CURLOPT_WRITEDATA, &readBuffer);
+	res = curl_easy_perform(curl.get());
+	if (readBuffer.find("\"ok\":false") != std::string::npos) {
+		throw Telegram::Bot::Types::Error(readBuffer);
+	}
 	return readBuffer;
 }
 
@@ -30,5 +33,6 @@ const std::string HTTPrequest::sendFile(const std::string& query)
 
 HTTPrequest::~HTTPrequest()
 {
-	curl_easy_cleanup(curl);
+	curl_easy_cleanup(curl.get());
+	curl.reset();
 }

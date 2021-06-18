@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include "../types.h"
 
 class HTTPrequest {
 public:
@@ -14,6 +15,8 @@ public:
 	~HTTPrequest();
 private:
 	const std::string link;
-	CURL* curl;
+	typedef void(*cleanup)(void* c);
+	typedef std::unique_ptr<CURL, cleanup> handle;
+	handle curl;
 	CURLcode res;
 };
