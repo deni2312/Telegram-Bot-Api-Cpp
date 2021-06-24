@@ -14,7 +14,6 @@ void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Ty
 
 int main()
 {
-	std::unique_ptr<HTTPrequest> request;
 	Telegram::Bot::Connector handler("your-token");
 	handler.callback(sendSomething);
 }
