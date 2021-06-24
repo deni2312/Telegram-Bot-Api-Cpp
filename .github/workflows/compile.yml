@@ -4,14 +4,16 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install libcurl4-gnutls-dev
-      - run: sudo apt-get install libjsoncpp-dev
       - run: git clone https://github.com/Microsoft/vcpkg.git
       - run: sudo ./vcpkg/bootstrap-vcpkg.sh
       - run: sudo ./vcpkg/vcpkg integrate install
       - run: sudo ./vcpkg/vcpkg install cpr
+      - run: sudo ./vcpkg/vcpkg install curl
+      - run: sudo ./vcpkg/vcpkg install jsoncpp
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v2
+      - run: mkdir build
+      - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=../../vcpkg/scripts/buildsystems/vcpkg.cmake
       - run: cmake .
       - run: echo ""
