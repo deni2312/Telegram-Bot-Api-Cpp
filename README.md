@@ -65,7 +65,7 @@ cd build
 cmake --build .
 ./TelegramBotApiCpp
 ```  
-
+Change vcpkgdirectory with the relative or absolute path of vcpkg  
 
 ## Writing your first bot
 
