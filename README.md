@@ -41,7 +41,7 @@ Files->Open->CMake->Telegram Directory
 
 
 ### Linux 
-To compile on linux:  
+Install on linux with vcpkg:  
   * Dependencies
     * Libcurl
     * Jsoncpp
