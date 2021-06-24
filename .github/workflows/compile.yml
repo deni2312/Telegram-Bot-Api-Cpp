@@ -8,7 +8,6 @@ jobs:
       - run: sudo ./vcpkg/bootstrap-vcpkg.sh
       - run: sudo ./vcpkg/vcpkg integrate install
       - run: sudo ./vcpkg/vcpkg install cpr
-      - run: sudo ./vcpkg/vcpkg install curl
       - run: sudo ./vcpkg/vcpkg install jsoncpp
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
