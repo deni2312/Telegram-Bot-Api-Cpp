@@ -27,6 +27,7 @@ cd vcpkg
 bootstrap-vcpkg.bat
 vcpkg install jsoncpp
 vcpkg install curl
+vcpkg install cpr
 vcpkg integrate install
 ```  
 
@@ -44,16 +45,26 @@ To compile on linux:
   * Dependencies
     * Libcurl
     * Jsoncpp
+    * cpr
+Install them with vcpkg:
 ```bash
-git clone https://github.com/deni2312/Telegram-Bot-Api-Cpp.git
-cd telegram
-g++ main.cpp src/TelegramAPI.cpp src/types.cpp src/network/HTTPrequest.cpp -std=c++17 -lcurl -ljsoncpp -lpthread
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg install jsoncpp
+./vcpkg install curl
+./vcpkg install cpr
+./vcpkg integrate install
 ```  
 With CMake:  
 ```bash
+cd Telegram-Bot-Api-Cpp
 mkdir build
 cd build
-cmake ..
+cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkgdirectory/scripts/buildsystems/vcpkg.cmake
+cd build
+cmake --build .
+./TelegramBotApiCpp
 ```  
 
 
