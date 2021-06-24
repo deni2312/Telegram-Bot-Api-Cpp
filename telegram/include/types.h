@@ -24,6 +24,8 @@
 
 #include <curl/curl.h>
 
+#include "network/HTTPrequest.h"
+
 namespace Telegram{
 	namespace Bot{
 		namespace Types {
@@ -66,16 +68,10 @@ namespace Telegram{
 				std::string caption;
 				std::string parse_mode;
 			};
-			struct Error : public std::exception{
-				Error(std::string error);
-				const char* what() const noexcept override;
-			private:
-				std::string message;
-			};
 			class API {
 			public:
 				
-				API(std::string link="") : generalToken(link) {};
+				API(std::string link, std::shared_ptr<HTTPrequest>& request) :generalToken(link), request{request}{};
 				void sendMessage(const std::string & chat_id,
 					const std::string & msgp,
 					const std::string & parse_mode = "",
@@ -390,10 +386,8 @@ namespace Telegram{
 					const std::string & inline_message_id = "") const;
 				~API() {};
 			private:
-
+				std::shared_ptr<HTTPrequest>& request;
 				std::string generalToken = "";
-				void sendQuery(const std::string & query) const;
-				Json::Value getQuery(const std::string & query) const;
 				const std::string encode_text(const std::string& s) const;
 			};
 		}

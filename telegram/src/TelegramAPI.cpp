@@ -5,7 +5,7 @@ inline size_t WriteaCallback(char* contents, size_t size, size_t nmemb, void* us
 	((std::string*)userp)->append((char*)contents, size * nmemb);
 	return size * nmemb;
 }
-Telegram::Bot::Connector::Connector(std::string token) : tokl{ token }, request{ std::make_unique<HTTPrequest>("https://api.telegram.org/bot" + tokl) },api{std::make_shared<Telegram::Bot::Types::API>("https://api.telegram.org/bot" + tokl)}
+Telegram::Bot::Connector::Connector(std::string token) : tokl{ token }, request{ std::make_shared<HTTPrequest>("https://api.telegram.org/bot" + tokl) },api{std::make_shared<Telegram::Bot::Types::API>("https://api.telegram.org/bot" + tokl,request)}
 {
 	JSONCPP_STRING err;
 	Json::Value parsed;
@@ -15,7 +15,7 @@ Telegram::Bot::Connector::Connector(std::string token) : tokl{ token }, request{
 	std::string update;
 	std::cout << "The bot has started successfully!" << std::endl;
 	update = "/getUpdates";
-	readBuffer = request->sendHttp(update);
+	readBuffer = request->sendHttp(update).asString();
 	Json::CharReaderBuilder builder;
 	const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
 	reader->parse(readBuffer.c_str(), readBuffer.c_str() + readBuffer.length(), &parsed, &err);
@@ -69,7 +69,7 @@ void Telegram::Bot::Connector::update()
 		std::string readBuffer;
 		std::string aghl;
 		aghl = "/getUpdates?offset=" + std::to_string(offset + 1);
-		readBuffer = request->sendHttp(aghl);
+		readBuffer = request->sendHttp(aghl).asString();
 		Json::CharReaderBuilder builder;
 		const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
 		reader->parse(readBuffer.c_str(), readBuffer.c_str() + readBuffer.length(), &parsed, &err);

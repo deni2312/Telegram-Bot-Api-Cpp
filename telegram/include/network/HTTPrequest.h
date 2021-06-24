@@ -1,22 +1,23 @@
 #pragma once
-#include <curl/curl.h>
 #include <string>
 #include <memory>
 #include <iostream>
-#include "../types.h"
+#include "Error.h"
+#include <cpr/cpr.h>
+#ifdef _WIN32
+#include <json/json.h>
+#else
+#include <jsoncpp/json/json.h>
+#endif
 
 class HTTPrequest {
 public:
 	HTTPrequest(const std::string& link);
 	HTTPrequest() = delete;
 	HTTPrequest& operator=(const HTTPrequest& connector) = delete;
-	const std::string sendHttp(const std::string& query);
-	const std::string sendFile(const std::string& query);
+	const Json::Value sendHttp(const std::string& query);
+	const std::string sendFile(const std::string& query,const std::string& type,const std::string& path,const std::string& thumb="",const std::string& thumbpath="");
 	~HTTPrequest();
 private:
 	const std::string link;
-	typedef void(*cleanup)(void* c);
-	typedef std::unique_ptr<CURL, cleanup> handle;
-	handle curl;
-	CURLcode res;
 };

@@ -14,8 +14,6 @@
 
 #include "types.h"
 
-#include "network/HTTPrequest.h"
-
 namespace Telegram{
 	namespace Bot {
 		class Connector {
@@ -33,7 +31,7 @@ namespace Telegram{
 			std::mutex block;
 			std::shared_ptr<Telegram::Bot::Types::API> api;
 			void update();
-			std::unique_ptr<HTTPrequest> request;
+			std::shared_ptr<HTTPrequest> request;
 			inline std::string buildString() const;
 		};
 	}
