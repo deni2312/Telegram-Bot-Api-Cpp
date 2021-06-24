@@ -6,6 +6,11 @@ jobs:
     steps:
       - run: sudo apt-get install libcurl4-gnutls-dev
       - run: sudo apt-get install libjsoncpp-dev
+      - run: git clone https://github.com/Microsoft/vcpkg.git
+      - run: cd vcpkg
+      - run: ./bootstrap-vcpkg.sh
+      - run: ./vcpkg integrate install
+      - run: ./vcpkg install cpr
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v2
