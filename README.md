@@ -46,7 +46,6 @@ To compile on linux:
     * Libcurl
     * Jsoncpp
     * cpr  
-Install them with vcpkg:
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
