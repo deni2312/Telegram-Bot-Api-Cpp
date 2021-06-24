@@ -22,8 +22,6 @@
 
 #include <mutex>
 
-#include <curl/curl.h>
-
 #include "network/HTTPrequest.h"
 
 namespace Telegram{
@@ -388,7 +386,6 @@ namespace Telegram{
 			private:
 				std::shared_ptr<HTTPrequest>& request;
 				std::string generalToken = "";
-				const std::string encode_text(const std::string& s) const;
 			};
 		}
 	}

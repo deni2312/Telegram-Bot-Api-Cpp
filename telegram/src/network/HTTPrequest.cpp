@@ -32,6 +32,24 @@ const std::string HTTPrequest::sendFile(const std::string& query,const std::stri
 	return r;
 }
 
+const std::string HTTPrequest::sendMultiFile(const std::string& query,const std::string& type, const std::vector<std::string>& paths)
+{
+	std::string r;
+	cpr::Multipart multi{};
+	for (int i = 0; i < paths.size(); i++) {
+		multi.parts.push_back({ type + "=",std::to_string(i) });
+		multi.parts.push_back({ type ,cpr::File{paths.at(i)} });
+	}
+	r = cpr::Get(cpr::Url{ link + query },
+	multi).text;
+	
+	if (r.find("\"ok\":false") != std::string::npos) {
+		throw Telegram::Bot::Types::Error(r);
+	}
+	return r;
+	return std::string();
+}
+
 HTTPrequest::~HTTPrequest()
 {
 	

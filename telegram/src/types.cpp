@@ -14,7 +14,7 @@ void Telegram::Bot::Types::API::sendMessage(const std::string& chat_id,
 	std::string text;
 	
 	text = text + "chat_id=" + chat_id;
-	text = text + "&text=" + encode_text(msgp);
+	text = text + "&text=" + msgp;
 	
 	text = text + "&parse_mode=" + parse_mode;
 	if (disable_web_page_preview) {
@@ -55,7 +55,7 @@ void Telegram::Bot::Types::API::sendDocument(const std::string& chat_id,
 	
 	text = text + "/sendDocument";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 
 	if (mime_thumb == "") {
@@ -91,7 +91,7 @@ void Telegram::Bot::Types::API::sendPhoto(const std::string& chat_id,
 	
 	text = text + "/sendPhoto";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 	if (disable_notification) {
 		text = text + "&disable_notification=true";
@@ -129,7 +129,7 @@ void Telegram::Bot::Types::API::sendAudio(const std::string& chat_id,
 	
 	text = text + "/sendAudio";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 	text = text + "&duration=" + std::to_string(duration);
 	text = text + "&performer=" + std::to_string(performer);
@@ -172,7 +172,7 @@ void Telegram::Bot::Types::API::sendAnimation(const std::string& chat_id,
 	
 	text = text + "/sendAnimation";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 	text = text + "&duration=" + std::to_string(duration);
 	text = text + "&width=" + std::to_string(width);
@@ -210,7 +210,7 @@ void Telegram::Bot::Types::API::sendVoice(const std::string& chat_id,
 	
 	text = text + "/sendVoice";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 	
 	if (disable_notification) {
@@ -245,7 +245,7 @@ void Telegram::Bot::Types::API::sendVideoNote(const std::string& chat_id,
 	
 	text = text + "/sendVideoNote";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&duration=" + std::to_string(duration);
 	text = text + "&length=" + std::to_string(length);
 	if (mime_thumb == "") {
@@ -287,7 +287,7 @@ void Telegram::Bot::Types::API::sendVideo(const std::string& chat_id,
 	
 	text = text + "/sendVideo";
 	text = text + "?chat_id=" + chat_id;
-	text = text + "&caption=" + encode_text(caption);
+	text = text + "&caption=" + caption;
 	text = text + "&parse_mode=" + parse_mode;
 	text = text + "&duration=" + std::to_string(duration);
 	text = text + "&width=" + std::to_string(width);
@@ -324,16 +324,9 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 	const std::vector < std::shared_ptr < InputMediaPhoto >>& media,
 	const bool& disable_notification,
 	const __int64& reply_to_message_id) const {
-	CURL* curl;
-	CURLcode res;
-	curl_mime* form = NULL;
-	curl_mimepart* field = NULL;
-	struct curl_slist* headerlist = NULL;
-	const char buf[] = "Expect:";
 	std::string text;
-	
+	text = text + "/sendMediaGroup";
 	text = text + "?chat_id=" + chat_id;
-	curl = curl_easy_init();
 	if (disable_notification) {
 		text = text + "&disable_notification=true";
 	}
@@ -353,29 +346,11 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 				text = text + "\", \"media\": \"attach://photo_" + std::to_string(i) + "\"}, ";
 			}
 		}
-		if (curl) {
-			form = curl_mime_init(curl);
-			for (__int64 i = 0; i < media.size(); i++) {
-				field = curl_mime_addpart(form);
-				curl_mime_name(field, ("photo_" + std::to_string(i)).c_str());
-				curl_mime_filedata(field, media.at(i)->media.c_str());
-				field = curl_mime_addpart(form);
-				curl_mime_name(field, "media=");
-				curl_mime_data(field, ("photo_" + std::to_string(i)).c_str(), CURL_ZERO_TERMINATED);
-			}
-			headerlist = curl_slist_append(headerlist, buf);
-			std::string toSend = generalToken + "/sendMediaGroup" + text;
-			curl_easy_setopt(curl, CURLOPT_URL, toSend.c_str());
-			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
-			curl_easy_setopt(curl, CURLOPT_MIMEPOST, form);
-			res = curl_easy_perform(curl);
-			if (res != CURLE_OK)
-				fprintf(stderr, "curl_easy_perform() failed: %s\n",
-					curl_easy_strerror(res));
-			curl_easy_cleanup(curl);
-			curl_mime_free(form);
-			curl_slist_free_all(headerlist);
+		std::vector<std::string> paths;
+		for (__int64 i = 0; i < media.size(); i++) {
+			paths.push_back(media.at(i)->media);
 		}
+		request->sendMultiFile(text, "photo", paths);
 	}
 	else {
 		text = text + "&media=[";
@@ -387,8 +362,7 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 				text = text + "{\"type\": \"" + media.at(i)->type + "\", \"caption\": \"" + media.at(i)->caption + "\", \"parse_mode\": \"" + media.at(i)->parse_mode + "\", \"media\": \"" + media.at(i)->media + "\"}, ";
 			}
 		}
-		std::string tosend = generalToken + "/sendMediaGroup" + text;
-		request->sendHttp(tosend);
+		request->sendHttp(text);
 	}
 }
 void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
@@ -396,16 +370,9 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 	const std::vector < std::shared_ptr < InputMediaVideo >>& media,
 	const bool& disable_notification,
 	const __int64& reply_to_message_id) const {
-	CURL* curl;
-	CURLcode res;
-	curl_mime* form = NULL;
-	curl_mimepart* field = NULL;
-	struct curl_slist* headerlist = NULL;
-	const char buf[] = "Expect:";
 	std::string text;
-	
+	text = text + "/sendMediaGroup";
 	text = text + "?chat_id=" + chat_id;
-	curl = curl_easy_init();
 	if (disable_notification) {
 		text = text + "&disable_notification=true";
 	}
@@ -425,29 +392,11 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 				text = text + "\", \"media\": \"attach://photo_" + std::to_string(i) + "\"}, ";
 			}
 		}
-		if (curl) {
-			form = curl_mime_init(curl);
-			for (__int64 i = 0; i < media.size(); i++) {
-				field = curl_mime_addpart(form);
-				curl_mime_name(field, ("photo_" + std::to_string(i)).c_str());
-				curl_mime_filedata(field, media.at(i)->media.c_str());
-				field = curl_mime_addpart(form);
-				curl_mime_name(field, "media=");
-				curl_mime_data(field, ("photo_" + std::to_string(i)).c_str(), CURL_ZERO_TERMINATED);
-			}
-			headerlist = curl_slist_append(headerlist, buf);
-			std::string toSend = generalToken + "/sendMediaGroup" + text;
-			curl_easy_setopt(curl, CURLOPT_URL, toSend.c_str());
-			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
-			curl_easy_setopt(curl, CURLOPT_MIMEPOST, form);
-			res = curl_easy_perform(curl);
-			if (res != CURLE_OK)
-				fprintf(stderr, "curl_easy_perform() failed: %s\n",
-					curl_easy_strerror(res));
-			curl_easy_cleanup(curl);
-			curl_mime_free(form);
-			curl_slist_free_all(headerlist);
+		std::vector<std::string> paths;
+		for (__int64 i = 0; i < media.size(); i++) {
+			paths.push_back(media.at(i)->media);
 		}
+		request->sendMultiFile(text, "photo", paths);
 	}
 	else {
 		text = text + "&media=[";
@@ -459,8 +408,7 @@ void Telegram::Bot::Types::API::sendMediaGroup(const std::string& chat_id,
 				text = text + "{\"type\": \"" + media.at(i)->type + "\", \"caption\": \"" + media.at(i)->caption + "\", \"parse_mode\": \"" + media.at(i)->parse_mode + "\", \"media\": \"" + media.at(i)->media + "\"}, ";
 			}
 		}
-		std::string tosend = generalToken + "/sendMediaGroup" + text;
-		request->sendHttp(tosend);
+		request->sendHttp(text);
 	}
 }
 void Telegram::Bot::Types::API::copyMessage(const Json::Value& from_chat_id,
@@ -486,7 +434,7 @@ void Telegram::Bot::Types::API::copyMessage(const Json::Value& from_chat_id,
 	result = Json::writeString(wbuilder, reply_markup);
 	text = text + "reply_markup=" + (result.size()==2?"":result) + "&";
 
-	text = text + "caption=" + encode_text(caption) + "&";
+	text = text + "caption=" + caption + "&";
 
 	text = text + "parse_mode=" + parse_mode + "&";
 
@@ -1205,7 +1153,7 @@ void Telegram::Bot::Types::API::editMessageCaption(const std::string& chat_id,
 	text = text + "chat_id=" + chat_id + "&";
 	text = text + "message_id=" + std::to_string(message_id) + "&";
 	text = text + "inline_message_id=" + inline_message_id + "&";
-	text = text + "caption=" + encode_text(caption) + "&";
+	text = text + "caption=" + caption + "&";
 	text = text + "parse_mode=" + parse_mode + "&";
 	std::string result;
 	Json::StreamWriterBuilder wbuilder;
@@ -1425,12 +1373,6 @@ void Telegram::Bot::Types::API::setStickerSetThumb(const __int64& user_id,
 	request->sendHttp(tosend);
 }
 
-const std::string Telegram::Bot::Types::API::encode_text(const std::string& s) const
-{
-	CURL* curl = curl_easy_init();
-	const std::string s1(curl_easy_escape(curl, s.c_str(), s.length()));
-	return s1;
-}
 void Telegram::Bot::Types::API::answerInlineQuery(const Json::Value& results,
 	const std::string& inline_query_id,
 	const __int64& cache_time,
