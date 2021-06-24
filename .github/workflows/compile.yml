@@ -10,6 +10,7 @@ jobs:
       - run: sudo ./vcpkg/vcpkg install cpr
       - run: sudo ./vcpkg/vcpkg install curl
       - run: sudo ./vcpkg/vcpkg install jsoncpp
+      - run: sudo chown -R $USER:$USER /home/github/actions-runner/_work/Telegram-Bot-Api-Cpp
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v2
