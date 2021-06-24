@@ -8,7 +8,7 @@ jobs:
       - run: sudo apt-get install libjsoncpp-dev
       - run: git clone https://github.com/Microsoft/vcpkg.git
       - run: cd vcpkg
-      - run: ./bootstrap-vcpkg.sh
+      - run: sudo ./bootstrap-vcpkg.sh
       - run: ./vcpkg integrate install
       - run: ./vcpkg install cpr
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
