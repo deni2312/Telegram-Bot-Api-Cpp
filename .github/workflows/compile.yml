@@ -14,6 +14,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: mkdir build
-      - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=../../vcpkg/scripts/buildsystems/vcpkg.cmake
+      - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
       - run: cmake .
       - run: echo ""
