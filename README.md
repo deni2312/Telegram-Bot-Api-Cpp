@@ -45,7 +45,7 @@ To compile on linux:
   * Dependencies
     * Libcurl
     * Jsoncpp
-    * cpr
+    * cpr  
 Install them with vcpkg:
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
