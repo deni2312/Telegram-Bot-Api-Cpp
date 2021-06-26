@@ -1,11 +1,11 @@
 #include "..\..\include\network\HTTPrequest.h"
 
-HTTPrequest::HTTPrequest(const std::string& link) :link{ link }
+Telegram::Bot::Types::HTTPrequest::HTTPrequest(const std::string& link) :link{ link }
 {
 	
 }
 
-const Json::Value HTTPrequest::sendHttp(const std::string& query)
+const Json::Value Telegram::Bot::Types::HTTPrequest::sendHttp(const std::string& query)
 {
 	std::string r;
 	r = cpr::Get(cpr::Url{ link + query }).text;
@@ -15,7 +15,7 @@ const Json::Value HTTPrequest::sendHttp(const std::string& query)
 	return r;
 }
 
-const std::string HTTPrequest::sendFile(const std::string& query,const std::string& type,const std::string& path,const std::string& thumb,const std::string& thumbpath)
+const std::string Telegram::Bot::Types::HTTPrequest::sendFile(const std::string& query,const std::string& type,const std::string& path,const std::string& thumb,const std::string& thumbpath)
 {
 	std::string r;
 	if (thumb != "") {
@@ -32,7 +32,7 @@ const std::string HTTPrequest::sendFile(const std::string& query,const std::stri
 	return r;
 }
 
-const std::string HTTPrequest::sendMultiFile(const std::string& query,const std::string& type, const std::vector<std::string>& paths)
+const std::string Telegram::Bot::Types::HTTPrequest::sendMultiFile(const std::string& query,const std::string& type, const std::vector<std::string>& paths)
 {
 	std::string r;
 	cpr::Multipart multi{};
@@ -50,7 +50,7 @@ const std::string HTTPrequest::sendMultiFile(const std::string& query,const std:
 	return std::string();
 }
 
-HTTPrequest::~HTTPrequest()
+Telegram::Bot::Types::HTTPrequest::~HTTPrequest()
 {
 	
 }

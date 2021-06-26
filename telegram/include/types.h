@@ -69,7 +69,7 @@ namespace Telegram{
 			class API {
 			public:
 				
-				API(std::string link, std::shared_ptr<HTTPrequest>& request) :generalToken(link), request{request}{};
+				API(std::string link, std::shared_ptr<Network>& request) :generalToken(link), request{request}{};
 				void sendMessage(const std::string & chat_id,
 					const std::string & msgp,
 					const std::string & parse_mode = "",
@@ -384,7 +384,7 @@ namespace Telegram{
 					const std::string & inline_message_id = "") const;
 				~API() {};
 			private:
-				std::shared_ptr<HTTPrequest>& request;
+				std::shared_ptr<Network>& request;
 				std::string generalToken = "";
 			};
 		}
