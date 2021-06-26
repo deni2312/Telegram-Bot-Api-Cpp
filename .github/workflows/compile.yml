@@ -4,13 +4,14 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - run: git clone https://github.com/Microsoft/vcpkg.git
       - run: sudo ./vcpkg/bootstrap-vcpkg.sh
       - run: sudo ./vcpkg/vcpkg integrate install
       - run: sudo ./vcpkg/vcpkg install cpr
       - run: sudo ./vcpkg/vcpkg install jsoncpp
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
       - run: mkdir build
       - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
       - run: cmake --build build/
