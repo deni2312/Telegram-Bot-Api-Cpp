@@ -8,6 +8,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: git clone https://github.com/Microsoft/vcpkg.git
+      
       - run: sudo ./vcpkg/bootstrap-vcpkg.sh
       - run: sudo ./vcpkg/vcpkg integrate install
       - run: sudo ./vcpkg/vcpkg install cpr
