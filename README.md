@@ -26,7 +26,6 @@ git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
 bootstrap-vcpkg.bat
 vcpkg install jsoncpp
-vcpkg install curl
 vcpkg install cpr
 vcpkg integrate install
 ```  
@@ -43,7 +42,6 @@ Files->Open->CMake->Telegram Directory
 ### Linux 
 Install on linux with vcpkg:  
   * Dependencies
-    * Libcurl
     * Jsoncpp
     * cpr  
 ```bash
@@ -51,7 +49,6 @@ git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
 ./bootstrap-vcpkg.sh
 ./vcpkg install jsoncpp
-./vcpkg install curl
 ./vcpkg install cpr
 ./vcpkg integrate install
 ```  
