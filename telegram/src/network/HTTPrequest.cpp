@@ -1,4 +1,4 @@
-#include "..\..\include\network\HTTPrequest.h"
+#include "../../include/network/HTTPrequest.h"
 
 Telegram::Bot::Types::HTTPrequest::HTTPrequest(const std::string& link) :link{ link }
 {
