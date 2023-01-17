@@ -119,7 +119,7 @@ Or check the examples folder.
 
 ### Error Handling
 
-To handle errors you only need to catch `Telegram::Bot::Types::Error &e` and the output of `e.what()` will be the JSON error returned by Telegram.
+To handle errors catch `Telegram::Bot::Types::Error &e` and the output of `e.what()` will be the JSON error returned by Telegram.
 
 ### Contacts
 
