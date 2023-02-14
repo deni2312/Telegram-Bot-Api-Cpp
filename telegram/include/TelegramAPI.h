@@ -20,9 +20,8 @@ namespace Telegram{
 		public:
 			Connector() = delete;
 			Connector& operator=(const Connector& connector) = delete;
-			Connector(std::string token);
-			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)> func);
-			inline void LOGA();
+			explicit Connector(std::string token);
+			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)>& func);
 			~Connector();
 		private:
 			std::queue<Json::Value> values;
@@ -32,7 +31,6 @@ namespace Telegram{
 			std::shared_ptr<Telegram::Bot::Types::API> api;
 			void update();
 			std::shared_ptr<Types::Network> request;
-			inline std::string buildString() const;
 		};
 	}
 }

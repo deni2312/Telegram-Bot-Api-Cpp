@@ -13,6 +13,11 @@ void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Ty
 
 int main()
 {
-	Telegram::Bot::Connector handler("your-token");
-	handler.callback(sendSomething);
+    try {
+        Telegram::Bot::Connector handler("your-token");
+        handler.callback(sendSomething);
+    }
+    catch (Telegram::Bot::Types::Error& error) {
+        std::cerr << error.what();
+    }
 }
