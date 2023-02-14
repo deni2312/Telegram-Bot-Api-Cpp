@@ -10,7 +10,6 @@ add_executable(TelegramBotApiCpp telegram/main.cpp telegram/src/TelegramAPI.cpp 
 find_package(cpr CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 if (MSVC)
-    find_package(jsoncpp CONFIG REQUIRED)
     find_package(CURL CONFIG REQUIRED)
     target_link_libraries(TelegramBotApiCpp PRIVATE jsoncpp_lib jsoncpp_object cpr)
 endif (MSVC)
