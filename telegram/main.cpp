@@ -11,10 +11,10 @@ void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Ty
 	}
 }
 
-int main()
+int main(int argc, char** argv)
 {
     try {
-        Telegram::Bot::Connector handler("your-token");
+        Telegram::Bot::Connector handler(argv[1]);//Insert here your token
         handler.callback(sendSomething);
     }
     catch (Telegram::Bot::Types::Error& error) {
