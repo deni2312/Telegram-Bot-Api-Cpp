@@ -1,11 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#ifdef _WIN32
 #include <json/json.h>
-#else
-#include <jsoncpp/json/json.h>
-#endif
 namespace Telegram {
 	namespace Bot {
 		namespace Types {
