@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <json/json.h>
+
 namespace Telegram {
 	namespace Bot {
 		namespace Types {
