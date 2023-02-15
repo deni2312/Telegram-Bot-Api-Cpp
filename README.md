@@ -120,8 +120,3 @@ Or check the examples folder.
 ### Error Handling
 
 To handle errors catch `Telegram::Bot::Types::Error &e` and the output of `e.what()` will be the JSON error returned by Telegram.
-
-### Contacts
-
-You can contact us on Telegram for any issue or doubt.  
-<a href="https://t.me/deni2312"> @deni2312 </a><a href="https://t.me/jaguar114"> @jaguar114 </a> <a href="https://t.me/Ferro_nvm"> @Ferro_nvm </a>

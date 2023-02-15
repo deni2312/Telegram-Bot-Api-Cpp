@@ -781,7 +781,7 @@ Json::Value Telegram::Bot::Types::API::getUserProfilePhotos(const __int64& user_
 	std::string text;
 	
 	text = text + "user_id=" + std::to_string(user_id) + "&";
-	text = text + "offset=" + std::to_string(offset) + "&";
+	text = text + "m_offset=" + std::to_string(offset) + "&";
 	text = text + "limit=" + std::to_string(limit) + "&";
 	std::string tosend = generalToken + "/getUserProfilePhotos?" + text;
 

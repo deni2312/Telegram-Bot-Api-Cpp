@@ -24,13 +24,13 @@ namespace Telegram{
 			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)>& func);
 			~Connector();
 		private:
-			std::queue<Json::Value> values;
-			std::string tokl;
-			long long int offset;
-			std::mutex block;
-			std::shared_ptr<Telegram::Bot::Types::API> api;
+			std::queue<Json::Value> m_values;
+			std::string m_token;
+			long long int m_offset;
+			std::mutex m_block;
+			std::shared_ptr<Telegram::Bot::Types::API> m_api;
 			void update();
-			std::shared_ptr<Types::Network> request;
+			std::shared_ptr<Types::Network> m_request;
 		};
 	}
 }
