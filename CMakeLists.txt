@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.8.0)
-project(TelegramBotApiCpp VERSION 0.1.0)
 add_executable(TelegramBotApiCpp telegram/main.cpp telegram/src/TelegramAPI.cpp telegram/src/types.cpp "telegram/include/network/HTTPrequest.h" "telegram/src/network/HTTPrequest.cpp" "telegram/include/network/Error.h" "telegram/src/network/Error.cpp" "telegram/include/network/Network.h")
 find_package(cpr CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
