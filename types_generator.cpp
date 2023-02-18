@@ -1,4 +1,5 @@
 #include <string>
+
 struct User{
     std::string id;
     std::string is_bot;
@@ -528,37 +529,24 @@ struct BotCommand{
 struct BotCommandScope{
     std::string type;
 };
-struct Determining list of commands{
-        std::string type;
-        std::string text;
-        std::string web_app;
-};
 struct BotCommandScopeDefault{
     std::string type;
+    std::string text;
+    std::string web_app;
 };
 struct BotCommandScopeAllPrivateChats{
-    std::string migrate_to_chat_id;
-    std::string retry_after;
+    std::string type;
 };
 struct BotCommandScopeAllGroupChats{
-    std::string type;
-    std::string media;
-    std::string caption;
-    std::string parse_mode;
-    std::string caption_entities;
-    std::string has_spoiler;
+    std::string migrate_to_chat_id;
+    std::string retry_after;
 };
 struct BotCommandScopeAllChatAdministrators{
     std::string type;
     std::string media;
-    std::string thumb;
     std::string caption;
     std::string parse_mode;
     std::string caption_entities;
-    std::string width;
-    std::string height;
-    std::string duration;
-    std::string supports_streaming;
     std::string has_spoiler;
 };
 struct BotCommandScopeChat{
@@ -571,9 +559,22 @@ struct BotCommandScopeChat{
     std::string width;
     std::string height;
     std::string duration;
+    std::string supports_streaming;
     std::string has_spoiler;
 };
 struct BotCommandScopeChatAdministrators{
+    std::string type;
+    std::string media;
+    std::string thumb;
+    std::string caption;
+    std::string parse_mode;
+    std::string caption_entities;
+    std::string width;
+    std::string height;
+    std::string duration;
+    std::string has_spoiler;
+};
+struct BotCommandScopeChatMember{
     std::string type;
     std::string media;
     std::string thumb;
@@ -584,7 +585,7 @@ struct BotCommandScopeChatAdministrators{
     std::string performer;
     std::string title;
 };
-struct BotCommandScopeChatMember{
+struct MenuButton{
     std::string type;
     std::string media;
     std::string thumb;
@@ -593,7 +594,7 @@ struct BotCommandScopeChatMember{
     std::string caption_entities;
     std::string disable_content_type_detection;
 };
-struct MenuButton{
+struct MenuButtonCommands{
     std::string chat_id;
     std::string message_thread_id;
     std::string text;
@@ -606,7 +607,7 @@ struct MenuButton{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct MenuButtonCommands{
+struct MenuButtonWebApp{
     std::string chat_id;
     std::string message_thread_id;
     std::string from_chat_id;
@@ -614,7 +615,7 @@ struct MenuButtonCommands{
     std::string protect_content;
     std::string message_id;
 };
-struct MenuButtonWebApp{
+struct MenuButtonDefault{
     std::string chat_id;
     std::string message_thread_id;
     std::string from_chat_id;
@@ -628,7 +629,7 @@ struct MenuButtonWebApp{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct MenuButtonDefault{
+struct ResponseParameters{
     std::string chat_id;
     std::string message_thread_id;
     std::string photo;
@@ -642,7 +643,7 @@ struct MenuButtonDefault{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct ResponseParameters{
+struct InputMedia{
     std::string chat_id;
     std::string message_thread_id;
     std::string audio;
@@ -659,7 +660,7 @@ struct ResponseParameters{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMedia{
+struct InputMediaPhoto{
     std::string chat_id;
     std::string message_thread_id;
     std::string document;
@@ -674,7 +675,7 @@ struct InputMedia{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMediaPhoto{
+struct InputMediaVideo{
     std::string chat_id;
     std::string message_thread_id;
     std::string video;
@@ -693,7 +694,7 @@ struct InputMediaPhoto{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMediaVideo{
+struct InputMediaAnimation{
     std::string chat_id;
     std::string message_thread_id;
     std::string animation;
@@ -711,7 +712,7 @@ struct InputMediaVideo{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMediaAnimation{
+struct InputMediaAudio{
     std::string chat_id;
     std::string message_thread_id;
     std::string voice;
@@ -725,7 +726,7 @@ struct InputMediaAnimation{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMediaAudio{
+struct InputMediaDocument{
     std::string chat_id;
     std::string message_thread_id;
     std::string video_note;
@@ -738,7 +739,7 @@ struct InputMediaAudio{
     std::string allow_sending_without_reply;
     std::string reply_markup;
 };
-struct InputMediaDocument{
+struct InputFile{
     std::string chat_id;
     std::string message_thread_id;
     std::string media;
@@ -747,18 +748,4 @@ struct InputMediaDocument{
     std::string reply_to_message_id;
     std::string allow_sending_without_reply;
 };
-struct InputFile{
-    std::string chat_id;
-    std::string message_thread_id;
-    std::string latitude;
-    std::string longitude;
-    std::string horizontal_accuracy;
-    std::string live_period;
-    std::string heading;
-    std::string proximity_alert_radius;
-    std::string disable_notification;
-    std::string protect_content;
-    std::string reply_to_message_id;
-    std::string allow_sending_without_reply;
-    std::string reply_markup;
-};
+

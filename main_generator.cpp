@@ -23,24 +23,26 @@ int main(int argc, char** argv) {
         std::string find_name = "<i class=\"anchor-icon\"></i></a>";
         std::string name = types.substr(types.find("<i class=\"anchor-icon\"></i></a>") + find_name.size(), 100);
         name = name.substr(0, name.find("<"));
-        line.name = name;
-        std::string tbody = types.substr(types.find("<tbody>"), types.find("</tbody>") - types.find("<tbody>"));
-        types.erase(types.find("<tbody>"),1);
-        types.erase(types.find("</tbody>"),1);
-        while (tbody.find("<tr>") != std::string::npos) {
-            std::string tr = tbody.substr(tbody.find("<tr>"), tbody.find("</tr>") - tbody.find("<tr>"));
-            std::string param = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
-            line.parameter.push_back(param);
-            tr.erase(tr.find("<td>"), 1);
-            tr.erase(tr.find("</td>"), 1);
-            std::string typ = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
-            line.name_type.push_back(typ);
-            tbody.erase(tbody.find("<tr>"), 1);
-            tbody.erase(tbody.find("</tr>"), 1);
-        }
-        typeTelegram.names.push_back(line);
-        if(typeTelegram.names.at(typeTelegram.names.size()-1).name=="InputFile"){
-            break;
+        if(name.find(" ")==std::string::npos) {
+            line.name = name;
+            std::string tbody = types.substr(types.find("<tbody>"), types.find("</tbody>") - types.find("<tbody>"));
+            types.erase(types.find("<tbody>"), 1);
+            types.erase(types.find("</tbody>"), 1);
+            while (tbody.find("<tr>") != std::string::npos) {
+                std::string tr = tbody.substr(tbody.find("<tr>"), tbody.find("</tr>") - tbody.find("<tr>"));
+                std::string param = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
+                line.parameter.push_back(param);
+                tr.erase(tr.find("<td>"), 1);
+                tr.erase(tr.find("</td>"), 1);
+                std::string typ = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
+                line.name_type.push_back(typ);
+                tbody.erase(tbody.find("<tr>"), 1);
+                tbody.erase(tbody.find("</tr>"), 1);
+            }
+            typeTelegram.names.push_back(line);
+            if (typeTelegram.names.at(typeTelegram.names.size() - 1).name == "InputFile") {
+                break;
+            }
         }
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
