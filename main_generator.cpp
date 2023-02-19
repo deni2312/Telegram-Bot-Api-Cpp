@@ -15,7 +15,7 @@ struct types_telegram{
     std::vector<type> names;
 };
 
-int main(int argc, char** argv) {
+void type_generator(){
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text=r.text;
     auto types=text.substr(text.find("Available types"),text.size()-text.find("Available types"));
@@ -58,5 +58,9 @@ int main(int argc, char** argv) {
     std::fstream outs{"../types_generator.cpp",std::fstream::out};
     outs<<out;
     outs.close();
+}
+
+int main(int argc, char** argv) {
+    type_generator();
     return 0;
 }
