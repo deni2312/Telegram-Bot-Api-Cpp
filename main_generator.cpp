@@ -21,6 +21,33 @@ struct types_telegram{
     std::vector<type> names;
 };
 
+std::string normalize_type(std::string type){
+    if(type.find("Integer")!=std::string::npos){
+        return "int";
+    }
+    if(type.find("Boolean")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("String")!=std::string::npos){
+        return "std::string";
+    }
+    if(type.find("Float")!=std::string::npos){
+        return "float";
+    }
+    if(type.find("True")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("False")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("<a href")!=std::string::npos){
+        return "std::shared_ptr<"+type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1)+">";
+    }
+
+
+    return type;
+}
+
 void type_generator(){
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text=r.text;
@@ -33,8 +60,8 @@ void type_generator(){
         std::string description=types.substr(types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))+3, types.find("</p>",types.find("<i class=\"anchor-icon\"></i></a>"))-types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))-3);
         name = name.substr(0, name.find("<"));
         line.description=description;
+        line.name = name;
         if(description.find("Currently holds no information")==std::string::npos && (description.find("This object")!=std::string::npos || description.find("Represents")!=std::string::npos || description.find("Describes")!=std::string::npos)) {
-            line.name = name;
             std::string tbody = types.substr(types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")), types.find("</tbody>",types.find("<i class=\"anchor-icon\"></i></a>")) - types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")));
             while (tbody.find("<tr>") != std::string::npos) {
                 std::string tr = tbody.substr(tbody.find("<tr>"), tbody.find("</tr>") - tbody.find("<tr>"));
@@ -46,17 +73,20 @@ void type_generator(){
                 tbody.erase(tbody.find("</tr>"), 1);
                 line.n.push_back({param,typ});
             }
-            typeTelegram.names.push_back(line);
         }
+        typeTelegram.names.push_back(line);
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
     std::string out="";
-    out=out+"#include <string>\n\n";
+    out=out+"#include <string>\n#include <memory>\n\n";
+    for(const auto& nm : typeTelegram.names){
+        out=out+"struct "+nm.name+";\n";
+    }
     for(const auto& nm : typeTelegram.names){
         out=out+"//"+nm.description+"\n";
         out=out+"struct "+nm.name+"{\n";
         for(const auto& pa: nm.n){
-            out=out + "\tstd::string "+pa.parameter+";\n";
+            out=out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
         }
         out=out+"};\n\n";
     }
