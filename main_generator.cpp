@@ -18,7 +18,7 @@ struct types_telegram{
 int main(int argc, char** argv) {
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text=r.text;
-    auto types=text.substr(text.find("Available types"),text.find("\"InputFile\"")-text.find("Available types"));
+    auto types=text.substr(text.find("Available types"),text.size()-text.find("Available types"));
     types_telegram typeTelegram;
     while(types.find("<i class=\"anchor-icon\"></i></a>")!=std::string::npos) {
         type line;
@@ -27,11 +27,8 @@ int main(int argc, char** argv) {
         std::string description=types.substr(types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))+3, types.find("</p>",types.find("<i class=\"anchor-icon\"></i></a>"))-types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))-3);
         name = name.substr(0, name.find("<"));
         line.description=description;
-        if(name.find(" ")==std::string::npos && description.find("Currently holds no information")==std::string::npos) {
+        if(description.find("Currently holds no information")==std::string::npos && (description.find("This object")!=std::string::npos || description.find("Represents")!=std::string::npos || description.find("Describes")!=std::string::npos)) {
             line.name = name;
-            if(name=="InputFile"){
-                break;
-            }
             std::string tbody = types.substr(types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")), types.find("</tbody>",types.find("<i class=\"anchor-icon\"></i></a>")) - types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")));
             while (tbody.find("<tr>") != std::string::npos) {
                 std::string tr = tbody.substr(tbody.find("<tr>"), tbody.find("</tr>") - tbody.find("<tr>"));

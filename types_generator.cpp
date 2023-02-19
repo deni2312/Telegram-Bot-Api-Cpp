@@ -403,12 +403,6 @@ struct KeyboardButtonPollType{
 	std::string type;
 };
 
-//Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see <a href="#replykeyboardmarkup">ReplyKeyboardMarkup</a>).
-struct ReplyKeyboardRemove{
-	std::string remove_keyboard;
-	std::string selective;
-};
-
 //This object represents an <a href="/bots/features#inline-keyboards">inline keyboard</a> that appears right next to the message it belongs to.
 struct InlineKeyboardMarkup{
 	std::string inline_keyboard;
@@ -444,13 +438,6 @@ struct CallbackQuery{
 	std::string chat_instance;
 	std::string data;
 	std::string game_short_name;
-};
-
-//Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot&#39;s message and tapped &#39;Reply&#39;). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice <a href="/bots/features#privacy-mode">privacy mode</a>.
-struct ForceReply{
-	std::string force_reply;
-	std::string input_field_placeholder;
-	std::string selective;
 };
 
 //This object represents a chat photo.
@@ -768,5 +755,666 @@ struct InputMediaDocument{
 	std::string parse_mode;
 	std::string caption_entities;
 	std::string disable_content_type_detection;
+};
+
+//This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
+struct InputFile{
+	std::string chat_id;
+	std::string message_thread_id;
+	std::string text;
+	std::string parse_mode;
+	std::string entities;
+	std::string disable_web_page_preview;
+	std::string disable_notification;
+	std::string protect_content;
+	std::string reply_to_message_id;
+	std::string allow_sending_without_reply;
+	std::string reply_markup;
+};
+
+//This object represents a sticker.
+struct Sticker{
+	std::string file_id;
+	std::string file_unique_id;
+	std::string type;
+	std::string width;
+	std::string height;
+	std::string is_animated;
+	std::string is_video;
+	std::string thumb;
+	std::string emoji;
+	std::string set_name;
+	std::string premium_animation;
+	std::string mask_position;
+	std::string custom_emoji_id;
+	std::string file_size;
+};
+
+//This object represents a sticker set.
+struct StickerSet{
+	std::string name;
+	std::string title;
+	std::string sticker_type;
+	std::string is_animated;
+	std::string is_video;
+	std::string stickers;
+	std::string thumb;
+};
+
+//This object describes the position on faces where a mask should be placed by default.
+struct MaskPosition{
+	std::string point;
+	std::string x_shift;
+	std::string y_shift;
+	std::string scale;
+};
+
+//This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
+struct InlineQuery{
+	std::string id;
+	std::string from;
+	std::string query;
+	std::string offset;
+	std::string chat_type;
+	std::string location;
+};
+
+//This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
+struct InlineQueryResult{
+	std::string type;
+	std::string id;
+	std::string title;
+	std::string input_message_content;
+	std::string reply_markup;
+	std::string url;
+	std::string hide_url;
+	std::string description;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a link to an article or web page.
+struct InlineQueryResultArticle{
+	std::string type;
+	std::string id;
+	std::string title;
+	std::string input_message_content;
+	std::string reply_markup;
+	std::string url;
+	std::string hide_url;
+	std::string description;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the photo.
+struct InlineQueryResultPhoto{
+	std::string type;
+	std::string id;
+	std::string photo_url;
+	std::string thumb_url;
+	std::string photo_width;
+	std::string photo_height;
+	std::string title;
+	std::string description;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the animation.
+struct InlineQueryResultGif{
+	std::string type;
+	std::string id;
+	std::string gif_url;
+	std::string gif_width;
+	std::string gif_height;
+	std::string gif_duration;
+	std::string thumb_url;
+	std::string thumb_mime_type;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the animation.
+struct InlineQueryResultMpeg4Gif{
+	std::string type;
+	std::string id;
+	std::string mpeg4_url;
+	std::string mpeg4_width;
+	std::string mpeg4_height;
+	std::string mpeg4_duration;
+	std::string thumb_url;
+	std::string thumb_mime_type;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the video.
+struct InlineQueryResultVideo{
+	std::string type;
+	std::string id;
+	std::string video_url;
+	std::string mime_type;
+	std::string thumb_url;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string video_width;
+	std::string video_height;
+	std::string video_duration;
+	std::string description;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the audio.
+struct InlineQueryResultAudio{
+	std::string type;
+	std::string id;
+	std::string audio_url;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string performer;
+	std::string audio_duration;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the the voice message.
+struct InlineQueryResultVoice{
+	std::string type;
+	std::string id;
+	std::string voice_url;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string voice_duration;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the file. Currently, only <strong>.PDF</strong> and <strong>.ZIP</strong> files can be sent using this method.
+struct InlineQueryResultDocument{
+	std::string type;
+	std::string id;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string document_url;
+	std::string mime_type;
+	std::string description;
+	std::string reply_markup;
+	std::string input_message_content;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the location.
+struct InlineQueryResultLocation{
+	std::string type;
+	std::string id;
+	std::string latitude;
+	std::string longitude;
+	std::string title;
+	std::string horizontal_accuracy;
+	std::string live_period;
+	std::string heading;
+	std::string proximity_alert_radius;
+	std::string reply_markup;
+	std::string input_message_content;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the venue.
+struct InlineQueryResultVenue{
+	std::string type;
+	std::string id;
+	std::string latitude;
+	std::string longitude;
+	std::string title;
+	std::string address;
+	std::string foursquare_id;
+	std::string foursquare_type;
+	std::string google_place_id;
+	std::string google_place_type;
+	std::string reply_markup;
+	std::string input_message_content;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the contact.
+struct InlineQueryResultContact{
+	std::string type;
+	std::string id;
+	std::string phone_number;
+	std::string first_name;
+	std::string last_name;
+	std::string vcard;
+	std::string reply_markup;
+	std::string input_message_content;
+	std::string thumb_url;
+	std::string thumb_width;
+	std::string thumb_height;
+};
+
+//Represents a <a href="#games">Game</a>.
+struct InlineQueryResultGame{
+	std::string type;
+	std::string id;
+	std::string game_short_name;
+	std::string reply_markup;
+};
+
+//Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the photo.
+struct InlineQueryResultCachedPhoto{
+	std::string type;
+	std::string id;
+	std::string photo_file_id;
+	std::string title;
+	std::string description;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with specified content instead of the animation.
+struct InlineQueryResultCachedGif{
+	std::string type;
+	std::string id;
+	std::string gif_file_id;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the animation.
+struct InlineQueryResultCachedMpeg4Gif{
+	std::string type;
+	std::string id;
+	std::string mpeg4_file_id;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a sticker stored on the Telegram servers. By default, this sticker will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the sticker.
+struct InlineQueryResultCachedSticker{
+	std::string type;
+	std::string id;
+	std::string sticker_file_id;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the file.
+struct InlineQueryResultCachedDocument{
+	std::string type;
+	std::string id;
+	std::string title;
+	std::string document_file_id;
+	std::string description;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a video file stored on the Telegram servers. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the video.
+struct InlineQueryResultCachedVideo{
+	std::string type;
+	std::string id;
+	std::string video_file_id;
+	std::string title;
+	std::string description;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the voice message.
+struct InlineQueryResultCachedVoice{
+	std::string type;
+	std::string id;
+	std::string voice_file_id;
+	std::string title;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//Represents a link to an MP3 audio file stored on the Telegram servers. By default, this audio file will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the audio.
+struct InlineQueryResultCachedAudio{
+	std::string type;
+	std::string id;
+	std::string audio_file_id;
+	std::string caption;
+	std::string parse_mode;
+	std::string caption_entities;
+	std::string reply_markup;
+	std::string input_message_content;
+};
+
+//This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
+struct InputMessageContent{
+	std::string message_text;
+	std::string parse_mode;
+	std::string entities;
+	std::string disable_web_page_preview;
+};
+
+//Represents the <a href="#inputmessagecontent">content</a> of a text message to be sent as the result of an inline query.
+struct InputTextMessageContent{
+	std::string message_text;
+	std::string parse_mode;
+	std::string entities;
+	std::string disable_web_page_preview;
+};
+
+//Represents the <a href="#inputmessagecontent">content</a> of a location message to be sent as the result of an inline query.
+struct InputLocationMessageContent{
+	std::string latitude;
+	std::string longitude;
+	std::string horizontal_accuracy;
+	std::string live_period;
+	std::string heading;
+	std::string proximity_alert_radius;
+};
+
+//Represents the <a href="#inputmessagecontent">content</a> of a venue message to be sent as the result of an inline query.
+struct InputVenueMessageContent{
+	std::string latitude;
+	std::string longitude;
+	std::string title;
+	std::string address;
+	std::string foursquare_id;
+	std::string foursquare_type;
+	std::string google_place_id;
+	std::string google_place_type;
+};
+
+//Represents the <a href="#inputmessagecontent">content</a> of a contact message to be sent as the result of an inline query.
+struct InputContactMessageContent{
+	std::string phone_number;
+	std::string first_name;
+	std::string last_name;
+	std::string vcard;
+};
+
+//Represents the <a href="#inputmessagecontent">content</a> of an invoice message to be sent as the result of an inline query.
+struct InputInvoiceMessageContent{
+	std::string title;
+	std::string description;
+	std::string payload;
+	std::string provider_token;
+	std::string currency;
+	std::string prices;
+	std::string max_tip_amount;
+	std::string suggested_tip_amounts;
+	std::string provider_data;
+	std::string photo_url;
+	std::string photo_size;
+	std::string photo_width;
+	std::string photo_height;
+	std::string need_name;
+	std::string need_phone_number;
+	std::string need_email;
+	std::string need_shipping_address;
+	std::string send_phone_number_to_provider;
+	std::string send_email_to_provider;
+	std::string is_flexible;
+};
+
+//Represents a <a href="#inlinequeryresult">result</a> of an inline query that was chosen by the user and sent to their chat partner.
+struct ChosenInlineResult{
+	std::string result_id;
+	std::string from;
+	std::string location;
+	std::string inline_message_id;
+	std::string query;
+};
+
+//Describes an inline message sent by a <a href="/bots/webapps">Web App</a> on behalf of a user.
+struct SentWebAppMessage{
+	std::string inline_message_id;
+};
+
+//This object represents a portion of the price for goods or services.
+struct LabeledPrice{
+	std::string label;
+	std::string amount;
+};
+
+//This object contains basic information about an invoice.
+struct Invoice{
+	std::string title;
+	std::string description;
+	std::string start_parameter;
+	std::string currency;
+	std::string total_amount;
+};
+
+//This object represents a shipping address.
+struct ShippingAddress{
+	std::string country_code;
+	std::string state;
+	std::string city;
+	std::string street_line1;
+	std::string street_line2;
+	std::string post_code;
+};
+
+//This object represents information about an order.
+struct OrderInfo{
+	std::string name;
+	std::string phone_number;
+	std::string email;
+	std::string shipping_address;
+};
+
+//This object represents one shipping option.
+struct ShippingOption{
+	std::string id;
+	std::string title;
+	std::string prices;
+};
+
+//This object contains basic information about a successful payment.
+struct SuccessfulPayment{
+	std::string currency;
+	std::string total_amount;
+	std::string invoice_payload;
+	std::string shipping_option_id;
+	std::string order_info;
+	std::string telegram_payment_charge_id;
+	std::string provider_payment_charge_id;
+};
+
+//This object contains information about an incoming shipping query.
+struct ShippingQuery{
+	std::string id;
+	std::string from;
+	std::string invoice_payload;
+	std::string shipping_address;
+};
+
+//This object contains information about an incoming pre-checkout query.
+struct PreCheckoutQuery{
+	std::string id;
+	std::string from;
+	std::string currency;
+	std::string total_amount;
+	std::string invoice_payload;
+	std::string shipping_option_id;
+	std::string order_info;
+};
+
+//Describes Telegram Passport data shared with the bot by the user.
+struct PassportData{
+	std::string data;
+	std::string credentials;
+};
+
+//This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don&#39;t exceed 10MB.
+struct PassportFile{
+	std::string file_id;
+	std::string file_unique_id;
+	std::string file_size;
+	std::string file_date;
+};
+
+//Describes documents or other Telegram Passport elements shared with the bot by the user.
+struct EncryptedPassportElement{
+	std::string type;
+	std::string data;
+	std::string phone_number;
+	std::string email;
+	std::string files;
+	std::string front_side;
+	std::string reverse_side;
+	std::string selfie;
+	std::string translation;
+	std::string hash;
+};
+
+//Describes data required for decrypting and authenticating <a href="#encryptedpassportelement">EncryptedPassportElement</a>. See the <a href="/passport#receiving-information">Telegram Passport Documentation</a> for a complete description of the data decryption and authentication processes.
+struct EncryptedCredentials{
+	std::string data;
+	std::string hash;
+	std::string secret;
+};
+
+//This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
+struct PassportElementError{
+	std::string source;
+	std::string type;
+	std::string field_name;
+	std::string data_hash;
+	std::string message;
+};
+
+//Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field&#39;s value changes.
+struct PassportElementErrorDataField{
+	std::string source;
+	std::string type;
+	std::string field_name;
+	std::string data_hash;
+	std::string message;
+};
+
+//Represents an issue with the front side of a document. The error is considered resolved when the file with the front side of the document changes.
+struct PassportElementErrorFrontSide{
+	std::string source;
+	std::string type;
+	std::string file_hash;
+	std::string message;
+};
+
+//Represents an issue with the reverse side of a document. The error is considered resolved when the file with reverse side of the document changes.
+struct PassportElementErrorReverseSide{
+	std::string source;
+	std::string type;
+	std::string file_hash;
+	std::string message;
+};
+
+//Represents an issue with the selfie with a document. The error is considered resolved when the file with the selfie changes.
+struct PassportElementErrorSelfie{
+	std::string source;
+	std::string type;
+	std::string file_hash;
+	std::string message;
+};
+
+//Represents an issue with a document scan. The error is considered resolved when the file with the document scan changes.
+struct PassportElementErrorFile{
+	std::string source;
+	std::string type;
+	std::string file_hash;
+	std::string message;
+};
+
+//Represents an issue with a list of scans. The error is considered resolved when the list of files containing the scans changes.
+struct PassportElementErrorFiles{
+	std::string source;
+	std::string type;
+	std::string file_hashes;
+	std::string message;
+};
+
+//Represents an issue with one of the files that constitute the translation of a document. The error is considered resolved when the file changes.
+struct PassportElementErrorTranslationFile{
+	std::string source;
+	std::string type;
+	std::string file_hash;
+	std::string message;
+};
+
+//Represents an issue with the translated version of a document. The error is considered resolved when a file with the document translation change.
+struct PassportElementErrorTranslationFiles{
+	std::string source;
+	std::string type;
+	std::string file_hashes;
+	std::string message;
+};
+
+//Represents an issue in an unspecified place. The error is considered resolved when new data is added.
+struct PassportElementErrorUnspecified{
+	std::string source;
+	std::string type;
+	std::string element_hash;
+	std::string message;
+};
+
+//This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
+struct Game{
+	std::string title;
+	std::string description;
+	std::string photo;
+	std::string text;
+	std::string text_entities;
+	std::string animation;
+};
+
+//This object represents one row of the high scores table for a game.
+struct GameHighScore{
+	std::string position;
+	std::string user;
+	std::string score;
 };
 
