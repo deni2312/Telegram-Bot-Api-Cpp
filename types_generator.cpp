@@ -1,5 +1,6 @@
 #include <string>
 #include <memory>
+#include <vector>
 
 struct User;
 struct Chat;
@@ -67,7 +68,6 @@ struct ChatLocation;
 struct ForumTopic;
 struct BotCommand;
 struct BotCommandScope;
-struct Determining list of commands;
 struct BotCommandScopeDefault;
 struct BotCommandScopeAllPrivateChats;
 struct BotCommandScopeAllGroupChats;
@@ -87,109 +87,12 @@ struct InputMediaAnimation;
 struct InputMediaAudio;
 struct InputMediaDocument;
 struct InputFile;
-struct Sending files;
-struct Inline mode objects;
-struct Available methods;
 struct getMe;
-struct logOut;
-struct close;
-struct sendMessage;
-struct Formatting options;
-struct MarkdownV2 style;
-struct HTML style;
-struct Markdown style;
-struct forwardMessage;
-struct copyMessage;
-struct sendPhoto;
-struct sendAudio;
-struct sendDocument;
-struct sendVideo;
-struct sendAnimation;
-struct sendVoice;
-struct sendVideoNote;
-struct sendMediaGroup;
-struct sendLocation;
-struct editMessageLiveLocation;
-struct stopMessageLiveLocation;
-struct sendVenue;
-struct sendContact;
-struct sendPoll;
-struct sendDice;
-struct sendChatAction;
-struct getUserProfilePhotos;
-struct getFile;
-struct banChatMember;
-struct unbanChatMember;
-struct restrictChatMember;
-struct promoteChatMember;
-struct setChatAdministratorCustomTitle;
-struct banChatSenderChat;
-struct unbanChatSenderChat;
-struct setChatPermissions;
-struct exportChatInviteLink;
-struct createChatInviteLink;
-struct editChatInviteLink;
-struct revokeChatInviteLink;
-struct approveChatJoinRequest;
-struct declineChatJoinRequest;
-struct setChatPhoto;
-struct deleteChatPhoto;
-struct setChatTitle;
-struct setChatDescription;
-struct pinChatMessage;
-struct unpinChatMessage;
-struct unpinAllChatMessages;
-struct leaveChat;
-struct getChat;
-struct getChatAdministrators;
-struct getChatMemberCount;
-struct getChatMember;
-struct setChatStickerSet;
-struct deleteChatStickerSet;
-struct getForumTopicIconStickers;
-struct createForumTopic;
-struct editForumTopic;
-struct closeForumTopic;
-struct reopenForumTopic;
-struct deleteForumTopic;
-struct unpinAllForumTopicMessages;
-struct editGeneralForumTopic;
-struct closeGeneralForumTopic;
-struct reopenGeneralForumTopic;
-struct hideGeneralForumTopic;
-struct unhideGeneralForumTopic;
-struct answerCallbackQuery;
-struct setMyCommands;
-struct deleteMyCommands;
-struct getMyCommands;
-struct setChatMenuButton;
-struct getChatMenuButton;
-struct setMyDefaultAdministratorRights;
-struct getMyDefaultAdministratorRights;
-struct Inline mode methods;
-struct Updating messages;
-struct editMessageText;
-struct editMessageCaption;
-struct editMessageMedia;
-struct editMessageReplyMarkup;
-struct stopPoll;
-struct deleteMessage;
 struct Stickers;
 struct Sticker;
 struct StickerSet;
 struct MaskPosition;
-struct sendSticker;
-struct getStickerSet;
-struct getCustomEmojiStickers;
-struct uploadStickerFile;
-struct createNewStickerSet;
-struct addStickerToSet;
-struct setStickerPositionInSet;
-struct deleteStickerFromSet;
-struct setStickerSetThumb;
-struct Inline mode;
 struct InlineQuery;
-struct answerInlineQuery;
 struct InlineQueryResult;
 struct InlineQueryResultArticle;
 struct InlineQueryResultPhoto;
@@ -218,13 +121,8 @@ struct InputVenueMessageContent;
 struct InputContactMessageContent;
 struct InputInvoiceMessageContent;
 struct ChosenInlineResult;
-struct answerWebAppQuery;
 struct SentWebAppMessage;
 struct Payments;
-struct sendInvoice;
-struct createInvoiceLink;
-struct answerShippingQuery;
-struct answerPreCheckoutQuery;
 struct LabeledPrice;
 struct Invoice;
 struct ShippingAddress;
@@ -233,12 +131,10 @@ struct ShippingOption;
 struct SuccessfulPayment;
 struct ShippingQuery;
 struct PreCheckoutQuery;
-struct Telegram Passport;
 struct PassportData;
 struct PassportFile;
 struct EncryptedPassportElement;
 struct EncryptedCredentials;
-struct setPassportDataErrors;
 struct PassportElementError;
 struct PassportElementErrorDataField;
 struct PassportElementErrorFrontSide;
@@ -250,11 +146,8 @@ struct PassportElementErrorTranslationFile;
 struct PassportElementErrorTranslationFiles;
 struct PassportElementErrorUnspecified;
 struct Games;
-struct sendGame;
 struct Game;
 struct CallbackGame;
-struct setGameScore;
-struct getGameHighScores;
 struct GameHighScore;
 //This object represents a Telegram user or bot.
 struct User{
@@ -326,17 +219,17 @@ struct Message{
 	std::string media_group_id;
 	std::string author_signature;
 	std::string text;
-	std::shared_ptr<MessageEntity> entities;
+	std::vector<std::shared_ptr<MessageEntity>> entities;
 	std::shared_ptr<Animation> animation;
 	std::shared_ptr<Audio> audio;
 	std::shared_ptr<Document> document;
-	std::shared_ptr<PhotoSize> photo;
+	std::vector<std::shared_ptr<PhotoSize>> photo;
 	std::shared_ptr<Sticker> sticker;
 	std::shared_ptr<Video> video;
 	std::shared_ptr<VideoNote> video_note;
 	std::shared_ptr<Voice> voice;
 	std::string caption;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	bool has_media_spoiler;
 	std::shared_ptr<Contact> contact;
 	std::shared_ptr<Dice> dice;
@@ -344,10 +237,10 @@ struct Message{
 	std::shared_ptr<Poll> poll;
 	std::shared_ptr<Venue> venue;
 	std::shared_ptr<Location> location;
-	std::shared_ptr<User> new_chat_members;
+	std::vector<std::shared_ptr<User>> new_chat_members;
 	std::shared_ptr<User> left_chat_member;
 	std::string new_chat_title;
-	std::shared_ptr<PhotoSize> new_chat_photo;
+	std::vector<std::shared_ptr<PhotoSize>> new_chat_photo;
 	bool delete_chat_photo;
 	bool group_chat_created;
 	bool supergroup_chat_created;
@@ -503,7 +396,7 @@ struct PollAnswer{
 struct Poll{
 	std::string id;
 	std::string question;
-	std::shared_ptr<PollOption> options;
+	std::vector<std::shared_ptr<PollOption>> options;
 	int total_voter_count;
 	bool is_closed;
 	bool is_anonymous;
@@ -511,7 +404,7 @@ struct Poll{
 	bool allows_multiple_answers;
 	int correct_option_id;
 	std::string explanation;
-	std::shared_ptr<MessageEntity> explanation_entities;
+	std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
 	int open_period;
 	int close_date;
 };
@@ -616,13 +509,13 @@ struct VideoChatEnded{
 
 //This object represents a service message about new members invited to a video chat.
 struct VideoChatParticipantsInvited{
-	std::shared_ptr<User> users;
+	std::vector<std::shared_ptr<User>> users;
 };
 
 //This object represent a user&#39;s profile pictures.
 struct UserProfilePhotos{
 	int total_count;
-	std::shared_ptr<PhotoSize> photos;
+	std::vector<std::shared_ptr<PhotoSize>> photos;
 };
 
 //This object represents a file ready to be downloaded. The file can be downloaded via the link <code>https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;</code>. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling <a href="#getfile">getFile</a>.
@@ -640,7 +533,7 @@ struct WebAppInfo{
 
 //This object represents a <a href="/bots/features#keyboards">custom keyboard</a> with reply options (see <a href="/bots/features#keyboards">Introduction to bots</a> for details and examples).
 struct ReplyKeyboardMarkup{
-	std::shared_ptr<KeyboardButton> keyboard;
+	std::vector<std::shared_ptr<KeyboardButton>> keyboard;
 	bool is_persistent;
 	bool resize_keyboard;
 	bool one_time_keyboard;
@@ -689,7 +582,7 @@ struct ReplyKeyboardRemove{
 
 //This object represents an <a href="/bots/features#inline-keyboards">inline keyboard</a> that appears right next to the message it belongs to.
 struct InlineKeyboardMarkup{
-	std::shared_ptr<InlineKeyboardButton> inline_keyboard;
+	std::vector<std::shared_ptr<InlineKeyboardButton>> inline_keyboard;
 };
 
 //This object represents one button of an inline keyboard. You <strong>must</strong> use exactly one of the optional fields.
@@ -905,10 +798,6 @@ struct BotCommandScope{
 	std::string type;
 };
 
-//The following algorithm is used to determine the list of commands for a particular user viewing the bot menu. The first list of commands which is set is returned:
-struct Determining list of commands{
-};
-
 //Represents the default <a href="#botcommandscope">scope</a> of bot commands. Default commands are used if no commands with a <a href="#determining-list-of-commands">narrower scope</a> are specified for the user.
 struct BotCommandScopeDefault{
 	std::string type;
@@ -982,7 +871,7 @@ struct InputMedia{
 	std::string media;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	bool has_spoiler;
 };
 
@@ -992,7 +881,7 @@ struct InputMediaPhoto{
 	std::string media;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	bool has_spoiler;
 };
 
@@ -1003,7 +892,7 @@ struct InputMediaVideo{
 	std::string thumb;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	int width;
 	int height;
 	int duration;
@@ -1018,7 +907,7 @@ struct InputMediaAnimation{
 	std::string thumb;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	int width;
 	int height;
 	int duration;
@@ -1032,7 +921,7 @@ struct InputMediaAudio{
 	std::string thumb;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	int duration;
 	std::string performer;
 	std::string title;
@@ -1045,7 +934,7 @@ struct InputMediaDocument{
 	std::string thumb;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	bool disable_content_type_detection;
 };
 
@@ -1055,7 +944,7 @@ struct InputFile{
 	int message_thread_id;
 	std::string text;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> entities;
+	std::vector<std::shared_ptr<MessageEntity>> entities;
 	bool disable_web_page_preview;
 	bool disable_notification;
 	bool protect_content;
@@ -1064,352 +953,8 @@ struct InputFile{
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 };
 
-//There are three ways to send files (photos, stickers, audio, media, etc.):
-struct Sending files{
-};
-
-//Objects and methods used in the inline mode are described in the <a href="#inline-mode">Inline mode section</a>.
-struct Inline mode objects{
-};
-
-//All methods in the Bot API are case-insensitive. We support <strong>GET</strong> and <strong>POST</strong> HTTP methods. Use either <a href="https://en.wikipedia.org/wiki/Query_string">URL query string</a> or <em>application/json</em> or <em>application/x-www-form-urlencoded</em> or <em>multipart/form-data</em> for passing parameters in Bot API requests.<br>On successful call, a JSON-object containing the result will be returned.
-struct Available methods{
-};
-
 //A simple method for testing your bot&#39;s authentication token. Requires no parameters. Returns basic information about the bot in form of a <a href="#user">User</a> object.
 struct getMe{
-};
-
-//Use this method to log out from the cloud Bot API server before launching the bot locally. You <strong>must</strong> log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns <em>True</em> on success. Requires no parameters.
-struct logOut{
-};
-
-//Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn&#39;t launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns <em>True</em> on success. Requires no parameters.
-struct close{
-};
-
-//Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
-struct sendMessage{
-};
-
-//The Bot API supports basic formatting for messages. You can use bold, italic, underlined, strikethrough, and spoiler text, as well as inline links and pre-formatted code in your bots&#39; messages. Telegram clients will render them accordingly. You can specify text entities directly, or use markdown-style or HTML-style formatting.
-struct Formatting options{
-};
-
-//To use this mode, pass <em>MarkdownV2</em> in the <em>parse_mode</em> field. Use the following syntax in your message:
-struct MarkdownV2 style{
-};
-
-//To use this mode, pass <em>HTML</em> in the <em>parse_mode</em> field. The following tags are currently supported:
-struct HTML style{
-};
-
-//This is a legacy mode, retained for backward compatibility. To use this mode, pass <em>Markdown</em> in the <em>parse_mode</em> field. Use the following syntax in your message:
-struct Markdown style{
-};
-
-//Use this method to forward messages of any kind. Service messages can&#39;t be forwarded. On success, the sent <a href="#message">Message</a> is returned.
-struct forwardMessage{
-};
-
-//Use this method to copy messages of any kind. Service messages and invoice messages can&#39;t be copied. A quiz <a href="#poll">poll</a> can be copied only if the value of the field <em>correct_option_id</em> is known to the bot. The method is analogous to the method <a href="#forwardmessage">forwardMessage</a>, but the copied message doesn&#39;t have a link to the original message. Returns the <a href="#messageid">MessageId</a> of the sent message on success.
-struct copyMessage{
-};
-
-//Use this method to send photos. On success, the sent <a href="#message">Message</a> is returned.
-struct sendPhoto{
-};
-
-//Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-struct sendAudio{
-};
-
-//Use this method to send general files. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-struct sendDocument{
-};
-
-//Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-struct sendVideo{
-};
-
-//Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-struct sendAnimation{
-};
-
-//Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as <a href="#audio">Audio</a> or <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-struct sendVoice{
-};
-
-//As of <a href="https://telegram.org/blog/video-messages-and-telescope">v.4.0</a>, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent <a href="#message">Message</a> is returned.
-struct sendVideoNote{
-};
-
-//Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of <a href="#message">Messages</a> that were sent is returned.
-struct sendMediaGroup{
-};
-
-//Use this method to send point on the map. On success, the sent <a href="#message">Message</a> is returned.
-struct sendLocation{
-};
-
-//Use this method to edit live location messages. A location can be edited until its <em>live_period</em> expires or editing is explicitly disabled by a call to <a href="#stopmessagelivelocation">stopMessageLiveLocation</a>. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct editMessageLiveLocation{
-};
-
-//Use this method to stop updating a live location message before <em>live_period</em> expires. On success, if the message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct stopMessageLiveLocation{
-};
-
-//Use this method to send information about a venue. On success, the sent <a href="#message">Message</a> is returned.
-struct sendVenue{
-};
-
-//Use this method to send phone contacts. On success, the sent <a href="#message">Message</a> is returned.
-struct sendContact{
-};
-
-//Use this method to send a native poll. On success, the sent <a href="#message">Message</a> is returned.
-struct sendPoll{
-};
-
-//Use this method to send an animated emoji that will display a random value. On success, the sent <a href="#message">Message</a> is returned.
-struct sendDice{
-};
-
-//Use this method when you need to tell the user that something is happening on the bot&#39;s side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns <em>True</em> on success.
-struct sendChatAction{
-};
-
-//Use this method to get a list of profile pictures for a user. Returns a <a href="#userprofilephotos">UserProfilePhotos</a> object.
-struct getUserProfilePhotos{
-};
-
-//Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <a href="#file">File</a> object is returned. The file can then be downloaded via the link <code>https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;</code>, where <code>&lt;file_path&gt;</code> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling <a href="#getfile">getFile</a> again.
-struct getFile{
-};
-
-//Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless <a href="#unbanchatmember">unbanned</a> first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct banChatMember{
-};
-
-//Use this method to unban a previously banned user in a supergroup or channel. The user will <strong>not</strong> return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be <strong>removed</strong> from the chat. If you don&#39;t want this, use the parameter <em>only_if_banned</em>. Returns <em>True</em> on success.
-struct unbanChatMember{
-};
-
-//Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass <em>True</em> for all permissions to lift restrictions from a user. Returns <em>True</em> on success.
-struct restrictChatMember{
-};
-
-//Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass <em>False</em> for all boolean parameters to demote a user. Returns <em>True</em> on success.
-struct promoteChatMember{
-};
-
-//Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns <em>True</em> on success.
-struct setChatAdministratorCustomTitle{
-};
-
-//Use this method to ban a channel chat in a supergroup or a channel. Until the chat is <a href="#unbanchatsenderchat">unbanned</a>, the owner of the banned chat won&#39;t be able to send messages on behalf of <strong>any of their channels</strong>. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct banChatSenderChat{
-};
-
-//Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct unbanChatSenderChat{
-};
-
-//Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the <em>can_restrict_members</em> administrator rights. Returns <em>True</em> on success.
-struct setChatPermissions{
-};
-
-//Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as <em>String</em> on success.
-struct exportChatInviteLink{
-};
-
-//Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method <a href="#revokechatinvitelink">revokeChatInviteLink</a>. Returns the new invite link as <a href="#chatinvitelink">ChatInviteLink</a> object.
-struct createChatInviteLink{
-};
-
-//Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a <a href="#chatinvitelink">ChatInviteLink</a> object.
-struct editChatInviteLink{
-};
-
-//Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as <a href="#chatinvitelink">ChatInviteLink</a> object.
-struct revokeChatInviteLink{
-};
-
-//Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the <em>can_invite_users</em> administrator right. Returns <em>True</em> on success.
-struct approveChatJoinRequest{
-};
-
-//Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the <em>can_invite_users</em> administrator right. Returns <em>True</em> on success.
-struct declineChatJoinRequest{
-};
-
-//Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct setChatPhoto{
-};
-
-//Use this method to delete a chat photo. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct deleteChatPhoto{
-};
-
-//Use this method to change the title of a chat. Titles can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct setChatTitle{
-};
-
-//Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-struct setChatDescription{
-};
-
-//Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-struct pinChatMessage{
-};
-
-//Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-struct unpinChatMessage{
-};
-
-//Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-struct unpinAllChatMessages{
-};
-
-//Use this method for your bot to leave a group, supergroup or channel. Returns <em>True</em> on success.
-struct leaveChat{
-};
-
-//Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a <a href="#chat">Chat</a> object on success.
-struct getChat{
-};
-
-//Use this method to get a list of administrators in a chat, which aren&#39;t bots. Returns an Array of <a href="#chatmember">ChatMember</a> objects.
-struct getChatAdministrators{
-};
-
-//Use this method to get the number of members in a chat. Returns <em>Int</em> on success.
-struct getChatMemberCount{
-};
-
-//Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a <a href="#chatmember">ChatMember</a> object on success.
-struct getChatMember{
-};
-
-//Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field <em>can_set_sticker_set</em> optionally returned in <a href="#getchat">getChat</a> requests to check if the bot can use this method. Returns <em>True</em> on success.
-struct setChatStickerSet{
-};
-
-//Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field <em>can_set_sticker_set</em> optionally returned in <a href="#getchat">getChat</a> requests to check if the bot can use this method. Returns <em>True</em> on success.
-struct deleteChatStickerSet{
-};
-
-//Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of <a href="#sticker">Sticker</a> objects.
-struct getForumTopicIconStickers{
-};
-
-//Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns information about the created topic as a <a href="#forumtopic">ForumTopic</a> object.
-struct createForumTopic{
-};
-
-//Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-struct editForumTopic{
-};
-
-//Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-struct closeForumTopic{
-};
-
-//Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-struct reopenForumTopic{
-};
-
-//Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_delete_messages</em> administrator rights. Returns <em>True</em> on success.
-struct deleteForumTopic{
-};
-
-//Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the <em>can_pin_messages</em> administrator right in the supergroup. Returns <em>True</em> on success.
-struct unpinAllForumTopicMessages{
-};
-
-//Use this method to edit the name of the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-struct editGeneralForumTopic{
-};
-
-//Use this method to close an open &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-struct closeGeneralForumTopic{
-};
-
-//Use this method to reopen a closed &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. The topic will be automatically unhidden if it was hidden. Returns <em>True</em> on success.
-struct reopenGeneralForumTopic{
-};
-
-//Use this method to hide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. The topic will be automatically closed if it was open. Returns <em>True</em> on success.
-struct hideGeneralForumTopic{
-};
-
-//Use this method to unhide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-struct unhideGeneralForumTopic{
-};
-
-//Use this method to send answers to callback queries sent from <a href="/bots/features#inline-keyboards">inline keyboards</a>. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, <em>True</em> is returned.
-struct answerCallbackQuery{
-};
-
-//Use this method to change the list of the bot&#39;s commands. See <a href="/bots/features#commands">this manual</a> for more details about bot commands. Returns <em>True</em> on success.
-struct setMyCommands{
-};
-
-//Use this method to delete the list of the bot&#39;s commands for the given scope and user language. After deletion, <a href="#determining-list-of-commands">higher level commands</a> will be shown to affected users. Returns <em>True</em> on success.
-struct deleteMyCommands{
-};
-
-//Use this method to get the current list of the bot&#39;s commands for the given scope and user language. Returns an Array of <a href="#botcommand">BotCommand</a> objects. If commands aren&#39;t set, an empty list is returned.
-struct getMyCommands{
-};
-
-//Use this method to change the bot&#39;s menu button in a private chat, or the default menu button. Returns <em>True</em> on success.
-struct setChatMenuButton{
-};
-
-//Use this method to get the current value of the bot&#39;s menu button in a private chat, or the default menu button. Returns <a href="#menubutton">MenuButton</a> on success.
-struct getChatMenuButton{
-};
-
-//Use this method to change the default administrator rights requested by the bot when it&#39;s added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot. Returns <em>True</em> on success.
-struct setMyDefaultAdministratorRights{
-};
-
-//Use this method to get the current default administrator rights of the bot. Returns <a href="#chatadministratorrights">ChatAdministratorRights</a> on success.
-struct getMyDefaultAdministratorRights{
-};
-
-//Methods and objects used in the inline mode are described in the <a href="#inline-mode">Inline mode section</a>.
-struct Inline mode methods{
-};
-
-//The following methods allow you to change an existing message in the message history instead of sending a new one with a result of an action. This is most useful for messages with <a href="/bots/features#inline-keyboards">inline keyboards</a> using callback queries, but can also help reduce clutter in conversations with regular chat bots.
-struct Updating messages{
-};
-
-//Use this method to edit text and <a href="#games">game</a> messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct editMessageText{
-};
-
-//Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct editMessageCaption{
-};
-
-//Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct editMessageMedia{
-};
-
-//Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-struct editMessageReplyMarkup{
-};
-
-//Use this method to stop a poll which was sent by the bot. On success, the stopped <a href="#poll">Poll</a> is returned.
-struct stopPoll{
-};
-
-//Use this method to delete a message, including service messages, with the following limitations:<br>- A message can only be deleted if it was sent less than 48 hours ago.<br>- Service messages about a supergroup, channel, or forum topic creation can&#39;t be deleted.<br>- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.<br>- Bots can delete outgoing messages in private chats, groups, and supergroups.<br>- Bots can delete incoming messages in private chats.<br>- Bots granted <em>can_post_messages</em> permissions can delete outgoing messages in channels.<br>- If the bot is an administrator of a group, it can delete any message there.<br>- If the bot has <em>can_delete_messages</em> permission in a supergroup or a channel, it can delete any message there.<br>Returns <em>True</em> on success.
-struct deleteMessage{
 };
 
 //The following methods and objects allow your bot to handle stickers and sticker sets.
@@ -1441,7 +986,7 @@ struct StickerSet{
 	std::string sticker_type;
 	bool is_animated;
 	bool is_video;
-	std::shared_ptr<Sticker> stickers;
+	std::vector<std::shared_ptr<Sticker>> stickers;
 	std::shared_ptr<PhotoSize> thumb;
 };
 
@@ -1453,46 +998,6 @@ struct MaskPosition{
 	float scale;
 };
 
-//Use this method to send static .WEBP, <a href="https://telegram.org/blog/animated-stickers">animated</a> .TGS, or <a href="https://telegram.org/blog/video-stickers-better-reactions">video</a> .WEBM stickers. On success, the sent <a href="#message">Message</a> is returned.
-struct sendSticker{
-};
-
-//Use this method to get a sticker set. On success, a <a href="#stickerset">StickerSet</a> object is returned.
-struct getStickerSet{
-};
-
-//Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of <a href="#sticker">Sticker</a> objects.
-struct getCustomEmojiStickers{
-};
-
-//Use this method to upload a .PNG file with a sticker for later use in <em>createNewStickerSet</em> and <em>addStickerToSet</em> methods (can be used multiple times). Returns the uploaded <a href="#file">File</a> on success.
-struct uploadStickerFile{
-};
-
-//Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You <strong>must</strong> use exactly one of the fields <em>png_sticker</em>, <em>tgs_sticker</em>, or <em>webm_sticker</em>. Returns <em>True</em> on success.
-struct createNewStickerSet{
-};
-
-//Use this method to add a new sticker to a set created by the bot. You <strong>must</strong> use exactly one of the fields <em>png_sticker</em>, <em>tgs_sticker</em>, or <em>webm_sticker</em>. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns <em>True</em> on success.
-struct addStickerToSet{
-};
-
-//Use this method to move a sticker in a set created by the bot to a specific position. Returns <em>True</em> on success.
-struct setStickerPositionInSet{
-};
-
-//Use this method to delete a sticker from a set created by the bot. Returns <em>True</em> on success.
-struct deleteStickerFromSet{
-};
-
-//Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns <em>True</em> on success.
-struct setStickerSetThumb{
-};
-
-//The following methods and objects allow your bot to work in <a href="/bots/inline">inline mode</a>.<br>Please see our <a href="/bots/inline">Introduction to Inline bots</a> for more details.
-struct Inline mode{
-};
-
 //This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
 struct InlineQuery{
 	std::string id;
@@ -1501,10 +1006,6 @@ struct InlineQuery{
 	std::string offset;
 	std::string chat_type;
 	std::shared_ptr<Location> location;
-};
-
-//Use this method to send answers to an inline query. On success, <em>True</em> is returned.<br>No more than <strong>50</strong> results per query are allowed.
-struct answerInlineQuery{
 };
 
 //This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
@@ -1549,7 +1050,7 @@ struct InlineQueryResultPhoto{
 	std::string description;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1567,7 +1068,7 @@ struct InlineQueryResultGif{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1585,7 +1086,7 @@ struct InlineQueryResultMpeg4Gif{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1600,7 +1101,7 @@ struct InlineQueryResultVideo{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	int video_width;
 	int video_height;
 	int video_duration;
@@ -1617,7 +1118,7 @@ struct InlineQueryResultAudio{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::string performer;
 	int audio_duration;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
@@ -1632,7 +1133,7 @@ struct InlineQueryResultVoice{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	int voice_duration;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
@@ -1645,7 +1146,7 @@ struct InlineQueryResultDocument{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::string document_url;
 	std::string mime_type;
 	std::string description;
@@ -1725,7 +1226,7 @@ struct InlineQueryResultCachedPhoto{
 	std::string description;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1738,7 +1239,7 @@ struct InlineQueryResultCachedGif{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1751,7 +1252,7 @@ struct InlineQueryResultCachedMpeg4Gif{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1774,7 +1275,7 @@ struct InlineQueryResultCachedDocument{
 	std::string description;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1788,7 +1289,7 @@ struct InlineQueryResultCachedVideo{
 	std::string description;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1801,7 +1302,7 @@ struct InlineQueryResultCachedVoice{
 	std::string title;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1813,7 +1314,7 @@ struct InlineQueryResultCachedAudio{
 	std::string audio_file_id;
 	std::string caption;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> caption_entities;
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 	std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1822,7 +1323,7 @@ struct InlineQueryResultCachedAudio{
 struct InputMessageContent{
 	std::string message_text;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> entities;
+	std::vector<std::shared_ptr<MessageEntity>> entities;
 	bool disable_web_page_preview;
 };
 
@@ -1830,7 +1331,7 @@ struct InputMessageContent{
 struct InputTextMessageContent{
 	std::string message_text;
 	std::string parse_mode;
-	std::shared_ptr<MessageEntity> entities;
+	std::vector<std::shared_ptr<MessageEntity>> entities;
 	bool disable_web_page_preview;
 };
 
@@ -1871,7 +1372,7 @@ struct InputInvoiceMessageContent{
 	std::string payload;
 	std::string provider_token;
 	std::string currency;
-	std::shared_ptr<LabeledPrice> prices;
+	std::vector<std::shared_ptr<LabeledPrice>> prices;
 	int max_tip_amount;
 	int suggested_tip_amounts;
 	std::string provider_data;
@@ -1897,10 +1398,6 @@ struct ChosenInlineResult{
 	std::string query;
 };
 
-//Use this method to set the result of an interaction with a <a href="/bots/webapps">Web App</a> and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a <a href="#sentwebappmessage">SentWebAppMessage</a> object is returned.
-struct answerWebAppQuery{
-};
-
 //Describes an inline message sent by a <a href="/bots/webapps">Web App</a> on behalf of a user.
 struct SentWebAppMessage{
 	std::string inline_message_id;
@@ -1908,22 +1405,6 @@ struct SentWebAppMessage{
 
 //Your bot can accept payments from Telegram users. Please see the <a href="/bots/payments">introduction to payments</a> for more details on the process and how to set up payments for your bot. Please note that users will need Telegram v.4.0 or higher to use payments (released on May 18, 2017).
 struct Payments{
-};
-
-//Use this method to send invoices. On success, the sent <a href="#message">Message</a> is returned.
-struct sendInvoice{
-};
-
-//Use this method to create a link for an invoice. Returns the created invoice link as <em>String</em> on success.
-struct createInvoiceLink{
-};
-
-//If you sent an invoice requesting a shipping address and the parameter <em>is_flexible</em> was specified, the Bot API will send an <a href="#update">Update</a> with a <em>shipping_query</em> field to the bot. Use this method to reply to shipping queries. On success, <em>True</em> is returned.
-struct answerShippingQuery{
-};
-
-//Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an <a href="#update">Update</a> with the field <em>pre_checkout_query</em>. Use this method to respond to such pre-checkout queries. On success, <em>True</em> is returned. <strong>Note:</strong> The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
-struct answerPreCheckoutQuery{
 };
 
 //This object represents a portion of the price for goods or services.
@@ -1963,7 +1444,7 @@ struct OrderInfo{
 struct ShippingOption{
 	std::string id;
 	std::string title;
-	std::shared_ptr<LabeledPrice> prices;
+	std::vector<std::shared_ptr<LabeledPrice>> prices;
 };
 
 //This object contains basic information about a successful payment.
@@ -1996,13 +1477,9 @@ struct PreCheckoutQuery{
 	std::shared_ptr<OrderInfo> order_info;
 };
 
-//<strong>Telegram Passport</strong> is a unified authorization method for services that require personal identification. Users can upload their documents once, then instantly share their data with services that require real-world ID (finance, ICOs, etc.). Please see the <a href="/passport">manual</a> for details.
-struct Telegram Passport{
-};
-
 //Describes Telegram Passport data shared with the bot by the user.
 struct PassportData{
-	std::shared_ptr<EncryptedPassportElement> data;
+	std::vector<std::shared_ptr<EncryptedPassportElement>> data;
 	std::shared_ptr<EncryptedCredentials> credentials;
 };
 
@@ -2020,11 +1497,11 @@ struct EncryptedPassportElement{
 	std::string data;
 	std::string phone_number;
 	std::string email;
-	std::shared_ptr<PassportFile> files;
+	std::vector<std::shared_ptr<PassportFile>> files;
 	std::shared_ptr<PassportFile> front_side;
 	std::shared_ptr<PassportFile> reverse_side;
 	std::shared_ptr<PassportFile> selfie;
-	std::shared_ptr<PassportFile> translation;
+	std::vector<std::shared_ptr<PassportFile>> translation;
 	std::string hash;
 };
 
@@ -2033,10 +1510,6 @@ struct EncryptedCredentials{
 	std::string data;
 	std::string hash;
 	std::string secret;
-};
-
-//Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns <em>True</em> on success.
-struct setPassportDataErrors{
 };
 
 //This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
@@ -2125,30 +1598,18 @@ struct PassportElementErrorUnspecified{
 struct Games{
 };
 
-//Use this method to send a game. On success, the sent <a href="#message">Message</a> is returned.
-struct sendGame{
-};
-
 //This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
 struct Game{
 	std::string title;
 	std::string description;
-	std::shared_ptr<PhotoSize> photo;
+	std::vector<std::shared_ptr<PhotoSize>> photo;
 	std::string text;
-	std::shared_ptr<MessageEntity> text_entities;
+	std::vector<std::shared_ptr<MessageEntity>> text_entities;
 	std::shared_ptr<Animation> animation;
 };
 
 //A placeholder, currently holds no information. Use <a href="https://t.me/botfather">BotFather</a> to set up your game.
 struct CallbackGame{
-};
-
-//Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned. Returns an error, if the new score is not greater than the user&#39;s current score in the chat and <em>force</em> is <em>False</em>.
-struct setGameScore{
-};
-
-//Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of <a href="#gamehighscore">GameHighScore</a> objects.
-struct getGameHighScores{
 };
 
 //This object represents one row of the high scores table for a game.

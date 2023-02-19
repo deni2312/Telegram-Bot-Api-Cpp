@@ -40,10 +40,12 @@ std::string normalize_type(std::string type){
     if(type.find("False")!=std::string::npos){
         return "bool";
     }
+    if(type.find("Array")!=std::string::npos){
+        return "std::vector<std::shared_ptr<"+type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1)+">>";
+    }
     if(type.find("<a href")!=std::string::npos){
         return "std::shared_ptr<"+type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1)+">";
     }
-
 
     return type;
 }
@@ -74,11 +76,13 @@ void type_generator(){
                 line.n.push_back({param,typ});
             }
         }
-        typeTelegram.names.push_back(line);
+        if(line.description.find("Use this method")==std::string::npos && line.description.find("Informs")==std::string::npos && (name.find(" ")==std::string::npos || name.find("Array")!=std::string::npos)) {
+            typeTelegram.names.push_back(line);
+        }
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n\n";
     for(const auto& nm : typeTelegram.names){
         out=out+"struct "+nm.name+";\n";
     }
@@ -119,7 +123,7 @@ int main(int argc, char** argv) {
         std::string description=types.substr(types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))+3, types.find("</p>",types.find("<i class=\"anchor-icon\"></i></a>"))-types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))-3);
         name = name.substr(0, name.find("<"));
         line.description=description;
-        if(description.find("Use this method")!=std::string::npos) {
+        if(description.find("Use this method")!=std::string::npos && description.find("Informs")!=std::string::npos) {
             line.name = name;
             std::string tbody = types.substr(types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")), types.find("</tbody>",types.find("<i class=\"anchor-icon\"></i></a>")) - types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")));
             while (tbody.find("<tr>") != std::string::npos) {
