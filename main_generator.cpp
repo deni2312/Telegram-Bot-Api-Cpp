@@ -76,7 +76,7 @@ void type_generator(){
                 line.n.push_back({param,typ});
             }
         }
-        if(line.description.find("Use this method")==std::string::npos && line.description.find("Informs")==std::string::npos && (name.find(" ")==std::string::npos || name.find("Array")!=std::string::npos)) {
+        if(line.description.find("Use this method")==std::string::npos && line.description.find("Informs")==std::string::npos && line.description.find("A simple method")==std::string::npos && (name.find(" ")==std::string::npos || name.find("Array")!=std::string::npos)) {
             typeTelegram.names.push_back(line);
         }
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
         std::string description=types.substr(types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))+3, types.find("</p>",types.find("<i class=\"anchor-icon\"></i></a>"))-types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))-3);
         name = name.substr(0, name.find("<"));
         line.description=description;
-        if(description.find("Use this method")!=std::string::npos && description.find("Informs")!=std::string::npos) {
+        if(description.find("Use this method")!=std::string::npos || description.find("Informs")!=std::string::npos || description.find("A simple method")!=std::string::npos) {
             line.name = name;
             std::string tbody = types.substr(types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")), types.find("</tbody>",types.find("<i class=\"anchor-icon\"></i></a>")) - types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")));
             while (tbody.find("<tr>") != std::string::npos) {

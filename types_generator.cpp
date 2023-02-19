@@ -87,7 +87,6 @@ struct InputMediaAnimation;
 struct InputMediaAudio;
 struct InputMediaDocument;
 struct InputFile;
-struct getMe;
 struct Stickers;
 struct Sticker;
 struct StickerSet;
@@ -951,10 +950,6 @@ struct InputFile{
 	int reply_to_message_id;
 	bool allow_sending_without_reply;
 	std::shared_ptr<InlineKeyboardMarkup> reply_markup;
-};
-
-//A simple method for testing your bot&#39;s authentication token. Requires no parameters. Returns basic information about the bot in form of a <a href="#user">User</a> object.
-struct getMe{
 };
 
 //The following methods and objects allow your bot to handle stickers and sticker sets.
