@@ -50,10 +50,10 @@ int main(int argc, char** argv) {
     }
     std::string out="";
     out=out+"#include <string>\n\n";
-    for(auto nm : typeTelegram.names){
+    for(const auto& nm : typeTelegram.names){
         out=out+"//"+nm.description+"\n";
         out=out+"struct "+nm.name+"{\n";
-        for(auto pa: nm.parameter){
+        for(const auto& pa: nm.parameter){
             out=out + "\tstd::string "+pa+";\n";
         }
         out=out+"};\n\n";
