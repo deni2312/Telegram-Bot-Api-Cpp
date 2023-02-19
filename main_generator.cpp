@@ -82,7 +82,7 @@ void type_generator(){
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n#include <vector>\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
     for(const auto& nm : typeTelegram.names){
         out=out+"struct "+nm.name+";\n";
     }
@@ -92,8 +92,15 @@ void type_generator(){
         for(const auto& pa: nm.n){
             out=out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
         }
-        out=out+"};\n\n";
+        out=out + "// Define a to_json method for the Person struct\n"
+                  "\tvoid to_json(json& j) const {\n\t\tj = json{";
+        for(const auto& pa: nm.n){
+            out=out +"{\""+pa.parameter+"\", "+pa.parameter+"},";
+        }
+        out=out+"};\n";
+        out=out+"\t}\n};\n\n";
     }
+
     std::fstream outs{"../types_generator.cpp",std::fstream::out};
     outs<<out;
     outs.close();
