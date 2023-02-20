@@ -1029,9 +1029,13 @@ Json::Value Telegram::Bot::Types::API::getChat(const std::string& chat_id) const
 	std::string text;
 	
 	text = text + "chat_id=" + "" + chat_id + "&";
-	std::string tosend = generalToken + "/getChat?" + text;
-
-	return request->sendHttp(tosend);
+	std::string tosend = "/getMe";
+    ns::User user;
+    auto n=request->sendHttp(tosend);
+    std::cout<<n;
+    //nlohmann::json j=nlohmann::json::parse(n);
+    //ns::from_json(j,user);
+	return Json::Value();
 }
 Json::Value Telegram::Bot::Types::API::getChatAdministrators(const std::string& chat_id) const {
 	std::string text;

@@ -4,8 +4,8 @@
 
 void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
 	try {
-		api.sendMessage(message["chat"]["id"].asString(),"Hello world");
-	}
+        api.getChat(message["chat"]["id"].asString());
+    }
 	catch (Telegram::Bot::Types::Error& error) {
 		std::cerr << error.what();
 	}
