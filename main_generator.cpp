@@ -133,13 +133,10 @@ void type_generator(){
         out=out+"void from_json(const json& j, "+nm.name+"& name){\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
-                out = out + "    std::vector<std::shared_ptr<" + normalize_type1(pa.name_type) + ">> p;\n";
-                out = out + "for(auto a:j.at(\"" + pa.parameter + "\").get<std::vector<" + normalize_type1(pa.name_type) +
-                      ">>()){\np.push_back(std::make_shared<" + normalize_type1(pa.name_type) + ">(a));\n"
-                                                                                                "    }";
-                out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
-                      " >(j.at(\"" + pa.parameter + "\").get<" +
-                      normalize_type1(pa.name_type) + ">());\n";
+                out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n";
+                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                      ">()){\n\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t}\n";
+                out = out + "\tname." + pa.parameter + "="+pa.parameter+";\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
                     out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +

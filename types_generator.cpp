@@ -1976,26 +1976,29 @@ void from_json(const json& j, Message& name){
 	name.media_group_id=j.at("media_group_id").get<std::string>();
 	name.author_signature=j.at("author_signature").get<std::string>();
 	name.text=j.at("text").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.entities=std::make_shared<std::vector<MessageEntity> >(j.at("entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> entities;
+	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
+		entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.entities=entities;
 	name.animation=std::make_shared<Animation >(j.at("animation").get<Animation>());
 	name.audio=std::make_shared<Audio >(j.at("audio").get<Audio>());
 	name.document=std::make_shared<Document >(j.at("document").get<Document>());
-    std::vector<std::shared_ptr<std::vector<PhotoSize>>> p;
-for(auto a:j.at("photo").get<std::vector<std::vector<PhotoSize>>>()){
-p.push_back(std::make_shared<std::vector<PhotoSize>>(a));
-    }	name.photo=std::make_shared<std::vector<PhotoSize> >(j.at("photo").get<std::vector<PhotoSize>>());
+	std::vector<std::shared_ptr<PhotoSize>> photo;
+	for(auto a:j.at("photo").get<std::vector<PhotoSize>>()){
+		photo.push_back( std::make_shared<PhotoSize>(a));
+	}
+	name.photo=photo;
 	name.sticker=std::make_shared<Sticker >(j.at("sticker").get<Sticker>());
 	name.video=std::make_shared<Video >(j.at("video").get<Video>());
 	name.video_note=std::make_shared<VideoNote >(j.at("video_note").get<VideoNote>());
 	name.voice=std::make_shared<Voice >(j.at("voice").get<Voice>());
 	name.caption=j.at("caption").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.has_media_spoiler=j.at("has_media_spoiler").get<bool>();
 	name.contact=std::make_shared<Contact >(j.at("contact").get<Contact>());
 	name.dice=std::make_shared<Dice >(j.at("dice").get<Dice>());
@@ -2003,16 +2006,18 @@ p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
 	name.poll=std::make_shared<Poll >(j.at("poll").get<Poll>());
 	name.venue=std::make_shared<Venue >(j.at("venue").get<Venue>());
 	name.location=std::make_shared<Location >(j.at("location").get<Location>());
-    std::vector<std::shared_ptr<std::vector<User>>> p;
-for(auto a:j.at("new_chat_members").get<std::vector<std::vector<User>>>()){
-p.push_back(std::make_shared<std::vector<User>>(a));
-    }	name.new_chat_members=std::make_shared<std::vector<User> >(j.at("new_chat_members").get<std::vector<User>>());
+	std::vector<std::shared_ptr<User>> new_chat_members;
+	for(auto a:j.at("new_chat_members").get<std::vector<User>>()){
+		new_chat_members.push_back( std::make_shared<User>(a));
+	}
+	name.new_chat_members=new_chat_members;
 	name.left_chat_member=std::make_shared<User >(j.at("left_chat_member").get<User>());
 	name.new_chat_title=j.at("new_chat_title").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<PhotoSize>>> p;
-for(auto a:j.at("new_chat_photo").get<std::vector<std::vector<PhotoSize>>>()){
-p.push_back(std::make_shared<std::vector<PhotoSize>>(a));
-    }	name.new_chat_photo=std::make_shared<std::vector<PhotoSize> >(j.at("new_chat_photo").get<std::vector<PhotoSize>>());
+	std::vector<std::shared_ptr<PhotoSize>> new_chat_photo;
+	for(auto a:j.at("new_chat_photo").get<std::vector<PhotoSize>>()){
+		new_chat_photo.push_back( std::make_shared<PhotoSize>(a));
+	}
+	name.new_chat_photo=new_chat_photo;
 	name.delete_chat_photo=j.at("delete_chat_photo").get<bool>();
 	name.group_chat_created=j.at("group_chat_created").get<bool>();
 	name.supergroup_chat_created=j.at("supergroup_chat_created").get<bool>();
@@ -2154,10 +2159,11 @@ void to_json(const json& j, PollAnswer& name){}
 void from_json(const json& j, Poll& name){
 	name.id=j.at("id").get<std::string>();
 	name.question=j.at("question").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<PollOption>>> p;
-for(auto a:j.at("options").get<std::vector<std::vector<PollOption>>>()){
-p.push_back(std::make_shared<std::vector<PollOption>>(a));
-    }	name.options=std::make_shared<std::vector<PollOption> >(j.at("options").get<std::vector<PollOption>>());
+	std::vector<std::shared_ptr<PollOption>> options;
+	for(auto a:j.at("options").get<std::vector<PollOption>>()){
+		options.push_back( std::make_shared<PollOption>(a));
+	}
+	name.options=options;
 	name.total_voter_count=j.at("total_voter_count").get<int>();
 	name.is_closed=j.at("is_closed").get<bool>();
 	name.is_anonymous=j.at("is_anonymous").get<bool>();
@@ -2165,10 +2171,11 @@ p.push_back(std::make_shared<std::vector<PollOption>>(a));
 	name.allows_multiple_answers=j.at("allows_multiple_answers").get<bool>();
 	name.correct_option_id=j.at("correct_option_id").get<int>();
 	name.explanation=j.at("explanation").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("explanation_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.explanation_entities=std::make_shared<std::vector<MessageEntity> >(j.at("explanation_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
+	for(auto a:j.at("explanation_entities").get<std::vector<MessageEntity>>()){
+		explanation_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.explanation_entities=explanation_entities;
 	name.open_period=j.at("open_period").get<int>();
 	name.close_date=j.at("close_date").get<int>();
 }
@@ -2255,18 +2262,20 @@ void from_json(const json& j, VideoChatEnded& name){
 }
 void to_json(const json& j, VideoChatEnded& name){}
 void from_json(const json& j, VideoChatParticipantsInvited& name){
-    std::vector<std::shared_ptr<std::vector<User>>> p;
-for(auto a:j.at("users").get<std::vector<std::vector<User>>>()){
-p.push_back(std::make_shared<std::vector<User>>(a));
-    }	name.users=std::make_shared<std::vector<User> >(j.at("users").get<std::vector<User>>());
+	std::vector<std::shared_ptr<User>> users;
+	for(auto a:j.at("users").get<std::vector<User>>()){
+		users.push_back( std::make_shared<User>(a));
+	}
+	name.users=users;
 }
 void to_json(const json& j, VideoChatParticipantsInvited& name){}
 void from_json(const json& j, UserProfilePhotos& name){
 	name.total_count=j.at("total_count").get<int>();
-    std::vector<std::shared_ptr<std::vector<PhotoSize>>> p;
-for(auto a:j.at("photos").get<std::vector<std::vector<PhotoSize>>>()){
-p.push_back(std::make_shared<std::vector<PhotoSize>>(a));
-    }	name.photos=std::make_shared<std::vector<PhotoSize> >(j.at("photos").get<std::vector<PhotoSize>>());
+	std::vector<std::shared_ptr<PhotoSize>> photos;
+	for(auto a:j.at("photos").get<std::vector<PhotoSize>>()){
+		photos.push_back( std::make_shared<PhotoSize>(a));
+	}
+	name.photos=photos;
 }
 void to_json(const json& j, UserProfilePhotos& name){}
 void from_json(const json& j, File& name){
@@ -2281,10 +2290,11 @@ void from_json(const json& j, WebAppInfo& name){
 }
 void to_json(const json& j, WebAppInfo& name){}
 void from_json(const json& j, ReplyKeyboardMarkup& name){
-    std::vector<std::shared_ptr<std::vector<KeyboardButton>>> p;
-for(auto a:j.at("keyboard").get<std::vector<std::vector<KeyboardButton>>>()){
-p.push_back(std::make_shared<std::vector<KeyboardButton>>(a));
-    }	name.keyboard=std::make_shared<std::vector<KeyboardButton> >(j.at("keyboard").get<std::vector<KeyboardButton>>());
+	std::vector<std::shared_ptr<KeyboardButton>> keyboard;
+	for(auto a:j.at("keyboard").get<std::vector<KeyboardButton>>()){
+		keyboard.push_back( std::make_shared<KeyboardButton>(a));
+	}
+	name.keyboard=keyboard;
 	name.is_persistent=j.at("is_persistent").get<bool>();
 	name.resize_keyboard=j.at("resize_keyboard").get<bool>();
 	name.one_time_keyboard=j.at("one_time_keyboard").get<bool>();
@@ -2327,10 +2337,11 @@ void from_json(const json& j, ReplyKeyboardRemove& name){
 }
 void to_json(const json& j, ReplyKeyboardRemove& name){}
 void from_json(const json& j, InlineKeyboardMarkup& name){
-    std::vector<std::shared_ptr<std::vector<InlineKeyboardButton>>> p;
-for(auto a:j.at("inline_keyboard").get<std::vector<std::vector<InlineKeyboardButton>>>()){
-p.push_back(std::make_shared<std::vector<InlineKeyboardButton>>(a));
-    }	name.inline_keyboard=std::make_shared<std::vector<InlineKeyboardButton> >(j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>());
+	std::vector<std::shared_ptr<InlineKeyboardButton>> inline_keyboard;
+	for(auto a:j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()){
+		inline_keyboard.push_back( std::make_shared<InlineKeyboardButton>(a));
+	}
+	name.inline_keyboard=inline_keyboard;
 }
 void to_json(const json& j, InlineKeyboardMarkup& name){}
 void from_json(const json& j, InlineKeyboardButton& name){
@@ -2585,10 +2596,11 @@ void from_json(const json& j, InputMedia& name){
 	name.media=j.at("media").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.has_spoiler=j.at("has_spoiler").get<bool>();
 }
 void to_json(const json& j, InputMedia& name){}
@@ -2597,10 +2609,11 @@ void from_json(const json& j, InputMediaPhoto& name){
 	name.media=j.at("media").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.has_spoiler=j.at("has_spoiler").get<bool>();
 }
 void to_json(const json& j, InputMediaPhoto& name){}
@@ -2610,10 +2623,11 @@ void from_json(const json& j, InputMediaVideo& name){
 	name.thumb=j.at("thumb").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.width=j.at("width").get<int>();
 	name.height=j.at("height").get<int>();
 	name.duration=j.at("duration").get<int>();
@@ -2627,10 +2641,11 @@ void from_json(const json& j, InputMediaAnimation& name){
 	name.thumb=j.at("thumb").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.width=j.at("width").get<int>();
 	name.height=j.at("height").get<int>();
 	name.duration=j.at("duration").get<int>();
@@ -2643,10 +2658,11 @@ void from_json(const json& j, InputMediaAudio& name){
 	name.thumb=j.at("thumb").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.duration=j.at("duration").get<int>();
 	name.performer=j.at("performer").get<std::string>();
 	name.title=j.at("title").get<std::string>();
@@ -2658,10 +2674,11 @@ void from_json(const json& j, InputMediaDocument& name){
 	name.thumb=j.at("thumb").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.disable_content_type_detection=j.at("disable_content_type_detection").get<bool>();
 }
 void to_json(const json& j, InputMediaDocument& name){}
@@ -2670,10 +2687,11 @@ void from_json(const json& j, InputFile& name){
 	name.message_thread_id=j.at("message_thread_id").get<int>();
 	name.text=j.at("text").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.entities=std::make_shared<std::vector<MessageEntity> >(j.at("entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> entities;
+	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
+		entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.entities=entities;
 	name.disable_web_page_preview=j.at("disable_web_page_preview").get<bool>();
 	name.disable_notification=j.at("disable_notification").get<bool>();
 	name.protect_content=j.at("protect_content").get<bool>();
@@ -2708,10 +2726,11 @@ void from_json(const json& j, StickerSet& name){
 	name.sticker_type=j.at("sticker_type").get<std::string>();
 	name.is_animated=j.at("is_animated").get<bool>();
 	name.is_video=j.at("is_video").get<bool>();
-    std::vector<std::shared_ptr<std::vector<Sticker>>> p;
-for(auto a:j.at("stickers").get<std::vector<std::vector<Sticker>>>()){
-p.push_back(std::make_shared<std::vector<Sticker>>(a));
-    }	name.stickers=std::make_shared<std::vector<Sticker> >(j.at("stickers").get<std::vector<Sticker>>());
+	std::vector<std::shared_ptr<Sticker>> stickers;
+	for(auto a:j.at("stickers").get<std::vector<Sticker>>()){
+		stickers.push_back( std::make_shared<Sticker>(a));
+	}
+	name.stickers=stickers;
 	name.thumb=std::make_shared<PhotoSize >(j.at("thumb").get<PhotoSize>());
 }
 void to_json(const json& j, StickerSet& name){}
@@ -2770,10 +2789,11 @@ void from_json(const json& j, InlineQueryResultPhoto& name){
 	name.description=j.at("description").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -2790,10 +2810,11 @@ void from_json(const json& j, InlineQueryResultGif& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -2810,10 +2831,11 @@ void from_json(const json& j, InlineQueryResultMpeg4Gif& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -2827,10 +2849,11 @@ void from_json(const json& j, InlineQueryResultVideo& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.video_width=j.at("video_width").get<int>();
 	name.video_height=j.at("video_height").get<int>();
 	name.video_duration=j.at("video_duration").get<int>();
@@ -2846,10 +2869,11 @@ void from_json(const json& j, InlineQueryResultAudio& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.performer=j.at("performer").get<std::string>();
 	name.audio_duration=j.at("audio_duration").get<int>();
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
@@ -2863,10 +2887,11 @@ void from_json(const json& j, InlineQueryResultVoice& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.voice_duration=j.at("voice_duration").get<int>();
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
@@ -2878,10 +2903,11 @@ void from_json(const json& j, InlineQueryResultDocument& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.document_url=j.at("document_url").get<std::string>();
 	name.mime_type=j.at("mime_type").get<std::string>();
 	name.description=j.at("description").get<std::string>();
@@ -2956,10 +2982,11 @@ void from_json(const json& j, InlineQueryResultCachedPhoto& name){
 	name.description=j.at("description").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -2971,10 +2998,11 @@ void from_json(const json& j, InlineQueryResultCachedGif& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -2986,10 +3014,11 @@ void from_json(const json& j, InlineQueryResultCachedMpeg4Gif& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -3010,10 +3039,11 @@ void from_json(const json& j, InlineQueryResultCachedDocument& name){
 	name.description=j.at("description").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -3026,10 +3056,11 @@ void from_json(const json& j, InlineQueryResultCachedVideo& name){
 	name.description=j.at("description").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -3041,10 +3072,11 @@ void from_json(const json& j, InlineQueryResultCachedVoice& name){
 	name.title=j.at("title").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -3055,10 +3087,11 @@ void from_json(const json& j, InlineQueryResultCachedAudio& name){
 	name.audio_file_id=j.at("audio_file_id").get<std::string>();
 	name.caption=j.at("caption").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("caption_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.caption_entities=std::make_shared<std::vector<MessageEntity> >(j.at("caption_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> caption_entities;
+	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
+		caption_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.caption_entities=caption_entities;
 	name.reply_markup=std::make_shared<InlineKeyboardMarkup >(j.at("reply_markup").get<InlineKeyboardMarkup>());
 	name.input_message_content=std::make_shared<InputMessageContent >(j.at("input_message_content").get<InputMessageContent>());
 }
@@ -3066,20 +3099,22 @@ void to_json(const json& j, InlineQueryResultCachedAudio& name){}
 void from_json(const json& j, InputMessageContent& name){
 	name.message_text=j.at("message_text").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.entities=std::make_shared<std::vector<MessageEntity> >(j.at("entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> entities;
+	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
+		entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.entities=entities;
 	name.disable_web_page_preview=j.at("disable_web_page_preview").get<bool>();
 }
 void to_json(const json& j, InputMessageContent& name){}
 void from_json(const json& j, InputTextMessageContent& name){
 	name.message_text=j.at("message_text").get<std::string>();
 	name.parse_mode=j.at("parse_mode").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.entities=std::make_shared<std::vector<MessageEntity> >(j.at("entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> entities;
+	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
+		entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.entities=entities;
 	name.disable_web_page_preview=j.at("disable_web_page_preview").get<bool>();
 }
 void to_json(const json& j, InputTextMessageContent& name){}
@@ -3116,10 +3151,11 @@ void from_json(const json& j, InputInvoiceMessageContent& name){
 	name.payload=j.at("payload").get<std::string>();
 	name.provider_token=j.at("provider_token").get<std::string>();
 	name.currency=j.at("currency").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<LabeledPrice>>> p;
-for(auto a:j.at("prices").get<std::vector<std::vector<LabeledPrice>>>()){
-p.push_back(std::make_shared<std::vector<LabeledPrice>>(a));
-    }	name.prices=std::make_shared<std::vector<LabeledPrice> >(j.at("prices").get<std::vector<LabeledPrice>>());
+	std::vector<std::shared_ptr<LabeledPrice>> prices;
+	for(auto a:j.at("prices").get<std::vector<LabeledPrice>>()){
+		prices.push_back( std::make_shared<LabeledPrice>(a));
+	}
+	name.prices=prices;
 	name.max_tip_amount=j.at("max_tip_amount").get<int>();
 	name.suggested_tip_amounts=j.at("suggested_tip_amounts").get<int>();
 	name.provider_data=j.at("provider_data").get<std::string>();
@@ -3183,10 +3219,11 @@ void to_json(const json& j, OrderInfo& name){}
 void from_json(const json& j, ShippingOption& name){
 	name.id=j.at("id").get<std::string>();
 	name.title=j.at("title").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<LabeledPrice>>> p;
-for(auto a:j.at("prices").get<std::vector<std::vector<LabeledPrice>>>()){
-p.push_back(std::make_shared<std::vector<LabeledPrice>>(a));
-    }	name.prices=std::make_shared<std::vector<LabeledPrice> >(j.at("prices").get<std::vector<LabeledPrice>>());
+	std::vector<std::shared_ptr<LabeledPrice>> prices;
+	for(auto a:j.at("prices").get<std::vector<LabeledPrice>>()){
+		prices.push_back( std::make_shared<LabeledPrice>(a));
+	}
+	name.prices=prices;
 }
 void to_json(const json& j, ShippingOption& name){}
 void from_json(const json& j, SuccessfulPayment& name){
@@ -3217,10 +3254,11 @@ void from_json(const json& j, PreCheckoutQuery& name){
 }
 void to_json(const json& j, PreCheckoutQuery& name){}
 void from_json(const json& j, PassportData& name){
-    std::vector<std::shared_ptr<std::vector<EncryptedPassportElement>>> p;
-for(auto a:j.at("data").get<std::vector<std::vector<EncryptedPassportElement>>>()){
-p.push_back(std::make_shared<std::vector<EncryptedPassportElement>>(a));
-    }	name.data=std::make_shared<std::vector<EncryptedPassportElement> >(j.at("data").get<std::vector<EncryptedPassportElement>>());
+	std::vector<std::shared_ptr<EncryptedPassportElement>> data;
+	for(auto a:j.at("data").get<std::vector<EncryptedPassportElement>>()){
+		data.push_back( std::make_shared<EncryptedPassportElement>(a));
+	}
+	name.data=data;
 	name.credentials=std::make_shared<EncryptedCredentials >(j.at("credentials").get<EncryptedCredentials>());
 }
 void to_json(const json& j, PassportData& name){}
@@ -3236,17 +3274,19 @@ void from_json(const json& j, EncryptedPassportElement& name){
 	name.data=j.at("data").get<std::string>();
 	name.phone_number=j.at("phone_number").get<std::string>();
 	name.email=j.at("email").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<PassportFile>>> p;
-for(auto a:j.at("files").get<std::vector<std::vector<PassportFile>>>()){
-p.push_back(std::make_shared<std::vector<PassportFile>>(a));
-    }	name.files=std::make_shared<std::vector<PassportFile> >(j.at("files").get<std::vector<PassportFile>>());
+	std::vector<std::shared_ptr<PassportFile>> files;
+	for(auto a:j.at("files").get<std::vector<PassportFile>>()){
+		files.push_back( std::make_shared<PassportFile>(a));
+	}
+	name.files=files;
 	name.front_side=std::make_shared<PassportFile >(j.at("front_side").get<PassportFile>());
 	name.reverse_side=std::make_shared<PassportFile >(j.at("reverse_side").get<PassportFile>());
 	name.selfie=std::make_shared<PassportFile >(j.at("selfie").get<PassportFile>());
-    std::vector<std::shared_ptr<std::vector<PassportFile>>> p;
-for(auto a:j.at("translation").get<std::vector<std::vector<PassportFile>>>()){
-p.push_back(std::make_shared<std::vector<PassportFile>>(a));
-    }	name.translation=std::make_shared<std::vector<PassportFile> >(j.at("translation").get<std::vector<PassportFile>>());
+	std::vector<std::shared_ptr<PassportFile>> translation;
+	for(auto a:j.at("translation").get<std::vector<PassportFile>>()){
+		translation.push_back( std::make_shared<PassportFile>(a));
+	}
+	name.translation=translation;
 	name.hash=j.at("hash").get<std::string>();
 }
 void to_json(const json& j, EncryptedPassportElement& name){}
@@ -3334,15 +3374,17 @@ void to_json(const json& j, Games& name){}
 void from_json(const json& j, Game& name){
 	name.title=j.at("title").get<std::string>();
 	name.description=j.at("description").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<PhotoSize>>> p;
-for(auto a:j.at("photo").get<std::vector<std::vector<PhotoSize>>>()){
-p.push_back(std::make_shared<std::vector<PhotoSize>>(a));
-    }	name.photo=std::make_shared<std::vector<PhotoSize> >(j.at("photo").get<std::vector<PhotoSize>>());
+	std::vector<std::shared_ptr<PhotoSize>> photo;
+	for(auto a:j.at("photo").get<std::vector<PhotoSize>>()){
+		photo.push_back( std::make_shared<PhotoSize>(a));
+	}
+	name.photo=photo;
 	name.text=j.at("text").get<std::string>();
-    std::vector<std::shared_ptr<std::vector<MessageEntity>>> p;
-for(auto a:j.at("text_entities").get<std::vector<std::vector<MessageEntity>>>()){
-p.push_back(std::make_shared<std::vector<MessageEntity>>(a));
-    }	name.text_entities=std::make_shared<std::vector<MessageEntity> >(j.at("text_entities").get<std::vector<MessageEntity>>());
+	std::vector<std::shared_ptr<MessageEntity>> text_entities;
+	for(auto a:j.at("text_entities").get<std::vector<MessageEntity>>()){
+		text_entities.push_back( std::make_shared<MessageEntity>(a));
+	}
+	name.text_entities=text_entities;
 	name.animation=std::make_shared<Animation >(j.at("animation").get<Animation>());
 }
 void to_json(const json& j, Game& name){}
