@@ -1036,7 +1036,6 @@ Json::Value Telegram::Bot::Types::API::getChat(const std::string& chat_id) const
     std::cout<<j["result"];
     const nlohmann::json u=j["result"];
     ns::from_json(u,user);
-    std::cout<<user.id;
 	return Json::Value();
 }
 Json::Value Telegram::Bot::Types::API::getChatAdministrators(const std::string& chat_id) const {

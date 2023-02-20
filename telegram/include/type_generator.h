@@ -2,9 +2,7 @@
 #include <memory>
 #include <vector>
 #include <nlohmann/json.hpp>
-
 namespace ns {
-
     using json = nlohmann::json;
 
     struct User;
@@ -2205,17 +2203,20 @@ namespace ns {
     inline void to_json(json &j, GameHighScore &name);
 
     inline void from_json(const json &j, User &name) {
-        name.id = j.at("id").is_null();
-        name.is_bot = j.at("is_bot").get<bool>();
-        name.first_name = j.value("first_name","");
-        name.last_name = j.at("last_name").get<std::string>();
-        name.username = j.at("username").get<std::string>();
-        name.language_code = j.at("language_code").get<std::string>();
-        name.is_premium = j.at("is_premium").get<bool>();
-        name.added_to_attachment_menu = j.at("added_to_attachment_menu").get<bool>();
-        name.can_join_groups = j.at("can_join_groups").get<bool>();
-        name.can_read_all_group_messages = j.at("can_read_all_group_messages").get<bool>();
-        name.supports_inline_queries = j.at("supports_inline_queries").get<bool>();
+        name.id = j.contains("id") ? j.at("id").get<int>() : 0;
+        name.is_bot = j.contains("is_bot") ? j.at("is_bot").get<bool>() : false;
+        name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
+        name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
+        name.username = j.contains("username") ? j.at("username").get<std::string>() : "";
+        name.language_code = j.contains("language_code") ? j.at("language_code").get<std::string>() : "";
+        name.is_premium = j.contains("is_premium") ? j.at("is_premium").get<bool>() : false;
+        name.added_to_attachment_menu = j.contains("added_to_attachment_menu") ? j.at(
+                "added_to_attachment_menu").get<bool>() : false;
+        name.can_join_groups = j.contains("can_join_groups") ? j.at("can_join_groups").get<bool>() : false;
+        name.can_read_all_group_messages = j.contains("can_read_all_group_messages") ? j.at(
+                "can_read_all_group_messages").get<bool>() : false;
+        name.supports_inline_queries = j.contains("supports_inline_queries") ? j.at(
+                "supports_inline_queries").get<bool>() : false;
     }
 
     inline void to_json(json &j, const User &name) {
@@ -2234,34 +2235,44 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Chat &name) {
-        name.id = j.at("id").get<int>();
-        name.type = j.at("type").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.username = j.at("username").get<std::string>();
-        name.first_name = j.at("first_name").get<std::string>();
-        name.last_name = j.at("last_name").get<std::string>();
-        name.is_forum = j.at("is_forum").get<bool>();
-        name.photo = std::make_shared<ChatPhoto>(j.at("photo").get<ChatPhoto>());
-        name.active_usernames = j.at("active_usernames").get<std::string>();
-        name.emoji_status_custom_emoji_id = j.at("emoji_status_custom_emoji_id").get<std::string>();
-        name.bio = j.at("bio").get<std::string>();
-        name.has_private_forwards = j.at("has_private_forwards").get<bool>();
-        name.has_restricted_voice_and_video_messages = j.at("has_restricted_voice_and_video_messages").get<bool>();
-        name.join_to_send_messages = j.at("join_to_send_messages").get<bool>();
-        name.join_by_request = j.at("join_by_request").get<bool>();
-        name.description = j.at("description").get<std::string>();
-        name.invite_link = j.at("invite_link").get<std::string>();
-        name.pinned_message = std::make_shared<Message>(j.at("pinned_message").get<Message>());
-        name.permissions = std::make_shared<ChatPermissions>(j.at("permissions").get<ChatPermissions>());
-        name.slow_mode_delay = j.at("slow_mode_delay").get<int>();
-        name.message_auto_delete_time = j.at("message_auto_delete_time").get<int>();
-        name.has_aggressive_anti_spam_enabled = j.at("has_aggressive_anti_spam_enabled").get<bool>();
-        name.has_hidden_members = j.at("has_hidden_members").get<bool>();
-        name.has_protected_content = j.at("has_protected_content").get<bool>();
-        name.sticker_set_name = j.at("sticker_set_name").get<std::string>();
-        name.can_set_sticker_set = j.at("can_set_sticker_set").get<bool>();
-        name.linked_chat_id = j.at("linked_chat_id").get<int>();
-        name.location = std::make_shared<ChatLocation>(j.at("location").get<ChatLocation>());
+        name.id = j.contains("id") ? j.at("id").get<int>() : 0;
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.username = j.contains("username") ? j.at("username").get<std::string>() : "";
+        name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
+        name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
+        name.is_forum = j.contains("is_forum") ? j.at("is_forum").get<bool>() : false;
+        name.photo = j.contains("photo") ? std::make_shared<ChatPhoto>(j.at("photo").get<ChatPhoto>()) : nullptr;
+        name.active_usernames = j.contains("active_usernames") ? j.at("active_usernames").get<std::string>() : "";
+        name.emoji_status_custom_emoji_id = j.contains("emoji_status_custom_emoji_id") ? j.at(
+                "emoji_status_custom_emoji_id").get<std::string>() : "";
+        name.bio = j.contains("bio") ? j.at("bio").get<std::string>() : "";
+        name.has_private_forwards = j.contains("has_private_forwards") ? j.at("has_private_forwards").get<bool>()
+                                                                       : false;
+        name.has_restricted_voice_and_video_messages = j.contains("has_restricted_voice_and_video_messages") ? j.at(
+                "has_restricted_voice_and_video_messages").get<bool>() : false;
+        name.join_to_send_messages = j.contains("join_to_send_messages") ? j.at("join_to_send_messages").get<bool>()
+                                                                         : false;
+        name.join_by_request = j.contains("join_by_request") ? j.at("join_by_request").get<bool>() : false;
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.invite_link = j.contains("invite_link") ? j.at("invite_link").get<std::string>() : "";
+        name.pinned_message = j.contains("pinned_message") ? std::make_shared<Message>(
+                j.at("pinned_message").get<Message>()) : nullptr;
+        name.permissions = j.contains("permissions") ? std::make_shared<ChatPermissions>(
+                j.at("permissions").get<ChatPermissions>()) : nullptr;
+        name.slow_mode_delay = j.contains("slow_mode_delay") ? j.at("slow_mode_delay").get<int>() : 0;
+        name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at(
+                "message_auto_delete_time").get<int>() : 0;
+        name.has_aggressive_anti_spam_enabled = j.contains("has_aggressive_anti_spam_enabled") ? j.at(
+                "has_aggressive_anti_spam_enabled").get<bool>() : false;
+        name.has_hidden_members = j.contains("has_hidden_members") ? j.at("has_hidden_members").get<bool>() : false;
+        name.has_protected_content = j.contains("has_protected_content") ? j.at("has_protected_content").get<bool>()
+                                                                         : false;
+        name.sticker_set_name = j.contains("sticker_set_name") ? j.at("sticker_set_name").get<std::string>() : "";
+        name.can_set_sticker_set = j.contains("can_set_sticker_set") ? j.at("can_set_sticker_set").get<bool>() : false;
+        name.linked_chat_id = j.contains("linked_chat_id") ? j.at("linked_chat_id").get<int>() : 0;
+        name.location = j.contains("location") ? std::make_shared<ChatLocation>(j.at("location").get<ChatLocation>())
+                                               : nullptr;
     }
 
     inline void to_json(json &j, const Chat &name) {
@@ -2297,110 +2308,145 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Message &name) {
-        name.message_id = j.at("message_id").get<int>();
-        name.message_thread_id = j.at("message_thread_id").get<int>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.sender_chat = std::make_shared<Chat>(j.at("sender_chat").get<Chat>());
-        name.date = j.at("date").get<int>();
-        name.chat = std::make_shared<Chat>(j.at("chat").get<Chat>());
-        name.forward_from = std::make_shared<User>(j.at("forward_from").get<User>());
-        name.forward_from_chat = std::make_shared<Chat>(j.at("forward_from_chat").get<Chat>());
-        name.forward_from_message_id = j.at("forward_from_message_id").get<int>();
-        name.forward_signature = j.at("forward_signature").get<std::string>();
-        name.forward_sender_name = j.at("forward_sender_name").get<std::string>();
-        name.forward_date = j.at("forward_date").get<int>();
-        name.is_topic_message = j.at("is_topic_message").get<bool>();
-        name.is_automatic_forward = j.at("is_automatic_forward").get<bool>();
-        name.reply_to_message = std::make_shared<Message>(j.at("reply_to_message").get<Message>());
-        name.via_bot = std::make_shared<User>(j.at("via_bot").get<User>());
-        name.edit_date = j.at("edit_date").get<int>();
-        name.has_protected_content = j.at("has_protected_content").get<bool>();
-        name.media_group_id = j.at("media_group_id").get<std::string>();
-        name.author_signature = j.at("author_signature").get<std::string>();
-        name.text = j.at("text").get<std::string>();
+        name.message_id = j.contains("message_id") ? j.at("message_id").get<int>() : 0;
+        name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.sender_chat = j.contains("sender_chat") ? std::make_shared<Chat>(j.at("sender_chat").get<Chat>())
+                                                     : nullptr;
+        name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+        name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
+        name.forward_from = j.contains("forward_from") ? std::make_shared<User>(j.at("forward_from").get<User>())
+                                                       : nullptr;
+        name.forward_from_chat = j.contains("forward_from_chat") ? std::make_shared<Chat>(
+                j.at("forward_from_chat").get<Chat>()) : nullptr;
+        name.forward_from_message_id = j.contains("forward_from_message_id") ? j.at(
+                "forward_from_message_id").get<int>() : 0;
+        name.forward_signature = j.contains("forward_signature") ? j.at("forward_signature").get<std::string>() : "";
+        name.forward_sender_name = j.contains("forward_sender_name") ? j.at("forward_sender_name").get<std::string>()
+                                                                     : "";
+        name.forward_date = j.contains("forward_date") ? j.at("forward_date").get<int>() : 0;
+        name.is_topic_message = j.contains("is_topic_message") ? j.at("is_topic_message").get<bool>() : false;
+        name.is_automatic_forward = j.contains("is_automatic_forward") ? j.at("is_automatic_forward").get<bool>()
+                                                                       : false;
+        name.reply_to_message = j.contains("reply_to_message") ? std::make_shared<Message>(
+                j.at("reply_to_message").get<Message>()) : nullptr;
+        name.via_bot = j.contains("via_bot") ? std::make_shared<User>(j.at("via_bot").get<User>()) : nullptr;
+        name.edit_date = j.contains("edit_date") ? j.at("edit_date").get<int>() : 0;
+        name.has_protected_content = j.contains("has_protected_content") ? j.at("has_protected_content").get<bool>()
+                                                                         : false;
+        name.media_group_id = j.contains("media_group_id") ? j.at("media_group_id").get<std::string>() : "";
+        name.author_signature = j.contains("author_signature") ? j.at("author_signature").get<std::string>() : "";
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> entities;
-        for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
-            entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("entities")) {
+            for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+                entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.entities = entities;
-        name.animation = std::make_shared<Animation>(j.at("animation").get<Animation>());
-        name.audio = std::make_shared<Audio>(j.at("audio").get<Audio>());
-        name.document = std::make_shared<Document>(j.at("document").get<Document>());
+        name.animation = j.contains("animation") ? std::make_shared<Animation>(j.at("animation").get<Animation>())
+                                                 : nullptr;
+        name.audio = j.contains("audio") ? std::make_shared<Audio>(j.at("audio").get<Audio>()) : nullptr;
+        name.document = j.contains("document") ? std::make_shared<Document>(j.at("document").get<Document>()) : nullptr;
         std::vector<std::shared_ptr<PhotoSize>> photo;
-        for (auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
-            photo.push_back(std::make_shared<PhotoSize>(a));
+        if (j.contains("photo")) {
+            for (auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
+                photo.push_back(std::make_shared<PhotoSize>(a));
+            }
         }
         name.photo = photo;
-        name.sticker = std::make_shared<Sticker>(j.at("sticker").get<Sticker>());
-        name.video = std::make_shared<Video>(j.at("video").get<Video>());
-        name.video_note = std::make_shared<VideoNote>(j.at("video_note").get<VideoNote>());
-        name.voice = std::make_shared<Voice>(j.at("voice").get<Voice>());
-        name.caption = j.at("caption").get<std::string>();
+        name.sticker = j.contains("sticker") ? std::make_shared<Sticker>(j.at("sticker").get<Sticker>()) : nullptr;
+        name.video = j.contains("video") ? std::make_shared<Video>(j.at("video").get<Video>()) : nullptr;
+        name.video_note = j.contains("video_note") ? std::make_shared<VideoNote>(j.at("video_note").get<VideoNote>())
+                                                   : nullptr;
+        name.voice = j.contains("voice") ? std::make_shared<Voice>(j.at("voice").get<Voice>()) : nullptr;
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.has_media_spoiler = j.at("has_media_spoiler").get<bool>();
-        name.contact = std::make_shared<Contact>(j.at("contact").get<Contact>());
-        name.dice = std::make_shared<Dice>(j.at("dice").get<Dice>());
-        name.game = std::make_shared<Game>(j.at("game").get<Game>());
-        name.poll = std::make_shared<Poll>(j.at("poll").get<Poll>());
-        name.venue = std::make_shared<Venue>(j.at("venue").get<Venue>());
-        name.location = std::make_shared<Location>(j.at("location").get<Location>());
+        name.has_media_spoiler = j.contains("has_media_spoiler") ? j.at("has_media_spoiler").get<bool>() : false;
+        name.contact = j.contains("contact") ? std::make_shared<Contact>(j.at("contact").get<Contact>()) : nullptr;
+        name.dice = j.contains("dice") ? std::make_shared<Dice>(j.at("dice").get<Dice>()) : nullptr;
+        name.game = j.contains("game") ? std::make_shared<Game>(j.at("game").get<Game>()) : nullptr;
+        name.poll = j.contains("poll") ? std::make_shared<Poll>(j.at("poll").get<Poll>()) : nullptr;
+        name.venue = j.contains("venue") ? std::make_shared<Venue>(j.at("venue").get<Venue>()) : nullptr;
+        name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
         std::vector<std::shared_ptr<User>> new_chat_members;
-        for (auto a: j.at("new_chat_members").get<std::vector<User>>()) {
-            new_chat_members.push_back(std::make_shared<User>(a));
+        if (j.contains("new_chat_members")) {
+            for (auto a: j.at("new_chat_members").get<std::vector<User>>()) {
+                new_chat_members.push_back(std::make_shared<User>(a));
+            }
         }
         name.new_chat_members = new_chat_members;
-        name.left_chat_member = std::make_shared<User>(j.at("left_chat_member").get<User>());
-        name.new_chat_title = j.at("new_chat_title").get<std::string>();
+        name.left_chat_member = j.contains("left_chat_member") ? std::make_shared<User>(
+                j.at("left_chat_member").get<User>()) : nullptr;
+        name.new_chat_title = j.contains("new_chat_title") ? j.at("new_chat_title").get<std::string>() : "";
         std::vector<std::shared_ptr<PhotoSize>> new_chat_photo;
-        for (auto a: j.at("new_chat_photo").get<std::vector<PhotoSize>>()) {
-            new_chat_photo.push_back(std::make_shared<PhotoSize>(a));
+        if (j.contains("new_chat_photo")) {
+            for (auto a: j.at("new_chat_photo").get<std::vector<PhotoSize>>()) {
+                new_chat_photo.push_back(std::make_shared<PhotoSize>(a));
+            }
         }
         name.new_chat_photo = new_chat_photo;
-        name.delete_chat_photo = j.at("delete_chat_photo").get<bool>();
-        name.group_chat_created = j.at("group_chat_created").get<bool>();
-        name.supergroup_chat_created = j.at("supergroup_chat_created").get<bool>();
-        name.channel_chat_created = j.at("channel_chat_created").get<bool>();
-        name.message_auto_delete_timer_changed = std::make_shared<MessageAutoDeleteTimerChanged>(
-                j.at("message_auto_delete_timer_changed").get<MessageAutoDeleteTimerChanged>());
-        name.migrate_to_chat_id = j.at("migrate_to_chat_id").get<int>();
-        name.migrate_from_chat_id = j.at("migrate_from_chat_id").get<int>();
-        name.pinned_message = std::make_shared<Message>(j.at("pinned_message").get<Message>());
-        name.invoice = std::make_shared<Invoice>(j.at("invoice").get<Invoice>());
-        name.successful_payment = std::make_shared<SuccessfulPayment>(
-                j.at("successful_payment").get<SuccessfulPayment>());
-        name.user_shared = std::make_shared<UserShared>(j.at("user_shared").get<UserShared>());
-        name.chat_shared = std::make_shared<ChatShared>(j.at("chat_shared").get<ChatShared>());
-        name.connected_website = j.at("connected_website").get<std::string>();
-        name.write_access_allowed = std::make_shared<WriteAccessAllowed>(
-                j.at("write_access_allowed").get<WriteAccessAllowed>());
-        name.passport_data = std::make_shared<PassportData>(j.at("passport_data").get<PassportData>());
-        name.proximity_alert_triggered = std::make_shared<ProximityAlertTriggered>(
-                j.at("proximity_alert_triggered").get<ProximityAlertTriggered>());
-        name.forum_topic_created = std::make_shared<ForumTopicCreated>(
-                j.at("forum_topic_created").get<ForumTopicCreated>());
-        name.forum_topic_edited = std::make_shared<ForumTopicEdited>(
-                j.at("forum_topic_edited").get<ForumTopicEdited>());
-        name.forum_topic_closed = std::make_shared<ForumTopicClosed>(
-                j.at("forum_topic_closed").get<ForumTopicClosed>());
-        name.forum_topic_reopened = std::make_shared<ForumTopicReopened>(
-                j.at("forum_topic_reopened").get<ForumTopicReopened>());
-        name.general_forum_topic_hidden = std::make_shared<GeneralForumTopicHidden>(
-                j.at("general_forum_topic_hidden").get<GeneralForumTopicHidden>());
-        name.general_forum_topic_unhidden = std::make_shared<GeneralForumTopicUnhidden>(
-                j.at("general_forum_topic_unhidden").get<GeneralForumTopicUnhidden>());
-        name.video_chat_scheduled = std::make_shared<VideoChatScheduled>(
-                j.at("video_chat_scheduled").get<VideoChatScheduled>());
-        name.video_chat_started = std::make_shared<VideoChatStarted>(
-                j.at("video_chat_started").get<VideoChatStarted>());
-        name.video_chat_ended = std::make_shared<VideoChatEnded>(j.at("video_chat_ended").get<VideoChatEnded>());
-        name.video_chat_participants_invited = std::make_shared<VideoChatParticipantsInvited>(
-                j.at("video_chat_participants_invited").get<VideoChatParticipantsInvited>());
-        name.web_app_data = std::make_shared<WebAppData>(j.at("web_app_data").get<WebAppData>());
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
+        name.delete_chat_photo = j.contains("delete_chat_photo") ? j.at("delete_chat_photo").get<bool>() : false;
+        name.group_chat_created = j.contains("group_chat_created") ? j.at("group_chat_created").get<bool>() : false;
+        name.supergroup_chat_created = j.contains("supergroup_chat_created") ? j.at(
+                "supergroup_chat_created").get<bool>() : false;
+        name.channel_chat_created = j.contains("channel_chat_created") ? j.at("channel_chat_created").get<bool>()
+                                                                       : false;
+        name.message_auto_delete_timer_changed = j.contains("message_auto_delete_timer_changed")
+                                                 ? std::make_shared<MessageAutoDeleteTimerChanged>(
+                        j.at("message_auto_delete_timer_changed").get<MessageAutoDeleteTimerChanged>()) : nullptr;
+        name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int>() : 0;
+        name.migrate_from_chat_id = j.contains("migrate_from_chat_id") ? j.at("migrate_from_chat_id").get<int>() : 0;
+        name.pinned_message = j.contains("pinned_message") ? std::make_shared<Message>(
+                j.at("pinned_message").get<Message>()) : nullptr;
+        name.invoice = j.contains("invoice") ? std::make_shared<Invoice>(j.at("invoice").get<Invoice>()) : nullptr;
+        name.successful_payment = j.contains("successful_payment") ? std::make_shared<SuccessfulPayment>(
+                j.at("successful_payment").get<SuccessfulPayment>()) : nullptr;
+        name.user_shared = j.contains("user_shared") ? std::make_shared<UserShared>(
+                j.at("user_shared").get<UserShared>()) : nullptr;
+        name.chat_shared = j.contains("chat_shared") ? std::make_shared<ChatShared>(
+                j.at("chat_shared").get<ChatShared>()) : nullptr;
+        name.connected_website = j.contains("connected_website") ? j.at("connected_website").get<std::string>() : "";
+        name.write_access_allowed = j.contains("write_access_allowed") ? std::make_shared<WriteAccessAllowed>(
+                j.at("write_access_allowed").get<WriteAccessAllowed>()) : nullptr;
+        name.passport_data = j.contains("passport_data") ? std::make_shared<PassportData>(
+                j.at("passport_data").get<PassportData>()) : nullptr;
+        name.proximity_alert_triggered = j.contains("proximity_alert_triggered")
+                                         ? std::make_shared<ProximityAlertTriggered>(
+                        j.at("proximity_alert_triggered").get<ProximityAlertTriggered>()) : nullptr;
+        name.forum_topic_created = j.contains("forum_topic_created") ? std::make_shared<ForumTopicCreated>(
+                j.at("forum_topic_created").get<ForumTopicCreated>()) : nullptr;
+        name.forum_topic_edited = j.contains("forum_topic_edited") ? std::make_shared<ForumTopicEdited>(
+                j.at("forum_topic_edited").get<ForumTopicEdited>()) : nullptr;
+        name.forum_topic_closed = j.contains("forum_topic_closed") ? std::make_shared<ForumTopicClosed>(
+                j.at("forum_topic_closed").get<ForumTopicClosed>()) : nullptr;
+        name.forum_topic_reopened = j.contains("forum_topic_reopened") ? std::make_shared<ForumTopicReopened>(
+                j.at("forum_topic_reopened").get<ForumTopicReopened>()) : nullptr;
+        name.general_forum_topic_hidden = j.contains("general_forum_topic_hidden")
+                                          ? std::make_shared<GeneralForumTopicHidden>(
+                        j.at("general_forum_topic_hidden").get<GeneralForumTopicHidden>()) : nullptr;
+        name.general_forum_topic_unhidden = j.contains("general_forum_topic_unhidden")
+                                            ? std::make_shared<GeneralForumTopicUnhidden>(
+                        j.at("general_forum_topic_unhidden").get<GeneralForumTopicUnhidden>()) : nullptr;
+        name.video_chat_scheduled = j.contains("video_chat_scheduled") ? std::make_shared<VideoChatScheduled>(
+                j.at("video_chat_scheduled").get<VideoChatScheduled>()) : nullptr;
+        name.video_chat_started = j.contains("video_chat_started") ? std::make_shared<VideoChatStarted>(
+                j.at("video_chat_started").get<VideoChatStarted>()) : nullptr;
+        name.video_chat_ended = j.contains("video_chat_ended") ? std::make_shared<VideoChatEnded>(
+                j.at("video_chat_ended").get<VideoChatEnded>()) : nullptr;
+        name.video_chat_participants_invited = j.contains("video_chat_participants_invited")
+                                               ? std::make_shared<VideoChatParticipantsInvited>(
+                        j.at("video_chat_participants_invited").get<VideoChatParticipantsInvited>()) : nullptr;
+        name.web_app_data = j.contains("web_app_data") ? std::make_shared<WebAppData>(
+                j.at("web_app_data").get<WebAppData>()) : nullptr;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     }
 
     inline void to_json(json &j, const Message &name) {
@@ -2499,7 +2545,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MessageId &name) {
-        name.message_id = j.at("message_id").get<int>();
+        name.message_id = j.contains("message_id") ? j.at("message_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const MessageId &name) {
@@ -2508,13 +2554,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MessageEntity &name) {
-        name.type = j.at("type").get<std::string>();
-        name.offset = j.at("offset").get<int>();
-        name.length = j.at("length").get<int>();
-        name.url = j.at("url").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.language = j.at("language").get<std::string>();
-        name.custom_emoji_id = j.at("custom_emoji_id").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.offset = j.contains("offset") ? j.at("offset").get<int>() : 0;
+        name.length = j.contains("length") ? j.at("length").get<int>() : 0;
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.language = j.contains("language") ? j.at("language").get<std::string>() : "";
+        name.custom_emoji_id = j.contains("custom_emoji_id") ? j.at("custom_emoji_id").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const MessageEntity &name) {
@@ -2529,11 +2575,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PhotoSize &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const PhotoSize &name) {
@@ -2546,15 +2592,15 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Animation &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.duration = j.at("duration").get<int>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
-        name.file_name = j.at("file_name").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+        name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Animation &name) {
@@ -2571,15 +2617,15 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Audio &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.duration = j.at("duration").get<int>();
-        name.performer = j.at("performer").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.file_name = j.at("file_name").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
     }
 
     inline void to_json(json &j, const Audio &name) {
@@ -2596,12 +2642,12 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Document &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
-        name.file_name = j.at("file_name").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+        name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Document &name) {
@@ -2615,15 +2661,15 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Video &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.duration = j.at("duration").get<int>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
-        name.file_name = j.at("file_name").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+        name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Video &name) {
@@ -2640,12 +2686,12 @@ namespace ns {
     }
 
     inline void from_json(const json &j, VideoNote &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.length = j.at("length").get<int>();
-        name.duration = j.at("duration").get<int>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.length = j.contains("length") ? j.at("length").get<int>() : 0;
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const VideoNote &name) {
@@ -2659,11 +2705,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Voice &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.duration = j.at("duration").get<int>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Voice &name) {
@@ -2676,11 +2722,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Contact &name) {
-        name.phone_number = j.at("phone_number").get<std::string>();
-        name.first_name = j.at("first_name").get<std::string>();
-        name.last_name = j.at("last_name").get<std::string>();
-        name.user_id = j.at("user_id").get<int>();
-        name.vcard = j.at("vcard").get<std::string>();
+        name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
+        name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
+        name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
+        name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
+        name.vcard = j.contains("vcard") ? j.at("vcard").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const Contact &name) {
@@ -2693,8 +2739,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Dice &name) {
-        name.emoji = j.at("emoji").get<std::string>();
-        name.value = j.at("value").get<int>();
+        name.emoji = j.contains("emoji") ? j.at("emoji").get<std::string>() : "";
+        name.value = j.contains("value") ? j.at("value").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Dice &name) {
@@ -2704,8 +2750,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PollOption &name) {
-        name.text = j.at("text").get<std::string>();
-        name.voter_count = j.at("voter_count").get<int>();
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
+        name.voter_count = j.contains("voter_count") ? j.at("voter_count").get<int>() : 0;
     }
 
     inline void to_json(json &j, const PollOption &name) {
@@ -2715,9 +2761,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PollAnswer &name) {
-        name.poll_id = j.at("poll_id").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.option_ids = j.at("option_ids").get<int>();
+        name.poll_id = j.contains("poll_id") ? j.at("poll_id").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.option_ids = j.contains("option_ids") ? j.at("option_ids").get<int>() : 0;
     }
 
     inline void to_json(json &j, const PollAnswer &name) {
@@ -2728,27 +2774,32 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Poll &name) {
-        name.id = j.at("id").get<std::string>();
-        name.question = j.at("question").get<std::string>();
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.question = j.contains("question") ? j.at("question").get<std::string>() : "";
         std::vector<std::shared_ptr<PollOption>> options;
-        for (auto a: j.at("options").get<std::vector<PollOption>>()) {
-            options.push_back(std::make_shared<PollOption>(a));
+        if (j.contains("options")) {
+            for (auto a: j.at("options").get<std::vector<PollOption>>()) {
+                options.push_back(std::make_shared<PollOption>(a));
+            }
         }
         name.options = options;
-        name.total_voter_count = j.at("total_voter_count").get<int>();
-        name.is_closed = j.at("is_closed").get<bool>();
-        name.is_anonymous = j.at("is_anonymous").get<bool>();
-        name.type = j.at("type").get<std::string>();
-        name.allows_multiple_answers = j.at("allows_multiple_answers").get<bool>();
-        name.correct_option_id = j.at("correct_option_id").get<int>();
-        name.explanation = j.at("explanation").get<std::string>();
+        name.total_voter_count = j.contains("total_voter_count") ? j.at("total_voter_count").get<int>() : 0;
+        name.is_closed = j.contains("is_closed") ? j.at("is_closed").get<bool>() : false;
+        name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.allows_multiple_answers = j.contains("allows_multiple_answers") ? j.at(
+                "allows_multiple_answers").get<bool>() : false;
+        name.correct_option_id = j.contains("correct_option_id") ? j.at("correct_option_id").get<int>() : 0;
+        name.explanation = j.contains("explanation") ? j.at("explanation").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
-        for (auto a: j.at("explanation_entities").get<std::vector<MessageEntity>>()) {
-            explanation_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("explanation_entities")) {
+            for (auto a: j.at("explanation_entities").get<std::vector<MessageEntity>>()) {
+                explanation_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.explanation_entities = explanation_entities;
-        name.open_period = j.at("open_period").get<int>();
-        name.close_date = j.at("close_date").get<int>();
+        name.open_period = j.contains("open_period") ? j.at("open_period").get<int>() : 0;
+        name.close_date = j.contains("close_date") ? j.at("close_date").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Poll &name) {
@@ -2777,12 +2828,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Location &name) {
-        name.longitude = j.at("longitude").get<float>();
-        name.latitude = j.at("latitude").get<float>();
-        name.horizontal_accuracy = j.at("horizontal_accuracy").get<float>();
-        name.live_period = j.at("live_period").get<int>();
-        name.heading = j.at("heading").get<int>();
-        name.proximity_alert_radius = j.at("proximity_alert_radius").get<int>();
+        name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
+        name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
+        name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
+        name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
+        name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
+        name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>()
+                                                                           : 0;
     }
 
     inline void to_json(json &j, const Location &name) {
@@ -2796,13 +2848,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Venue &name) {
-        name.location = std::make_shared<Location>(j.at("location").get<Location>());
-        name.title = j.at("title").get<std::string>();
-        name.address = j.at("address").get<std::string>();
-        name.foursquare_id = j.at("foursquare_id").get<std::string>();
-        name.foursquare_type = j.at("foursquare_type").get<std::string>();
-        name.google_place_id = j.at("google_place_id").get<std::string>();
-        name.google_place_type = j.at("google_place_type").get<std::string>();
+        name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.address = j.contains("address") ? j.at("address").get<std::string>() : "";
+        name.foursquare_id = j.contains("foursquare_id") ? j.at("foursquare_id").get<std::string>() : "";
+        name.foursquare_type = j.contains("foursquare_type") ? j.at("foursquare_type").get<std::string>() : "";
+        name.google_place_id = j.contains("google_place_id") ? j.at("google_place_id").get<std::string>() : "";
+        name.google_place_type = j.contains("google_place_type") ? j.at("google_place_type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const Venue &name) {
@@ -2817,8 +2869,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, WebAppData &name) {
-        name.data = j.at("data").get<std::string>();
-        name.button_text = j.at("button_text").get<std::string>();
+        name.data = j.contains("data") ? j.at("data").get<std::string>() : "";
+        name.button_text = j.contains("button_text") ? j.at("button_text").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const WebAppData &name) {
@@ -2828,9 +2880,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ProximityAlertTriggered &name) {
-        name.traveler = std::make_shared<User>(j.at("traveler").get<User>());
-        name.watcher = std::make_shared<User>(j.at("watcher").get<User>());
-        name.distance = j.at("distance").get<int>();
+        name.traveler = j.contains("traveler") ? std::make_shared<User>(j.at("traveler").get<User>()) : nullptr;
+        name.watcher = j.contains("watcher") ? std::make_shared<User>(j.at("watcher").get<User>()) : nullptr;
+        name.distance = j.contains("distance") ? j.at("distance").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ProximityAlertTriggered &name) {
@@ -2841,7 +2893,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MessageAutoDeleteTimerChanged &name) {
-        name.message_auto_delete_time = j.at("message_auto_delete_time").get<int>();
+        name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at(
+                "message_auto_delete_time").get<int>() : 0;
     }
 
     inline void to_json(json &j, const MessageAutoDeleteTimerChanged &name) {
@@ -2850,9 +2903,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ForumTopicCreated &name) {
-        name.name = j.at("name").get<std::string>();
-        name.icon_color = j.at("icon_color").get<int>();
-        name.icon_custom_emoji_id = j.at("icon_custom_emoji_id").get<std::string>();
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int>() : 0;
+        name.icon_custom_emoji_id = j.contains("icon_custom_emoji_id") ? j.at("icon_custom_emoji_id").get<std::string>()
+                                                                       : "";
     }
 
     inline void to_json(json &j, const ForumTopicCreated &name) {
@@ -2870,8 +2924,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ForumTopicEdited &name) {
-        name.name = j.at("name").get<std::string>();
-        name.icon_custom_emoji_id = j.at("icon_custom_emoji_id").get<std::string>();
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.icon_custom_emoji_id = j.contains("icon_custom_emoji_id") ? j.at("icon_custom_emoji_id").get<std::string>()
+                                                                       : "";
     }
 
     inline void to_json(json &j, const ForumTopicEdited &name) {
@@ -2902,8 +2957,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, UserShared &name) {
-        name.request_id = j.at("request_id").get<int>();
-        name.user_id = j.at("user_id").get<int>();
+        name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+        name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const UserShared &name) {
@@ -2913,8 +2968,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatShared &name) {
-        name.request_id = j.at("request_id").get<int>();
-        name.chat_id = j.at("chat_id").get<int>();
+        name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+        name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ChatShared &name) {
@@ -2931,7 +2986,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, VideoChatScheduled &name) {
-        name.start_date = j.at("start_date").get<int>();
+        name.start_date = j.contains("start_date") ? j.at("start_date").get<int>() : 0;
     }
 
     inline void to_json(json &j, const VideoChatScheduled &name) {
@@ -2947,7 +3002,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, VideoChatEnded &name) {
-        name.duration = j.at("duration").get<int>();
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
     }
 
     inline void to_json(json &j, const VideoChatEnded &name) {
@@ -2957,8 +3012,10 @@ namespace ns {
 
     inline void from_json(const json &j, VideoChatParticipantsInvited &name) {
         std::vector<std::shared_ptr<User>> users;
-        for (auto a: j.at("users").get<std::vector<User>>()) {
-            users.push_back(std::make_shared<User>(a));
+        if (j.contains("users")) {
+            for (auto a: j.at("users").get<std::vector<User>>()) {
+                users.push_back(std::make_shared<User>(a));
+            }
         }
         name.users = users;
     }
@@ -2973,10 +3030,12 @@ namespace ns {
     }
 
     inline void from_json(const json &j, UserProfilePhotos &name) {
-        name.total_count = j.at("total_count").get<int>();
+        name.total_count = j.contains("total_count") ? j.at("total_count").get<int>() : 0;
         std::vector<std::shared_ptr<PhotoSize>> photos;
-        for (auto a: j.at("photos").get<std::vector<PhotoSize>>()) {
-            photos.push_back(std::make_shared<PhotoSize>(a));
+        if (j.contains("photos")) {
+            for (auto a: j.at("photos").get<std::vector<PhotoSize>>()) {
+                photos.push_back(std::make_shared<PhotoSize>(a));
+            }
         }
         name.photos = photos;
     }
@@ -2992,10 +3051,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, File &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
-        name.file_path = j.at("file_path").get<std::string>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+        name.file_path = j.contains("file_path") ? j.at("file_path").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const File &name) {
@@ -3007,7 +3066,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, WebAppInfo &name) {
-        name.url = j.at("url").get<std::string>();
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const WebAppInfo &name) {
@@ -3017,15 +3076,18 @@ namespace ns {
 
     inline void from_json(const json &j, ReplyKeyboardMarkup &name) {
         std::vector<std::shared_ptr<KeyboardButton>> keyboard;
-        for (auto a: j.at("keyboard").get<std::vector<KeyboardButton>>()) {
-            keyboard.push_back(std::make_shared<KeyboardButton>(a));
+        if (j.contains("keyboard")) {
+            for (auto a: j.at("keyboard").get<std::vector<KeyboardButton>>()) {
+                keyboard.push_back(std::make_shared<KeyboardButton>(a));
+            }
         }
         name.keyboard = keyboard;
-        name.is_persistent = j.at("is_persistent").get<bool>();
-        name.resize_keyboard = j.at("resize_keyboard").get<bool>();
-        name.one_time_keyboard = j.at("one_time_keyboard").get<bool>();
-        name.input_field_placeholder = j.at("input_field_placeholder").get<std::string>();
-        name.selective = j.at("selective").get<bool>();
+        name.is_persistent = j.contains("is_persistent") ? j.at("is_persistent").get<bool>() : false;
+        name.resize_keyboard = j.contains("resize_keyboard") ? j.at("resize_keyboard").get<bool>() : false;
+        name.one_time_keyboard = j.contains("one_time_keyboard") ? j.at("one_time_keyboard").get<bool>() : false;
+        name.input_field_placeholder = j.contains("input_field_placeholder") ? j.at(
+                "input_field_placeholder").get<std::string>() : "";
+        name.selective = j.contains("selective") ? j.at("selective").get<bool>() : false;
     }
 
     inline void to_json(json &j, const ReplyKeyboardMarkup &name) {
@@ -3043,16 +3105,17 @@ namespace ns {
     }
 
     inline void from_json(const json &j, KeyboardButton &name) {
-        name.text = j.at("text").get<std::string>();
-        name.request_user = std::make_shared<KeyboardButtonRequestUser>(
-                j.at("request_user").get<KeyboardButtonRequestUser>());
-        name.request_chat = std::make_shared<KeyboardButtonRequestChat>(
-                j.at("request_chat").get<KeyboardButtonRequestChat>());
-        name.request_contact = j.at("request_contact").get<bool>();
-        name.request_location = j.at("request_location").get<bool>();
-        name.request_poll = std::make_shared<KeyboardButtonPollType>(
-                j.at("request_poll").get<KeyboardButtonPollType>());
-        name.web_app = std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>());
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
+        name.request_user = j.contains("request_user") ? std::make_shared<KeyboardButtonRequestUser>(
+                j.at("request_user").get<KeyboardButtonRequestUser>()) : nullptr;
+        name.request_chat = j.contains("request_chat") ? std::make_shared<KeyboardButtonRequestChat>(
+                j.at("request_chat").get<KeyboardButtonRequestChat>()) : nullptr;
+        name.request_contact = j.contains("request_contact") ? j.at("request_contact").get<bool>() : false;
+        name.request_location = j.contains("request_location") ? j.at("request_location").get<bool>() : false;
+        name.request_poll = j.contains("request_poll") ? std::make_shared<KeyboardButtonPollType>(
+                j.at("request_poll").get<KeyboardButtonPollType>()) : nullptr;
+        name.web_app = j.contains("web_app") ? std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>())
+                                             : nullptr;
     }
 
     inline void to_json(json &j, const KeyboardButton &name) {
@@ -3067,9 +3130,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, KeyboardButtonRequestUser &name) {
-        name.request_id = j.at("request_id").get<int>();
-        name.user_is_bot = j.at("user_is_bot").get<bool>();
-        name.user_is_premium = j.at("user_is_premium").get<bool>();
+        name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+        name.user_is_bot = j.contains("user_is_bot") ? j.at("user_is_bot").get<bool>() : false;
+        name.user_is_premium = j.contains("user_is_premium") ? j.at("user_is_premium").get<bool>() : false;
     }
 
     inline void to_json(json &j, const KeyboardButtonRequestUser &name) {
@@ -3080,16 +3143,18 @@ namespace ns {
     }
 
     inline void from_json(const json &j, KeyboardButtonRequestChat &name) {
-        name.request_id = j.at("request_id").get<int>();
-        name.chat_is_channel = j.at("chat_is_channel").get<bool>();
-        name.chat_is_forum = j.at("chat_is_forum").get<bool>();
-        name.chat_has_username = j.at("chat_has_username").get<bool>();
-        name.chat_is_created = j.at("chat_is_created").get<bool>();
-        name.user_administrator_rights = std::make_shared<ChatAdministratorRights>(
-                j.at("user_administrator_rights").get<ChatAdministratorRights>());
-        name.bot_administrator_rights = std::make_shared<ChatAdministratorRights>(
-                j.at("bot_administrator_rights").get<ChatAdministratorRights>());
-        name.bot_is_member = j.at("bot_is_member").get<bool>();
+        name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+        name.chat_is_channel = j.contains("chat_is_channel") ? j.at("chat_is_channel").get<bool>() : false;
+        name.chat_is_forum = j.contains("chat_is_forum") ? j.at("chat_is_forum").get<bool>() : false;
+        name.chat_has_username = j.contains("chat_has_username") ? j.at("chat_has_username").get<bool>() : false;
+        name.chat_is_created = j.contains("chat_is_created") ? j.at("chat_is_created").get<bool>() : false;
+        name.user_administrator_rights = j.contains("user_administrator_rights")
+                                         ? std::make_shared<ChatAdministratorRights>(
+                        j.at("user_administrator_rights").get<ChatAdministratorRights>()) : nullptr;
+        name.bot_administrator_rights = j.contains("bot_administrator_rights")
+                                        ? std::make_shared<ChatAdministratorRights>(
+                        j.at("bot_administrator_rights").get<ChatAdministratorRights>()) : nullptr;
+        name.bot_is_member = j.contains("bot_is_member") ? j.at("bot_is_member").get<bool>() : false;
     }
 
     inline void to_json(json &j, const KeyboardButtonRequestChat &name) {
@@ -3105,7 +3170,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, KeyboardButtonPollType &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const KeyboardButtonPollType &name) {
@@ -3122,8 +3187,10 @@ namespace ns {
 
     inline void from_json(const json &j, InlineKeyboardMarkup &name) {
         std::vector<std::shared_ptr<InlineKeyboardButton>> inline_keyboard;
-        for (auto a: j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()) {
-            inline_keyboard.push_back(std::make_shared<InlineKeyboardButton>(a));
+        if (j.contains("inline_keyboard")) {
+            for (auto a: j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()) {
+                inline_keyboard.push_back(std::make_shared<InlineKeyboardButton>(a));
+            }
         }
         name.inline_keyboard = inline_keyboard;
     }
@@ -3138,15 +3205,20 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineKeyboardButton &name) {
-        name.text = j.at("text").get<std::string>();
-        name.url = j.at("url").get<std::string>();
-        name.callback_data = j.at("callback_data").get<std::string>();
-        name.web_app = std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>());
-        name.login_url = std::make_shared<LoginUrl>(j.at("login_url").get<LoginUrl>());
-        name.switch_inline_query = j.at("switch_inline_query").get<std::string>();
-        name.switch_inline_query_current_chat = j.at("switch_inline_query_current_chat").get<std::string>();
-        name.callback_game = std::make_shared<CallbackGame>(j.at("callback_game").get<CallbackGame>());
-        name.pay = j.at("pay").get<bool>();
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
+        name.callback_data = j.contains("callback_data") ? j.at("callback_data").get<std::string>() : "";
+        name.web_app = j.contains("web_app") ? std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>())
+                                             : nullptr;
+        name.login_url = j.contains("login_url") ? std::make_shared<LoginUrl>(j.at("login_url").get<LoginUrl>())
+                                                 : nullptr;
+        name.switch_inline_query = j.contains("switch_inline_query") ? j.at("switch_inline_query").get<std::string>()
+                                                                     : "";
+        name.switch_inline_query_current_chat = j.contains("switch_inline_query_current_chat") ? j.at(
+                "switch_inline_query_current_chat").get<std::string>() : "";
+        name.callback_game = j.contains("callback_game") ? std::make_shared<CallbackGame>(
+                j.at("callback_game").get<CallbackGame>()) : nullptr;
+        name.pay = j.contains("pay") ? j.at("pay").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InlineKeyboardButton &name) {
@@ -3163,10 +3235,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, LoginUrl &name) {
-        name.url = j.at("url").get<std::string>();
-        name.forward_text = j.at("forward_text").get<std::string>();
-        name.bot_username = j.at("bot_username").get<std::string>();
-        name.request_write_access = j.at("request_write_access").get<bool>();
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
+        name.forward_text = j.contains("forward_text") ? j.at("forward_text").get<std::string>() : "";
+        name.bot_username = j.contains("bot_username") ? j.at("bot_username").get<std::string>() : "";
+        name.request_write_access = j.contains("request_write_access") ? j.at("request_write_access").get<bool>()
+                                                                       : false;
     }
 
     inline void to_json(json &j, const LoginUrl &name) {
@@ -3178,13 +3251,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, CallbackQuery &name) {
-        name.id = j.at("id").get<std::string>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.message = std::make_shared<Message>(j.at("message").get<Message>());
-        name.inline_message_id = j.at("inline_message_id").get<std::string>();
-        name.chat_instance = j.at("chat_instance").get<std::string>();
-        name.data = j.at("data").get<std::string>();
-        name.game_short_name = j.at("game_short_name").get<std::string>();
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.message = j.contains("message") ? std::make_shared<Message>(j.at("message").get<Message>()) : nullptr;
+        name.inline_message_id = j.contains("inline_message_id") ? j.at("inline_message_id").get<std::string>() : "";
+        name.chat_instance = j.contains("chat_instance") ? j.at("chat_instance").get<std::string>() : "";
+        name.data = j.contains("data") ? j.at("data").get<std::string>() : "";
+        name.game_short_name = j.contains("game_short_name") ? j.at("game_short_name").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const CallbackQuery &name) {
@@ -3206,10 +3279,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatPhoto &name) {
-        name.small_file_id = j.at("small_file_id").get<std::string>();
-        name.small_file_unique_id = j.at("small_file_unique_id").get<std::string>();
-        name.big_file_id = j.at("big_file_id").get<std::string>();
-        name.big_file_unique_id = j.at("big_file_unique_id").get<std::string>();
+        name.small_file_id = j.contains("small_file_id") ? j.at("small_file_id").get<std::string>() : "";
+        name.small_file_unique_id = j.contains("small_file_unique_id") ? j.at("small_file_unique_id").get<std::string>()
+                                                                       : "";
+        name.big_file_id = j.contains("big_file_id") ? j.at("big_file_id").get<std::string>() : "";
+        name.big_file_unique_id = j.contains("big_file_unique_id") ? j.at("big_file_unique_id").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChatPhoto &name) {
@@ -3221,15 +3295,17 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatInviteLink &name) {
-        name.invite_link = j.at("invite_link").get<std::string>();
-        name.creator = std::make_shared<User>(j.at("creator").get<User>());
-        name.creates_join_request = j.at("creates_join_request").get<bool>();
-        name.is_primary = j.at("is_primary").get<bool>();
-        name.is_revoked = j.at("is_revoked").get<bool>();
-        name.name = j.at("name").get<std::string>();
-        name.expire_date = j.at("expire_date").get<int>();
-        name.member_limit = j.at("member_limit").get<int>();
-        name.pending_join_request_count = j.at("pending_join_request_count").get<int>();
+        name.invite_link = j.contains("invite_link") ? j.at("invite_link").get<std::string>() : "";
+        name.creator = j.contains("creator") ? std::make_shared<User>(j.at("creator").get<User>()) : nullptr;
+        name.creates_join_request = j.contains("creates_join_request") ? j.at("creates_join_request").get<bool>()
+                                                                       : false;
+        name.is_primary = j.contains("is_primary") ? j.at("is_primary").get<bool>() : false;
+        name.is_revoked = j.contains("is_revoked") ? j.at("is_revoked").get<bool>() : false;
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.expire_date = j.contains("expire_date") ? j.at("expire_date").get<int>() : 0;
+        name.member_limit = j.contains("member_limit") ? j.at("member_limit").get<int>() : 0;
+        name.pending_join_request_count = j.contains("pending_join_request_count") ? j.at(
+                "pending_join_request_count").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ChatInviteLink &name) {
@@ -3246,18 +3322,20 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatAdministratorRights &name) {
-        name.is_anonymous = j.at("is_anonymous").get<bool>();
-        name.can_manage_chat = j.at("can_manage_chat").get<bool>();
-        name.can_delete_messages = j.at("can_delete_messages").get<bool>();
-        name.can_manage_video_chats = j.at("can_manage_video_chats").get<bool>();
-        name.can_restrict_members = j.at("can_restrict_members").get<bool>();
-        name.can_promote_members = j.at("can_promote_members").get<bool>();
-        name.can_change_info = j.at("can_change_info").get<bool>();
-        name.can_invite_users = j.at("can_invite_users").get<bool>();
-        name.can_post_messages = j.at("can_post_messages").get<bool>();
-        name.can_edit_messages = j.at("can_edit_messages").get<bool>();
-        name.can_pin_messages = j.at("can_pin_messages").get<bool>();
-        name.can_manage_topics = j.at("can_manage_topics").get<bool>();
+        name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
+        name.can_manage_chat = j.contains("can_manage_chat") ? j.at("can_manage_chat").get<bool>() : false;
+        name.can_delete_messages = j.contains("can_delete_messages") ? j.at("can_delete_messages").get<bool>() : false;
+        name.can_manage_video_chats = j.contains("can_manage_video_chats") ? j.at("can_manage_video_chats").get<bool>()
+                                                                           : false;
+        name.can_restrict_members = j.contains("can_restrict_members") ? j.at("can_restrict_members").get<bool>()
+                                                                       : false;
+        name.can_promote_members = j.contains("can_promote_members") ? j.at("can_promote_members").get<bool>() : false;
+        name.can_change_info = j.contains("can_change_info") ? j.at("can_change_info").get<bool>() : false;
+        name.can_invite_users = j.contains("can_invite_users") ? j.at("can_invite_users").get<bool>() : false;
+        name.can_post_messages = j.contains("can_post_messages") ? j.at("can_post_messages").get<bool>() : false;
+        name.can_edit_messages = j.contains("can_edit_messages") ? j.at("can_edit_messages").get<bool>() : false;
+        name.can_pin_messages = j.contains("can_pin_messages") ? j.at("can_pin_messages").get<bool>() : false;
+        name.can_manage_topics = j.contains("can_manage_topics") ? j.at("can_manage_topics").get<bool>() : false;
     }
 
     inline void to_json(json &j, const ChatAdministratorRights &name) {
@@ -3277,10 +3355,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMember &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.is_anonymous = j.at("is_anonymous").get<bool>();
-        name.custom_title = j.at("custom_title").get<std::string>();
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
+        name.custom_title = j.contains("custom_title") ? j.at("custom_title").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChatMember &name) {
@@ -3292,10 +3370,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberOwner &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.is_anonymous = j.at("is_anonymous").get<bool>();
-        name.custom_title = j.at("custom_title").get<std::string>();
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
+        name.custom_title = j.contains("custom_title") ? j.at("custom_title").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChatMemberOwner &name) {
@@ -3307,22 +3385,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberAdministrator &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.can_be_edited = j.at("can_be_edited").get<bool>();
-        name.is_anonymous = j.at("is_anonymous").get<bool>();
-        name.can_manage_chat = j.at("can_manage_chat").get<bool>();
-        name.can_delete_messages = j.at("can_delete_messages").get<bool>();
-        name.can_manage_video_chats = j.at("can_manage_video_chats").get<bool>();
-        name.can_restrict_members = j.at("can_restrict_members").get<bool>();
-        name.can_promote_members = j.at("can_promote_members").get<bool>();
-        name.can_change_info = j.at("can_change_info").get<bool>();
-        name.can_invite_users = j.at("can_invite_users").get<bool>();
-        name.can_post_messages = j.at("can_post_messages").get<bool>();
-        name.can_edit_messages = j.at("can_edit_messages").get<bool>();
-        name.can_pin_messages = j.at("can_pin_messages").get<bool>();
-        name.can_manage_topics = j.at("can_manage_topics").get<bool>();
-        name.custom_title = j.at("custom_title").get<std::string>();
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.can_be_edited = j.contains("can_be_edited") ? j.at("can_be_edited").get<bool>() : false;
+        name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
+        name.can_manage_chat = j.contains("can_manage_chat") ? j.at("can_manage_chat").get<bool>() : false;
+        name.can_delete_messages = j.contains("can_delete_messages") ? j.at("can_delete_messages").get<bool>() : false;
+        name.can_manage_video_chats = j.contains("can_manage_video_chats") ? j.at("can_manage_video_chats").get<bool>()
+                                                                           : false;
+        name.can_restrict_members = j.contains("can_restrict_members") ? j.at("can_restrict_members").get<bool>()
+                                                                       : false;
+        name.can_promote_members = j.contains("can_promote_members") ? j.at("can_promote_members").get<bool>() : false;
+        name.can_change_info = j.contains("can_change_info") ? j.at("can_change_info").get<bool>() : false;
+        name.can_invite_users = j.contains("can_invite_users") ? j.at("can_invite_users").get<bool>() : false;
+        name.can_post_messages = j.contains("can_post_messages") ? j.at("can_post_messages").get<bool>() : false;
+        name.can_edit_messages = j.contains("can_edit_messages") ? j.at("can_edit_messages").get<bool>() : false;
+        name.can_pin_messages = j.contains("can_pin_messages") ? j.at("can_pin_messages").get<bool>() : false;
+        name.can_manage_topics = j.contains("can_manage_topics") ? j.at("can_manage_topics").get<bool>() : false;
+        name.custom_title = j.contains("custom_title") ? j.at("custom_title").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChatMemberAdministrator &name) {
@@ -3346,8 +3426,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberMember &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
     }
 
     inline void to_json(json &j, const ChatMemberMember &name) {
@@ -3357,24 +3437,28 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberRestricted &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.is_member = j.at("is_member").get<bool>();
-        name.can_send_messages = j.at("can_send_messages").get<bool>();
-        name.can_send_audios = j.at("can_send_audios").get<bool>();
-        name.can_send_documents = j.at("can_send_documents").get<bool>();
-        name.can_send_photos = j.at("can_send_photos").get<bool>();
-        name.can_send_videos = j.at("can_send_videos").get<bool>();
-        name.can_send_video_notes = j.at("can_send_video_notes").get<bool>();
-        name.can_send_voice_notes = j.at("can_send_voice_notes").get<bool>();
-        name.can_send_polls = j.at("can_send_polls").get<bool>();
-        name.can_send_other_messages = j.at("can_send_other_messages").get<bool>();
-        name.can_add_web_page_previews = j.at("can_add_web_page_previews").get<bool>();
-        name.can_change_info = j.at("can_change_info").get<bool>();
-        name.can_invite_users = j.at("can_invite_users").get<bool>();
-        name.can_pin_messages = j.at("can_pin_messages").get<bool>();
-        name.can_manage_topics = j.at("can_manage_topics").get<bool>();
-        name.until_date = j.at("until_date").get<int>();
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.is_member = j.contains("is_member") ? j.at("is_member").get<bool>() : false;
+        name.can_send_messages = j.contains("can_send_messages") ? j.at("can_send_messages").get<bool>() : false;
+        name.can_send_audios = j.contains("can_send_audios") ? j.at("can_send_audios").get<bool>() : false;
+        name.can_send_documents = j.contains("can_send_documents") ? j.at("can_send_documents").get<bool>() : false;
+        name.can_send_photos = j.contains("can_send_photos") ? j.at("can_send_photos").get<bool>() : false;
+        name.can_send_videos = j.contains("can_send_videos") ? j.at("can_send_videos").get<bool>() : false;
+        name.can_send_video_notes = j.contains("can_send_video_notes") ? j.at("can_send_video_notes").get<bool>()
+                                                                       : false;
+        name.can_send_voice_notes = j.contains("can_send_voice_notes") ? j.at("can_send_voice_notes").get<bool>()
+                                                                       : false;
+        name.can_send_polls = j.contains("can_send_polls") ? j.at("can_send_polls").get<bool>() : false;
+        name.can_send_other_messages = j.contains("can_send_other_messages") ? j.at(
+                "can_send_other_messages").get<bool>() : false;
+        name.can_add_web_page_previews = j.contains("can_add_web_page_previews") ? j.at(
+                "can_add_web_page_previews").get<bool>() : false;
+        name.can_change_info = j.contains("can_change_info") ? j.at("can_change_info").get<bool>() : false;
+        name.can_invite_users = j.contains("can_invite_users") ? j.at("can_invite_users").get<bool>() : false;
+        name.can_pin_messages = j.contains("can_pin_messages") ? j.at("can_pin_messages").get<bool>() : false;
+        name.can_manage_topics = j.contains("can_manage_topics") ? j.at("can_manage_topics").get<bool>() : false;
+        name.until_date = j.contains("until_date") ? j.at("until_date").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ChatMemberRestricted &name) {
@@ -3400,8 +3484,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberLeft &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
     }
 
     inline void to_json(json &j, const ChatMemberLeft &name) {
@@ -3411,9 +3495,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberBanned &name) {
-        name.status = j.at("status").get<std::string>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.until_date = j.at("until_date").get<int>();
+        name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.until_date = j.contains("until_date") ? j.at("until_date").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ChatMemberBanned &name) {
@@ -3424,12 +3508,15 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatMemberUpdated &name) {
-        name.chat = std::make_shared<Chat>(j.at("chat").get<Chat>());
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.date = j.at("date").get<int>();
-        name.old_chat_member = std::make_shared<ChatMember>(j.at("old_chat_member").get<ChatMember>());
-        name.new_chat_member = std::make_shared<ChatMember>(j.at("new_chat_member").get<ChatMember>());
-        name.invite_link = std::make_shared<ChatInviteLink>(j.at("invite_link").get<ChatInviteLink>());
+        name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+        name.old_chat_member = j.contains("old_chat_member") ? std::make_shared<ChatMember>(
+                j.at("old_chat_member").get<ChatMember>()) : nullptr;
+        name.new_chat_member = j.contains("new_chat_member") ? std::make_shared<ChatMember>(
+                j.at("new_chat_member").get<ChatMember>()) : nullptr;
+        name.invite_link = j.contains("invite_link") ? std::make_shared<ChatInviteLink>(
+                j.at("invite_link").get<ChatInviteLink>()) : nullptr;
     }
 
     inline void to_json(json &j, const ChatMemberUpdated &name) {
@@ -3443,12 +3530,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatJoinRequest &name) {
-        name.chat = std::make_shared<Chat>(j.at("chat").get<Chat>());
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.user_chat_id = j.at("user_chat_id").get<int>();
-        name.date = j.at("date").get<int>();
-        name.bio = j.at("bio").get<std::string>();
-        name.invite_link = std::make_shared<ChatInviteLink>(j.at("invite_link").get<ChatInviteLink>());
+        name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.user_chat_id = j.contains("user_chat_id") ? j.at("user_chat_id").get<int>() : 0;
+        name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+        name.bio = j.contains("bio") ? j.at("bio").get<std::string>() : "";
+        name.invite_link = j.contains("invite_link") ? std::make_shared<ChatInviteLink>(
+                j.at("invite_link").get<ChatInviteLink>()) : nullptr;
     }
 
     inline void to_json(json &j, const ChatJoinRequest &name) {
@@ -3462,20 +3550,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatPermissions &name) {
-        name.can_send_messages = j.at("can_send_messages").get<bool>();
-        name.can_send_audios = j.at("can_send_audios").get<bool>();
-        name.can_send_documents = j.at("can_send_documents").get<bool>();
-        name.can_send_photos = j.at("can_send_photos").get<bool>();
-        name.can_send_videos = j.at("can_send_videos").get<bool>();
-        name.can_send_video_notes = j.at("can_send_video_notes").get<bool>();
-        name.can_send_voice_notes = j.at("can_send_voice_notes").get<bool>();
-        name.can_send_polls = j.at("can_send_polls").get<bool>();
-        name.can_send_other_messages = j.at("can_send_other_messages").get<bool>();
-        name.can_add_web_page_previews = j.at("can_add_web_page_previews").get<bool>();
-        name.can_change_info = j.at("can_change_info").get<bool>();
-        name.can_invite_users = j.at("can_invite_users").get<bool>();
-        name.can_pin_messages = j.at("can_pin_messages").get<bool>();
-        name.can_manage_topics = j.at("can_manage_topics").get<bool>();
+        name.can_send_messages = j.contains("can_send_messages") ? j.at("can_send_messages").get<bool>() : false;
+        name.can_send_audios = j.contains("can_send_audios") ? j.at("can_send_audios").get<bool>() : false;
+        name.can_send_documents = j.contains("can_send_documents") ? j.at("can_send_documents").get<bool>() : false;
+        name.can_send_photos = j.contains("can_send_photos") ? j.at("can_send_photos").get<bool>() : false;
+        name.can_send_videos = j.contains("can_send_videos") ? j.at("can_send_videos").get<bool>() : false;
+        name.can_send_video_notes = j.contains("can_send_video_notes") ? j.at("can_send_video_notes").get<bool>()
+                                                                       : false;
+        name.can_send_voice_notes = j.contains("can_send_voice_notes") ? j.at("can_send_voice_notes").get<bool>()
+                                                                       : false;
+        name.can_send_polls = j.contains("can_send_polls") ? j.at("can_send_polls").get<bool>() : false;
+        name.can_send_other_messages = j.contains("can_send_other_messages") ? j.at(
+                "can_send_other_messages").get<bool>() : false;
+        name.can_add_web_page_previews = j.contains("can_add_web_page_previews") ? j.at(
+                "can_add_web_page_previews").get<bool>() : false;
+        name.can_change_info = j.contains("can_change_info") ? j.at("can_change_info").get<bool>() : false;
+        name.can_invite_users = j.contains("can_invite_users") ? j.at("can_invite_users").get<bool>() : false;
+        name.can_pin_messages = j.contains("can_pin_messages") ? j.at("can_pin_messages").get<bool>() : false;
+        name.can_manage_topics = j.contains("can_manage_topics") ? j.at("can_manage_topics").get<bool>() : false;
     }
 
     inline void to_json(json &j, const ChatPermissions &name) {
@@ -3497,8 +3589,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChatLocation &name) {
-        name.location = std::make_shared<Location>(j.at("location").get<Location>());
-        name.address = j.at("address").get<std::string>();
+        name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
+        name.address = j.contains("address") ? j.at("address").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChatLocation &name) {
@@ -3508,10 +3600,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ForumTopic &name) {
-        name.message_thread_id = j.at("message_thread_id").get<int>();
-        name.name = j.at("name").get<std::string>();
-        name.icon_color = j.at("icon_color").get<int>();
-        name.icon_custom_emoji_id = j.at("icon_custom_emoji_id").get<std::string>();
+        name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int>() : 0;
+        name.icon_custom_emoji_id = j.contains("icon_custom_emoji_id") ? j.at("icon_custom_emoji_id").get<std::string>()
+                                                                       : "";
     }
 
     inline void to_json(json &j, const ForumTopic &name) {
@@ -3523,8 +3616,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommand &name) {
-        name.command = j.at("command").get<std::string>();
-        name.description = j.at("description").get<std::string>();
+        name.command = j.contains("command") ? j.at("command").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommand &name) {
@@ -3534,7 +3627,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScope &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommandScope &name) {
@@ -3543,7 +3636,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeDefault &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommandScopeDefault &name) {
@@ -3552,7 +3645,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeAllPrivateChats &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommandScopeAllPrivateChats &name) {
@@ -3561,7 +3654,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeAllGroupChats &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommandScopeAllGroupChats &name) {
@@ -3570,7 +3663,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeAllChatAdministrators &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const BotCommandScopeAllChatAdministrators &name) {
@@ -3579,8 +3672,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeChat &name) {
-        name.type = j.at("type").get<std::string>();
-        name.chat_id = j.at("chat_id").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const BotCommandScopeChat &name) {
@@ -3590,8 +3683,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeChatAdministrators &name) {
-        name.type = j.at("type").get<std::string>();
-        name.chat_id = j.at("chat_id").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const BotCommandScopeChatAdministrators &name) {
@@ -3601,9 +3694,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, BotCommandScopeChatMember &name) {
-        name.type = j.at("type").get<std::string>();
-        name.chat_id = j.at("chat_id").get<int>();
-        name.user_id = j.at("user_id").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
+        name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
     }
 
     inline void to_json(json &j, const BotCommandScopeChatMember &name) {
@@ -3614,7 +3707,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MenuButton &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const MenuButton &name) {
@@ -3623,7 +3716,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MenuButtonCommands &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const MenuButtonCommands &name) {
@@ -3632,9 +3725,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MenuButtonWebApp &name) {
-        name.type = j.at("type").get<std::string>();
-        name.text = j.at("text").get<std::string>();
-        name.web_app = std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>());
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
+        name.web_app = j.contains("web_app") ? std::make_shared<WebAppInfo>(j.at("web_app").get<WebAppInfo>())
+                                             : nullptr;
     }
 
     inline void to_json(json &j, const MenuButtonWebApp &name) {
@@ -3645,7 +3739,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MenuButtonDefault &name) {
-        name.type = j.at("type").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const MenuButtonDefault &name) {
@@ -3654,8 +3748,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ResponseParameters &name) {
-        name.migrate_to_chat_id = j.at("migrate_to_chat_id").get<int>();
-        name.retry_after = j.at("retry_after").get<int>();
+        name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int>() : 0;
+        name.retry_after = j.contains("retry_after") ? j.at("retry_after").get<int>() : 0;
     }
 
     inline void to_json(json &j, const ResponseParameters &name) {
@@ -3665,16 +3759,18 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMedia &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.has_spoiler = j.at("has_spoiler").get<bool>();
+        name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMedia &name) {
@@ -3692,16 +3788,18 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMediaPhoto &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.has_spoiler = j.at("has_spoiler").get<bool>();
+        name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMediaPhoto &name) {
@@ -3719,21 +3817,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMediaVideo &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.thumb = j.at("thumb").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.duration = j.at("duration").get<int>();
-        name.supports_streaming = j.at("supports_streaming").get<bool>();
-        name.has_spoiler = j.at("has_spoiler").get<bool>();
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.supports_streaming = j.contains("supports_streaming") ? j.at("supports_streaming").get<bool>() : false;
+        name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMediaVideo &name) {
@@ -3756,20 +3856,22 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMediaAnimation &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.thumb = j.at("thumb").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.duration = j.at("duration").get<int>();
-        name.has_spoiler = j.at("has_spoiler").get<bool>();
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMediaAnimation &name) {
@@ -3791,19 +3893,21 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMediaAudio &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.thumb = j.at("thumb").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.duration = j.at("duration").get<int>();
-        name.performer = j.at("performer").get<std::string>();
-        name.title = j.at("title").get<std::string>();
+        name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+        name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const InputMediaAudio &name) {
@@ -3824,17 +3928,20 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMediaDocument &name) {
-        name.type = j.at("type").get<std::string>();
-        name.media = j.at("media").get<std::string>();
-        name.thumb = j.at("thumb").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
+        name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.disable_content_type_detection = j.at("disable_content_type_detection").get<bool>();
+        name.disable_content_type_detection = j.contains("disable_content_type_detection") ? j.at(
+                "disable_content_type_detection").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMediaDocument &name) {
@@ -3853,21 +3960,27 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputFile &name) {
-        name.chat_id = j.at("chat_id").get<int>();
-        name.message_thread_id = j.at("message_thread_id").get<int>();
-        name.text = j.at("text").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
+        name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> entities;
-        for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
-            entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("entities")) {
+            for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+                entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.entities = entities;
-        name.disable_web_page_preview = j.at("disable_web_page_preview").get<bool>();
-        name.disable_notification = j.at("disable_notification").get<bool>();
-        name.protect_content = j.at("protect_content").get<bool>();
-        name.reply_to_message_id = j.at("reply_to_message_id").get<int>();
-        name.allow_sending_without_reply = j.at("allow_sending_without_reply").get<bool>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
+        name.disable_web_page_preview = j.contains("disable_web_page_preview") ? j.at(
+                "disable_web_page_preview").get<bool>() : false;
+        name.disable_notification = j.contains("disable_notification") ? j.at("disable_notification").get<bool>()
+                                                                       : false;
+        name.protect_content = j.contains("protect_content") ? j.at("protect_content").get<bool>() : false;
+        name.reply_to_message_id = j.contains("reply_to_message_id") ? j.at("reply_to_message_id").get<int>() : 0;
+        name.allow_sending_without_reply = j.contains("allow_sending_without_reply") ? j.at(
+                "allow_sending_without_reply").get<bool>() : false;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     }
 
     inline void to_json(json &j, const InputFile &name) {
@@ -3897,20 +4010,22 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Sticker &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.width = j.at("width").get<int>();
-        name.height = j.at("height").get<int>();
-        name.is_animated = j.at("is_animated").get<bool>();
-        name.is_video = j.at("is_video").get<bool>();
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
-        name.emoji = j.at("emoji").get<std::string>();
-        name.set_name = j.at("set_name").get<std::string>();
-        name.premium_animation = std::make_shared<File>(j.at("premium_animation").get<File>());
-        name.mask_position = std::make_shared<MaskPosition>(j.at("mask_position").get<MaskPosition>());
-        name.custom_emoji_id = j.at("custom_emoji_id").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.width = j.contains("width") ? j.at("width").get<int>() : 0;
+        name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+        name.is_animated = j.contains("is_animated") ? j.at("is_animated").get<bool>() : false;
+        name.is_video = j.contains("is_video") ? j.at("is_video").get<bool>() : false;
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+        name.emoji = j.contains("emoji") ? j.at("emoji").get<std::string>() : "";
+        name.set_name = j.contains("set_name") ? j.at("set_name").get<std::string>() : "";
+        name.premium_animation = j.contains("premium_animation") ? std::make_shared<File>(
+                j.at("premium_animation").get<File>()) : nullptr;
+        name.mask_position = j.contains("mask_position") ? std::make_shared<MaskPosition>(
+                j.at("mask_position").get<MaskPosition>()) : nullptr;
+        name.custom_emoji_id = j.contains("custom_emoji_id") ? j.at("custom_emoji_id").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Sticker &name) {
@@ -3932,17 +4047,19 @@ namespace ns {
     }
 
     inline void from_json(const json &j, StickerSet &name) {
-        name.name = j.at("name").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.sticker_type = j.at("sticker_type").get<std::string>();
-        name.is_animated = j.at("is_animated").get<bool>();
-        name.is_video = j.at("is_video").get<bool>();
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.sticker_type = j.contains("sticker_type") ? j.at("sticker_type").get<std::string>() : "";
+        name.is_animated = j.contains("is_animated") ? j.at("is_animated").get<bool>() : false;
+        name.is_video = j.contains("is_video") ? j.at("is_video").get<bool>() : false;
         std::vector<std::shared_ptr<Sticker>> stickers;
-        for (auto a: j.at("stickers").get<std::vector<Sticker>>()) {
-            stickers.push_back(std::make_shared<Sticker>(a));
+        if (j.contains("stickers")) {
+            for (auto a: j.at("stickers").get<std::vector<Sticker>>()) {
+                stickers.push_back(std::make_shared<Sticker>(a));
+            }
         }
         name.stickers = stickers;
-        name.thumb = std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>());
+        name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
     }
 
     inline void to_json(json &j, const StickerSet &name) {
@@ -3961,10 +4078,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, MaskPosition &name) {
-        name.point = j.at("point").get<std::string>();
-        name.x_shift = j.at("x_shift").get<float>();
-        name.y_shift = j.at("y_shift").get<float>();
-        name.scale = j.at("scale").get<float>();
+        name.point = j.contains("point") ? j.at("point").get<std::string>() : "";
+        name.x_shift = j.contains("x_shift") ? j.at("x_shift").get<float>() : 0;
+        name.y_shift = j.contains("y_shift") ? j.at("y_shift").get<float>() : 0;
+        name.scale = j.contains("scale") ? j.at("scale").get<float>() : 0;
     }
 
     inline void to_json(json &j, const MaskPosition &name) {
@@ -3976,12 +4093,12 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQuery &name) {
-        name.id = j.at("id").get<std::string>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.query = j.at("query").get<std::string>();
-        name.offset = j.at("offset").get<std::string>();
-        name.chat_type = j.at("chat_type").get<std::string>();
-        name.location = std::make_shared<Location>(j.at("location").get<Location>());
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.query = j.contains("query") ? j.at("query").get<std::string>() : "";
+        name.offset = j.contains("offset") ? j.at("offset").get<std::string>() : "";
+        name.chat_type = j.contains("chat_type") ? j.at("chat_type").get<std::string>() : "";
+        name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQuery &name) {
@@ -3995,18 +4112,19 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResult &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.url = j.at("url").get<std::string>();
-        name.hide_url = j.at("hide_url").get<bool>();
-        name.description = j.at("description").get<std::string>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
+        name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResult &name) {
@@ -4025,18 +4143,19 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultArticle &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.url = j.at("url").get<std::string>();
-        name.hide_url = j.at("hide_url").get<bool>();
-        name.description = j.at("description").get<std::string>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
+        name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResultArticle &name) {
@@ -4055,24 +4174,27 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultPhoto &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.photo_url = j.at("photo_url").get<std::string>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.photo_width = j.at("photo_width").get<int>();
-        name.photo_height = j.at("photo_height").get<int>();
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.photo_url = j.contains("photo_url") ? j.at("photo_url").get<std::string>() : "";
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int>() : 0;
+        name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int>() : 0;
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultPhoto &name) {
@@ -4097,25 +4219,28 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultGif &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.gif_url = j.at("gif_url").get<std::string>();
-        name.gif_width = j.at("gif_width").get<int>();
-        name.gif_height = j.at("gif_height").get<int>();
-        name.gif_duration = j.at("gif_duration").get<int>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_mime_type = j.at("thumb_mime_type").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.gif_url = j.contains("gif_url") ? j.at("gif_url").get<std::string>() : "";
+        name.gif_width = j.contains("gif_width") ? j.at("gif_width").get<int>() : 0;
+        name.gif_height = j.contains("gif_height") ? j.at("gif_height").get<int>() : 0;
+        name.gif_duration = j.contains("gif_duration") ? j.at("gif_duration").get<int>() : 0;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultGif &name) {
@@ -4141,25 +4266,28 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultMpeg4Gif &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.mpeg4_url = j.at("mpeg4_url").get<std::string>();
-        name.mpeg4_width = j.at("mpeg4_width").get<int>();
-        name.mpeg4_height = j.at("mpeg4_height").get<int>();
-        name.mpeg4_duration = j.at("mpeg4_duration").get<int>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_mime_type = j.at("thumb_mime_type").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.mpeg4_url = j.contains("mpeg4_url") ? j.at("mpeg4_url").get<std::string>() : "";
+        name.mpeg4_width = j.contains("mpeg4_width") ? j.at("mpeg4_width").get<int>() : 0;
+        name.mpeg4_height = j.contains("mpeg4_height") ? j.at("mpeg4_height").get<int>() : 0;
+        name.mpeg4_duration = j.contains("mpeg4_duration") ? j.at("mpeg4_duration").get<int>() : 0;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultMpeg4Gif &name) {
@@ -4185,26 +4313,29 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultVideo &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.video_url = j.at("video_url").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.video_url = j.contains("video_url") ? j.at("video_url").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.video_width = j.at("video_width").get<int>();
-        name.video_height = j.at("video_height").get<int>();
-        name.video_duration = j.at("video_duration").get<int>();
-        name.description = j.at("description").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.video_width = j.contains("video_width") ? j.at("video_width").get<int>() : 0;
+        name.video_height = j.contains("video_height") ? j.at("video_height").get<int>() : 0;
+        name.video_duration = j.contains("video_duration") ? j.at("video_duration").get<int>() : 0;
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultVideo &name) {
@@ -4231,22 +4362,25 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultAudio &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.audio_url = j.at("audio_url").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.audio_url = j.contains("audio_url") ? j.at("audio_url").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.performer = j.at("performer").get<std::string>();
-        name.audio_duration = j.at("audio_duration").get<int>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
+        name.audio_duration = j.contains("audio_duration") ? j.at("audio_duration").get<int>() : 0;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultAudio &name) {
@@ -4269,21 +4403,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultVoice &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.voice_url = j.at("voice_url").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.voice_url = j.contains("voice_url") ? j.at("voice_url").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.voice_duration = j.at("voice_duration").get<int>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.voice_duration = j.contains("voice_duration") ? j.at("voice_duration").get<int>() : 0;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultVoice &name) {
@@ -4305,25 +4442,28 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultDocument &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.document_url = j.at("document_url").get<std::string>();
-        name.mime_type = j.at("mime_type").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.document_url = j.contains("document_url") ? j.at("document_url").get<std::string>() : "";
+        name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResultDocument &name) {
@@ -4349,21 +4489,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultLocation &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.latitude = j.at("latitude").get<float>();
-        name.longitude = j.at("longitude").get<float>();
-        name.title = j.at("title").get<std::string>();
-        name.horizontal_accuracy = j.at("horizontal_accuracy").get<float>();
-        name.live_period = j.at("live_period").get<int>();
-        name.heading = j.at("heading").get<int>();
-        name.proximity_alert_radius = j.at("proximity_alert_radius").get<int>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
+        name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
+        name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
+        name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
+        name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>()
+                                                                           : 0;
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResultLocation &name) {
@@ -4385,22 +4527,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultVenue &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.latitude = j.at("latitude").get<float>();
-        name.longitude = j.at("longitude").get<float>();
-        name.title = j.at("title").get<std::string>();
-        name.address = j.at("address").get<std::string>();
-        name.foursquare_id = j.at("foursquare_id").get<std::string>();
-        name.foursquare_type = j.at("foursquare_type").get<std::string>();
-        name.google_place_id = j.at("google_place_id").get<std::string>();
-        name.google_place_type = j.at("google_place_type").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
+        name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.address = j.contains("address") ? j.at("address").get<std::string>() : "";
+        name.foursquare_id = j.contains("foursquare_id") ? j.at("foursquare_id").get<std::string>() : "";
+        name.foursquare_type = j.contains("foursquare_type") ? j.at("foursquare_type").get<std::string>() : "";
+        name.google_place_id = j.contains("google_place_id") ? j.at("google_place_id").get<std::string>() : "";
+        name.google_place_type = j.contains("google_place_type") ? j.at("google_place_type").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResultVenue &name) {
@@ -4423,18 +4566,19 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultContact &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.phone_number = j.at("phone_number").get<std::string>();
-        name.first_name = j.at("first_name").get<std::string>();
-        name.last_name = j.at("last_name").get<std::string>();
-        name.vcard = j.at("vcard").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
-        name.thumb_url = j.at("thumb_url").get<std::string>();
-        name.thumb_width = j.at("thumb_width").get<int>();
-        name.thumb_height = j.at("thumb_height").get<int>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
+        name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
+        name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
+        name.vcard = j.contains("vcard") ? j.at("vcard").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
+        name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+        name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
+        name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
     }
 
     inline void to_json(json &j, const InlineQueryResultContact &name) {
@@ -4453,10 +4597,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultGame &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.game_short_name = j.at("game_short_name").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.game_short_name = j.contains("game_short_name") ? j.at("game_short_name").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultGame &name) {
@@ -4468,21 +4613,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedPhoto &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.photo_file_id = j.at("photo_file_id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.photo_file_id = j.contains("photo_file_id") ? j.at("photo_file_id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedPhoto &name) {
@@ -4504,20 +4652,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedGif &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.gif_file_id = j.at("gif_file_id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.gif_file_id = j.contains("gif_file_id") ? j.at("gif_file_id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedGif &name) {
@@ -4538,20 +4689,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedMpeg4Gif &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.mpeg4_file_id = j.at("mpeg4_file_id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.mpeg4_file_id = j.contains("mpeg4_file_id") ? j.at("mpeg4_file_id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedMpeg4Gif &name) {
@@ -4572,12 +4726,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedSticker &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.sticker_file_id = j.at("sticker_file_id").get<std::string>();
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.sticker_file_id = j.contains("sticker_file_id") ? j.at("sticker_file_id").get<std::string>() : "";
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedSticker &name) {
@@ -4590,21 +4745,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedDocument &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.document_file_id = j.at("document_file_id").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.document_file_id = j.contains("document_file_id") ? j.at("document_file_id").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedDocument &name) {
@@ -4626,21 +4784,24 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedVideo &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.video_file_id = j.at("video_file_id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.video_file_id = j.contains("video_file_id") ? j.at("video_file_id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedVideo &name) {
@@ -4662,20 +4823,23 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedVoice &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.voice_file_id = j.at("voice_file_id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.voice_file_id = j.contains("voice_file_id") ? j.at("voice_file_id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedVoice &name) {
@@ -4696,19 +4860,22 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InlineQueryResultCachedAudio &name) {
-        name.type = j.at("type").get<std::string>();
-        name.id = j.at("id").get<std::string>();
-        name.audio_file_id = j.at("audio_file_id").get<std::string>();
-        name.caption = j.at("caption").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.audio_file_id = j.contains("audio_file_id") ? j.at("audio_file_id").get<std::string>() : "";
+        name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-        for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
-            caption_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("caption_entities")) {
+            for (auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+                caption_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.caption_entities = caption_entities;
-        name.reply_markup = std::make_shared<InlineKeyboardMarkup>(j.at("reply_markup").get<InlineKeyboardMarkup>());
-        name.input_message_content = std::make_shared<InputMessageContent>(
-                j.at("input_message_content").get<InputMessageContent>());
+        name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
+                j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
+        name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
+                j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     }
 
     inline void to_json(json &j, const InlineQueryResultCachedAudio &name) {
@@ -4728,14 +4895,17 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputMessageContent &name) {
-        name.message_text = j.at("message_text").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.message_text = j.contains("message_text") ? j.at("message_text").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> entities;
-        for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
-            entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("entities")) {
+            for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+                entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.entities = entities;
-        name.disable_web_page_preview = j.at("disable_web_page_preview").get<bool>();
+        name.disable_web_page_preview = j.contains("disable_web_page_preview") ? j.at(
+                "disable_web_page_preview").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputMessageContent &name) {
@@ -4751,14 +4921,17 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputTextMessageContent &name) {
-        name.message_text = j.at("message_text").get<std::string>();
-        name.parse_mode = j.at("parse_mode").get<std::string>();
+        name.message_text = j.contains("message_text") ? j.at("message_text").get<std::string>() : "";
+        name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> entities;
-        for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
-            entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("entities")) {
+            for (auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+                entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.entities = entities;
-        name.disable_web_page_preview = j.at("disable_web_page_preview").get<bool>();
+        name.disable_web_page_preview = j.contains("disable_web_page_preview") ? j.at(
+                "disable_web_page_preview").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputTextMessageContent &name) {
@@ -4774,12 +4947,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputLocationMessageContent &name) {
-        name.latitude = j.at("latitude").get<float>();
-        name.longitude = j.at("longitude").get<float>();
-        name.horizontal_accuracy = j.at("horizontal_accuracy").get<float>();
-        name.live_period = j.at("live_period").get<int>();
-        name.heading = j.at("heading").get<int>();
-        name.proximity_alert_radius = j.at("proximity_alert_radius").get<int>();
+        name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
+        name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
+        name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
+        name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
+        name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
+        name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>()
+                                                                           : 0;
     }
 
     inline void to_json(json &j, const InputLocationMessageContent &name) {
@@ -4793,14 +4967,14 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputVenueMessageContent &name) {
-        name.latitude = j.at("latitude").get<float>();
-        name.longitude = j.at("longitude").get<float>();
-        name.title = j.at("title").get<std::string>();
-        name.address = j.at("address").get<std::string>();
-        name.foursquare_id = j.at("foursquare_id").get<std::string>();
-        name.foursquare_type = j.at("foursquare_type").get<std::string>();
-        name.google_place_id = j.at("google_place_id").get<std::string>();
-        name.google_place_type = j.at("google_place_type").get<std::string>();
+        name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
+        name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.address = j.contains("address") ? j.at("address").get<std::string>() : "";
+        name.foursquare_id = j.contains("foursquare_id") ? j.at("foursquare_id").get<std::string>() : "";
+        name.foursquare_type = j.contains("foursquare_type") ? j.at("foursquare_type").get<std::string>() : "";
+        name.google_place_id = j.contains("google_place_id") ? j.at("google_place_id").get<std::string>() : "";
+        name.google_place_type = j.contains("google_place_type") ? j.at("google_place_type").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const InputVenueMessageContent &name) {
@@ -4816,10 +4990,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputContactMessageContent &name) {
-        name.phone_number = j.at("phone_number").get<std::string>();
-        name.first_name = j.at("first_name").get<std::string>();
-        name.last_name = j.at("last_name").get<std::string>();
-        name.vcard = j.at("vcard").get<std::string>();
+        name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
+        name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
+        name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
+        name.vcard = j.contains("vcard") ? j.at("vcard").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const InputContactMessageContent &name) {
@@ -4831,30 +5005,35 @@ namespace ns {
     }
 
     inline void from_json(const json &j, InputInvoiceMessageContent &name) {
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.payload = j.at("payload").get<std::string>();
-        name.provider_token = j.at("provider_token").get<std::string>();
-        name.currency = j.at("currency").get<std::string>();
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.payload = j.contains("payload") ? j.at("payload").get<std::string>() : "";
+        name.provider_token = j.contains("provider_token") ? j.at("provider_token").get<std::string>() : "";
+        name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
         std::vector<std::shared_ptr<LabeledPrice>> prices;
-        for (auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
-            prices.push_back(std::make_shared<LabeledPrice>(a));
+        if (j.contains("prices")) {
+            for (auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
+                prices.push_back(std::make_shared<LabeledPrice>(a));
+            }
         }
         name.prices = prices;
-        name.max_tip_amount = j.at("max_tip_amount").get<int>();
-        name.suggested_tip_amounts = j.at("suggested_tip_amounts").get<int>();
-        name.provider_data = j.at("provider_data").get<std::string>();
-        name.photo_url = j.at("photo_url").get<std::string>();
-        name.photo_size = j.at("photo_size").get<int>();
-        name.photo_width = j.at("photo_width").get<int>();
-        name.photo_height = j.at("photo_height").get<int>();
-        name.need_name = j.at("need_name").get<bool>();
-        name.need_phone_number = j.at("need_phone_number").get<bool>();
-        name.need_email = j.at("need_email").get<bool>();
-        name.need_shipping_address = j.at("need_shipping_address").get<bool>();
-        name.send_phone_number_to_provider = j.at("send_phone_number_to_provider").get<bool>();
-        name.send_email_to_provider = j.at("send_email_to_provider").get<bool>();
-        name.is_flexible = j.at("is_flexible").get<bool>();
+        name.max_tip_amount = j.contains("max_tip_amount") ? j.at("max_tip_amount").get<int>() : 0;
+        name.suggested_tip_amounts = j.contains("suggested_tip_amounts") ? j.at("suggested_tip_amounts").get<int>() : 0;
+        name.provider_data = j.contains("provider_data") ? j.at("provider_data").get<std::string>() : "";
+        name.photo_url = j.contains("photo_url") ? j.at("photo_url").get<std::string>() : "";
+        name.photo_size = j.contains("photo_size") ? j.at("photo_size").get<int>() : 0;
+        name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int>() : 0;
+        name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int>() : 0;
+        name.need_name = j.contains("need_name") ? j.at("need_name").get<bool>() : false;
+        name.need_phone_number = j.contains("need_phone_number") ? j.at("need_phone_number").get<bool>() : false;
+        name.need_email = j.contains("need_email") ? j.at("need_email").get<bool>() : false;
+        name.need_shipping_address = j.contains("need_shipping_address") ? j.at("need_shipping_address").get<bool>()
+                                                                         : false;
+        name.send_phone_number_to_provider = j.contains("send_phone_number_to_provider") ? j.at(
+                "send_phone_number_to_provider").get<bool>() : false;
+        name.send_email_to_provider = j.contains("send_email_to_provider") ? j.at("send_email_to_provider").get<bool>()
+                                                                           : false;
+        name.is_flexible = j.contains("is_flexible") ? j.at("is_flexible").get<bool>() : false;
     }
 
     inline void to_json(json &j, const InputInvoiceMessageContent &name) {
@@ -4886,11 +5065,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ChosenInlineResult &name) {
-        name.result_id = j.at("result_id").get<std::string>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.location = std::make_shared<Location>(j.at("location").get<Location>());
-        name.inline_message_id = j.at("inline_message_id").get<std::string>();
-        name.query = j.at("query").get<std::string>();
+        name.result_id = j.contains("result_id") ? j.at("result_id").get<std::string>() : "";
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
+        name.inline_message_id = j.contains("inline_message_id") ? j.at("inline_message_id").get<std::string>() : "";
+        name.query = j.contains("query") ? j.at("query").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ChosenInlineResult &name) {
@@ -4903,7 +5082,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, SentWebAppMessage &name) {
-        name.inline_message_id = j.at("inline_message_id").get<std::string>();
+        name.inline_message_id = j.contains("inline_message_id") ? j.at("inline_message_id").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const SentWebAppMessage &name) {
@@ -4919,8 +5098,8 @@ namespace ns {
     }
 
     inline void from_json(const json &j, LabeledPrice &name) {
-        name.label = j.at("label").get<std::string>();
-        name.amount = j.at("amount").get<int>();
+        name.label = j.contains("label") ? j.at("label").get<std::string>() : "";
+        name.amount = j.contains("amount") ? j.at("amount").get<int>() : 0;
     }
 
     inline void to_json(json &j, const LabeledPrice &name) {
@@ -4930,11 +5109,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Invoice &name) {
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
-        name.start_parameter = j.at("start_parameter").get<std::string>();
-        name.currency = j.at("currency").get<std::string>();
-        name.total_amount = j.at("total_amount").get<int>();
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
+        name.start_parameter = j.contains("start_parameter") ? j.at("start_parameter").get<std::string>() : "";
+        name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
+        name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
     }
 
     inline void to_json(json &j, const Invoice &name) {
@@ -4947,12 +5126,12 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ShippingAddress &name) {
-        name.country_code = j.at("country_code").get<std::string>();
-        name.state = j.at("state").get<std::string>();
-        name.city = j.at("city").get<std::string>();
-        name.street_line1 = j.at("street_line1").get<std::string>();
-        name.street_line2 = j.at("street_line2").get<std::string>();
-        name.post_code = j.at("post_code").get<std::string>();
+        name.country_code = j.contains("country_code") ? j.at("country_code").get<std::string>() : "";
+        name.state = j.contains("state") ? j.at("state").get<std::string>() : "";
+        name.city = j.contains("city") ? j.at("city").get<std::string>() : "";
+        name.street_line1 = j.contains("street_line1") ? j.at("street_line1").get<std::string>() : "";
+        name.street_line2 = j.contains("street_line2") ? j.at("street_line2").get<std::string>() : "";
+        name.post_code = j.contains("post_code") ? j.at("post_code").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const ShippingAddress &name) {
@@ -4966,10 +5145,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, OrderInfo &name) {
-        name.name = j.at("name").get<std::string>();
-        name.phone_number = j.at("phone_number").get<std::string>();
-        name.email = j.at("email").get<std::string>();
-        name.shipping_address = std::make_shared<ShippingAddress>(j.at("shipping_address").get<ShippingAddress>());
+        name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
+        name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
+        name.email = j.contains("email") ? j.at("email").get<std::string>() : "";
+        name.shipping_address = j.contains("shipping_address") ? std::make_shared<ShippingAddress>(
+                j.at("shipping_address").get<ShippingAddress>()) : nullptr;
     }
 
     inline void to_json(json &j, const OrderInfo &name) {
@@ -4981,11 +5161,13 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ShippingOption &name) {
-        name.id = j.at("id").get<std::string>();
-        name.title = j.at("title").get<std::string>();
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
         std::vector<std::shared_ptr<LabeledPrice>> prices;
-        for (auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
-            prices.push_back(std::make_shared<LabeledPrice>(a));
+        if (j.contains("prices")) {
+            for (auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
+                prices.push_back(std::make_shared<LabeledPrice>(a));
+            }
         }
         name.prices = prices;
     }
@@ -5002,13 +5184,16 @@ namespace ns {
     }
 
     inline void from_json(const json &j, SuccessfulPayment &name) {
-        name.currency = j.at("currency").get<std::string>();
-        name.total_amount = j.at("total_amount").get<int>();
-        name.invoice_payload = j.at("invoice_payload").get<std::string>();
-        name.shipping_option_id = j.at("shipping_option_id").get<std::string>();
-        name.order_info = std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>());
-        name.telegram_payment_charge_id = j.at("telegram_payment_charge_id").get<std::string>();
-        name.provider_payment_charge_id = j.at("provider_payment_charge_id").get<std::string>();
+        name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
+        name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
+        name.invoice_payload = j.contains("invoice_payload") ? j.at("invoice_payload").get<std::string>() : "";
+        name.shipping_option_id = j.contains("shipping_option_id") ? j.at("shipping_option_id").get<std::string>() : "";
+        name.order_info = j.contains("order_info") ? std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>())
+                                                   : nullptr;
+        name.telegram_payment_charge_id = j.contains("telegram_payment_charge_id") ? j.at(
+                "telegram_payment_charge_id").get<std::string>() : "";
+        name.provider_payment_charge_id = j.contains("provider_payment_charge_id") ? j.at(
+                "provider_payment_charge_id").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const SuccessfulPayment &name) {
@@ -5023,10 +5208,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, ShippingQuery &name) {
-        name.id = j.at("id").get<std::string>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.invoice_payload = j.at("invoice_payload").get<std::string>();
-        name.shipping_address = std::make_shared<ShippingAddress>(j.at("shipping_address").get<ShippingAddress>());
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.invoice_payload = j.contains("invoice_payload") ? j.at("invoice_payload").get<std::string>() : "";
+        name.shipping_address = j.contains("shipping_address") ? std::make_shared<ShippingAddress>(
+                j.at("shipping_address").get<ShippingAddress>()) : nullptr;
     }
 
     inline void to_json(json &j, const ShippingQuery &name) {
@@ -5038,13 +5224,14 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PreCheckoutQuery &name) {
-        name.id = j.at("id").get<std::string>();
-        name.from = std::make_shared<User>(j.at("from").get<User>());
-        name.currency = j.at("currency").get<std::string>();
-        name.total_amount = j.at("total_amount").get<int>();
-        name.invoice_payload = j.at("invoice_payload").get<std::string>();
-        name.shipping_option_id = j.at("shipping_option_id").get<std::string>();
-        name.order_info = std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>());
+        name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
+        name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
+        name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
+        name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
+        name.invoice_payload = j.contains("invoice_payload") ? j.at("invoice_payload").get<std::string>() : "";
+        name.shipping_option_id = j.contains("shipping_option_id") ? j.at("shipping_option_id").get<std::string>() : "";
+        name.order_info = j.contains("order_info") ? std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>())
+                                                   : nullptr;
     }
 
     inline void to_json(json &j, const PreCheckoutQuery &name) {
@@ -5060,11 +5247,14 @@ namespace ns {
 
     inline void from_json(const json &j, PassportData &name) {
         std::vector<std::shared_ptr<EncryptedPassportElement>> data;
-        for (auto a: j.at("data").get<std::vector<EncryptedPassportElement>>()) {
-            data.push_back(std::make_shared<EncryptedPassportElement>(a));
+        if (j.contains("data")) {
+            for (auto a: j.at("data").get<std::vector<EncryptedPassportElement>>()) {
+                data.push_back(std::make_shared<EncryptedPassportElement>(a));
+            }
         }
         name.data = data;
-        name.credentials = std::make_shared<EncryptedCredentials>(j.at("credentials").get<EncryptedCredentials>());
+        name.credentials = j.contains("credentials") ? std::make_shared<EncryptedCredentials>(
+                j.at("credentials").get<EncryptedCredentials>()) : nullptr;
     }
 
     inline void to_json(json &j, const PassportData &name) {
@@ -5078,10 +5268,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportFile &name) {
-        name.file_id = j.at("file_id").get<std::string>();
-        name.file_unique_id = j.at("file_unique_id").get<std::string>();
-        name.file_size = j.at("file_size").get<int>();
-        name.file_date = j.at("file_date").get<int>();
+        name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
+        name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
+        name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+        name.file_date = j.contains("file_date") ? j.at("file_date").get<int>() : 0;
     }
 
     inline void to_json(json &j, const PassportFile &name) {
@@ -5093,24 +5283,31 @@ namespace ns {
     }
 
     inline void from_json(const json &j, EncryptedPassportElement &name) {
-        name.type = j.at("type").get<std::string>();
-        name.data = j.at("data").get<std::string>();
-        name.phone_number = j.at("phone_number").get<std::string>();
-        name.email = j.at("email").get<std::string>();
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.data = j.contains("data") ? j.at("data").get<std::string>() : "";
+        name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
+        name.email = j.contains("email") ? j.at("email").get<std::string>() : "";
         std::vector<std::shared_ptr<PassportFile>> files;
-        for (auto a: j.at("files").get<std::vector<PassportFile>>()) {
-            files.push_back(std::make_shared<PassportFile>(a));
+        if (j.contains("files")) {
+            for (auto a: j.at("files").get<std::vector<PassportFile>>()) {
+                files.push_back(std::make_shared<PassportFile>(a));
+            }
         }
         name.files = files;
-        name.front_side = std::make_shared<PassportFile>(j.at("front_side").get<PassportFile>());
-        name.reverse_side = std::make_shared<PassportFile>(j.at("reverse_side").get<PassportFile>());
-        name.selfie = std::make_shared<PassportFile>(j.at("selfie").get<PassportFile>());
+        name.front_side = j.contains("front_side") ? std::make_shared<PassportFile>(
+                j.at("front_side").get<PassportFile>()) : nullptr;
+        name.reverse_side = j.contains("reverse_side") ? std::make_shared<PassportFile>(
+                j.at("reverse_side").get<PassportFile>()) : nullptr;
+        name.selfie = j.contains("selfie") ? std::make_shared<PassportFile>(j.at("selfie").get<PassportFile>())
+                                           : nullptr;
         std::vector<std::shared_ptr<PassportFile>> translation;
-        for (auto a: j.at("translation").get<std::vector<PassportFile>>()) {
-            translation.push_back(std::make_shared<PassportFile>(a));
+        if (j.contains("translation")) {
+            for (auto a: j.at("translation").get<std::vector<PassportFile>>()) {
+                translation.push_back(std::make_shared<PassportFile>(a));
+            }
         }
         name.translation = translation;
-        name.hash = j.at("hash").get<std::string>();
+        name.hash = j.contains("hash") ? j.at("hash").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const EncryptedPassportElement &name) {
@@ -5136,9 +5333,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, EncryptedCredentials &name) {
-        name.data = j.at("data").get<std::string>();
-        name.hash = j.at("hash").get<std::string>();
-        name.secret = j.at("secret").get<std::string>();
+        name.data = j.contains("data") ? j.at("data").get<std::string>() : "";
+        name.hash = j.contains("hash") ? j.at("hash").get<std::string>() : "";
+        name.secret = j.contains("secret") ? j.at("secret").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const EncryptedCredentials &name) {
@@ -5149,11 +5346,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementError &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.field_name = j.at("field_name").get<std::string>();
-        name.data_hash = j.at("data_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.field_name = j.contains("field_name") ? j.at("field_name").get<std::string>() : "";
+        name.data_hash = j.contains("data_hash") ? j.at("data_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementError &name) {
@@ -5166,11 +5363,11 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorDataField &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.field_name = j.at("field_name").get<std::string>();
-        name.data_hash = j.at("data_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.field_name = j.contains("field_name") ? j.at("field_name").get<std::string>() : "";
+        name.data_hash = j.contains("data_hash") ? j.at("data_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorDataField &name) {
@@ -5183,10 +5380,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorFrontSide &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hash = j.at("file_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hash = j.contains("file_hash") ? j.at("file_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorFrontSide &name) {
@@ -5198,10 +5395,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorReverseSide &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hash = j.at("file_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hash = j.contains("file_hash") ? j.at("file_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorReverseSide &name) {
@@ -5213,10 +5410,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorSelfie &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hash = j.at("file_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hash = j.contains("file_hash") ? j.at("file_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorSelfie &name) {
@@ -5228,10 +5425,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorFile &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hash = j.at("file_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hash = j.contains("file_hash") ? j.at("file_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorFile &name) {
@@ -5243,10 +5440,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorFiles &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hashes = j.at("file_hashes").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hashes = j.contains("file_hashes") ? j.at("file_hashes").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorFiles &name) {
@@ -5258,10 +5455,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorTranslationFile &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hash = j.at("file_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hash = j.contains("file_hash") ? j.at("file_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorTranslationFile &name) {
@@ -5273,10 +5470,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorTranslationFiles &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.file_hashes = j.at("file_hashes").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.file_hashes = j.contains("file_hashes") ? j.at("file_hashes").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorTranslationFiles &name) {
@@ -5288,10 +5485,10 @@ namespace ns {
     }
 
     inline void from_json(const json &j, PassportElementErrorUnspecified &name) {
-        name.source = j.at("source").get<std::string>();
-        name.type = j.at("type").get<std::string>();
-        name.element_hash = j.at("element_hash").get<std::string>();
-        name.message = j.at("message").get<std::string>();
+        name.source = j.contains("source") ? j.at("source").get<std::string>() : "";
+        name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
+        name.element_hash = j.contains("element_hash") ? j.at("element_hash").get<std::string>() : "";
+        name.message = j.contains("message") ? j.at("message").get<std::string>() : "";
     }
 
     inline void to_json(json &j, const PassportElementErrorUnspecified &name) {
@@ -5310,20 +5507,25 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Game &name) {
-        name.title = j.at("title").get<std::string>();
-        name.description = j.at("description").get<std::string>();
+        name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
+        name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
         std::vector<std::shared_ptr<PhotoSize>> photo;
-        for (auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
-            photo.push_back(std::make_shared<PhotoSize>(a));
+        if (j.contains("photo")) {
+            for (auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
+                photo.push_back(std::make_shared<PhotoSize>(a));
+            }
         }
         name.photo = photo;
-        name.text = j.at("text").get<std::string>();
+        name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
         std::vector<std::shared_ptr<MessageEntity>> text_entities;
-        for (auto a: j.at("text_entities").get<std::vector<MessageEntity>>()) {
-            text_entities.push_back(std::make_shared<MessageEntity>(a));
+        if (j.contains("text_entities")) {
+            for (auto a: j.at("text_entities").get<std::vector<MessageEntity>>()) {
+                text_entities.push_back(std::make_shared<MessageEntity>(a));
+            }
         }
         name.text_entities = text_entities;
-        name.animation = std::make_shared<Animation>(j.at("animation").get<Animation>());
+        name.animation = j.contains("animation") ? std::make_shared<Animation>(j.at("animation").get<Animation>())
+                                                 : nullptr;
     }
 
     inline void to_json(json &j, const Game &name) {
@@ -5352,9 +5554,9 @@ namespace ns {
     }
 
     inline void from_json(const json &j, GameHighScore &name) {
-        name.position = j.at("position").get<int>();
-        name.user = std::make_shared<User>(j.at("user").get<User>());
-        name.score = j.at("score").get<int>();
+        name.position = j.contains("position") ? j.at("position").get<int>() : 0;
+        name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
+        name.score = j.contains("score") ? j.at("score").get<int>() : 0;
     }
 
     inline void to_json(json &j, const GameHighScore &name) {

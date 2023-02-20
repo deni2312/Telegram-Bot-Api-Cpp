@@ -162,18 +162,18 @@ void type_generator(){
         out=out+"inline void from_json(const json& j, "+nm.name+"& name){\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
-                out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n";
-                out = out + "\tfor(auto a:j.value(\"" + pa.parameter + "\"," + gets_default(pa.name_type) +
-                      "){\n\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t}\n";
+                out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n\tif(j.contains(\""+pa.parameter+"\")){\n";
+                out = out + "\t\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                      ">()){\n\t\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t\t}\n\t}\n";
                 out = out + "\tname." + pa.parameter + "="+pa.parameter+";\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?std::make_shared<" + normalize_type1(pa.name_type) +
                           " >(j.at(\"" + pa.parameter + "\").get<" +
-                          normalize_type1(pa.name_type) + ">());\n";
+                          normalize_type1(pa.name_type) + ">()) : "+gets_default(pa.name_type)+" ;\n";
                 } else {
-                    out = out + "\tname." + pa.parameter + "=j.at(\"" + pa.parameter + "\").get<" +
-                          normalize_type1(pa.name_type) + ">();\n";
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?j.at(\"" + pa.parameter + "\").get<" +
+                          normalize_type1(pa.name_type) + ">() : "+gets_default(pa.name_type)+" ;\n";
                 }
             }
         }
