@@ -20,6 +20,8 @@
 
 #include "network/HTTPrequest.h"
 
+#include "type_generator.h"
+
 namespace Telegram{
 	namespace Bot{
 		namespace Types {
