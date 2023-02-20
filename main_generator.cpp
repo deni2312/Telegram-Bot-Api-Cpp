@@ -149,14 +149,18 @@ void type_generator(){
             }
         }
         out=out+"}\n";
-        out=out+"void to_json(json& j, "+nm.name+"& name){\n";
+        out=out+"void to_json(json& j,const "+nm.name+"& name){\n";
+        out=out+"\tj=json::object();\n";
         for(const auto& pa: nm.n){
-            if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
-                      " >(j.at(\"" + pa.parameter + "\").get<" +
-                      normalize_type1(pa.name_type) + ">());\n";
-            } else {
-                out = out + "\tj[\"" + pa.parameter + "\"]=name." + pa.parameter +";\n";
+            if(normalize_type(pa.name_type).find("std::vector") != std::string::npos) {
+                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                      ">()){\n\t\tauto u=json::object();\n\t\tto_json(u,a);\n\t\tj[\""+pa.parameter+"\"].push_back(u);\n\t}\n";
+            }else {
+                if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
+                    out = out + "\tto_json(j[\"" + pa.parameter + "\"],*name." + pa.parameter + ");\n";
+                } else {
+                    out = out + "\tj[\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
+                }
             }
         }
         out=out+"}\n";
