@@ -127,7 +127,7 @@ void type_generator(){
 
     for(const auto& nm : typeTelegram.names){
         out=out+"void from_json(const json& j, "+nm.name+"& name);\n";
-        out=out+"void to_json(const  json& j, "+nm.name+"& name);\n";
+        out=out+"void to_json(json&  j, "+nm.name+"& name);\n";
     }
     for(const auto& nm : typeTelegram.names){
         out=out+"void from_json(const json& j, "+nm.name+"& name){\n";
@@ -149,7 +149,17 @@ void type_generator(){
             }
         }
         out=out+"}\n";
-        out=out+"void to_json(const json& j, "+nm.name+"& name){}\n";
+        out=out+"void to_json(json& j, "+nm.name+"& name){\n";
+        for(const auto& pa: nm.n){
+            if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
+                out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
+                      " >(j.at(\"" + pa.parameter + "\").get<" +
+                      normalize_type1(pa.name_type) + ">());\n";
+            } else {
+                out = out + "\tj[\"" + pa.parameter + "\"]=name." + pa.parameter +";\n";
+            }
+        }
+        out=out+"}\n";
     }
     std::fstream outs{"../types_generator.cpp",std::fstream::out};
     outs<<out;
