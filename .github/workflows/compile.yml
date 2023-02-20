@@ -13,6 +13,7 @@ jobs:
       - run: sudo ./vcpkg/vcpkg integrate install
       - run: sudo ./vcpkg/vcpkg install cpr
       - run: sudo ./vcpkg/vcpkg install jsoncpp
+      - run: sudo ./vcpkg/vcpkg install nlohmann_json
       - run: mkdir build
       - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
       - run: cmake --build build/
