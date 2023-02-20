@@ -265,7 +265,7 @@ int main(int argc, char** argv) {
         out=out+"//"+nm.description+"\n";
         out=out+"struct "+nm.name+"{\n";
         for(int i=0;i<nm.n.size();i++){
-            out=out + "\t"+nm.n.at(i).name_type+" "+nm.n.at(i).parameter+";\n";
+            out=out + "\t"+nm.n.at(i).name_type+" "+nm.n.at(i).parameter+" ;\n";
         }
         out=out+"};\n\n";
     }
