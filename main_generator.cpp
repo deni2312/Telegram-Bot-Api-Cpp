@@ -50,6 +50,35 @@ std::string normalize_type(std::string type){
     return type;
 }
 
+std::string normalize_type1(std::string type){
+    if(type.find("Integer")!=std::string::npos){
+        return "int";
+    }
+    if(type.find("Boolean")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("String")!=std::string::npos){
+        return "std::string";
+    }
+    if(type.find("Float")!=std::string::npos){
+        return "float";
+    }
+    if(type.find("True")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("False")!=std::string::npos){
+        return "bool";
+    }
+    if(type.find("Array")!=std::string::npos){
+        return "std::vector<"+type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1)+">";
+    }
+    if(type.find("<a href")!=std::string::npos){
+        return type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1);
+    }
+
+    return type;
+}
+
 void type_generator(){
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text=r.text;
@@ -86,21 +115,45 @@ void type_generator(){
     for(const auto& nm : typeTelegram.names){
         out=out+"struct "+nm.name+";\n";
     }
+    out=out+"\n";
     for(const auto& nm : typeTelegram.names){
         out=out+"//"+nm.description+"\n";
         out=out+"struct "+nm.name+"{\n";
         for(const auto& pa: nm.n){
             out=out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
         }
-        out=out + "// Define a to_json method for the Person struct\n"
-                  "\tvoid to_json(json& j) const {\n\t\tj = json{";
-        for(const auto& pa: nm.n){
-            out=out +"{\""+pa.parameter+"\", "+pa.parameter+"},";
-        }
-        out=out+"};\n";
-        out=out+"\t}\n};\n\n";
+        out=out+"};\n\n";
     }
 
+    for(const auto& nm : typeTelegram.names){
+        out=out+"void from_json(const json& j, "+nm.name+"& name);\n";
+        out=out+"void to_json(const  json& j, "+nm.name+"& name);\n";
+    }
+    for(const auto& nm : typeTelegram.names){
+        out=out+"void from_json(const json& j, "+nm.name+"& name){\n";
+        for(const auto& pa: nm.n){
+            if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
+                out = out + "    std::vector<std::shared_ptr<" + normalize_type1(pa.name_type) + ">> p;\n";
+                out = out + "for(auto a:j.at(\"" + pa.parameter + "\").get<std::vector<" + normalize_type1(pa.name_type) +
+                      ">>()){\np.push_back(std::make_shared<" + normalize_type1(pa.name_type) + ">(a));\n"
+                                                                                                "    }";
+                out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
+                      " >(j.at(\"" + pa.parameter + "\").get<" +
+                      normalize_type1(pa.name_type) + ">());\n";
+            }else {
+                if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
+                    out = out + "\tname." + pa.parameter + "=std::make_shared<" + normalize_type1(pa.name_type) +
+                          " >(j.at(\"" + pa.parameter + "\").get<" +
+                          normalize_type1(pa.name_type) + ">());\n";
+                } else {
+                    out = out + "\tname." + pa.parameter + "=j.at(\"" + pa.parameter + "\").get<" +
+                          normalize_type1(pa.name_type) + ">();\n";
+                }
+            }
+        }
+        out=out+"}\n";
+        out=out+"void to_json(const json& j, "+nm.name+"& name){}\n";
+    }
     std::fstream outs{"../types_generator.cpp",std::fstream::out};
     outs<<out;
     outs.close();
