@@ -2205,9 +2205,9 @@ namespace ns {
     inline void to_json(json &j, GameHighScore &name);
 
     inline void from_json(const json &j, User &name) {
-        name.id = j.at("id").get<int>();
+        name.id = j.at("id").is_null();
         name.is_bot = j.at("is_bot").get<bool>();
-        name.first_name = j.at("first_name").get<std::string>();
+        name.first_name = j.value("first_name","");
         name.last_name = j.at("last_name").get<std::string>();
         name.username = j.at("username").get<std::string>();
         name.language_code = j.at("language_code").get<std::string>();

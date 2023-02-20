@@ -5,7 +5,6 @@
 #include <fstream>
 #include <algorithm>
 #include <functional>
-#include "types_generator.cpp"
 
 struct params{
     std::string parameter;
@@ -80,6 +79,35 @@ std::string normalize_type1(std::string type){
     return type;
 }
 
+std::string gets_default(std::string type){
+    if(type.find("Integer")!=std::string::npos){
+        return "0";
+    }
+    if(type.find("Boolean")!=std::string::npos){
+        return "false";
+    }
+    if(type.find("String")!=std::string::npos){
+        return "\"\"";
+    }
+    if(type.find("Float")!=std::string::npos){
+        return "0";
+    }
+    if(type.find("True")!=std::string::npos){
+        return "false";
+    }
+    if(type.find("False")!=std::string::npos){
+        return "false";
+    }
+    if(type.find("Array")!=std::string::npos){
+        return "std::vector<std::shared_ptr<"+type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1)+">>()";
+    }
+    if(type.find("<a href")!=std::string::npos){
+        return "nullptr";
+    }
+
+    return type;
+}
+
 void type_generator(){
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text=r.text;
@@ -135,8 +163,8 @@ void type_generator(){
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
                 out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n";
-                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
-                      ">()){\n\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t}\n";
+                out = out + "\tfor(auto a:j.value(\"" + pa.parameter + "\"," + gets_default(pa.name_type) +
+                      "){\n\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t}\n";
                 out = out + "\tname." + pa.parameter + "="+pa.parameter+";\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
