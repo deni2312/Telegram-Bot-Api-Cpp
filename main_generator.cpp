@@ -224,7 +224,7 @@ int main(int argc, char** argv) {
         std::string description=types.substr(types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))+3, types.find("</p>",types.find("<i class=\"anchor-icon\"></i></a>"))-types.find("<p>",types.find("<i class=\"anchor-icon\"></i></a>"))-3);
         name = name.substr(0, name.find("<"));
         line.description=description;
-        if(description.find("Use this method")!=std::string::npos || description.find("Informs")!=std::string::npos || description.find("A simple method")!=std::string::npos) {
+        if(description.find("Use this method")!=std::string::npos || description.find("Informs")!=std::string::npos) {
             line.name = name;
             std::string tbody = types.substr(types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")), types.find("</tbody>",types.find("<i class=\"anchor-icon\"></i></a>")) - types.find("<tbody>",types.find("<i class=\"anchor-icon\"></i></a>")));
             while (tbody.find("<tr>") != std::string::npos) {
@@ -262,14 +262,17 @@ int main(int argc, char** argv) {
         });
     }
     std::string out="";
-    out=out+"#include <string>\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
+
     for(const auto& nm : typeTelegram.names){
-        out=out+"//"+nm.description+"\n";
-        out=out+"struct "+nm.name+"{\n";
-        for(int i=0;i<nm.n.size();i++){
-            out=out + "\t"+nm.n.at(i).name_type+" "+nm.n.at(i).parameter+" ;\n";
+        out=out+"// "+nm.description+"\n";
+        if(nm.name.find("get")==std::string::npos) {
+            out = out + "void " + nm.name + "(";
         }
-        out=out+"};\n\n";
+        for(int i=0;i<nm.n.size();i++){
+            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter+" ,";
+        }
+        out=out+");\n\n";
     }
     std::fstream outs{"../methods_generator.cpp",std::fstream::out};
     outs<<out;
