@@ -9,6 +9,7 @@
 struct params{
     std::string parameter;
     std::string name_type;
+    std::string return_type;
 };
 
 struct type{
@@ -231,12 +232,13 @@ int main(int argc, char** argv) {
                 std::string param = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
                 tr.erase(tr.find("<td>"), 1);
                 tr.erase(tr.find("</td>"), 1);
+                std::string return_typ = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
                 tr.erase(tr.find("<td>"), 1);
                 tr.erase(tr.find("</td>"), 1);
                 std::string typ = tr.substr(tr.find("<td>") + 4, tr.find("</td>") - tr.find("<td>") - 4);
                 tbody.erase(tbody.find("<tr>"), 1);
                 tbody.erase(tbody.find("</tr>"), 1);
-                line.n.push_back({param,typ});
+                line.n.push_back({param,typ,return_typ});
             }
             typeTelegram.names.push_back(line);
         }
