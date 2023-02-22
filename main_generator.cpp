@@ -270,7 +270,19 @@ int main(int argc, char** argv) {
         for(int i=0;i<nm.n.size();i++){
             out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?" ":" ,");
         }
-        out=out+");\n\n";
+        out=out+"){\n";
+        out = out + "\tjson payload; \n";
+        for(int i=0;i<nm.n.size();i++) {
+            if(normalize_type(nm.n.at(i).return_type).find("std::shared_ptr<")!=std::string::npos){
+                out=out+"\tjson j"+std::to_string(i)+";\n";
+                out=out+"\tto_json(j"+std::to_string(i)+",*"+nm.n.at(i).parameter+");\n";
+                out=out + "\tpayload[\""+nm.n.at(i).parameter+"\"] = j"+std::to_string(i)+";\n";
+            }else{
+                out=out + "\tpayload[\""+nm.n.at(i).parameter+"\"] = "+nm.n.at(i).parameter+";\n";
+            }
+        }
+        out=out+"\tpayload.dump();\n";
+        out=out+"}\n\n";
     }
     std::fstream outs{"../methods_generator.cpp",std::fstream::out};
     outs<<out;
