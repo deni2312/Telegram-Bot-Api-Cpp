@@ -274,7 +274,7 @@ int main(int argc, char** argv) {
         out = out + "\tjson payload; \n";
         for(int i=0;i<nm.n.size();i++) {
             if(normalize_type(nm.n.at(i).return_type).find("std::shared_ptr<")!=std::string::npos){
-                out=out+"\tjson j"+std::to_string(i)+";\n";
+                out=out+"\tjson j"+std::to_string(i)+";\n ";
                 out=out+"\tto_json(j"+std::to_string(i)+",*"+nm.n.at(i).parameter+");\n";
                 out=out + "\tpayload[\""+nm.n.at(i).parameter+"\"] = j"+std::to_string(i)+";\n";
             }else{
