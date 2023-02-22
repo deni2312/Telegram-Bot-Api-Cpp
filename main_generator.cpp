@@ -268,7 +268,7 @@ int main(int argc, char** argv) {
         out=out+"// "+nm.description+"\n";
         out = out + "void " + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
-            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?"":" ,");
+            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?" ":" ,");
         }
         out=out+");\n\n";
     }
