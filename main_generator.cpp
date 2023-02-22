@@ -262,15 +262,13 @@ int main(int argc, char** argv) {
         });
     }
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\nusing json = nlohmann::json;\n\n";
 
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
-        if(nm.name.find("get")==std::string::npos) {
-            out = out + "void " + nm.name + "(";
-        }
+        out = out + "void " + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
-            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter+" ,";
+            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?"":" ,");
         }
         out=out+");\n\n";
     }
