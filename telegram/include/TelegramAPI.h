@@ -21,7 +21,7 @@ namespace Telegram{
 			Connector() = delete;
 			Connector& operator=(const Connector& connector) = delete;
 			explicit Connector(std::string token);
-			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)>& func);
+			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Message&)>& func);
 			~Connector();
 		private:
 			std::queue<Json::Value> m_values;

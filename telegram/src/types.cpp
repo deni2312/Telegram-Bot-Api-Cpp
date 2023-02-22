@@ -55,27 +55,10 @@ inline void Telegram::Bot::Types::API::close(int chat_id ,std::string text ,std:
                               cpr::Header{{"Content-Type", "application/json"}});}
 
 // Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
-inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup ,bool allow_sending_without_reply ,int reply_to_message_id ,bool protect_content ,bool disable_notification ,bool disable_web_page_preview ,std::vector<std::shared_ptr<MessageEntity>> entities ,std::string parse_mode ,int message_thread_id ){
+inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text) const {
     json payload1;
     payload1["chat_id"] = chat_id;
     payload1["text"] = text;
-    json j2;
-    to_json(j2,*reply_markup);
-    payload1["reply_markup"] = j2;
-    payload1["allow_sending_without_reply"] = allow_sending_without_reply;
-    payload1["reply_to_message_id"] = reply_to_message_id;
-    payload1["protect_content"] = protect_content;
-    payload1["disable_notification"] = disable_notification;
-    payload1["disable_web_page_preview"] = disable_web_page_preview;
-    json j8=json::object();
-    for(auto a:entities){
-        json j9=json::object() ;
-        to_json(j9,*a);
-        j8.push_back( j9 );
-    }
-    payload1["entities"] = j8;
-    payload1["parse_mode"] = parse_mode;
-    payload1["message_thread_id"] = message_thread_id;
     auto result1=payload1.dump();
     auto response = cpr::Post(cpr::Url{generalToken+"/sendMessage"},
                               cpr::Body{result1},

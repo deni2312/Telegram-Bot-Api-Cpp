@@ -23,7 +23,7 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{ std::move(toke
         m_offset = parsed["result"][0]["update_id"].asInt64();
     }
 }
-void Telegram::Bot::Connector::callback(const std::function<void(const Telegram::Bot::Types::API&, const Telegram::Bot::Types::MessageReceive&)>& func)
+void Telegram::Bot::Connector::callback(const std::function<void(const Telegram::Bot::Types::API&, const Message&)>& func)
 {
     m_offset = 0;
     std::thread threadupdate;
@@ -34,7 +34,7 @@ void Telegram::Bot::Connector::callback(const std::function<void(const Telegram:
         auto size = m_values.size();
         m_block.unlock();
         if (size > 0) {
-            Json::Value values2;
+            Message values2;
             m_block.lock();
             values2 = std::move(m_values.front()["result"][0]);
             m_values.pop();

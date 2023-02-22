@@ -36,11 +36,7 @@ namespace Telegram{
                            int message_thread_id);
 
 // Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
-                void sendMessage(int chat_id, std::string text, std::shared_ptr<InlineKeyboardMarkup> reply_markup,
-                                 bool allow_sending_without_reply, int reply_to_message_id, bool protect_content,
-                                 bool disable_notification, bool disable_web_page_preview,
-                                 std::vector<std::shared_ptr<MessageEntity>> entities, std::string parse_mode,
-                                 int message_thread_id);
+                void sendMessage(int chat_id, std::string text) const;
 
 // Use this method to forward messages of any kind. Service messages can&#39;t be forwarded. On success, the sent <a href="#message">Message</a> is returned.
                 void forwardMessage(int chat_id, int from_chat_id, int message_id, bool protect_content,
