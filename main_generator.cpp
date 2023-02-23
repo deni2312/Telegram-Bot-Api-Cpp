@@ -261,28 +261,15 @@ int main(int argc, char** argv) {
             return true;
         });
     }
-    std::string out1="";
-    out1=out1+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\n#include <cpr/cpr.h>\nusing json = nlohmann::json;\n\n";
-    for(const auto& nm : typeTelegram.names){
-        out1=out1+"// "+nm.description+"\n";
-        out1 = out1 + "void " + nm.name + "(";
-        for(int i=0;i<nm.n.size();i++){
-            out1=out1 +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?" ":" ,");
-        }
-        out1=out1+");\n";
-    }
-    std::fstream outs{"../methods_generator.h",std::fstream::out};
-    outs<<out1;
-    outs.close();
     std::string out="";
-    out=out+" #include \" ../include/types.h \" \n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\n#include <cpr/cpr.h>\nusing json = nlohmann::json;\n\n";
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
         out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
             out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?" ":" ,");
         }
-        out=out+"){\n";
+        out=out+") const{\n";
         out = out + "\tjson payload1; \n";
         for(int i=0;i<nm.n.size();i++) {
             if(normalize_type(nm.n.at(i).return_type).find("std::vector<")!=std::string::npos) {
@@ -302,7 +289,7 @@ int main(int argc, char** argv) {
         out=out+"\tauto result1=payload1.dump();\n";
         out=out+"auto response = cpr::Post(cpr::Url{generalToken+\"/"+nm.name+"\"},\n"
                 "                              cpr::Body{result1},\n"
-                "                              cpr::Header{{\"Content-Type\", \"application/json\"}});";
+                "                              cpr::Header{{\"Content-Type\", \"application/json\"}});\n";
         out=out+"}\n\n";
     }
     std::fstream outs1{"../methods_generator.cpp",std::fstream::out};
