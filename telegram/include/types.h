@@ -24,10 +24,10 @@ inline void Telegram::Bot::Types::API::logOut(int chat_id ,std::string text ,std
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -53,10 +53,10 @@ inline void Telegram::Bot::Types::API::close(int chat_id ,std::string text ,std:
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -82,10 +82,10 @@ inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -127,10 +127,10 @@ inline void Telegram::Bot::Types::API::copyMessage(int chat_id ,int from_chat_id
 	payload1["chat_id"] = chat_id;
 	payload1["from_chat_id"] = from_chat_id;
 	payload1["message_id"] = message_id;
-	json j3;
+if(reply_markup!=nullptr){	json j3;
  	to_json(j3,*reply_markup);
 	payload1["reply_markup"] = j3;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -156,10 +156,10 @@ inline void Telegram::Bot::Types::API::sendPhoto(int chat_id ,std::string photo 
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["photo"] = photo;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -186,10 +186,10 @@ inline void Telegram::Bot::Types::API::sendAudio(int chat_id ,std::string audio 
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["audio"] = audio;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -219,10 +219,10 @@ inline void Telegram::Bot::Types::API::sendDocument(int chat_id ,std::string doc
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["document"] = document;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -250,10 +250,10 @@ inline void Telegram::Bot::Types::API::sendVideo(int chat_id ,std::string video 
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["video"] = video;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -285,10 +285,10 @@ inline void Telegram::Bot::Types::API::sendAnimation(int chat_id ,std::string an
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["animation"] = animation;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -319,10 +319,10 @@ inline void Telegram::Bot::Types::API::sendVoice(int chat_id ,std::string voice 
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["voice"] = voice;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -349,10 +349,10 @@ inline void Telegram::Bot::Types::API::sendVideoNote(int chat_id ,std::string vi
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["video_note"] = video_note;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -395,10 +395,10 @@ inline void Telegram::Bot::Types::API::sendLocation(int chat_id ,float latitude 
 	payload1["chat_id"] = chat_id;
 	payload1["latitude"] = latitude;
 	payload1["longitude"] = longitude;
-	json j3;
+if(reply_markup!=nullptr){	json j3;
  	to_json(j3,*reply_markup);
 	payload1["reply_markup"] = j3;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -418,10 +418,10 @@ inline void Telegram::Bot::Types::API::editMessageLiveLocation(float latitude ,f
 	json payload1; 
 	payload1["latitude"] = latitude;
 	payload1["longitude"] = longitude;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["proximity_alert_radius"] = proximity_alert_radius;
+}	payload1["proximity_alert_radius"] = proximity_alert_radius;
 	payload1["heading"] = heading;
 	payload1["horizontal_accuracy"] = horizontal_accuracy;
 	payload1["inline_message_id"] = inline_message_id;
@@ -436,10 +436,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageLiveLocation"},
 // Use this method to stop updating a live location message before <em>live_period</em> expires. On success, if the message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
 inline void Telegram::Bot::Types::API::stopMessageLiveLocation(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
-	json j0;
+if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
 	payload1["reply_markup"] = j0;
-	payload1["inline_message_id"] = inline_message_id;
+}	payload1["inline_message_id"] = inline_message_id;
 	payload1["message_id"] = message_id;
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -456,10 +456,10 @@ inline void Telegram::Bot::Types::API::sendVenue(int chat_id ,float latitude ,fl
 	payload1["longitude"] = longitude;
 	payload1["title"] = title;
 	payload1["address"] = address;
-	json j5;
+if(reply_markup!=nullptr){	json j5;
  	to_json(j5,*reply_markup);
 	payload1["reply_markup"] = j5;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -480,10 +480,10 @@ inline void Telegram::Bot::Types::API::sendContact(int chat_id ,std::string phon
 	payload1["chat_id"] = chat_id;
 	payload1["phone_number"] = phone_number;
 	payload1["first_name"] = first_name;
-	json j3;
+if(reply_markup!=nullptr){	json j3;
  	to_json(j3,*reply_markup);
 	payload1["reply_markup"] = j3;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -502,10 +502,10 @@ inline void Telegram::Bot::Types::API::sendPoll(int chat_id ,std::string questio
 	payload1["chat_id"] = chat_id;
 	payload1["question"] = question;
 	payload1["options"] = options;
-	json j3;
+if(reply_markup!=nullptr){	json j3;
  	to_json(j3,*reply_markup);
 	payload1["reply_markup"] = j3;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -537,10 +537,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendPoll"},
 inline void Telegram::Bot::Types::API::sendDice(int chat_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string emoji="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
-	json j1;
+if(reply_markup!=nullptr){	json j1;
  	to_json(j1,*reply_markup);
 	payload1["reply_markup"] = j1;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -616,10 +616,10 @@ inline void Telegram::Bot::Types::API::restrictChatMember(int chat_id ,int user_
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
-	json j2;
+if(permissions!=nullptr){	json j2;
  	to_json(j2,*permissions);
 	payload1["permissions"] = j2;
-	payload1["until_date"] = until_date;
+}	payload1["until_date"] = until_date;
 	payload1["use_independent_chat_permissions"] = use_independent_chat_permissions;
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/restrictChatMember"},
@@ -688,10 +688,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unbanChatSenderChat"},
 inline void Telegram::Bot::Types::API::setChatPermissions(int chat_id ,std::shared_ptr<ChatPermissions> permissions ,bool use_independent_chat_permissions=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
-	json j1;
+if(permissions!=nullptr){	json j1;
  	to_json(j1,*permissions);
 	payload1["permissions"] = j1;
-	payload1["use_independent_chat_permissions"] = use_independent_chat_permissions;
+}	payload1["use_independent_chat_permissions"] = use_independent_chat_permissions;
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setChatPermissions"},
                               cpr::Body{result1},
@@ -774,10 +774,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/declineChatJoinRequest"},
 inline void Telegram::Bot::Types::API::setChatPhoto(int chat_id ,std::shared_ptr<InputFile> photo ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
-	json j1;
+if(photo!=nullptr){	json j1;
  	to_json(j1,*photo);
 	payload1["photo"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setChatPhoto"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1080,10 +1080,10 @@ inline void Telegram::Bot::Types::API::setMyCommands(std::vector<std::shared_ptr
 	payload1["commands"] = j0;
 	}
 	payload1["language_code"] = language_code;
-	json j2;
+if(scope!=nullptr){	json j2;
  	to_json(j2,*scope);
 	payload1["scope"] = j2;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setMyCommands"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1093,10 +1093,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setMyCommands"},
 inline void Telegram::Bot::Types::API::deleteMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	payload1["language_code"] = language_code;
-	json j1;
+if(scope!=nullptr){	json j1;
  	to_json(j1,*scope);
 	payload1["scope"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/deleteMyCommands"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1106,10 +1106,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteMyCommands"},
 inline void Telegram::Bot::Types::API::getMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	payload1["language_code"] = language_code;
-	json j1;
+if(scope!=nullptr){	json j1;
  	to_json(j1,*scope);
 	payload1["scope"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/getMyCommands"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1118,10 +1118,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getMyCommands"},
 // Use this method to change the bot&#39;s menu button in a private chat, or the default menu button. Returns <em>True</em> on success.
 inline void Telegram::Bot::Types::API::setChatMenuButton(std::shared_ptr<MenuButton> menu_button=nullptr ,int chat_id=0 ) const{
 	json payload1; 
-	json j0;
+if(menu_button!=nullptr){	json j0;
  	to_json(j0,*menu_button);
 	payload1["menu_button"] = j0;
-	payload1["chat_id"] = chat_id;
+}	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setChatMenuButton"},
                               cpr::Body{result1},
@@ -1142,10 +1142,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatMenuButton"},
 inline void Telegram::Bot::Types::API::setMyDefaultAdministratorRights(bool for_channels=false ,std::shared_ptr<ChatAdministratorRights> rights=nullptr ) const{
 	json payload1; 
 	payload1["for_channels"] = for_channels;
-	json j1;
+if(rights!=nullptr){	json j1;
  	to_json(j1,*rights);
 	payload1["rights"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setMyDefaultAdministratorRights"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1165,10 +1165,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getMyDefaultAdministratorRight
 inline void Telegram::Bot::Types::API::editMessageText(std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 	payload1["text"] = text;
-	json j1;
+if(reply_markup!=nullptr){	json j1;
  	to_json(j1,*reply_markup);
 	payload1["reply_markup"] = j1;
-	payload1["disable_web_page_preview"] = disable_web_page_preview;
+}	payload1["disable_web_page_preview"] = disable_web_page_preview;
 	json j3=json::object();
  if(!entities.empty()){	for(auto a:entities){
 		json j4=json::object() ; 
@@ -1190,10 +1190,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageText"},
 // Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
 inline void Telegram::Bot::Types::API::editMessageCaption(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
-	json j0;
+if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
 	payload1["reply_markup"] = j0;
-	json j1=json::object();
+}	json j1=json::object();
  if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j2=json::object() ; 
 		to_json(j2,*a);
@@ -1215,13 +1215,13 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageCaption"},
 // Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
 inline void Telegram::Bot::Types::API::editMessageMedia(std::shared_ptr<InputMedia> media ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
-	json j0;
+if(media!=nullptr){	json j0;
  	to_json(j0,*media);
 	payload1["media"] = j0;
-	json j1;
+}if(reply_markup!=nullptr){	json j1;
  	to_json(j1,*reply_markup);
 	payload1["reply_markup"] = j1;
-	payload1["inline_message_id"] = inline_message_id;
+}	payload1["inline_message_id"] = inline_message_id;
 	payload1["message_id"] = message_id;
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1233,10 +1233,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageMedia"},
 // Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
 inline void Telegram::Bot::Types::API::editMessageReplyMarkup(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
-	json j0;
+if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
 	payload1["reply_markup"] = j0;
-	payload1["inline_message_id"] = inline_message_id;
+}	payload1["inline_message_id"] = inline_message_id;
 	payload1["message_id"] = message_id;
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1250,10 +1250,10 @@ inline void Telegram::Bot::Types::API::stopPoll(int chat_id ,int message_id ,std
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_id"] = message_id;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/stopPoll"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1275,10 +1275,10 @@ inline void Telegram::Bot::Types::API::sendSticker(int chat_id ,std::string stic
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["sticker"] = sticker;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -1313,10 +1313,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getCustomEmojiStickers"},
 inline void Telegram::Bot::Types::API::uploadStickerFile(int user_id ,std::shared_ptr<InputFile> png_sticker ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
-	json j1;
+if(png_sticker!=nullptr){	json j1;
  	to_json(j1,*png_sticker);
 	payload1["png_sticker"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/uploadStickerFile"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1329,17 +1329,17 @@ inline void Telegram::Bot::Types::API::createNewStickerSet(int user_id ,std::str
 	payload1["name"] = name;
 	payload1["title"] = title;
 	payload1["emojis"] = emojis;
-	json j4;
+if(mask_position!=nullptr){	json j4;
  	to_json(j4,*mask_position);
 	payload1["mask_position"] = j4;
-	payload1["sticker_type"] = sticker_type;
-	json j6;
+}	payload1["sticker_type"] = sticker_type;
+if(webm_sticker!=nullptr){	json j6;
  	to_json(j6,*webm_sticker);
 	payload1["webm_sticker"] = j6;
-	json j7;
+}if(tgs_sticker!=nullptr){	json j7;
  	to_json(j7,*tgs_sticker);
 	payload1["tgs_sticker"] = j7;
-	payload1["png_sticker"] = png_sticker;
+}	payload1["png_sticker"] = png_sticker;
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/createNewStickerSet"},
                               cpr::Body{result1},
@@ -1352,16 +1352,16 @@ inline void Telegram::Bot::Types::API::addStickerToSet(int user_id ,std::string 
 	payload1["user_id"] = user_id;
 	payload1["name"] = name;
 	payload1["emojis"] = emojis;
-	json j3;
+if(mask_position!=nullptr){	json j3;
  	to_json(j3,*mask_position);
 	payload1["mask_position"] = j3;
-	json j4;
+}if(webm_sticker!=nullptr){	json j4;
  	to_json(j4,*webm_sticker);
 	payload1["webm_sticker"] = j4;
-	json j5;
+}if(tgs_sticker!=nullptr){	json j5;
  	to_json(j5,*tgs_sticker);
 	payload1["tgs_sticker"] = j5;
-	payload1["png_sticker"] = png_sticker;
+}	payload1["png_sticker"] = png_sticker;
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/addStickerToSet"},
                               cpr::Body{result1},
@@ -1428,10 +1428,10 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerInlineQuery"},
 inline void Telegram::Bot::Types::API::answerWebAppQuery(std::string web_app_query_id ,std::shared_ptr<InlineQueryResult> result ) const{
 	json payload1; 
 	payload1["web_app_query_id"] = web_app_query_id;
-	json j1;
+if(result!=nullptr){	json j1;
  	to_json(j1,*result);
 	payload1["result"] = j1;
-	auto result1=payload1.dump();
+}	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/answerWebAppQuery"},
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});
@@ -1454,10 +1454,10 @@ inline void Telegram::Bot::Types::API::sendInvoice(int chat_id ,std::string titl
 	}
 	payload1["prices"] = j6;
 	}
-	json j7;
+if(reply_markup!=nullptr){	json j7;
  	to_json(j7,*reply_markup);
 	payload1["reply_markup"] = j7;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
@@ -1574,10 +1574,10 @@ inline void Telegram::Bot::Types::API::sendGame(int chat_id ,std::string game_sh
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["game_short_name"] = game_short_name;
-	json j2;
+if(reply_markup!=nullptr){	json j2;
  	to_json(j2,*reply_markup);
 	payload1["reply_markup"] = j2;
-	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
+}	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;

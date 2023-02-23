@@ -13,8 +13,10 @@
 #include <queue>
 
 #include "types.h"
-#include "network/Network.h"
+#include "../include/network/HTTPrequest.h"
+
 #include <iostream>
+
 
 namespace Telegram{
 	namespace Bot {
