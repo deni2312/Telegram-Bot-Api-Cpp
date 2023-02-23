@@ -267,7 +267,13 @@ int main(int argc, char** argv) {
         out=out+"// "+nm.description+"\n";
         out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
-            out=out +normalize_type(nm.n.at(i).return_type)+" "+nm.n.at(i).parameter + ((i==nm.n.size()-1)?" ":" ,");
+            if(nm.n.at(i).name_type=="Yes") {
+                out = out + normalize_type(nm.n.at(i).return_type) + " " + nm.n.at(i).parameter +
+                      ((i == nm.n.size() - 1) ? " " : " ,");
+            }else{
+                out = out + normalize_type(nm.n.at(i).return_type) + " " + nm.n.at(i).parameter +
+                      "="+gets_default(nm.n.at(i).return_type)+((i == nm.n.size() - 1) ? " " : " ,");
+            }
         }
         out=out+") const{\n";
         out = out + "\tjson payload1; \n";
