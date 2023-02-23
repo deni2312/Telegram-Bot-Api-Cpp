@@ -43,8 +43,7 @@ namespace Telegram{
                         m_offset = parsed["result"][0]["update_id"];
                         m_block.lock();
                         Message message;
-                        from_json(parsed["result"][0],message);
-                        std::cout<<message.message_id;
+                        from_json(parsed["result"][0]["message"],message);
                         m_values.push(std::move(message));
                         m_block.unlock();
                     }
