@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include <iostream>
 namespace ns {
     using json = nlohmann::json;
 
@@ -2308,6 +2309,7 @@ namespace ns {
     }
 
     inline void from_json(const json &j, Message &name) {
+        std::cout<<"b";
         name.message_id = j.contains("message_id") ? j.at("message_id").get<int>() : 0;
         name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
         name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;

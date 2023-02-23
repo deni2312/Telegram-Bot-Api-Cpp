@@ -45,24 +45,3 @@ void Telegram::Bot::Connector::callback(const std::function<void(const Telegram:
 }
 
 Telegram::Bot::Connector::~Connector() = default;
-void Telegram::Bot::Connector::update()
-{
-    while (1) {
-        JSONCPP_STRING err;
-        nlohmann::json parsed;
-        std::string readBuffer;
-        std::string aghl;
-        aghl = "/getUpdates?offset=" + std::to_string(m_offset + 1);
-        readBuffer = m_request->sendHttp(aghl).asString();
-        parsed=nlohmann::json::object();
-        parsed=nlohmann::json::parse(readBuffer);
-        if (parsed["ok"] == "true" && !parsed["result"][0]["update_id"].empty()) {
-            m_offset = parsed["result"][0]["update_id"];
-            m_block.lock();
-            Message message;
-
-            m_values.push(std::move(parsed));
-            m_block.unlock();
-        }
-    }
-}
