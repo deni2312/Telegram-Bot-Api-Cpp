@@ -36,15 +36,9 @@ void Telegram::Bot::Connector::callback(const std::function<void(const Telegram:
         if (size > 0) {
             Message values2;
             m_block.lock();
-            values2 = std::move(m_values.front()["result"][0]);
+            values2 = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            if (values2["message"].isNull()) {
-                values2 = std::move(values2["inline_query"]);
-            }
-            else {
-                values2 = std::move(values2["message"]);
-            }
             func(*m_api, values2);
         }
     }
@@ -55,17 +49,18 @@ void Telegram::Bot::Connector::update()
 {
     while (1) {
         JSONCPP_STRING err;
-        Json::Value parsed;
+        nlohmann::json parsed;
         std::string readBuffer;
         std::string aghl;
         aghl = "/getUpdates?offset=" + std::to_string(m_offset + 1);
         readBuffer = m_request->sendHttp(aghl).asString();
-        Json::CharReaderBuilder builder;
-        const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
-        reader->parse(readBuffer.c_str(), readBuffer.c_str() + readBuffer.length(), &parsed, &err);
-        if (parsed["ok"].asString() == "true" && !parsed["result"][0]["update_id"].asString().empty()) {
-            m_offset = parsed["result"][0]["update_id"].asInt64();
+        parsed=nlohmann::json::object();
+        parsed=nlohmann::json::parse(readBuffer);
+        if (parsed["ok"] == "true" && !parsed["result"][0]["update_id"].empty()) {
+            m_offset = parsed["result"][0]["update_id"];
             m_block.lock();
+            Message message;
+
             m_values.push(std::move(parsed));
             m_block.unlock();
         }

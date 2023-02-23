@@ -24,7 +24,7 @@ namespace Telegram{
 			void callback(const std::function<void(const Telegram::Bot::Types::API&, const Message&)>& func);
 			~Connector();
 		private:
-			std::queue<Json::Value> m_values;
+			std::queue<Message> m_values;
 			std::string m_token;
 			long long int m_offset;
 			std::mutex m_block;

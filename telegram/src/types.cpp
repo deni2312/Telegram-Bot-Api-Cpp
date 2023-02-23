@@ -54,16 +54,6 @@ inline void Telegram::Bot::Types::API::close(int chat_id ,std::string text ,std:
                               cpr::Body{result1},
                               cpr::Header{{"Content-Type", "application/json"}});}
 
-// Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
-inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text) const {
-    json payload1;
-    payload1["chat_id"] = chat_id;
-    payload1["text"] = text;
-    auto result1=payload1.dump();
-    auto response = cpr::Post(cpr::Url{generalToken+"/sendMessage"},
-                              cpr::Body{result1},
-                              cpr::Header{{"Content-Type", "application/json"}});}
-
 // Use this method to forward messages of any kind. Service messages can&#39;t be forwarded. On success, the sent <a href="#message">Message</a> is returned.
 inline void Telegram::Bot::Types::API::forwardMessage(int chat_id ,int from_chat_id ,int message_id ,bool protect_content ,bool disable_notification ,int message_thread_id ){
     json payload1;
