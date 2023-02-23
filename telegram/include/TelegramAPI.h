@@ -13,6 +13,8 @@
 #include <queue>
 
 #include "types.h"
+#include "network/Network.h"
+#include <iostream>
 
 namespace Telegram{
 	namespace Bot {
@@ -31,7 +33,6 @@ namespace Telegram{
 			std::shared_ptr<Telegram::Bot::Types::API> m_api;
 			inline void update(){
                 while (1) {
-                    JSONCPP_STRING err;
                     nlohmann::json parsed;
                     std::string readBuffer;
                     std::string aghl;

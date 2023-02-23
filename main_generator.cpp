@@ -195,7 +195,7 @@ void type_generator(){
         }
         out=out+"}\n";
     }
-    std::fstream outs{"../types_generator.cpp",std::fstream::out};
+    std::fstream outs{"../telegram/include/types_generator.h",std::fstream::out};
     outs<<out;
     outs.close();
 }
@@ -262,7 +262,20 @@ int main(int argc, char** argv) {
         });
     }
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\n#include <cpr/cpr.h>\nusing json = nlohmann::json;\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\n#include <cpr/cpr.h>\n#include \"network/Network.h\"\nusing json = nlohmann::json;\n\n";
+    out=out+"namespace Telegram{\n"
+            "\tnamespace Bot{\n"
+            "\t\tnamespace Types {\n"
+            "#ifndef _WIN32\n"
+            "            using __int64 = int64_t;\n"
+            "#endif\n"
+            "            using json = nlohmann::json;\n"
+            "\n"
+            "            class API {\n"
+            "            public:\n"
+            "\n"
+            "                API(std::string link, std::shared_ptr<Network> &request) : generalToken(link),\n"
+            "                                                                                  request{request} {};";
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
         out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
@@ -298,7 +311,16 @@ int main(int argc, char** argv) {
                 "                              cpr::Header{{\"Content-Type\", \"application/json\"}});\n";
         out=out+"}\n\n";
     }
-    std::fstream outs1{"../methods_generator.cpp",std::fstream::out};
+    out=out+"\n"
+            "                ~API() {};\n"
+            "            private:\n"
+            "                std::shared_ptr<Network> &request;\n"
+            "                std::string generalToken = \"\";\n"
+            "            };\n"
+            "        }\n"
+            "    }\n"
+            "}";
+    std::fstream outs1{"../telegram/include/types.h",std::fstream::out};
     outs1<<out;
     outs1.close();
     return 0;

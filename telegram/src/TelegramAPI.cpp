@@ -1,6 +1,7 @@
 #include <utility>
 
 #include "../include/TelegramAPI.h"
+#include "../include/network/HTTPrequest.h"
 
 inline size_t WriteaCallback(char* contents, size_t size, size_t nmemb, void* userp)
 {
