@@ -33,12 +33,13 @@ inline void Telegram::Bot::Types::API::logOut(int chat_id ,std::string text ,std
 	payload1["disable_notification"] = disable_notification;
 	payload1["disable_web_page_preview"] = disable_web_page_preview;
 	json j8=json::object();
- 	for(auto a:entities){
+ if(!entities.empty()){	for(auto a:entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["message_thread_id"] = message_thread_id;
 	auto result1=payload1.dump();
@@ -61,12 +62,13 @@ inline void Telegram::Bot::Types::API::close(int chat_id ,std::string text ,std:
 	payload1["disable_notification"] = disable_notification;
 	payload1["disable_web_page_preview"] = disable_web_page_preview;
 	json j8=json::object();
- 	for(auto a:entities){
+ if(!entities.empty()){	for(auto a:entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["message_thread_id"] = message_thread_id;
 	auto result1=payload1.dump();
@@ -89,12 +91,13 @@ inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text
 	payload1["disable_notification"] = disable_notification;
 	payload1["disable_web_page_preview"] = disable_web_page_preview;
 	json j8=json::object();
- 	for(auto a:entities){
+ if(!entities.empty()){	for(auto a:entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["message_thread_id"] = message_thread_id;
 	auto result1=payload1.dump();
@@ -132,12 +135,13 @@ inline void Telegram::Bot::Types::API::copyMessage(int chat_id ,int from_chat_id
 	payload1["protect_content"] = protect_content;
 	payload1["disable_notification"] = disable_notification;
 	json j8=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["caption_entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["message_thread_id"] = message_thread_id;
@@ -161,12 +165,13 @@ inline void Telegram::Bot::Types::API::sendPhoto(int chat_id ,std::string photo 
 	payload1["disable_notification"] = disable_notification;
 	payload1["has_spoiler"] = has_spoiler;
 	json j8=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["caption_entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["message_thread_id"] = message_thread_id;
@@ -193,12 +198,13 @@ inline void Telegram::Bot::Types::API::sendAudio(int chat_id ,std::string audio 
 	payload1["performer"] = performer;
 	payload1["duration"] = duration;
 	json j11=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j12=json::object() ; 
 		to_json(j12,*a);
 		j11.push_back( j12 );
 	}
 	payload1["caption_entities"] = j11;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["message_thread_id"] = message_thread_id;
@@ -222,12 +228,13 @@ inline void Telegram::Bot::Types::API::sendDocument(int chat_id ,std::string doc
 	payload1["disable_notification"] = disable_notification;
 	payload1["disable_content_type_detection"] = disable_content_type_detection;
 	json j8=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["caption_entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["thumb"] = thumb;
@@ -253,12 +260,13 @@ inline void Telegram::Bot::Types::API::sendVideo(int chat_id ,std::string video 
 	payload1["supports_streaming"] = supports_streaming;
 	payload1["has_spoiler"] = has_spoiler;
 	json j9=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j10=json::object() ; 
 		to_json(j10,*a);
 		j9.push_back( j10 );
 	}
 	payload1["caption_entities"] = j9;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["thumb"] = thumb;
@@ -286,12 +294,13 @@ inline void Telegram::Bot::Types::API::sendAnimation(int chat_id ,std::string an
 	payload1["disable_notification"] = disable_notification;
 	payload1["has_spoiler"] = has_spoiler;
 	json j8=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["caption_entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["thumb"] = thumb;
@@ -319,12 +328,13 @@ inline void Telegram::Bot::Types::API::sendVoice(int chat_id ,std::string voice 
 	payload1["disable_notification"] = disable_notification;
 	payload1["duration"] = duration;
 	json j8=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j9=json::object() ; 
 		to_json(j9,*a);
 		j8.push_back( j9 );
 	}
 	payload1["caption_entities"] = j8;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["message_thread_id"] = message_thread_id;
@@ -361,12 +371,13 @@ inline void Telegram::Bot::Types::API::sendMediaGroup(int chat_id ,std::vector<s
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	json j1=json::object();
- 	for(auto a:media){
+ if(!media.empty()){	for(auto a:media){
 		json j2=json::object() ; 
 		to_json(j2,*a);
 		j1.push_back( j2 );
 	}
 	payload1["media"] = j1;
+	}
 	payload1["allow_sending_without_reply"] = allow_sending_without_reply;
 	payload1["reply_to_message_id"] = reply_to_message_id;
 	payload1["protect_content"] = protect_content;
@@ -502,12 +513,13 @@ inline void Telegram::Bot::Types::API::sendPoll(int chat_id ,std::string questio
 	payload1["close_date"] = close_date;
 	payload1["open_period"] = open_period;
 	json j11=json::object();
- 	for(auto a:explanation_entities){
+ if(!explanation_entities.empty()){	for(auto a:explanation_entities){
 		json j12=json::object() ; 
 		to_json(j12,*a);
 		j11.push_back( j12 );
 	}
 	payload1["explanation_entities"] = j11;
+	}
 	payload1["explanation_parse_mode"] = explanation_parse_mode;
 	payload1["explanation"] = explanation;
 	payload1["correct_option_id"] = correct_option_id;
@@ -1060,12 +1072,13 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerCallbackQuery"},
 inline void Telegram::Bot::Types::API::setMyCommands(std::vector<std::shared_ptr<BotCommand>> commands ,std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	json j0=json::object();
- 	for(auto a:commands){
+ if(!commands.empty()){	for(auto a:commands){
 		json j1=json::object() ; 
 		to_json(j1,*a);
 		j0.push_back( j1 );
 	}
 	payload1["commands"] = j0;
+	}
 	payload1["language_code"] = language_code;
 	json j2;
  	to_json(j2,*scope);
@@ -1157,12 +1170,13 @@ inline void Telegram::Bot::Types::API::editMessageText(std::string text ,std::sh
 	payload1["reply_markup"] = j1;
 	payload1["disable_web_page_preview"] = disable_web_page_preview;
 	json j3=json::object();
- 	for(auto a:entities){
+ if(!entities.empty()){	for(auto a:entities){
 		json j4=json::object() ; 
 		to_json(j4,*a);
 		j3.push_back( j4 );
 	}
 	payload1["entities"] = j3;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["inline_message_id"] = inline_message_id;
 	payload1["message_id"] = message_id;
@@ -1180,12 +1194,13 @@ inline void Telegram::Bot::Types::API::editMessageCaption(std::shared_ptr<Inline
  	to_json(j0,*reply_markup);
 	payload1["reply_markup"] = j0;
 	json j1=json::object();
- 	for(auto a:caption_entities){
+ if(!caption_entities.empty()){	for(auto a:caption_entities){
 		json j2=json::object() ; 
 		to_json(j2,*a);
 		j1.push_back( j2 );
 	}
 	payload1["caption_entities"] = j1;
+	}
 	payload1["parse_mode"] = parse_mode;
 	payload1["caption"] = caption;
 	payload1["inline_message_id"] = inline_message_id;
@@ -1391,12 +1406,13 @@ inline void Telegram::Bot::Types::API::answerInlineQuery(std::string inline_quer
 	json payload1; 
 	payload1["inline_query_id"] = inline_query_id;
 	json j1=json::object();
- 	for(auto a:results){
+ if(!results.empty()){	for(auto a:results){
 		json j2=json::object() ; 
 		to_json(j2,*a);
 		j1.push_back( j2 );
 	}
 	payload1["results"] = j1;
+	}
 	payload1["switch_pm_parameter"] = switch_pm_parameter;
 	payload1["switch_pm_text"] = switch_pm_text;
 	payload1["next_offset"] = next_offset;
@@ -1431,12 +1447,13 @@ inline void Telegram::Bot::Types::API::sendInvoice(int chat_id ,std::string titl
 	payload1["provider_token"] = provider_token;
 	payload1["currency"] = currency;
 	json j6=json::object();
- 	for(auto a:prices){
+ if(!prices.empty()){	for(auto a:prices){
 		json j7=json::object() ; 
 		to_json(j7,*a);
 		j6.push_back( j7 );
 	}
 	payload1["prices"] = j6;
+	}
 	json j7;
  	to_json(j7,*reply_markup);
 	payload1["reply_markup"] = j7;
@@ -1475,12 +1492,13 @@ inline void Telegram::Bot::Types::API::createInvoiceLink(std::string title ,std:
 	payload1["provider_token"] = provider_token;
 	payload1["currency"] = currency;
 	json j5=json::object();
- 	for(auto a:prices){
+ if(!prices.empty()){	for(auto a:prices){
 		json j6=json::object() ; 
 		to_json(j6,*a);
 		j5.push_back( j6 );
 	}
 	payload1["prices"] = j5;
+	}
 	payload1["is_flexible"] = is_flexible;
 	payload1["send_email_to_provider"] = send_email_to_provider;
 	payload1["send_phone_number_to_provider"] = send_phone_number_to_provider;
@@ -1508,12 +1526,13 @@ inline void Telegram::Bot::Types::API::answerShippingQuery(std::string shipping_
 	payload1["ok"] = ok;
 	payload1["error_message"] = error_message;
 	json j3=json::object();
- 	for(auto a:shipping_options){
+ if(!shipping_options.empty()){	for(auto a:shipping_options){
 		json j4=json::object() ; 
 		to_json(j4,*a);
 		j3.push_back( j4 );
 	}
 	payload1["shipping_options"] = j3;
+	}
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/answerShippingQuery"},
                               cpr::Body{result1},
@@ -1537,12 +1556,13 @@ inline void Telegram::Bot::Types::API::setPassportDataErrors(int user_id ,std::v
 	json payload1; 
 	payload1["user_id"] = user_id;
 	json j1=json::object();
- 	for(auto a:errors){
+ if(!errors.empty()){	for(auto a:errors){
 		json j2=json::object() ; 
 		to_json(j2,*a);
 		j1.push_back( j2 );
 	}
 	payload1["errors"] = j1;
+	}
 	auto result1=payload1.dump();
 auto response = cpr::Post(cpr::Url{generalToken+"/setPassportDataErrors"},
                               cpr::Body{result1},

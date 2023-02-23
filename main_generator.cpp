@@ -292,9 +292,9 @@ int main(int argc, char** argv) {
         out = out + "\tjson payload1; \n";
         for(int i=0;i<nm.n.size();i++) {
             if(normalize_type(nm.n.at(i).return_type).find("std::vector<")!=std::string::npos) {
-                out = out + "\tjson j" + std::to_string(i) + "=json::object();\n ";
+                out = out + "\tjson j" + std::to_string(i) + "=json::object();\n if(!"+nm.n.at(i).parameter+".empty()){";
                 out = out + "\tfor(auto a:" + nm.n.at(i).parameter + "){\n\t\tjson j" + std::to_string(i+1) + "=json::object() ; \n\t\tto_json(j"+std::to_string(i+1)+",*a);\n\t\t"+"j"+std::to_string(i)+".push_back( j"+std::to_string(i+1 )+" );\n\t}\n";
-                out = out + "\tpayload1[\"" + nm.n.at(i).parameter + "\"] = j" + std::to_string(i) + ";\n";
+                out = out + "\tpayload1[\"" + nm.n.at(i).parameter + "\"] = j" + std::to_string(i) + ";\n\t}\n";
             }else {
                 if (normalize_type(nm.n.at(i).return_type).find("std::shared_ptr<") != std::string::npos) {
                     out = out + "\tjson j" + std::to_string(i) + ";\n ";
