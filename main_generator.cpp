@@ -156,51 +156,47 @@ void type_generator(){
     }
 
     for(const auto& nm : typeTelegram.names){
-        out=out+"void from_json(const json& j, "+nm.name+"& name);\n";
-        out=out+"void to_json(json&  j, "+nm.name+"& name);\n";
+        out=out+"inline void from_json(const json& j, "+nm.name+"& name);\n";
+        out=out+"inline void to_json(json&  j, "+nm.name+"& name);\n";
     }
-    std::fstream outs1{"../telegram/include/types_generator.h",std::fstream::out};
-    outs1<<out;
-    outs1.close();
-    std::string out1="";
     for(const auto& nm : typeTelegram.names){
-        out1=out1+"void from_json(const json& j, "+nm.name+"& name){\n";
+        out=out+"inline void from_json(const json& j, "+nm.name+"& name){\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
-                out1 = out1 + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n\tif(j.contains(\""+pa.parameter+"\")){\n";
-                out1 = out1 + "\t\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n\tif(j.contains(\""+pa.parameter+"\")){\n";
+                out = out + "\t\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
                       ">()){\n\t\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t\t}\n\t}\n";
-                out1 = out1 + "\tname." + pa.parameter + "="+pa.parameter+";\n";
+                out = out + "\tname." + pa.parameter + "="+pa.parameter+";\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    out1 = out1 + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?std::make_shared<" + normalize_type1(pa.name_type) +
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?std::make_shared<" + normalize_type1(pa.name_type) +
                           " >(j.at(\"" + pa.parameter + "\").get<" +
                           normalize_type1(pa.name_type) + ">()) : "+gets_default(pa.name_type)+" ;\n";
                 } else {
-                    out1 = out1 + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?j.at(\"" + pa.parameter + "\").get<" +
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?j.at(\"" + pa.parameter + "\").get<" +
                           normalize_type1(pa.name_type) + ">() : "+gets_default(pa.name_type)+" ;\n";
                 }
             }
         }
-        out1=out1+"}\n";
-        out1=out1+"void to_json(json& j,const "+nm.name+"& name){\n";
-        out1=out1+"\tj=json::object();\n";
+        out=out+"}\n";
+        out=out+"inline void to_json(json& j,const "+nm.name+"& name){\n";
+        out=out+"\tj=json::object();\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector") != std::string::npos) {
-                out1 = out1 + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
                       ">()){\n\t\tauto u=json::object();\n\t\tto_json(u,a) ;\n\t\tj[\""+pa.parameter+"\"].push_back(u);\n\t}\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    out1 = out1 + "\tto_json(j[\"" + pa.parameter + "\"],*name . " + pa.parameter + ");\n";
+                    out = out + "\tto_json(j[\"" + pa.parameter + "\"],*name . " + pa.parameter + ");\n";
                 } else {
-                    out1 = out1 + "\tj [\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
+                    out = out + "\tj [\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
                 }
             }
         }
-        out1=out1+"}\n";
+        out=out+"}\n";
     }
-    std::fstream outs{"../telegram/include/types_generator.cpp",std::fstream::out};
-    outs<<out1;
+    std::fstream outs{"../telegram/include/types_generator.h",std::fstream::out};
+    outs<<out;
     outs.close();
 }
 
