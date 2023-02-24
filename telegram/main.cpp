@@ -1,8 +1,10 @@
 ﻿#include <iostream>
 
 #include "include/TelegramAPI.h"
-inline void sendSomething(const Telegram::Bot::Types::API& api, const Message& message) {
+
+void sendSomething(const Telegram::Bot::Types::API& api, const Message& message) {
 	try {
+        api.sendMessage(message.chat->id,"A");
     }
 	catch (Telegram::Bot::Types::Error& error) {
 		std::cerr << error.what();
