@@ -680,21 +680,29 @@ namespace Telegram {
                 }
 
 // Use this method to get a list of profile pictures for a user. Returns a <a href="#userprofilephotos">UserProfilePhotos</a> object.
-                inline void getUserProfilePhotos(int user_id, int limit = 0, int offset = 0) const {
+                inline UserProfilePhotos getUserProfilePhotos(int user_id, int limit = 0, int offset = 0) const {
                     json payload1;
                     payload1["user_id"] = user_id;
                     payload1["limit"] = limit;
                     payload1["offset"] = offset;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getUserProfilePhotos", result1);
+                    UserProfilePhotos u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <a href="#file">File</a> object is returned. The file can then be downloaded via the link <code>https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;</code>, where <code>&lt;file_path&gt;</code> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling <a href="#getfile">getFile</a> again.
-                inline void getFile(std::string file_id) const {
+                inline File getFile(std::string file_id) const {
                     json payload1;
                     payload1["file_id"] = file_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getFile", result1);
+                    File u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless <a href="#unbanchatmember">unbanned</a> first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
@@ -944,36 +952,54 @@ namespace Telegram {
                 }
 
 // Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a <a href="#chat">Chat</a> object on success.
-                inline void getChat(int chat_id) const {
+                inline Chat getChat(int chat_id) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChat", result1);
+                    Chat u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to get a list of administrators in a chat, which aren&#39;t bots. Returns an Array of <a href="#chatmember">ChatMember</a> objects.
-                inline void getChatAdministrators(int chat_id) const {
+                inline std::vector<ChatMember> getChatAdministrators(int chat_id) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatAdministrators", result1);
+                    std::vector<ChatMember> u;
+                    auto response_u = json::parse(response);
+                    for (const auto &a: response_u) {
+                        ChatMember u2;
+                        from_json(a, u2);
+                        u.push_back(u2);
+                    }
+                    return u;
                 }
 
 // Use this method to get the number of members in a chat. Returns <em>Int</em> on success.
-                inline void getChatMemberCount(int chat_id) const {
+                inline int getChatMemberCount(int chat_id) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMemberCount", result1);
+                    auto response_u = json::parse(response);
+                    return response_u;
                 }
 
 // Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a <a href="#chatmember">ChatMember</a> object on success.
-                inline void getChatMember(int chat_id, int user_id) const {
+                inline ChatMember getChatMember(int chat_id, int user_id) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     payload1["user_id"] = user_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMember", result1);
+                    ChatMember u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field <em>can_set_sticker_set</em> optionally returned in <a href="#getchat">getChat</a> requests to check if the bot can use this method. Returns <em>True</em> on success.
@@ -1187,11 +1213,15 @@ namespace Telegram {
                 }
 
 // Use this method to get the current value of the bot&#39;s menu button in a private chat, or the default menu button. Returns <a href="#menubutton">MenuButton</a> on success.
-                inline void getChatMenuButton(int chat_id = 0) const {
+                inline MenuButton getChatMenuButton(int chat_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMenuButton", result1);
+                    MenuButton u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to change the default administrator rights requested by the bot when it&#39;s added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns <em>True</em> on success.
@@ -1209,11 +1239,15 @@ namespace Telegram {
                 }
 
 // Use this method to get the current default administrator rights of the bot. Returns <a href="#chatadministratorrights">ChatAdministratorRights</a> on success.
-                inline void getMyDefaultAdministratorRights(bool for_channels = false) const {
+                inline ChatAdministratorRights getMyDefaultAdministratorRights(bool for_channels = false) const {
                     json payload1;
                     payload1["for_channels"] = for_channels;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getMyDefaultAdministratorRights", result1);
+                    ChatAdministratorRights u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to edit text and <a href="#games">game</a> messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
@@ -1366,19 +1400,31 @@ namespace Telegram {
                 }
 
 // Use this method to get a sticker set. On success, a <a href="#stickerset">StickerSet</a> object is returned.
-                inline void getStickerSet(std::string name) const {
+                inline StickerSet getStickerSet(std::string name) const {
                     json payload1;
                     payload1["name"] = name;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getStickerSet", result1);
+                    StickerSet u;
+                    auto response_u = json::parse(response);
+                    from_json(response_u, u);
+                    return u;
                 }
 
 // Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of <a href="#sticker">Sticker</a> objects.
-                inline void getCustomEmojiStickers(std::string custom_emoji_ids) const {
+                inline std::vector<Sticker> getCustomEmojiStickers(std::string custom_emoji_ids) const {
                     json payload1;
                     payload1["custom_emoji_ids"] = custom_emoji_ids;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getCustomEmojiStickers", result1);
+                    std::vector<Sticker> u;
+                    auto response_u = json::parse(response);
+                    for (const auto &a: response_u) {
+                        Sticker u2;
+                        from_json(a, u2);
+                        u.push_back(u2);
+                    }
+                    return u;
                 }
 
 // Use this method to upload a .PNG file with a sticker for later use in <em>createNewStickerSet</em> and <em>addStickerToSet</em> methods (can be used multiple times). Returns the uploaded <a href="#file">File</a> on success.
@@ -1714,8 +1760,9 @@ namespace Telegram {
                 }
 
 // Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of <a href="#gamehighscore">GameHighScore</a> objects.
-                inline void getGameHighScores(int user_id, std::string inline_message_id = "", int message_id = 0,
-                                              int chat_id = 0) const {
+                inline std::vector<GameHighScore>
+                getGameHighScores(int user_id, std::string inline_message_id = "", int message_id = 0,
+                                  int chat_id = 0) const {
                     json payload1;
                     payload1["user_id"] = user_id;
                     payload1["inline_message_id"] = inline_message_id;
@@ -1723,6 +1770,14 @@ namespace Telegram {
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getGameHighScores", result1);
+                    std::vector<GameHighScore> u;
+                    auto response_u = json::parse(response);
+                    for (const auto &a: response_u) {
+                        GameHighScore u2;
+                        from_json(a, u2);
+                        u.push_back(u2);
+                    }
+                    return u;
                 }
 
 
