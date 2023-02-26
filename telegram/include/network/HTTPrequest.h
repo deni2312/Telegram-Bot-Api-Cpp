@@ -19,7 +19,8 @@ namespace Telegram {
 
                 const std::string sendHttp(const std::string &query, const std::string &body, bool json = true);
 
-                const std::string sendFile(const std::string &query, const std::string &type, const std::string &path,
+                const std::string sendFile(const std::string &query, const std::string &body, const MediaType &type,
+                                           const std::string &path = "",
                                            const std::string &thumb = "", const std::string &thumbpath = "");
 
                 const std::string

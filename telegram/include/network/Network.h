@@ -4,6 +4,9 @@
 #include <vector>
 
 namespace Telegram {
+    enum MediaType {
+        PHOTO, VIDEO, DOCUMENT
+    };
     namespace Bot {
         namespace Types {
             class Network {
@@ -12,7 +15,8 @@ namespace Telegram {
                 sendHttp(const std::string &query, const std::string &body, bool json = true) = 0;
 
                 const virtual std::string
-                sendFile(const std::string &query, const std::string &type, const std::string &path,
+                sendFile(const std::string &query, const std::string &body, const MediaType &type,
+                         const std::string &path = "",
                          const std::string &thumb = "", const std::string &thumbpath = "") = 0;
 
                 const virtual std::string sendMultiFile(const std::string &query, const std::string &type,
