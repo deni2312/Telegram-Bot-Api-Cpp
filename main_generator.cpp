@@ -80,6 +80,14 @@ std::string normalize_type1(std::string type){
     return type;
 }
 
+std::string gets_include(std::string type){
+    if(type.find("<a href")!=std::string::npos){
+        return type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1);
+    }
+
+    return "";
+}
+
 std::string gets_default(std::string type){
     if(type.find("Integer")!=std::string::npos){
         return "0";
@@ -141,18 +149,25 @@ void type_generator(){
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
-    for(const auto& nm : typeTelegram.names){
-        out=out+"struct "+nm.name+";\n";
-    }
+    out=out+"#pragma once\n#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
     out=out+"\n";
     for(const auto& nm : typeTelegram.names){
-        out=out+"//"+nm.description+"\n";
-        out=out+"struct "+nm.name+"{\n";
+        std::string local_out="";
+        std::string include_out="";
         for(const auto& pa: nm.n){
-            out=out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
+            if(gets_include(pa.name_type)!=""){
+                include_out=include_out+"#include \""+gets_include(pa.name_type)+".h\"\n";
+            }
         }
-        out=out+"};\n\n";
+        local_out=out+include_out+"//"+nm.description+"\n";
+        local_out=local_out+"struct "+nm.name+"{\n";
+        for(const auto& pa: nm.n){
+            local_out=local_out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
+        }
+        local_out=local_out+"};\n\n";
+        std::fstream outs{"../telegram/include/types/"+nm.name+".h",std::fstream::out};
+        outs<<local_out;
+        outs.close();
     }
 
     for(const auto& nm : typeTelegram.names){
@@ -195,9 +210,6 @@ void type_generator(){
         }
         out=out+"}\n";
     }
-    std::fstream outs{"../telegram/include/types_generator.h",std::fstream::out};
-    outs<<out;
-    outs.close();
 }
 
 void mySort(std::vector<params>& vec, std::function<bool(const params&, const params&)> comparator) {
@@ -279,7 +291,9 @@ int main(int argc, char** argv) {
             "                                                                                  request{request} {};";
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
-        out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
+        if(nm.name.find("get")==std::string::npos) {
+            out = out + "inline void " + nm.name + "(";
+        }
         for(int i=0;i<nm.n.size();i++){
             if(nm.n.at(i).name_type=="Yes") {
                 out = out + normalize_type(nm.n.at(i).return_type) + " " + nm.n.at(i).parameter +
