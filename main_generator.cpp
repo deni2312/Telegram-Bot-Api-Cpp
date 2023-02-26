@@ -341,9 +341,7 @@ int main(int argc, char **argv) {
             }
         }
         out = out + "\tauto result1=payload1.dump();\n";
-        out = out + "auto response = cpr::Post(cpr::Url{generalToken+\"/" + nm.name + "\"},\n"
-                                                                                      "                              cpr::Body{result1},\n"
-                                                                                      "                              cpr::Header{{\"Content-Type\", \"application/json\"}});\n";
+        out = out + "auto response = sendHttp(\"/" + nm.name + "\",result1);\n";
         out = out + "}\n\n";
     }
     out = out + "\n"
