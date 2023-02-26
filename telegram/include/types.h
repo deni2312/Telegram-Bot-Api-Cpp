@@ -2,157 +2,11 @@
 #include <memory>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include "types_generator.h"
 #include <cpr/cpr.h>
 #include "network/Network.h"
 using json = nlohmann::json;
 
-#include "types/Animation.h"
-#include "types/Audio.h"
-#include "types/BotCommand.h"
-#include "types/BotCommandScope.h"
-#include "types/BotCommandScopeAllChatAdministrators.h"
-#include "types/BotCommandScopeAllGroupChats.h"
-#include "types/BotCommandScopeAllPrivateChats.h"
-#include "types/BotCommandScopeChat.h"
-#include "types/BotCommandScopeChatAdministrators.h"
-#include "types/BotCommandScopeChatMember.h"
-#include "types/BotCommandScopeDefault.h"
-#include "types/CallbackGame.h"
-#include "types/CallbackQuery.h"
-#include "types/Chat.h"
-#include "types/ChatAdministratorRights.h"
-#include "types/ChatInviteLink.h"
-#include "types/ChatJoinRequest.h"
-#include "types/ChatLocation.h"
-#include "types/ChatMember.h"
-#include "types/ChatMemberAdministrator.h"
-#include "types/ChatMemberBanned.h"
-#include "types/ChatMemberLeft.h"
-#include "types/ChatMemberMember.h"
-#include "types/ChatMemberOwner.h"
-#include "types/ChatMemberRestricted.h"
-#include "types/ChatMemberUpdated.h"
-#include "types/ChatPermissions.h"
-#include "types/ChatPhoto.h"
-#include "types/ChatShared.h"
-#include "types/ChosenInlineResult.h"
-#include "types/Contact.h"
-#include "types/definitions.h"
-#include "types/Dice.h"
-#include "types/Document.h"
-#include "types/EncryptedCredentials.h"
-#include "types/EncryptedPassportElement.h"
-#include "types/File.h"
-#include "types/ForceReply.h"
-#include "types/ForumTopic.h"
-#include "types/ForumTopicClosed.h"
-#include "types/ForumTopicCreated.h"
-#include "types/ForumTopicEdited.h"
-#include "types/ForumTopicReopened.h"
-#include "types/Game.h"
-#include "types/GameHighScore.h"
-#include "types/Games.h"
-#include "types/GeneralForumTopicHidden.h"
-#include "types/GeneralForumTopicUnhidden.h"
-#include "types/InlineKeyboardButton.h"
-#include "types/InlineKeyboardMarkup.h"
-#include "types/InlineQuery.h"
-#include "types/InlineQueryResult.h"
-#include "types/InlineQueryResultArticle.h"
-#include "types/InlineQueryResultAudio.h"
-#include "types/InlineQueryResultCachedAudio.h"
-#include "types/InlineQueryResultCachedDocument.h"
-#include "types/InlineQueryResultCachedGif.h"
-#include "types/InlineQueryResultCachedMpeg4Gif.h"
-#include "types/InlineQueryResultCachedPhoto.h"
-#include "types/InlineQueryResultCachedSticker.h"
-#include "types/InlineQueryResultCachedVideo.h"
-#include "types/InlineQueryResultCachedVoice.h"
-#include "types/InlineQueryResultContact.h"
-#include "types/InlineQueryResultDocument.h"
-#include "types/InlineQueryResultGame.h"
-#include "types/InlineQueryResultGif.h"
-#include "types/InlineQueryResultLocation.h"
-#include "types/InlineQueryResultMpeg4Gif.h"
-#include "types/InlineQueryResultPhoto.h"
-#include "types/InlineQueryResultVenue.h"
-#include "types/InlineQueryResultVideo.h"
-#include "types/InlineQueryResultVoice.h"
-#include "types/InputContactMessageContent.h"
-#include "types/InputFile.h"
-#include "types/InputInvoiceMessageContent.h"
-#include "types/InputLocationMessageContent.h"
-#include "types/InputMedia.h"
-#include "types/InputMediaAnimation.h"
-#include "types/InputMediaAudio.h"
-#include "types/InputMediaDocument.h"
-#include "types/InputMediaPhoto.h"
-#include "types/InputMediaVideo.h"
-#include "types/InputMessageContent.h"
-#include "types/InputTextMessageContent.h"
-#include "types/InputVenueMessageContent.h"
-#include "types/Invoice.h"
-#include "types/KeyboardButton.h"
-#include "types/KeyboardButtonPollType.h"
-#include "types/KeyboardButtonRequestChat.h"
-#include "types/KeyboardButtonRequestUser.h"
-#include "types/LabeledPrice.h"
-#include "types/Location.h"
-#include "types/LoginUrl.h"
-#include "types/MaskPosition.h"
-#include "types/MenuButton.h"
-#include "types/MenuButtonCommands.h"
-#include "types/MenuButtonDefault.h"
-#include "types/MenuButtonWebApp.h"
-#include "types/Message.h"
-#include "types/MessageAutoDeleteTimerChanged.h"
-#include "types/MessageEntity.h"
-#include "types/MessageId.h"
-#include "types/OrderInfo.h"
-#include "types/PassportData.h"
-#include "types/PassportElementError.h"
-#include "types/PassportElementErrorDataField.h"
-#include "types/PassportElementErrorFile.h"
-#include "types/PassportElementErrorFiles.h"
-#include "types/PassportElementErrorFrontSide.h"
-#include "types/PassportElementErrorReverseSide.h"
-#include "types/PassportElementErrorSelfie.h"
-#include "types/PassportElementErrorTranslationFile.h"
-#include "types/PassportElementErrorTranslationFiles.h"
-#include "types/PassportElementErrorUnspecified.h"
-#include "types/PassportFile.h"
-#include "types/Payments.h"
-#include "types/PhotoSize.h"
-#include "types/Poll.h"
-#include "types/PollAnswer.h"
-#include "types/PollOption.h"
-#include "types/PreCheckoutQuery.h"
-#include "types/ProximityAlertTriggered.h"
-#include "types/ReplyKeyboardMarkup.h"
-#include "types/ReplyKeyboardRemove.h"
-#include "types/ResponseParameters.h"
-#include "types/SentWebAppMessage.h"
-#include "types/ShippingAddress.h"
-#include "types/ShippingOption.h"
-#include "types/ShippingQuery.h"
-#include "types/Sticker.h"
-#include "types/Stickers.h"
-#include "types/StickerSet.h"
-#include "types/SuccessfulPayment.h"
-#include "types/User.h"
-#include "types/UserProfilePhotos.h"
-#include "types/UserShared.h"
-#include "types/Venue.h"
-#include "types/Video.h"
-#include "types/VideoChatEnded.h"
-#include "types/VideoChatParticipantsInvited.h"
-#include "types/VideoChatScheduled.h"
-#include "types/VideoChatStarted.h"
-#include "types/VideoNote.h"
-#include "types/Voice.h"
-#include "types/WebAppData.h"
-#include "types/WebAppInfo.h"
-#include "types/WriteAccessAllowed.h"
 namespace Telegram{
 	namespace Bot{
 		namespace Types {
@@ -166,7 +20,7 @@ namespace Telegram{
 
                 API(std::string link, std::shared_ptr<Network> &request) : generalToken(link),
                                                                                   request{request} {};// Use this method to log out from the cloud Bot API server before launching the bot locally. You <strong>must</strong> log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns <em>True</em> on success. Requires no parameters.
-inline void logOut(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::logOut(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
@@ -195,7 +49,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/logOut"},
 }
 
 // Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn&#39;t launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns <em>True</em> on success. Requires no parameters.
-inline void close(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::close(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
@@ -224,7 +78,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/close"},
 }
 
 // Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendMessage(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendMessage(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["text"] = text;
@@ -253,7 +107,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendMessage"},
 }
 
 // Use this method to forward messages of any kind. Service messages can&#39;t be forwarded. On success, the sent <a href="#message">Message</a> is returned.
-inline void forwardMessage(int chat_id ,int from_chat_id ,int message_id ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::forwardMessage(int chat_id ,int from_chat_id ,int message_id ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["from_chat_id"] = from_chat_id;
@@ -268,7 +122,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/forwardMessage"},
 }
 
 // Use this method to copy messages of any kind. Service messages and invoice messages can&#39;t be copied. A quiz <a href="#poll">poll</a> can be copied only if the value of the field <em>correct_option_id</em> is known to the bot. The method is analogous to the method <a href="#forwardmessage">forwardMessage</a>, but the copied message doesn&#39;t have a link to the original message. Returns the <a href="#messageid">MessageId</a> of the sent message on success.
-inline void copyMessage(int chat_id ,int from_chat_id ,int message_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::copyMessage(int chat_id ,int from_chat_id ,int message_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["from_chat_id"] = from_chat_id;
@@ -298,7 +152,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/copyMessage"},
 }
 
 // Use this method to send photos. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendPhoto(int chat_id ,std::string photo ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendPhoto(int chat_id ,std::string photo ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["photo"] = photo;
@@ -328,7 +182,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendPhoto"},
 }
 
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-inline void sendAudio(int chat_id ,std::string audio ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string thumb="" ,std::string title="" ,std::string performer="" ,int duration=0 ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendAudio(int chat_id ,std::string audio ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string thumb="" ,std::string title="" ,std::string performer="" ,int duration=0 ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["audio"] = audio;
@@ -361,7 +215,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendAudio"},
 }
 
 // Use this method to send general files. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-inline void sendDocument(int chat_id ,std::string document ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_content_type_detection=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendDocument(int chat_id ,std::string document ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_content_type_detection=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["document"] = document;
@@ -392,7 +246,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendDocument"},
 }
 
 // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-inline void sendVideo(int chat_id ,std::string video ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool supports_streaming=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int height=0 ,int width=0 ,int duration=0 ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendVideo(int chat_id ,std::string video ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool supports_streaming=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int height=0 ,int width=0 ,int duration=0 ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["video"] = video;
@@ -427,7 +281,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendVideo"},
 }
 
 // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-inline void sendAnimation(int chat_id ,std::string animation ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int height=0 ,int width=0 ,int duration=0 ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendAnimation(int chat_id ,std::string animation ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool has_spoiler=false ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string thumb="" ,int height=0 ,int width=0 ,int duration=0 ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["animation"] = animation;
@@ -461,7 +315,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendAnimation"},
 }
 
 // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as <a href="#audio">Audio</a> or <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-inline void sendVoice(int chat_id ,std::string voice ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int duration=0 ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendVoice(int chat_id ,std::string voice ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int duration=0 ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["voice"] = voice;
@@ -491,7 +345,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendVoice"},
 }
 
 // As of <a href="https://telegram.org/blog/video-messages-and-telescope">v.4.0</a>, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendVideoNote(int chat_id ,std::string video_note ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string thumb="" ,int length=0 ,int duration=0 ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendVideoNote(int chat_id ,std::string video_note ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string thumb="" ,int length=0 ,int duration=0 ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["video_note"] = video_note;
@@ -513,7 +367,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendVideoNote"},
 }
 
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of <a href="#message">Messages</a> that were sent is returned.
-inline void sendMediaGroup(int chat_id ,std::vector<std::shared_ptr<InputMediaAudio>> media ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendMediaGroup(int chat_id ,std::vector<std::shared_ptr<InputMediaAudio>> media ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	json j1=json::object();
@@ -536,7 +390,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendMediaGroup"},
 }
 
 // Use this method to send point on the map. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendLocation(int chat_id ,float latitude ,float longitude ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int proximity_alert_radius=0 ,int heading=0 ,int live_period=0 ,float horizontal_accuracy=0 ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendLocation(int chat_id ,float latitude ,float longitude ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int proximity_alert_radius=0 ,int heading=0 ,int live_period=0 ,float horizontal_accuracy=0 ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["latitude"] = latitude;
@@ -560,7 +414,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendLocation"},
 }
 
 // Use this method to edit live location messages. A location can be edited until its <em>live_period</em> expires or editing is explicitly disabled by a call to <a href="#stopmessagelivelocation">stopMessageLiveLocation</a>. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void editMessageLiveLocation(float latitude ,float longitude ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,int proximity_alert_radius=0 ,int heading=0 ,float horizontal_accuracy=0 ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::editMessageLiveLocation(float latitude ,float longitude ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,int proximity_alert_radius=0 ,int heading=0 ,float horizontal_accuracy=0 ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 	payload1["latitude"] = latitude;
 	payload1["longitude"] = longitude;
@@ -580,7 +434,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageLiveLocation"},
 }
 
 // Use this method to stop updating a live location message before <em>live_period</em> expires. On success, if the message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void stopMessageLiveLocation(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::stopMessageLiveLocation(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
@@ -595,7 +449,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/stopMessageLiveLocation"},
 }
 
 // Use this method to send information about a venue. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendVenue(int chat_id ,float latitude ,float longitude ,std::string title ,std::string address ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string google_place_type="" ,std::string google_place_id="" ,std::string foursquare_type="" ,std::string foursquare_id="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendVenue(int chat_id ,float latitude ,float longitude ,std::string title ,std::string address ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string google_place_type="" ,std::string google_place_id="" ,std::string foursquare_type="" ,std::string foursquare_id="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["latitude"] = latitude;
@@ -621,7 +475,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendVenue"},
 }
 
 // Use this method to send phone contacts. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendContact(int chat_id ,std::string phone_number ,std::string first_name ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string vcard="" ,std::string last_name="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendContact(int chat_id ,std::string phone_number ,std::string first_name ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string vcard="" ,std::string last_name="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["phone_number"] = phone_number;
@@ -643,7 +497,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendContact"},
 }
 
 // Use this method to send a native poll. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendPoll(int chat_id ,std::string question ,std::string options ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool is_closed=false ,int close_date=0 ,int open_period=0 ,std::vector<std::shared_ptr<MessageEntity>> explanation_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string explanation_parse_mode="" ,std::string explanation="" ,int correct_option_id=0 ,bool allows_multiple_answers=false ,std::string type="" ,bool is_anonymous=false ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendPoll(int chat_id ,std::string question ,std::string options ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool is_closed=false ,int close_date=0 ,int open_period=0 ,std::vector<std::shared_ptr<MessageEntity>> explanation_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string explanation_parse_mode="" ,std::string explanation="" ,int correct_option_id=0 ,bool allows_multiple_answers=false ,std::string type="" ,bool is_anonymous=false ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["question"] = question;
@@ -680,7 +534,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendPoll"},
 }
 
 // Use this method to send an animated emoji that will display a random value. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendDice(int chat_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string emoji="" ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendDice(int chat_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,std::string emoji="" ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 if(reply_markup!=nullptr){	json j1;
@@ -699,7 +553,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendDice"},
 }
 
 // Use this method when you need to tell the user that something is happening on the bot&#39;s side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns <em>True</em> on success.
-inline void sendChatAction(int chat_id ,std::string action ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendChatAction(int chat_id ,std::string action ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["action"] = action;
@@ -711,7 +565,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendChatAction"},
 }
 
 // Use this method to get a list of profile pictures for a user. Returns a <a href="#userprofilephotos">UserProfilePhotos</a> object.
-inline void getUserProfilePhotos(int user_id ,int limit=0 ,int offset=0 ) const{
+inline void Telegram::Bot::Types::API::getUserProfilePhotos(int user_id ,int limit=0 ,int offset=0 ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["limit"] = limit;
@@ -723,7 +577,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getUserProfilePhotos"},
 }
 
 // Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <a href="#file">File</a> object is returned. The file can then be downloaded via the link <code>https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;</code>, where <code>&lt;file_path&gt;</code> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling <a href="#getfile">getFile</a> again.
-inline void getFile(std::string file_id ) const{
+inline void Telegram::Bot::Types::API::getFile(std::string file_id ) const{
 	json payload1; 
 	payload1["file_id"] = file_id;
 	auto result1=payload1.dump();
@@ -733,7 +587,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getFile"},
 }
 
 // Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless <a href="#unbanchatmember">unbanned</a> first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void banChatMember(int chat_id ,int user_id ,bool revoke_messages=false ,int until_date=0 ) const{
+inline void Telegram::Bot::Types::API::banChatMember(int chat_id ,int user_id ,bool revoke_messages=false ,int until_date=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -746,7 +600,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/banChatMember"},
 }
 
 // Use this method to unban a previously banned user in a supergroup or channel. The user will <strong>not</strong> return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be <strong>removed</strong> from the chat. If you don&#39;t want this, use the parameter <em>only_if_banned</em>. Returns <em>True</em> on success.
-inline void unbanChatMember(int chat_id ,int user_id ,bool only_if_banned=false ) const{
+inline void Telegram::Bot::Types::API::unbanChatMember(int chat_id ,int user_id ,bool only_if_banned=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -758,7 +612,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unbanChatMember"},
 }
 
 // Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass <em>True</em> for all permissions to lift restrictions from a user. Returns <em>True</em> on success.
-inline void restrictChatMember(int chat_id ,int user_id ,std::shared_ptr<ChatPermissions> permissions ,int until_date=0 ,bool use_independent_chat_permissions=false ) const{
+inline void Telegram::Bot::Types::API::restrictChatMember(int chat_id ,int user_id ,std::shared_ptr<ChatPermissions> permissions ,int until_date=0 ,bool use_independent_chat_permissions=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -774,7 +628,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/restrictChatMember"},
 }
 
 // Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass <em>False</em> for all boolean parameters to demote a user. Returns <em>True</em> on success.
-inline void promoteChatMember(int chat_id ,int user_id ,bool can_manage_topics=false ,bool can_pin_messages=false ,bool can_invite_users=false ,bool can_change_info=false ,bool can_promote_members=false ,bool can_restrict_members=false ,bool can_manage_video_chats=false ,bool can_delete_messages=false ,bool can_edit_messages=false ,bool can_post_messages=false ,bool can_manage_chat=false ,bool is_anonymous=false ) const{
+inline void Telegram::Bot::Types::API::promoteChatMember(int chat_id ,int user_id ,bool can_manage_topics=false ,bool can_pin_messages=false ,bool can_invite_users=false ,bool can_change_info=false ,bool can_promote_members=false ,bool can_restrict_members=false ,bool can_manage_video_chats=false ,bool can_delete_messages=false ,bool can_edit_messages=false ,bool can_post_messages=false ,bool can_manage_chat=false ,bool is_anonymous=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -797,7 +651,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/promoteChatMember"},
 }
 
 // Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns <em>True</em> on success.
-inline void setChatAdministratorCustomTitle(int chat_id ,int user_id ,std::string custom_title ) const{
+inline void Telegram::Bot::Types::API::setChatAdministratorCustomTitle(int chat_id ,int user_id ,std::string custom_title ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -809,7 +663,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatAdministratorCustomTitl
 }
 
 // Use this method to ban a channel chat in a supergroup or a channel. Until the chat is <a href="#unbanchatsenderchat">unbanned</a>, the owner of the banned chat won&#39;t be able to send messages on behalf of <strong>any of their channels</strong>. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void banChatSenderChat(int chat_id ,int sender_chat_id ) const{
+inline void Telegram::Bot::Types::API::banChatSenderChat(int chat_id ,int sender_chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["sender_chat_id"] = sender_chat_id;
@@ -820,7 +674,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/banChatSenderChat"},
 }
 
 // Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void unbanChatSenderChat(int chat_id ,int sender_chat_id ) const{
+inline void Telegram::Bot::Types::API::unbanChatSenderChat(int chat_id ,int sender_chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["sender_chat_id"] = sender_chat_id;
@@ -831,7 +685,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unbanChatSenderChat"},
 }
 
 // Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the <em>can_restrict_members</em> administrator rights. Returns <em>True</em> on success.
-inline void setChatPermissions(int chat_id ,std::shared_ptr<ChatPermissions> permissions ,bool use_independent_chat_permissions=false ) const{
+inline void Telegram::Bot::Types::API::setChatPermissions(int chat_id ,std::shared_ptr<ChatPermissions> permissions ,bool use_independent_chat_permissions=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 if(permissions!=nullptr){	json j1;
@@ -845,7 +699,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatPermissions"},
 }
 
 // Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as <em>String</em> on success.
-inline void exportChatInviteLink(int chat_id ) const{
+inline void Telegram::Bot::Types::API::exportChatInviteLink(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -855,7 +709,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/exportChatInviteLink"},
 }
 
 // Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method <a href="#revokechatinvitelink">revokeChatInviteLink</a>. Returns the new invite link as <a href="#chatinvitelink">ChatInviteLink</a> object.
-inline void createChatInviteLink(int chat_id ,bool creates_join_request=false ,int member_limit=0 ,int expire_date=0 ,std::string name="" ) const{
+inline void Telegram::Bot::Types::API::createChatInviteLink(int chat_id ,bool creates_join_request=false ,int member_limit=0 ,int expire_date=0 ,std::string name="" ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["creates_join_request"] = creates_join_request;
@@ -869,7 +723,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/createChatInviteLink"},
 }
 
 // Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a <a href="#chatinvitelink">ChatInviteLink</a> object.
-inline void editChatInviteLink(int chat_id ,std::string invite_link ,bool creates_join_request=false ,int member_limit=0 ,int expire_date=0 ,std::string name="" ) const{
+inline void Telegram::Bot::Types::API::editChatInviteLink(int chat_id ,std::string invite_link ,bool creates_join_request=false ,int member_limit=0 ,int expire_date=0 ,std::string name="" ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["invite_link"] = invite_link;
@@ -884,7 +738,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editChatInviteLink"},
 }
 
 // Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as <a href="#chatinvitelink">ChatInviteLink</a> object.
-inline void revokeChatInviteLink(int chat_id ,std::string invite_link ) const{
+inline void Telegram::Bot::Types::API::revokeChatInviteLink(int chat_id ,std::string invite_link ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["invite_link"] = invite_link;
@@ -895,7 +749,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/revokeChatInviteLink"},
 }
 
 // Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the <em>can_invite_users</em> administrator right. Returns <em>True</em> on success.
-inline void approveChatJoinRequest(int chat_id ,int user_id ) const{
+inline void Telegram::Bot::Types::API::approveChatJoinRequest(int chat_id ,int user_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -906,7 +760,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/approveChatJoinRequest"},
 }
 
 // Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the <em>can_invite_users</em> administrator right. Returns <em>True</em> on success.
-inline void declineChatJoinRequest(int chat_id ,int user_id ) const{
+inline void Telegram::Bot::Types::API::declineChatJoinRequest(int chat_id ,int user_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -917,7 +771,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/declineChatJoinRequest"},
 }
 
 // Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void setChatPhoto(int chat_id ,std::shared_ptr<InputFile> photo ) const{
+inline void Telegram::Bot::Types::API::setChatPhoto(int chat_id ,std::shared_ptr<InputFile> photo ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 if(photo!=nullptr){	json j1;
@@ -930,7 +784,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatPhoto"},
 }
 
 // Use this method to delete a chat photo. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void deleteChatPhoto(int chat_id ) const{
+inline void Telegram::Bot::Types::API::deleteChatPhoto(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -940,7 +794,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteChatPhoto"},
 }
 
 // Use this method to change the title of a chat. Titles can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void setChatTitle(int chat_id ,std::string title ) const{
+inline void Telegram::Bot::Types::API::setChatTitle(int chat_id ,std::string title ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["title"] = title;
@@ -951,7 +805,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatTitle"},
 }
 
 // Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns <em>True</em> on success.
-inline void setChatDescription(int chat_id ,std::string description="" ) const{
+inline void Telegram::Bot::Types::API::setChatDescription(int chat_id ,std::string description="" ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["description"] = description;
@@ -962,7 +816,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatDescription"},
 }
 
 // Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-inline void pinChatMessage(int chat_id ,int message_id ,bool disable_notification=false ) const{
+inline void Telegram::Bot::Types::API::pinChatMessage(int chat_id ,int message_id ,bool disable_notification=false ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_id"] = message_id;
@@ -974,7 +828,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/pinChatMessage"},
 }
 
 // Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-inline void unpinChatMessage(int chat_id ,int message_id=0 ) const{
+inline void Telegram::Bot::Types::API::unpinChatMessage(int chat_id ,int message_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_id"] = message_id;
@@ -985,7 +839,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unpinChatMessage"},
 }
 
 // Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the &#39;can_pin_messages&#39; administrator right in a supergroup or &#39;can_edit_messages&#39; administrator right in a channel. Returns <em>True</em> on success.
-inline void unpinAllChatMessages(int chat_id ) const{
+inline void Telegram::Bot::Types::API::unpinAllChatMessages(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -995,7 +849,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unpinAllChatMessages"},
 }
 
 // Use this method for your bot to leave a group, supergroup or channel. Returns <em>True</em> on success.
-inline void leaveChat(int chat_id ) const{
+inline void Telegram::Bot::Types::API::leaveChat(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1005,7 +859,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/leaveChat"},
 }
 
 // Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a <a href="#chat">Chat</a> object on success.
-inline void getChat(int chat_id ) const{
+inline void Telegram::Bot::Types::API::getChat(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1015,7 +869,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChat"},
 }
 
 // Use this method to get a list of administrators in a chat, which aren&#39;t bots. Returns an Array of <a href="#chatmember">ChatMember</a> objects.
-inline void getChatAdministrators(int chat_id ) const{
+inline void Telegram::Bot::Types::API::getChatAdministrators(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1025,7 +879,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatAdministrators"},
 }
 
 // Use this method to get the number of members in a chat. Returns <em>Int</em> on success.
-inline void getChatMemberCount(int chat_id ) const{
+inline void Telegram::Bot::Types::API::getChatMemberCount(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1035,7 +889,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatMemberCount"},
 }
 
 // Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a <a href="#chatmember">ChatMember</a> object on success.
-inline void getChatMember(int chat_id ,int user_id ) const{
+inline void Telegram::Bot::Types::API::getChatMember(int chat_id ,int user_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -1046,7 +900,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatMember"},
 }
 
 // Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field <em>can_set_sticker_set</em> optionally returned in <a href="#getchat">getChat</a> requests to check if the bot can use this method. Returns <em>True</em> on success.
-inline void setChatStickerSet(int chat_id ,std::string sticker_set_name ) const{
+inline void Telegram::Bot::Types::API::setChatStickerSet(int chat_id ,std::string sticker_set_name ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["sticker_set_name"] = sticker_set_name;
@@ -1057,7 +911,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatStickerSet"},
 }
 
 // Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field <em>can_set_sticker_set</em> optionally returned in <a href="#getchat">getChat</a> requests to check if the bot can use this method. Returns <em>True</em> on success.
-inline void deleteChatStickerSet(int chat_id ) const{
+inline void Telegram::Bot::Types::API::deleteChatStickerSet(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1067,7 +921,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteChatStickerSet"},
 }
 
 // Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of <a href="#sticker">Sticker</a> objects.
-inline void getForumTopicIconStickers(int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
+inline void Telegram::Bot::Types::API::getForumTopicIconStickers(int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["name"] = name;
@@ -1080,7 +934,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getForumTopicIconStickers"},
 }
 
 // Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns information about the created topic as a <a href="#forumtopic">ForumTopic</a> object.
-inline void createForumTopic(int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
+inline void Telegram::Bot::Types::API::createForumTopic(int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["name"] = name;
@@ -1093,7 +947,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/createForumTopic"},
 }
 
 // Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-inline void editForumTopic(int chat_id ,int message_thread_id ,std::string icon_custom_emoji_id="" ,std::string name="" ) const{
+inline void Telegram::Bot::Types::API::editForumTopic(int chat_id ,int message_thread_id ,std::string icon_custom_emoji_id="" ,std::string name="" ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_thread_id"] = message_thread_id;
@@ -1106,7 +960,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editForumTopic"},
 }
 
 // Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-inline void closeForumTopic(int chat_id ,int message_thread_id ) const{
+inline void Telegram::Bot::Types::API::closeForumTopic(int chat_id ,int message_thread_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_thread_id"] = message_thread_id;
@@ -1117,7 +971,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/closeForumTopic"},
 }
 
 // Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights, unless it is the creator of the topic. Returns <em>True</em> on success.
-inline void reopenForumTopic(int chat_id ,int message_thread_id ) const{
+inline void Telegram::Bot::Types::API::reopenForumTopic(int chat_id ,int message_thread_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_thread_id"] = message_thread_id;
@@ -1128,7 +982,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/reopenForumTopic"},
 }
 
 // Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_delete_messages</em> administrator rights. Returns <em>True</em> on success.
-inline void deleteForumTopic(int chat_id ,int message_thread_id ) const{
+inline void Telegram::Bot::Types::API::deleteForumTopic(int chat_id ,int message_thread_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_thread_id"] = message_thread_id;
@@ -1139,7 +993,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteForumTopic"},
 }
 
 // Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the <em>can_pin_messages</em> administrator right in the supergroup. Returns <em>True</em> on success.
-inline void unpinAllForumTopicMessages(int chat_id ,int message_thread_id ) const{
+inline void Telegram::Bot::Types::API::unpinAllForumTopicMessages(int chat_id ,int message_thread_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_thread_id"] = message_thread_id;
@@ -1150,7 +1004,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unpinAllForumTopicMessages"},
 }
 
 // Use this method to edit the name of the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-inline void editGeneralForumTopic(int chat_id ,std::string name ) const{
+inline void Telegram::Bot::Types::API::editGeneralForumTopic(int chat_id ,std::string name ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["name"] = name;
@@ -1161,7 +1015,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editGeneralForumTopic"},
 }
 
 // Use this method to close an open &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-inline void closeGeneralForumTopic(int chat_id ) const{
+inline void Telegram::Bot::Types::API::closeGeneralForumTopic(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1171,7 +1025,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/closeGeneralForumTopic"},
 }
 
 // Use this method to reopen a closed &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. The topic will be automatically unhidden if it was hidden. Returns <em>True</em> on success.
-inline void reopenGeneralForumTopic(int chat_id ) const{
+inline void Telegram::Bot::Types::API::reopenGeneralForumTopic(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1181,7 +1035,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/reopenGeneralForumTopic"},
 }
 
 // Use this method to hide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. The topic will be automatically closed if it was open. Returns <em>True</em> on success.
-inline void hideGeneralForumTopic(int chat_id ) const{
+inline void Telegram::Bot::Types::API::hideGeneralForumTopic(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1191,7 +1045,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/hideGeneralForumTopic"},
 }
 
 // Use this method to unhide the &#39;General&#39; topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the <em>can_manage_topics</em> administrator rights. Returns <em>True</em> on success.
-inline void unhideGeneralForumTopic(int chat_id ) const{
+inline void Telegram::Bot::Types::API::unhideGeneralForumTopic(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1201,7 +1055,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/unhideGeneralForumTopic"},
 }
 
 // Use this method to send answers to callback queries sent from <a href="/bots/features#inline-keyboards">inline keyboards</a>. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, <em>True</em> is returned.
-inline void answerCallbackQuery(std::string callback_query_id ,int cache_time=0 ,std::string url="" ,bool show_alert=false ,std::string text="" ) const{
+inline void Telegram::Bot::Types::API::answerCallbackQuery(std::string callback_query_id ,int cache_time=0 ,std::string url="" ,bool show_alert=false ,std::string text="" ) const{
 	json payload1; 
 	payload1["callback_query_id"] = callback_query_id;
 	payload1["cache_time"] = cache_time;
@@ -1215,7 +1069,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerCallbackQuery"},
 }
 
 // Use this method to change the list of the bot&#39;s commands. See <a href="/bots/features#commands">this manual</a> for more details about bot commands. Returns <em>True</em> on success.
-inline void setMyCommands(std::vector<std::shared_ptr<BotCommand>> commands ,std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
+inline void Telegram::Bot::Types::API::setMyCommands(std::vector<std::shared_ptr<BotCommand>> commands ,std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	json j0=json::object();
  if(!commands.empty()){	for(auto a:commands){
@@ -1236,7 +1090,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setMyCommands"},
 }
 
 // Use this method to delete the list of the bot&#39;s commands for the given scope and user language. After deletion, <a href="#determining-list-of-commands">higher level commands</a> will be shown to affected users. Returns <em>True</em> on success.
-inline void deleteMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
+inline void Telegram::Bot::Types::API::deleteMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	payload1["language_code"] = language_code;
 if(scope!=nullptr){	json j1;
@@ -1249,7 +1103,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteMyCommands"},
 }
 
 // Use this method to get the current list of the bot&#39;s commands for the given scope and user language. Returns an Array of <a href="#botcommand">BotCommand</a> objects. If commands aren&#39;t set, an empty list is returned.
-inline void getMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
+inline void Telegram::Bot::Types::API::getMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	payload1["language_code"] = language_code;
 if(scope!=nullptr){	json j1;
@@ -1262,7 +1116,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getMyCommands"},
 }
 
 // Use this method to change the bot&#39;s menu button in a private chat, or the default menu button. Returns <em>True</em> on success.
-inline void setChatMenuButton(std::shared_ptr<MenuButton> menu_button=nullptr ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::setChatMenuButton(std::shared_ptr<MenuButton> menu_button=nullptr ,int chat_id=0 ) const{
 	json payload1; 
 if(menu_button!=nullptr){	json j0;
  	to_json(j0,*menu_button);
@@ -1275,7 +1129,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatMenuButton"},
 }
 
 // Use this method to get the current value of the bot&#39;s menu button in a private chat, or the default menu button. Returns <a href="#menubutton">MenuButton</a> on success.
-inline void getChatMenuButton(int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::getChatMenuButton(int chat_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1285,7 +1139,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatMenuButton"},
 }
 
 // Use this method to change the default administrator rights requested by the bot when it&#39;s added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns <em>True</em> on success.
-inline void setMyDefaultAdministratorRights(bool for_channels=false ,std::shared_ptr<ChatAdministratorRights> rights=nullptr ) const{
+inline void Telegram::Bot::Types::API::setMyDefaultAdministratorRights(bool for_channels=false ,std::shared_ptr<ChatAdministratorRights> rights=nullptr ) const{
 	json payload1; 
 	payload1["for_channels"] = for_channels;
 if(rights!=nullptr){	json j1;
@@ -1298,7 +1152,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setMyDefaultAdministratorRight
 }
 
 // Use this method to get the current default administrator rights of the bot. Returns <a href="#chatadministratorrights">ChatAdministratorRights</a> on success.
-inline void getMyDefaultAdministratorRights(bool for_channels=false ) const{
+inline void Telegram::Bot::Types::API::getMyDefaultAdministratorRights(bool for_channels=false ) const{
 	json payload1; 
 	payload1["for_channels"] = for_channels;
 	auto result1=payload1.dump();
@@ -1308,7 +1162,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getMyDefaultAdministratorRight
 }
 
 // Use this method to edit text and <a href="#games">game</a> messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void editMessageText(std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::editMessageText(std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 	payload1["text"] = text;
 if(reply_markup!=nullptr){	json j1;
@@ -1334,7 +1188,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageText"},
 }
 
 // Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void editMessageCaption(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::editMessageCaption(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::vector<std::shared_ptr<MessageEntity>> caption_entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,std::string caption="" ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
@@ -1359,7 +1213,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageCaption"},
 }
 
 // Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can&#39;t be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void editMessageMedia(std::shared_ptr<InputMedia> media ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::editMessageMedia(std::shared_ptr<InputMedia> media ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 if(media!=nullptr){	json j0;
  	to_json(j0,*media);
@@ -1377,7 +1231,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageMedia"},
 }
 
 // Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned.
-inline void editMessageReplyMarkup(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::editMessageReplyMarkup(std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 if(reply_markup!=nullptr){	json j0;
  	to_json(j0,*reply_markup);
@@ -1392,7 +1246,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/editMessageReplyMarkup"},
 }
 
 // Use this method to stop a poll which was sent by the bot. On success, the stopped <a href="#poll">Poll</a> is returned.
-inline void stopPoll(int chat_id ,int message_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ) const{
+inline void Telegram::Bot::Types::API::stopPoll(int chat_id ,int message_id ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_id"] = message_id;
@@ -1406,7 +1260,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/stopPoll"},
 }
 
 // Use this method to delete a message, including service messages, with the following limitations:<br>- A message can only be deleted if it was sent less than 48 hours ago.<br>- Service messages about a supergroup, channel, or forum topic creation can&#39;t be deleted.<br>- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.<br>- Bots can delete outgoing messages in private chats, groups, and supergroups.<br>- Bots can delete incoming messages in private chats.<br>- Bots granted <em>can_post_messages</em> permissions can delete outgoing messages in channels.<br>- If the bot is an administrator of a group, it can delete any message there.<br>- If the bot has <em>can_delete_messages</em> permission in a supergroup or a channel, it can delete any message there.<br>Returns <em>True</em> on success.
-inline void deleteMessage(int chat_id ,int message_id ) const{
+inline void Telegram::Bot::Types::API::deleteMessage(int chat_id ,int message_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["message_id"] = message_id;
@@ -1417,7 +1271,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteMessage"},
 }
 
 // Use this method to send static .WEBP, <a href="https://telegram.org/blog/animated-stickers">animated</a> .TGS, or <a href="https://telegram.org/blog/video-stickers-better-reactions">video</a> .WEBM stickers. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendSticker(int chat_id ,std::string sticker ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendSticker(int chat_id ,std::string sticker ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["sticker"] = sticker;
@@ -1436,7 +1290,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendSticker"},
 }
 
 // Use this method to get a sticker set. On success, a <a href="#stickerset">StickerSet</a> object is returned.
-inline void getStickerSet(std::string name ) const{
+inline void Telegram::Bot::Types::API::getStickerSet(std::string name ) const{
 	json payload1; 
 	payload1["name"] = name;
 	auto result1=payload1.dump();
@@ -1446,7 +1300,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getStickerSet"},
 }
 
 // Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of <a href="#sticker">Sticker</a> objects.
-inline void getCustomEmojiStickers(std::string custom_emoji_ids ) const{
+inline void Telegram::Bot::Types::API::getCustomEmojiStickers(std::string custom_emoji_ids ) const{
 	json payload1; 
 	payload1["custom_emoji_ids"] = custom_emoji_ids;
 	auto result1=payload1.dump();
@@ -1456,7 +1310,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getCustomEmojiStickers"},
 }
 
 // Use this method to upload a .PNG file with a sticker for later use in <em>createNewStickerSet</em> and <em>addStickerToSet</em> methods (can be used multiple times). Returns the uploaded <a href="#file">File</a> on success.
-inline void uploadStickerFile(int user_id ,std::shared_ptr<InputFile> png_sticker ) const{
+inline void Telegram::Bot::Types::API::uploadStickerFile(int user_id ,std::shared_ptr<InputFile> png_sticker ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 if(png_sticker!=nullptr){	json j1;
@@ -1469,7 +1323,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/uploadStickerFile"},
 }
 
 // Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You <strong>must</strong> use exactly one of the fields <em>png_sticker</em>, <em>tgs_sticker</em>, or <em>webm_sticker</em>. Returns <em>True</em> on success.
-inline void createNewStickerSet(int user_id ,std::string name ,std::string title ,std::string emojis ,std::shared_ptr<MaskPosition> mask_position=nullptr ,std::string sticker_type="" ,std::shared_ptr<InputFile> webm_sticker=nullptr ,std::shared_ptr<InputFile> tgs_sticker=nullptr ,std::string png_sticker="" ) const{
+inline void Telegram::Bot::Types::API::createNewStickerSet(int user_id ,std::string name ,std::string title ,std::string emojis ,std::shared_ptr<MaskPosition> mask_position=nullptr ,std::string sticker_type="" ,std::shared_ptr<InputFile> webm_sticker=nullptr ,std::shared_ptr<InputFile> tgs_sticker=nullptr ,std::string png_sticker="" ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["name"] = name;
@@ -1493,7 +1347,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/createNewStickerSet"},
 }
 
 // Use this method to add a new sticker to a set created by the bot. You <strong>must</strong> use exactly one of the fields <em>png_sticker</em>, <em>tgs_sticker</em>, or <em>webm_sticker</em>. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns <em>True</em> on success.
-inline void addStickerToSet(int user_id ,std::string name ,std::string emojis ,std::shared_ptr<MaskPosition> mask_position=nullptr ,std::shared_ptr<InputFile> webm_sticker=nullptr ,std::shared_ptr<InputFile> tgs_sticker=nullptr ,std::string png_sticker="" ) const{
+inline void Telegram::Bot::Types::API::addStickerToSet(int user_id ,std::string name ,std::string emojis ,std::shared_ptr<MaskPosition> mask_position=nullptr ,std::shared_ptr<InputFile> webm_sticker=nullptr ,std::shared_ptr<InputFile> tgs_sticker=nullptr ,std::string png_sticker="" ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["name"] = name;
@@ -1515,7 +1369,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/addStickerToSet"},
 }
 
 // Use this method to move a sticker in a set created by the bot to a specific position. Returns <em>True</em> on success.
-inline void setStickerPositionInSet(std::string sticker ,int position ) const{
+inline void Telegram::Bot::Types::API::setStickerPositionInSet(std::string sticker ,int position ) const{
 	json payload1; 
 	payload1["sticker"] = sticker;
 	payload1["position"] = position;
@@ -1526,7 +1380,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setStickerPositionInSet"},
 }
 
 // Use this method to delete a sticker from a set created by the bot. Returns <em>True</em> on success.
-inline void deleteStickerFromSet(std::string sticker ) const{
+inline void Telegram::Bot::Types::API::deleteStickerFromSet(std::string sticker ) const{
 	json payload1; 
 	payload1["sticker"] = sticker;
 	auto result1=payload1.dump();
@@ -1536,7 +1390,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteStickerFromSet"},
 }
 
 // Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns <em>True</em> on success.
-inline void setStickerSetThumb(std::string name ,int user_id ,std::string thumb="" ) const{
+inline void Telegram::Bot::Types::API::setStickerSetThumb(std::string name ,int user_id ,std::string thumb="" ) const{
 	json payload1; 
 	payload1["name"] = name;
 	payload1["user_id"] = user_id;
@@ -1548,7 +1402,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setStickerSetThumb"},
 }
 
 // Use this method to send answers to an inline query. On success, <em>True</em> is returned.<br>No more than <strong>50</strong> results per query are allowed.
-inline void answerInlineQuery(std::string inline_query_id ,std::vector<std::shared_ptr<InlineQueryResult>> results ,std::string switch_pm_parameter="" ,std::string switch_pm_text="" ,std::string next_offset="" ,bool is_personal=false ,int cache_time=0 ) const{
+inline void Telegram::Bot::Types::API::answerInlineQuery(std::string inline_query_id ,std::vector<std::shared_ptr<InlineQueryResult>> results ,std::string switch_pm_parameter="" ,std::string switch_pm_text="" ,std::string next_offset="" ,bool is_personal=false ,int cache_time=0 ) const{
 	json payload1; 
 	payload1["inline_query_id"] = inline_query_id;
 	json j1=json::object();
@@ -1571,7 +1425,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerInlineQuery"},
 }
 
 // Use this method to set the result of an interaction with a <a href="/bots/webapps">Web App</a> and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a <a href="#sentwebappmessage">SentWebAppMessage</a> object is returned.
-inline void answerWebAppQuery(std::string web_app_query_id ,std::shared_ptr<InlineQueryResult> result ) const{
+inline void Telegram::Bot::Types::API::answerWebAppQuery(std::string web_app_query_id ,std::shared_ptr<InlineQueryResult> result ) const{
 	json payload1; 
 	payload1["web_app_query_id"] = web_app_query_id;
 if(result!=nullptr){	json j1;
@@ -1584,7 +1438,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerWebAppQuery"},
 }
 
 // Use this method to send invoices. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendInvoice(int chat_id ,std::string title ,std::string description ,std::string payload ,std::string provider_token ,std::string currency ,std::vector<std::shared_ptr<LabeledPrice>> prices ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool is_flexible=false ,bool send_email_to_provider=false ,bool send_phone_number_to_provider=false ,bool need_shipping_address=false ,bool need_email=false ,bool need_phone_number=false ,bool need_name=false ,int photo_height=0 ,int photo_width=0 ,int photo_size=0 ,std::string photo_url="" ,std::string provider_data="" ,std::string start_parameter="" ,int suggested_tip_amounts=0 ,int max_tip_amount=0 ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendInvoice(int chat_id ,std::string title ,std::string description ,std::string payload ,std::string provider_token ,std::string currency ,std::vector<std::shared_ptr<LabeledPrice>> prices ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool is_flexible=false ,bool send_email_to_provider=false ,bool send_phone_number_to_provider=false ,bool need_shipping_address=false ,bool need_email=false ,bool need_phone_number=false ,bool need_name=false ,int photo_height=0 ,int photo_width=0 ,int photo_size=0 ,std::string photo_url="" ,std::string provider_data="" ,std::string start_parameter="" ,int suggested_tip_amounts=0 ,int max_tip_amount=0 ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["title"] = title;
@@ -1630,7 +1484,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendInvoice"},
 }
 
 // Use this method to create a link for an invoice. Returns the created invoice link as <em>String</em> on success.
-inline void createInvoiceLink(std::string title ,std::string description ,std::string payload ,std::string provider_token ,std::string currency ,std::vector<std::shared_ptr<LabeledPrice>> prices ,bool is_flexible=false ,bool send_email_to_provider=false ,bool send_phone_number_to_provider=false ,bool need_shipping_address=false ,bool need_email=false ,bool need_phone_number=false ,bool need_name=false ,int photo_height=0 ,int photo_width=0 ,int photo_size=0 ,std::string photo_url="" ,std::string provider_data="" ,int suggested_tip_amounts=0 ,int max_tip_amount=0 ) const{
+inline void Telegram::Bot::Types::API::createInvoiceLink(std::string title ,std::string description ,std::string payload ,std::string provider_token ,std::string currency ,std::vector<std::shared_ptr<LabeledPrice>> prices ,bool is_flexible=false ,bool send_email_to_provider=false ,bool send_phone_number_to_provider=false ,bool need_shipping_address=false ,bool need_email=false ,bool need_phone_number=false ,bool need_name=false ,int photo_height=0 ,int photo_width=0 ,int photo_size=0 ,std::string photo_url="" ,std::string provider_data="" ,int suggested_tip_amounts=0 ,int max_tip_amount=0 ) const{
 	json payload1; 
 	payload1["title"] = title;
 	payload1["description"] = description;
@@ -1666,7 +1520,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/createInvoiceLink"},
 }
 
 // If you sent an invoice requesting a shipping address and the parameter <em>is_flexible</em> was specified, the Bot API will send an <a href="#update">Update</a> with a <em>shipping_query</em> field to the bot. Use this method to reply to shipping queries. On success, <em>True</em> is returned.
-inline void answerShippingQuery(std::string shipping_query_id ,bool ok ,std::string error_message="" ,std::vector<std::shared_ptr<ShippingOption>> shipping_options=std::vector<std::shared_ptr<ShippingOption>>() ) const{
+inline void Telegram::Bot::Types::API::answerShippingQuery(std::string shipping_query_id ,bool ok ,std::string error_message="" ,std::vector<std::shared_ptr<ShippingOption>> shipping_options=std::vector<std::shared_ptr<ShippingOption>>() ) const{
 	json payload1; 
 	payload1["shipping_query_id"] = shipping_query_id;
 	payload1["ok"] = ok;
@@ -1686,7 +1540,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerShippingQuery"},
 }
 
 // Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an <a href="#update">Update</a> with the field <em>pre_checkout_query</em>. Use this method to respond to such pre-checkout queries. On success, <em>True</em> is returned. <strong>Note:</strong> The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
-inline void answerPreCheckoutQuery(std::string pre_checkout_query_id ,bool ok ,std::string error_message="" ) const{
+inline void Telegram::Bot::Types::API::answerPreCheckoutQuery(std::string pre_checkout_query_id ,bool ok ,std::string error_message="" ) const{
 	json payload1; 
 	payload1["pre_checkout_query_id"] = pre_checkout_query_id;
 	payload1["ok"] = ok;
@@ -1698,7 +1552,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/answerPreCheckoutQuery"},
 }
 
 // Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns <em>True</em> on success.
-inline void setPassportDataErrors(int user_id ,std::vector<std::shared_ptr<PassportElementError>> errors ) const{
+inline void Telegram::Bot::Types::API::setPassportDataErrors(int user_id ,std::vector<std::shared_ptr<PassportElementError>> errors ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	json j1=json::object();
@@ -1716,7 +1570,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setPassportDataErrors"},
 }
 
 // Use this method to send a game. On success, the sent <a href="#message">Message</a> is returned.
-inline void sendGame(int chat_id ,std::string game_short_name ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
+inline void Telegram::Bot::Types::API::sendGame(int chat_id ,std::string game_short_name ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,int message_thread_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["game_short_name"] = game_short_name;
@@ -1735,7 +1589,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendGame"},
 }
 
 // Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the <a href="#message">Message</a> is returned, otherwise <em>True</em> is returned. Returns an error, if the new score is not greater than the user&#39;s current score in the chat and <em>force</em> is <em>False</em>.
-inline void setGameScore(int user_id ,int score ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ,bool disable_edit_message=false ,bool force=false ) const{
+inline void Telegram::Bot::Types::API::setGameScore(int user_id ,int score ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ,bool disable_edit_message=false ,bool force=false ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["score"] = score;
@@ -1751,7 +1605,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setGameScore"},
 }
 
 // Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of <a href="#gamehighscore">GameHighScore</a> objects.
-inline void getGameHighScores(int user_id ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void Telegram::Bot::Types::API::getGameHighScores(int user_id ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["inline_message_id"] = inline_message_id;

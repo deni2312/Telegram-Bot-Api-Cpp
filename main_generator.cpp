@@ -5,10 +5,6 @@
 #include <fstream>
 #include <algorithm>
 #include <functional>
-#include <filesystem>
-#include <map>
-
-namespace fs = std::filesystem;
 
 struct params{
     std::string parameter;
@@ -84,14 +80,6 @@ std::string normalize_type1(std::string type){
     return type;
 }
 
-std::string gets_include(std::string type){
-    if(type.find("<a href")!=std::string::npos){
-        return type.substr(type.find(">")+1,type.find("<",type.find(">"))-type.find(">")-1);
-    }
-
-    return "";
-}
-
 std::string gets_default(std::string type){
     if(type.find("Integer")!=std::string::npos){
         return "0";
@@ -153,67 +141,63 @@ void type_generator(){
         types.erase(types.find("<i class=\"anchor-icon\"></i></a>"),1);
     }
     std::string out="";
-    out=out+"#pragma once\n#include <string>\n#include <memory>\n#include <vector>\n#include \"definitions.h\"\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\nusing json = nlohmann::json;\n\n";
+    for(const auto& nm : typeTelegram.names){
+        out=out+"struct "+nm.name+";\n";
+    }
     out=out+"\n";
-    std::string local_all="";
     for(const auto& nm : typeTelegram.names){
-        local_all=local_all+"struct "+nm.name+";\n";
-    }
-    std::fstream outs{"../telegram/include/types/definitions.h",std::fstream::out};
-    outs<<local_all;
-    outs.close();
-    for(const auto& nm : typeTelegram.names){
-        std::string local_out="";
-        local_out=out+"//"+nm.description+"\n";
-        local_out=local_out+"struct "+nm.name+"{\n";
+        out=out+"//"+nm.description+"\n";
+        out=out+"struct "+nm.name+"{\n";
         for(const auto& pa: nm.n){
-            local_out=local_out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
+            out=out + "\t"+normalize_type(pa.name_type)+" "+pa.parameter+";\n";
         }
-        local_out=local_out+"};\n\n";
-        std::fstream outs{"../telegram/include/types/"+nm.name+".h",std::fstream::out};
-        outs<<local_out;
-        outs.close();
+        out=out+"};\n\n";
+    }
+
+    for(const auto& nm : typeTelegram.names){
+        out=out+"inline void from_json(const json& j, "+nm.name+"& name);\n";
+        out=out+"inline void to_json(json&  j, "+nm.name+"& name);\n";
     }
     for(const auto& nm : typeTelegram.names){
-        std::string local_json="";
-        local_json=local_json+"inline void from_json(const json& j, "+nm.name+"& name){\n";
+        out=out+"inline void from_json(const json& j, "+nm.name+"& name){\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector")!=std::string::npos) {
-                local_json = local_json + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n\tif(j.contains(\""+pa.parameter+"\")){\n";
-                local_json = local_json + "\t\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                out = out + "\t"+normalize_type(pa.name_type) + " "+pa.parameter+";\n\tif(j.contains(\""+pa.parameter+"\")){\n";
+                out = out + "\t\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
                       ">()){\n\t\t\t"+pa.parameter+".push_back( std::make_shared<" + normalize_type1(pa.name_type).substr(normalize_type1(pa.name_type).find("<")+1,normalize_type1(pa.name_type).find(">")-normalize_type1(pa.name_type).find("<")-1) + ">(a));\n\t\t}\n\t}\n";
-                local_json = local_json + "\tname." + pa.parameter + "="+pa.parameter+";\n";
+                out = out + "\tname." + pa.parameter + "="+pa.parameter+";\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    local_json = local_json + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?std::make_shared<" + normalize_type1(pa.name_type) +
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?std::make_shared<" + normalize_type1(pa.name_type) +
                           " >(j.at(\"" + pa.parameter + "\").get<" +
                           normalize_type1(pa.name_type) + ">()) : "+gets_default(pa.name_type)+" ;\n";
                 } else {
-                    local_json = local_json + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?j.at(\"" + pa.parameter + "\").get<" +
+                    out = out + "\tname." + pa.parameter + "=j.contains(\""+pa.parameter+"\")?j.at(\"" + pa.parameter + "\").get<" +
                           normalize_type1(pa.name_type) + ">() : "+gets_default(pa.name_type)+" ;\n";
                 }
             }
         }
-        local_json=local_json+"}\n";
-        local_json=local_json+"inline void to_json(json& j,const "+nm.name+"& name){\n";
-        local_json=local_json+"\tj=json::object();\n";
+        out=out+"}\n";
+        out=out+"inline void to_json(json& j,const "+nm.name+"& name){\n";
+        out=out+"\tj=json::object();\n";
         for(const auto& pa: nm.n){
             if(normalize_type(pa.name_type).find("std::vector") != std::string::npos) {
-                local_json = local_json + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
                       ">()){\n\t\tauto u=json::object();\n\t\tto_json(u,a) ;\n\t\tj[\""+pa.parameter+"\"].push_back(u);\n\t}\n";
             }else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    local_json = local_json + "\tto_json(j[\"" + pa.parameter + "\"],*name . " + pa.parameter + ");\n";
+                    out = out + "\tto_json(j[\"" + pa.parameter + "\"],*name . " + pa.parameter + ");\n";
                 } else {
-                    local_json = local_json + "\tj [\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
+                    out = out + "\tj [\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
                 }
             }
         }
-        local_json=local_json+"}\n";
-        std::fstream outs{"../telegram/include/types/"+nm.name+".h",std::fstream::app};
-        outs<<local_json;
-        outs.close();
+        out=out+"}\n";
     }
+    std::fstream outs{"../telegram/include/types_generator.h",std::fstream::out};
+    outs<<out;
+    outs.close();
 }
 
 void mySort(std::vector<params>& vec, std::function<bool(const params&, const params&)> comparator) {
@@ -279,11 +263,7 @@ int main(int argc, char** argv) {
     }
 
     std::string out="";
-    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include <cpr/cpr.h>\n#include \"network/Network.h\"\nusing json = nlohmann::json;\n\n";
-    std::string path = "../telegram/include/types/";
-    for (const auto & entry : fs::directory_iterator(path)){
-        out=out+"#include \"types/"+entry.path().filename().generic_string()+"\"\n";
-    }
+    out=out+"#include <string>\n#include <memory>\n#include <vector>\n#include <nlohmann/json.hpp>\n#include \"types_generator.h\"\n#include <cpr/cpr.h>\n#include \"network/Network.h\"\nusing json = nlohmann::json;\n\n";
     out=out+"namespace Telegram{\n"
             "\tnamespace Bot{\n"
             "\t\tnamespace Types {\n"
@@ -299,7 +279,7 @@ int main(int argc, char** argv) {
             "                                                                                  request{request} {};";
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
-        out = out + "inline void " + nm.name + "(";
+        out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
             if(nm.n.at(i).name_type=="Yes") {
                 out = out + normalize_type(nm.n.at(i).return_type) + " " + nm.n.at(i).parameter +
