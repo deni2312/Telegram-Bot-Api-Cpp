@@ -2334,7 +2334,7 @@ inline void from_json(const json &j, Message &name) {
     name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> entities;
     if (j.contains("entities")) {
-        for (const auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("entities").get<std::vector<MessageEntity>>()) {
             entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -2345,7 +2345,7 @@ inline void from_json(const json &j, Message &name) {
     name.document = j.contains("document") ? std::make_shared<Document>(j.at("document").get<Document>()) : nullptr;
     std::vector<std::shared_ptr<PhotoSize>> photo;
     if (j.contains("photo")) {
-        for (const auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
+        for (const auto &a: j.at("photo").get<std::vector<PhotoSize>>()) {
             photo.push_back(std::make_shared<PhotoSize>(a));
         }
     }
@@ -2358,7 +2358,7 @@ inline void from_json(const json &j, Message &name) {
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -2372,7 +2372,7 @@ inline void from_json(const json &j, Message &name) {
     name.location = j.contains("location") ? std::make_shared<Location>(j.at("location").get<Location>()) : nullptr;
     std::vector<std::shared_ptr<User>> new_chat_members;
     if (j.contains("new_chat_members")) {
-        for (const auto a: j.at("new_chat_members").get<std::vector<User>>()) {
+        for (const auto &a: j.at("new_chat_members").get<std::vector<User>>()) {
             new_chat_members.push_back(std::make_shared<User>(a));
         }
     }
@@ -2382,7 +2382,7 @@ inline void from_json(const json &j, Message &name) {
     name.new_chat_title = j.contains("new_chat_title") ? j.at("new_chat_title").get<std::string>() : "";
     std::vector<std::shared_ptr<PhotoSize>> new_chat_photo;
     if (j.contains("new_chat_photo")) {
-        for (const auto a: j.at("new_chat_photo").get<std::vector<PhotoSize>>()) {
+        for (const auto &a: j.at("new_chat_photo").get<std::vector<PhotoSize>>()) {
             new_chat_photo.push_back(std::make_shared<PhotoSize>(a));
         }
     }
@@ -2772,7 +2772,7 @@ inline void from_json(const json &j, Poll &name) {
     name.question = j.contains("question") ? j.at("question").get<std::string>() : "";
     std::vector<std::shared_ptr<PollOption>> options;
     if (j.contains("options")) {
-        for (const auto a: j.at("options").get<std::vector<PollOption>>()) {
+        for (const auto &a: j.at("options").get<std::vector<PollOption>>()) {
             options.push_back(std::make_shared<PollOption>(a));
         }
     }
@@ -2787,7 +2787,7 @@ inline void from_json(const json &j, Poll &name) {
     name.explanation = j.contains("explanation") ? j.at("explanation").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
     if (j.contains("explanation_entities")) {
-        for (const auto a: j.at("explanation_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("explanation_entities").get<std::vector<MessageEntity>>()) {
             explanation_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3006,7 +3006,7 @@ inline void to_json(json &j, const VideoChatEnded &name) {
 inline void from_json(const json &j, VideoChatParticipantsInvited &name) {
     std::vector<std::shared_ptr<User>> users;
     if (j.contains("users")) {
-        for (const auto a: j.at("users").get<std::vector<User>>()) {
+        for (const auto &a: j.at("users").get<std::vector<User>>()) {
             users.push_back(std::make_shared<User>(a));
         }
     }
@@ -3026,7 +3026,7 @@ inline void from_json(const json &j, UserProfilePhotos &name) {
     name.total_count = j.contains("total_count") ? j.at("total_count").get<int>() : 0;
     std::vector<std::shared_ptr<PhotoSize>> photos;
     if (j.contains("photos")) {
-        for (const auto a: j.at("photos").get<std::vector<PhotoSize>>()) {
+        for (const auto &a: j.at("photos").get<std::vector<PhotoSize>>()) {
             photos.push_back(std::make_shared<PhotoSize>(a));
         }
     }
@@ -3070,7 +3070,7 @@ inline void to_json(json &j, const WebAppInfo &name) {
 inline void from_json(const json &j, ReplyKeyboardMarkup &name) {
     std::vector<std::shared_ptr<KeyboardButton>> keyboard;
     if (j.contains("keyboard")) {
-        for (const auto a: j.at("keyboard").get<std::vector<KeyboardButton>>()) {
+        for (const auto &a: j.at("keyboard").get<std::vector<KeyboardButton>>()) {
             keyboard.push_back(std::make_shared<KeyboardButton>(a));
         }
     }
@@ -3179,7 +3179,7 @@ inline void to_json(json &j, const ReplyKeyboardRemove &name) {
 inline void from_json(const json &j, InlineKeyboardMarkup &name) {
     std::vector<std::shared_ptr<InlineKeyboardButton>> inline_keyboard;
     if (j.contains("inline_keyboard")) {
-        for (const auto a: j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()) {
+        for (const auto &a: j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()) {
             inline_keyboard.push_back(std::make_shared<InlineKeyboardButton>(a));
         }
     }
@@ -3744,7 +3744,7 @@ inline void from_json(const json &j, InputMedia &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3773,7 +3773,7 @@ inline void from_json(const json &j, InputMediaPhoto &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3803,7 +3803,7 @@ inline void from_json(const json &j, InputMediaVideo &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3842,7 +3842,7 @@ inline void from_json(const json &j, InputMediaAnimation &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3879,7 +3879,7 @@ inline void from_json(const json &j, InputMediaAudio &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3914,7 +3914,7 @@ inline void from_json(const json &j, InputMediaDocument &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -3945,7 +3945,7 @@ inline void from_json(const json &j, InputFile &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> entities;
     if (j.contains("entities")) {
-        for (const auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("entities").get<std::vector<MessageEntity>>()) {
             entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4032,7 +4032,7 @@ inline void from_json(const json &j, StickerSet &name) {
     name.is_video = j.contains("is_video") ? j.at("is_video").get<bool>() : false;
     std::vector<std::shared_ptr<Sticker>> stickers;
     if (j.contains("stickers")) {
-        for (const auto a: j.at("stickers").get<std::vector<Sticker>>()) {
+        for (const auto &a: j.at("stickers").get<std::vector<Sticker>>()) {
             stickers.push_back(std::make_shared<Sticker>(a));
         }
     }
@@ -4164,7 +4164,7 @@ inline void from_json(const json &j, InlineQueryResultPhoto &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4210,7 +4210,7 @@ inline void from_json(const json &j, InlineQueryResultGif &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4257,7 +4257,7 @@ inline void from_json(const json &j, InlineQueryResultMpeg4Gif &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4301,7 +4301,7 @@ inline void from_json(const json &j, InlineQueryResultVideo &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4348,7 +4348,7 @@ inline void from_json(const json &j, InlineQueryResultAudio &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4389,7 +4389,7 @@ inline void from_json(const json &j, InlineQueryResultVoice &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4427,7 +4427,7 @@ inline void from_json(const json &j, InlineQueryResultDocument &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4599,7 +4599,7 @@ inline void from_json(const json &j, InlineQueryResultCachedPhoto &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4637,7 +4637,7 @@ inline void from_json(const json &j, InlineQueryResultCachedGif &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4674,7 +4674,7 @@ inline void from_json(const json &j, InlineQueryResultCachedMpeg4Gif &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4731,7 +4731,7 @@ inline void from_json(const json &j, InlineQueryResultCachedDocument &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4770,7 +4770,7 @@ inline void from_json(const json &j, InlineQueryResultCachedVideo &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4808,7 +4808,7 @@ inline void from_json(const json &j, InlineQueryResultCachedVoice &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4844,7 +4844,7 @@ inline void from_json(const json &j, InlineQueryResultCachedAudio &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     if (j.contains("caption_entities")) {
-        for (const auto a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("caption_entities").get<std::vector<MessageEntity>>()) {
             caption_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4876,7 +4876,7 @@ inline void from_json(const json &j, InputMessageContent &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> entities;
     if (j.contains("entities")) {
-        for (const auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("entities").get<std::vector<MessageEntity>>()) {
             entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4902,7 +4902,7 @@ inline void from_json(const json &j, InputTextMessageContent &name) {
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> entities;
     if (j.contains("entities")) {
-        for (const auto a: j.at("entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("entities").get<std::vector<MessageEntity>>()) {
             entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
@@ -4988,7 +4988,7 @@ inline void from_json(const json &j, InputInvoiceMessageContent &name) {
     name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
     std::vector<std::shared_ptr<LabeledPrice>> prices;
     if (j.contains("prices")) {
-        for (const auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
+        for (const auto &a: j.at("prices").get<std::vector<LabeledPrice>>()) {
             prices.push_back(std::make_shared<LabeledPrice>(a));
         }
     }
@@ -5141,7 +5141,7 @@ inline void from_json(const json &j, ShippingOption &name) {
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     std::vector<std::shared_ptr<LabeledPrice>> prices;
     if (j.contains("prices")) {
-        for (const auto a: j.at("prices").get<std::vector<LabeledPrice>>()) {
+        for (const auto &a: j.at("prices").get<std::vector<LabeledPrice>>()) {
             prices.push_back(std::make_shared<LabeledPrice>(a));
         }
     }
@@ -5224,7 +5224,7 @@ inline void to_json(json &j, const PreCheckoutQuery &name) {
 inline void from_json(const json &j, PassportData &name) {
     std::vector<std::shared_ptr<EncryptedPassportElement>> data;
     if (j.contains("data")) {
-        for (const auto a: j.at("data").get<std::vector<EncryptedPassportElement>>()) {
+        for (const auto &a: j.at("data").get<std::vector<EncryptedPassportElement>>()) {
             data.push_back(std::make_shared<EncryptedPassportElement>(a));
         }
     }
@@ -5265,7 +5265,7 @@ inline void from_json(const json &j, EncryptedPassportElement &name) {
     name.email = j.contains("email") ? j.at("email").get<std::string>() : "";
     std::vector<std::shared_ptr<PassportFile>> files;
     if (j.contains("files")) {
-        for (const auto a: j.at("files").get<std::vector<PassportFile>>()) {
+        for (const auto &a: j.at("files").get<std::vector<PassportFile>>()) {
             files.push_back(std::make_shared<PassportFile>(a));
         }
     }
@@ -5277,7 +5277,7 @@ inline void from_json(const json &j, EncryptedPassportElement &name) {
     name.selfie = j.contains("selfie") ? std::make_shared<PassportFile>(j.at("selfie").get<PassportFile>()) : nullptr;
     std::vector<std::shared_ptr<PassportFile>> translation;
     if (j.contains("translation")) {
-        for (const auto a: j.at("translation").get<std::vector<PassportFile>>()) {
+        for (const auto &a: j.at("translation").get<std::vector<PassportFile>>()) {
             translation.push_back(std::make_shared<PassportFile>(a));
         }
     }
@@ -5486,7 +5486,7 @@ inline void from_json(const json &j, Game &name) {
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     std::vector<std::shared_ptr<PhotoSize>> photo;
     if (j.contains("photo")) {
-        for (const auto a: j.at("photo").get<std::vector<PhotoSize>>()) {
+        for (const auto &a: j.at("photo").get<std::vector<PhotoSize>>()) {
             photo.push_back(std::make_shared<PhotoSize>(a));
         }
     }
@@ -5494,7 +5494,7 @@ inline void from_json(const json &j, Game &name) {
     name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> text_entities;
     if (j.contains("text_entities")) {
-        for (const auto a: j.at("text_entities").get<std::vector<MessageEntity>>()) {
+        for (const auto &a: j.at("text_entities").get<std::vector<MessageEntity>>()) {
             text_entities.push_back(std::make_shared<MessageEntity>(a));
         }
     }
