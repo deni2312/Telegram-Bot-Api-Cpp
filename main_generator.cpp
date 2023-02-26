@@ -157,7 +157,7 @@ void type_generator(){
 
     for(const auto& nm : typeTelegram.names){
         out=out+"inline void from_json(const json& j, "+nm.name+"& name);\n";
-        out=out+"inline void to_json(json&  j, "+nm.name+"& name);\n";
+        out=out+"inline void to_json(json&  j,const "+nm.name+"& name);\n";
     }
     for(const auto& nm : typeTelegram.names){
         out=out+"inline void from_json(const json& j, "+nm.name+"& name){\n";
