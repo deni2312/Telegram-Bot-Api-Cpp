@@ -2,29 +2,30 @@
 
 #include "../include/TelegramAPI.h"
 
-inline size_t WriteaCallback(char* contents, size_t size, size_t nmemb, void* userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
+inline size_t WriteaCallback(char *contents, size_t size, size_t nmemb, void *userp) {
+    ((std::string *) userp)->append((char *) contents, size * nmemb);
     return size * nmemb;
 }
-Telegram::Bot::Connector::Connector(std::string token) : m_token{ std::move(token) }, m_request{ std::make_shared<Types::HTTPrequest>("https://api.telegram.org/bot" + m_token) },m_api{std::make_shared<Telegram::Bot::Types::API>("https://api.telegram.org/bot" + m_token,m_request)}
-{
-    JSONCPP_STRING err;
-    Json::Value parsed;
+
+Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token)}, m_request{
+        std::make_shared<Types::HTTPrequest>("https://api.telegram.org/bot" + m_token)},
+                                                         m_api{std::make_shared<Telegram::Bot::Types::API>(
+                                                                 "https://api.telegram.org/bot" + m_token, m_request)} {
     std::string readBuffer;
     std::string update;
     std::cout << "The bot has started successfully!" << std::endl;
     update = "/getUpdates";
-    readBuffer = m_request->sendHttp(update).asString();
-    Json::CharReaderBuilder builder;
-    const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
-    reader->parse(readBuffer.c_str(), readBuffer.c_str() + readBuffer.length(), &parsed, &err);
-    if (parsed["ok"].asString() == "true" && !parsed["result"][0]["update_id"].asString().empty()) {
-        m_offset = parsed["result"][0]["update_id"].asInt64();
+    readBuffer = m_request->sendHttp(update, "", false);
+    nlohmann::json parsed;
+    parsed = nlohmann::json::object();
+    parsed = nlohmann::json::parse(readBuffer);
+    if (parsed["ok"] == true && !parsed["result"][0]["update_id"].empty()) {
+        m_offset = parsed["result"][0]["update_id"];
     }
 }
-void Telegram::Bot::Connector::callback(const std::function<void(const Telegram::Bot::Types::API&, const Message&)>& func)
-{
+
+void Telegram::Bot::Connector::callback(
+        const std::function<void(const Telegram::Bot::Types::API &, const Message &)> &func) {
     m_offset = 0;
     std::thread threadupdate;
     threadupdate = std::thread(&Telegram::Bot::Connector::update, this);

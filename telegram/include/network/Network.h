@@ -8,7 +8,8 @@ namespace Telegram {
         namespace Types {
             class Network {
             public:
-                const virtual std::string sendHttp(const std::string &query, const std::string &body) = 0;
+                const virtual std::string
+                sendHttp(const std::string &query, const std::string &body, bool json = true) = 0;
 
                 const virtual std::string
                 sendFile(const std::string &query, const std::string &type, const std::string &path,

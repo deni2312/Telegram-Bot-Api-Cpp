@@ -4,11 +4,16 @@ Telegram::Bot::Types::HTTPrequest::HTTPrequest(const std::string &link) : link{l
 
 }
 
-const std::string Telegram::Bot::Types::HTTPrequest::sendHttp(const std::string &query, const std::string &body) {
-    auto response = cpr::Post(cpr::Url{link + query},
-                              cpr::Body{body},
-                              cpr::Header{{"Content-Type", "application/json"}}).text;
-
+const std::string
+Telegram::Bot::Types::HTTPrequest::sendHttp(const std::string &query, const std::string &body, bool json) {
+    std::string response = "";
+    if (json) {
+        response = cpr::Post(cpr::Url{link + query},
+                             cpr::Body{body},
+                             cpr::Header{{"Content-Type", "application/json"}}).text;
+    } else {
+        response = cpr::Post(cpr::Url{link + query + body}).text;
+    }
     if (response.find("\"ok\":false") != std::string::npos) {
         throw Telegram::Bot::Types::Error(response);
     }
