@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.8.0)
 project(TelegramBotApiCpp VERSION 0.1.0)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20")
 add_executable(TelegramBotApiCpp main_generator.cpp)
 find_package(cpr CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)

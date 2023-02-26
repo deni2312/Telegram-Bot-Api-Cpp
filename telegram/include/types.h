@@ -2,11 +2,157 @@
 #include <memory>
 #include <vector>
 #include <nlohmann/json.hpp>
-#include "types_generator.h"
 #include <cpr/cpr.h>
 #include "network/Network.h"
 using json = nlohmann::json;
 
+#include "types/Animation.h"
+#include "types/Audio.h"
+#include "types/BotCommand.h"
+#include "types/BotCommandScope.h"
+#include "types/BotCommandScopeAllChatAdministrators.h"
+#include "types/BotCommandScopeAllGroupChats.h"
+#include "types/BotCommandScopeAllPrivateChats.h"
+#include "types/BotCommandScopeChat.h"
+#include "types/BotCommandScopeChatAdministrators.h"
+#include "types/BotCommandScopeChatMember.h"
+#include "types/BotCommandScopeDefault.h"
+#include "types/CallbackGame.h"
+#include "types/CallbackQuery.h"
+#include "types/Chat.h"
+#include "types/ChatAdministratorRights.h"
+#include "types/ChatInviteLink.h"
+#include "types/ChatJoinRequest.h"
+#include "types/ChatLocation.h"
+#include "types/ChatMember.h"
+#include "types/ChatMemberAdministrator.h"
+#include "types/ChatMemberBanned.h"
+#include "types/ChatMemberLeft.h"
+#include "types/ChatMemberMember.h"
+#include "types/ChatMemberOwner.h"
+#include "types/ChatMemberRestricted.h"
+#include "types/ChatMemberUpdated.h"
+#include "types/ChatPermissions.h"
+#include "types/ChatPhoto.h"
+#include "types/ChatShared.h"
+#include "types/ChosenInlineResult.h"
+#include "types/Contact.h"
+#include "types/definitions.h"
+#include "types/Dice.h"
+#include "types/Document.h"
+#include "types/EncryptedCredentials.h"
+#include "types/EncryptedPassportElement.h"
+#include "types/File.h"
+#include "types/ForceReply.h"
+#include "types/ForumTopic.h"
+#include "types/ForumTopicClosed.h"
+#include "types/ForumTopicCreated.h"
+#include "types/ForumTopicEdited.h"
+#include "types/ForumTopicReopened.h"
+#include "types/Game.h"
+#include "types/GameHighScore.h"
+#include "types/Games.h"
+#include "types/GeneralForumTopicHidden.h"
+#include "types/GeneralForumTopicUnhidden.h"
+#include "types/InlineKeyboardButton.h"
+#include "types/InlineKeyboardMarkup.h"
+#include "types/InlineQuery.h"
+#include "types/InlineQueryResult.h"
+#include "types/InlineQueryResultArticle.h"
+#include "types/InlineQueryResultAudio.h"
+#include "types/InlineQueryResultCachedAudio.h"
+#include "types/InlineQueryResultCachedDocument.h"
+#include "types/InlineQueryResultCachedGif.h"
+#include "types/InlineQueryResultCachedMpeg4Gif.h"
+#include "types/InlineQueryResultCachedPhoto.h"
+#include "types/InlineQueryResultCachedSticker.h"
+#include "types/InlineQueryResultCachedVideo.h"
+#include "types/InlineQueryResultCachedVoice.h"
+#include "types/InlineQueryResultContact.h"
+#include "types/InlineQueryResultDocument.h"
+#include "types/InlineQueryResultGame.h"
+#include "types/InlineQueryResultGif.h"
+#include "types/InlineQueryResultLocation.h"
+#include "types/InlineQueryResultMpeg4Gif.h"
+#include "types/InlineQueryResultPhoto.h"
+#include "types/InlineQueryResultVenue.h"
+#include "types/InlineQueryResultVideo.h"
+#include "types/InlineQueryResultVoice.h"
+#include "types/InputContactMessageContent.h"
+#include "types/InputFile.h"
+#include "types/InputInvoiceMessageContent.h"
+#include "types/InputLocationMessageContent.h"
+#include "types/InputMedia.h"
+#include "types/InputMediaAnimation.h"
+#include "types/InputMediaAudio.h"
+#include "types/InputMediaDocument.h"
+#include "types/InputMediaPhoto.h"
+#include "types/InputMediaVideo.h"
+#include "types/InputMessageContent.h"
+#include "types/InputTextMessageContent.h"
+#include "types/InputVenueMessageContent.h"
+#include "types/Invoice.h"
+#include "types/KeyboardButton.h"
+#include "types/KeyboardButtonPollType.h"
+#include "types/KeyboardButtonRequestChat.h"
+#include "types/KeyboardButtonRequestUser.h"
+#include "types/LabeledPrice.h"
+#include "types/Location.h"
+#include "types/LoginUrl.h"
+#include "types/MaskPosition.h"
+#include "types/MenuButton.h"
+#include "types/MenuButtonCommands.h"
+#include "types/MenuButtonDefault.h"
+#include "types/MenuButtonWebApp.h"
+#include "types/Message.h"
+#include "types/MessageAutoDeleteTimerChanged.h"
+#include "types/MessageEntity.h"
+#include "types/MessageId.h"
+#include "types/OrderInfo.h"
+#include "types/PassportData.h"
+#include "types/PassportElementError.h"
+#include "types/PassportElementErrorDataField.h"
+#include "types/PassportElementErrorFile.h"
+#include "types/PassportElementErrorFiles.h"
+#include "types/PassportElementErrorFrontSide.h"
+#include "types/PassportElementErrorReverseSide.h"
+#include "types/PassportElementErrorSelfie.h"
+#include "types/PassportElementErrorTranslationFile.h"
+#include "types/PassportElementErrorTranslationFiles.h"
+#include "types/PassportElementErrorUnspecified.h"
+#include "types/PassportFile.h"
+#include "types/Payments.h"
+#include "types/PhotoSize.h"
+#include "types/Poll.h"
+#include "types/PollAnswer.h"
+#include "types/PollOption.h"
+#include "types/PreCheckoutQuery.h"
+#include "types/ProximityAlertTriggered.h"
+#include "types/ReplyKeyboardMarkup.h"
+#include "types/ReplyKeyboardRemove.h"
+#include "types/ResponseParameters.h"
+#include "types/SentWebAppMessage.h"
+#include "types/ShippingAddress.h"
+#include "types/ShippingOption.h"
+#include "types/ShippingQuery.h"
+#include "types/Sticker.h"
+#include "types/Stickers.h"
+#include "types/StickerSet.h"
+#include "types/SuccessfulPayment.h"
+#include "types/User.h"
+#include "types/UserProfilePhotos.h"
+#include "types/UserShared.h"
+#include "types/Venue.h"
+#include "types/Video.h"
+#include "types/VideoChatEnded.h"
+#include "types/VideoChatParticipantsInvited.h"
+#include "types/VideoChatScheduled.h"
+#include "types/VideoChatStarted.h"
+#include "types/VideoNote.h"
+#include "types/Voice.h"
+#include "types/WebAppData.h"
+#include "types/WebAppInfo.h"
+#include "types/WriteAccessAllowed.h"
 namespace Telegram{
 	namespace Bot{
 		namespace Types {
@@ -565,7 +711,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendChatAction"},
 }
 
 // Use this method to get a list of profile pictures for a user. Returns a <a href="#userprofilephotos">UserProfilePhotos</a> object.
-int user_id ,int limit=0 ,int offset=0 ) const{
+inline void getUserProfilePhotos(int user_id ,int limit=0 ,int offset=0 ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["limit"] = limit;
@@ -577,7 +723,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getUserProfilePhotos"},
 }
 
 // Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <a href="#file">File</a> object is returned. The file can then be downloaded via the link <code>https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;</code>, where <code>&lt;file_path&gt;</code> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling <a href="#getfile">getFile</a> again.
-std::string file_id ) const{
+inline void getFile(std::string file_id ) const{
 	json payload1; 
 	payload1["file_id"] = file_id;
 	auto result1=payload1.dump();
@@ -859,7 +1005,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/leaveChat"},
 }
 
 // Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a <a href="#chat">Chat</a> object on success.
-int chat_id ) const{
+inline void getChat(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -869,7 +1015,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChat"},
 }
 
 // Use this method to get a list of administrators in a chat, which aren&#39;t bots. Returns an Array of <a href="#chatmember">ChatMember</a> objects.
-int chat_id ) const{
+inline void getChatAdministrators(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -879,7 +1025,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatAdministrators"},
 }
 
 // Use this method to get the number of members in a chat. Returns <em>Int</em> on success.
-int chat_id ) const{
+inline void getChatMemberCount(int chat_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -889,7 +1035,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getChatMemberCount"},
 }
 
 // Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a <a href="#chatmember">ChatMember</a> object on success.
-int chat_id ,int user_id ) const{
+inline void getChatMember(int chat_id ,int user_id ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["user_id"] = user_id;
@@ -921,7 +1067,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteChatStickerSet"},
 }
 
 // Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of <a href="#sticker">Sticker</a> objects.
-int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
+inline void getForumTopicIconStickers(int chat_id ,std::string name ,std::string icon_custom_emoji_id="" ,int icon_color=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	payload1["name"] = name;
@@ -1103,7 +1249,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/deleteMyCommands"},
 }
 
 // Use this method to get the current list of the bot&#39;s commands for the given scope and user language. Returns an Array of <a href="#botcommand">BotCommand</a> objects. If commands aren&#39;t set, an empty list is returned.
-std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
+inline void getMyCommands(std::string language_code="" ,std::shared_ptr<BotCommandScope> scope=nullptr ) const{
 	json payload1; 
 	payload1["language_code"] = language_code;
 if(scope!=nullptr){	json j1;
@@ -1129,7 +1275,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setChatMenuButton"},
 }
 
 // Use this method to get the current value of the bot&#39;s menu button in a private chat, or the default menu button. Returns <a href="#menubutton">MenuButton</a> on success.
-int chat_id=0 ) const{
+inline void getChatMenuButton(int chat_id=0 ) const{
 	json payload1; 
 	payload1["chat_id"] = chat_id;
 	auto result1=payload1.dump();
@@ -1152,7 +1298,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setMyDefaultAdministratorRight
 }
 
 // Use this method to get the current default administrator rights of the bot. Returns <a href="#chatadministratorrights">ChatAdministratorRights</a> on success.
-bool for_channels=false ) const{
+inline void getMyDefaultAdministratorRights(bool for_channels=false ) const{
 	json payload1; 
 	payload1["for_channels"] = for_channels;
 	auto result1=payload1.dump();
@@ -1290,7 +1436,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/sendSticker"},
 }
 
 // Use this method to get a sticker set. On success, a <a href="#stickerset">StickerSet</a> object is returned.
-std::string name ) const{
+inline void getStickerSet(std::string name ) const{
 	json payload1; 
 	payload1["name"] = name;
 	auto result1=payload1.dump();
@@ -1300,7 +1446,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/getStickerSet"},
 }
 
 // Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of <a href="#sticker">Sticker</a> objects.
-std::string custom_emoji_ids ) const{
+inline void getCustomEmojiStickers(std::string custom_emoji_ids ) const{
 	json payload1; 
 	payload1["custom_emoji_ids"] = custom_emoji_ids;
 	auto result1=payload1.dump();
@@ -1605,7 +1751,7 @@ auto response = cpr::Post(cpr::Url{generalToken+"/setGameScore"},
 }
 
 // Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of <a href="#gamehighscore">GameHighScore</a> objects.
-int user_id ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
+inline void getGameHighScores(int user_id ,std::string inline_message_id="" ,int message_id=0 ,int chat_id=0 ) const{
 	json payload1; 
 	payload1["user_id"] = user_id;
 	payload1["inline_message_id"] = inline_message_id;
