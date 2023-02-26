@@ -276,10 +276,10 @@ int main(int argc, char** argv) {
             "            public:\n"
             "\n"
             "                API(std::string link, std::shared_ptr<Network> &request) : generalToken(link),\n"
-            "                                                                                  request{request} {};";
+            "                                                                                  request{request} {};\n";
     for(const auto& nm : typeTelegram.names){
         out=out+"// "+nm.description+"\n";
-        out = out + "inline void Telegram::Bot::Types::API::" + nm.name + "(";
+        out = out + "inline void " + nm.name + "(";
         for(int i=0;i<nm.n.size();i++){
             if(nm.n.at(i).name_type=="Yes") {
                 out = out + normalize_type(nm.n.at(i).return_type) + " " + nm.n.at(i).parameter +
