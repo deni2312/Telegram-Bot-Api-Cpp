@@ -852,7 +852,6 @@ namespace Telegram {
                                               cpr::Header{{"Content-Type", "application/json"}});
                 }
 
-
 // Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the <em>can_restrict_members</em> administrator rights. Returns <em>True</em> on success.
                 inline void setChatPermissions(int chat_id, std::shared_ptr<ChatPermissions> permissions,
                                                bool use_independent_chat_permissions = false) const {
@@ -1033,6 +1032,7 @@ namespace Telegram {
                                               cpr::Body{result1},
                                               cpr::Header{{"Content-Type", "application/json"}});
                 }
+
 
 // Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a <a href="#chat">Chat</a> object on success.
                 inline void getChat(int chat_id) const {
