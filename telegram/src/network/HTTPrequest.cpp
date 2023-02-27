@@ -31,17 +31,18 @@ Telegram::Bot::Types::HTTPrequest::sendFile(const std::string &query, const std:
             {PHOTO,    "photo"},
             {VIDEO,    "video"},
             {DOCUMENT, "document"},
+            {AUDIO,    "audio"}
     };
     nlohmann::json j = nlohmann::json::parse(body);
     cpr::Multipart part{};
     // Iterate over the JSON object
     for (auto it = j.begin(); it != j.end(); ++it) {
         // Check if the current element is an object
-        part.parts.push_back({it.key().c_str(),to_string(it.value())});
+        part.parts.push_back({it.key().c_str(), to_string(it.value())});
     }
-    part.parts.push_back({stringToMedia[type],cpr::File{path}});
+    part.parts.push_back({stringToMedia[type], cpr::File{path}});
     if (thumb != "") {
-        r = cpr::Get(cpr::Url{link + query}, cpr::Body{body},cpr::Header{{"Content-Type", "application/json"}},
+        r = cpr::Get(cpr::Url{link + query}, cpr::Body{body}, cpr::Header{{"Content-Type", "application/json"}},
                      cpr::Multipart{{stringToMedia[type] + "=", "1"},
                                     {stringToMedia[type],       cpr::File{path}},
                                     {thumb + "=",               "1"},

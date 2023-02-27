@@ -262,7 +262,7 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendAudio", result1);
+                    auto response = request->sendFile("/sendAudio", result1, Telegram::MediaType::AUDIO, audio);
                 }
 
 // Use this method to send general files. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
@@ -307,7 +307,8 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendDocument", result1);
+                    auto response = request->sendFile("/sendDocument", result1, Telegram::MediaType::DOCUMENT,
+                                                      document);
                 }
 
 // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
@@ -356,7 +357,7 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendVideo", result1);
+                    auto response = request->sendFile("/sendVideo", result1, Telegram::MediaType::VIDEO, video);
                 }
 
 // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
@@ -405,7 +406,7 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendAnimation", result1);
+                    auto response = request->sendFile("/sendAnimation", result1, Telegram::MediaType::VIDEO, animation);
                 }
 
 // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as <a href="#audio">Audio</a> or <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
@@ -445,7 +446,7 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendVoice", result1);
+                    auto response = request->sendFile("/sendVoice", result1, Telegram::MediaType::AUDIO, voice);
                 }
 
 // As of <a href="https://telegram.org/blog/video-messages-and-telescope">v.4.0</a>, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent <a href="#message">Message</a> is returned.
@@ -474,7 +475,8 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendVideoNote", result1);
+                    auto response = request->sendFile("/sendVideoNote", result1, Telegram::MediaType::VIDEO,
+                                                      video_note);
                 }
 
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of <a href="#message">Messages</a> that were sent is returned.
