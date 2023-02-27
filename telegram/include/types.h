@@ -210,11 +210,15 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j8;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendPhoto", result1,Telegram::MediaType::PHOTO,photo);
+                    auto response = request->sendFile("/sendPhoto", result1, Telegram::MediaType::PHOTO, photo);
                 }
 
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
@@ -250,8 +254,12 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j11;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/sendAudio", result1);
@@ -288,9 +296,15 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j8;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
-                    payload1["thumb"] = thumb;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
+                    if (thumb != "") {
+                        payload1["thumb"] = thumb;
+                    }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/sendDocument", result1);
@@ -328,9 +342,15 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j9;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
-                    payload1["thumb"] = thumb;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
+                    if (thumb != "") {
+                        payload1["thumb"] = thumb;
+                    }
                     payload1["height"] = height;
                     payload1["width"] = width;
                     payload1["duration"] = duration;
@@ -371,9 +391,15 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j8;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
-                    payload1["thumb"] = thumb;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
+                    if (thumb != "") {
+                        payload1["thumb"] = thumb;
+                    }
                     payload1["height"] = height;
                     payload1["width"] = width;
                     payload1["duration"] = duration;
@@ -411,8 +437,12 @@ namespace Telegram {
                         }
                         payload1["caption_entities"] = j8;
                     }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["caption"] = caption;
+                    if (parse_mode != "") {
+                        payload1["parse_mode"] = parse_mode;
+                    }
+                    if (caption != "") {
+                        payload1["caption"] = caption;
+                    }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/sendVoice", result1);
@@ -437,7 +467,9 @@ namespace Telegram {
                     payload1["reply_to_message_id"] = reply_to_message_id;
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
-                    payload1["thumb"] = thumb;
+                    if (thumb != "") {
+                        payload1["thumb"] = thumb;
+                    }
                     payload1["length"] = length;
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
