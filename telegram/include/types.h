@@ -190,7 +190,7 @@ namespace Telegram {
                           std::string parse_mode = "", std::string caption = "", int message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
-                    payload1["photo"] = photo;
+
                     if (reply_markup != nullptr) {
                         json j2;
                         to_json(j2, *reply_markup);
@@ -214,7 +214,7 @@ namespace Telegram {
                     payload1["caption"] = caption;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/sendPhoto", result1);
+                    auto response = request->sendFile("/sendPhoto", result1,Telegram::MediaType::PHOTO,photo);
                 }
 
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
