@@ -4,7 +4,8 @@
 
 void sendSomething(const Telegram::Bot::Types::API &api, const Message &message) {
     try {
-        api.sendPhoto(message.chat->id, Telegram::MediaSource::LOCAL, "../bin/Image4.PNG");
+        Chat chat = api.getChat(message.chat->id);
+        std::cout << "Your chat first name is: " + chat.first_name << std::endl;
     }
     catch (Telegram::Bot::Types::Error &error) {
         std::cerr << error.what();

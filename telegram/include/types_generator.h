@@ -177,7 +177,7 @@ struct Chat {
     std::string last_name;
     bool is_forum;
     std::shared_ptr<ChatPhoto> photo;
-    std::string active_usernames;
+    std::vector<std::string> active_usernames;
     std::string emoji_status_custom_emoji_id;
     std::string bio;
     bool has_private_forwards;
@@ -2243,7 +2243,8 @@ inline void from_json(const json &j, Chat &name) {
     name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
     name.is_forum = j.contains("is_forum") ? j.at("is_forum").get<bool>() : false;
     name.photo = j.contains("photo") ? std::make_shared<ChatPhoto>(j.at("photo").get<ChatPhoto>()) : nullptr;
-    name.active_usernames = j.contains("active_usernames") ? j.at("active_usernames").get<std::string>() : "";
+    name.active_usernames = j.contains("active_usernames") ? j.at("active_usernames").get<std::vector<std::string>>()
+                                                           : std::vector<std::string>();
     name.emoji_status_custom_emoji_id = j.contains("emoji_status_custom_emoji_id") ? j.at(
             "emoji_status_custom_emoji_id").get<std::string>() : "";
     name.bio = j.contains("bio") ? j.at("bio").get<std::string>() : "";
@@ -2262,16 +2263,7 @@ inline void from_json(const json &j, Chat &name) {
     name.slow_mode_delay = j.contains("slow_mode_delay") ? j.at("slow_mode_delay").get<int>() : 0;
     name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at("message_auto_delete_time").get<int>()
                                                                            : 0;
-    name.has_aggressive_anti_spam_enabled = j.contains("has_aggressive_anti_spam_enabled") ? j.at(
-            "has_aggressive_anti_spam_enabled").get<bool>() : false;
-    name.has_hidden_members = j.contains("has_hidden_members") ? j.at("has_hidden_members").get<bool>() : false;
-    name.has_protected_content = j.contains("has_protected_content") ? j.at("has_protected_content").get<bool>()
-                                                                     : false;
-    name.sticker_set_name = j.contains("sticker_set_name") ? j.at("sticker_set_name").get<std::string>() : "";
-    name.can_set_sticker_set = j.contains("can_set_sticker_set") ? j.at("can_set_sticker_set").get<bool>() : false;
-    name.linked_chat_id = j.contains("linked_chat_id") ? j.at("linked_chat_id").get<int>() : 0;
-    name.location = j.contains("location") ? std::make_shared<ChatLocation>(j.at("location").get<ChatLocation>())
-                                           : nullptr;
+
 }
 
 inline void to_json(json &j, const Chat &name) {

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <memory>
 #include <vector>
@@ -755,7 +756,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getUserProfilePhotos", result1);
                     UserProfilePhotos u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -767,7 +768,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getFile", result1);
                     File u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1025,7 +1026,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChat", result1);
                     Chat u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1037,7 +1038,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatAdministrators", result1);
                     std::vector<ChatMember> u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     for (const auto &a: response_u) {
                         ChatMember u2;
                         from_json(a, u2);
@@ -1052,7 +1053,7 @@ namespace Telegram {
                     payload1["chat_id"] = chat_id;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMemberCount", result1);
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     return response_u;
                 }
 
@@ -1064,7 +1065,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMember", result1);
                     ChatMember u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1286,7 +1287,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getChatMenuButton", result1);
                     MenuButton u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1312,7 +1313,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getMyDefaultAdministratorRights", result1);
                     ChatAdministratorRights u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1473,7 +1474,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getStickerSet", result1);
                     StickerSet u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     from_json(response_u, u);
                     return u;
                 }
@@ -1485,7 +1486,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getCustomEmojiStickers", result1);
                     std::vector<Sticker> u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     for (const auto &a: response_u) {
                         Sticker u2;
                         from_json(a, u2);
@@ -1838,7 +1839,7 @@ namespace Telegram {
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/getGameHighScores", result1);
                     std::vector<GameHighScore> u;
-                    auto response_u = json::parse(response);
+                    auto response_u = json::parse(response)["result"];
                     for (const auto &a: response_u) {
                         GameHighScore u2;
                         from_json(a, u2);

@@ -1,22 +1,24 @@
-#include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
-	try {
-		Json::Value file;
-		file = api.getChat(message["chat"]["id"].asString());
-		std::cout << file;
-	}
-	catch (std::string& error) {
-		std::cerr << error;
-	}
+#include "include/TelegramAPI.h"
+
+void sendSomething(const Telegram::Bot::Types::API &api, const Message &message) {
+    try {
+        Chat chat = api.getChat(message.chat->id);
+        std::cout << "Your chat first name is: " + chat.first_name << std::endl;
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
 
-int main()
-{
+int main(int argc, char **argv) {
 
-	Telegram::Bot::Connector handler("your-token");
-	handler.callback(sendSomething);
+    try {
+        Telegram::Bot::Connector handler(argv[1]);//Insert here your token
+        handler.callback(sendSomething);
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
-
-
