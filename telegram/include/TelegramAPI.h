@@ -38,27 +38,7 @@ namespace Telegram {
             long long int m_offset;
             std::mutex m_block;
             std::shared_ptr<Telegram::Bot::Types::API> m_api;
-
-            inline void update() {
-                while (1) {
-                    nlohmann::json parsed;
-                    std::string readBuffer;
-                    std::string aghl;
-                    aghl = "/getUpdates?offset=" + std::to_string(m_offset + 1);
-                    readBuffer = m_request->sendHttp(aghl, "", false);
-                    parsed = nlohmann::json::object();
-                    parsed = nlohmann::json::parse(readBuffer);
-                    if (parsed["ok"] == true && !parsed["result"][0]["update_id"].empty()) {
-                        m_offset = parsed["result"][0]["update_id"];
-                        m_block.lock();
-                        Message message;
-                        from_json(parsed["result"][0]["message"], message);
-                        m_values.push(std::move(message));
-                        m_block.unlock();
-                    }
-                }
-            }
-
+            void update();
             std::shared_ptr<Types::Network> m_request;
         };
     }
