@@ -7,6 +7,9 @@ namespace Telegram {
     enum MediaType {
         PHOTO, VIDEO, DOCUMENT, AUDIO
     };
+    enum MediaSource {
+        LOCAL, SERVER
+    };
     namespace Bot {
         namespace Types {
             class Network {

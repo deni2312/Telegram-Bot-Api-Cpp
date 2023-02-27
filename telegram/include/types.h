@@ -183,14 +183,14 @@ namespace Telegram {
 
 // Use this method to send photos. On success, the sent <a href="#message">Message</a> is returned.
                 inline void
-                sendPhoto(int chat_id, std::string photo, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
+                sendPhoto(int chat_id, MediaSource source, std::string photo,
+                          std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                           bool protect_content = false, bool disable_notification = false, bool has_spoiler = false,
                           std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
                           std::string parse_mode = "", std::string caption = "", int message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
-
                     if (reply_markup != nullptr) {
                         json j2;
                         to_json(j2, *reply_markup);
@@ -218,12 +218,17 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendPhoto", result1, Telegram::MediaType::PHOTO, photo);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendPhoto", result1, Telegram::MediaType::PHOTO, photo);
+                    } else {
+                        payload1["photo"] = photo;
+                    }
                 }
 
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
                 inline void
-                sendAudio(int chat_id, std::string audio, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
+                sendAudio(int chat_id, MediaSource source, std::string audio,
+                          std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                           bool protect_content = false, bool disable_notification = false, std::string thumb = "",
                           std::string title = "", std::string performer = "", int duration = 0,
@@ -262,11 +267,15 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendAudio", result1, Telegram::MediaType::AUDIO, audio);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendAudio", result1, Telegram::MediaType::AUDIO, audio);
+                    } else {
+                        payload1["audio"] = audio;
+                    }
                 }
 
 // Use this method to send general files. On success, the sent <a href="#message">Message</a> is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-                inline void sendDocument(int chat_id, std::string document,
+                inline void sendDocument(int chat_id, MediaSource source, std::string document,
                                          std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                                          bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                                          bool protect_content = false, bool disable_notification = false,
@@ -307,13 +316,18 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendDocument", result1, Telegram::MediaType::DOCUMENT,
-                                                      document);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendDocument", result1, Telegram::MediaType::DOCUMENT,
+                                                          document);
+                    } else {
+                        payload1["document"] = document;
+                    }
                 }
 
 // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
                 inline void
-                sendVideo(int chat_id, std::string video, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
+                sendVideo(int chat_id, MediaSource source, std::string video,
+                          std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                           bool protect_content = false, bool disable_notification = false,
                           bool supports_streaming = false, bool has_spoiler = false,
@@ -357,11 +371,15 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendVideo", result1, Telegram::MediaType::VIDEO, video);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendVideo", result1, Telegram::MediaType::VIDEO, video);
+                    } else {
+                        payload1["video"] = video;
+                    }
                 }
 
 // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-                inline void sendAnimation(int chat_id, std::string animation,
+                inline void sendAnimation(int chat_id, MediaSource source, std::string animation,
                                           std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                                           bool protect_content = false, bool disable_notification = false,
@@ -406,12 +424,18 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendAnimation", result1, Telegram::MediaType::VIDEO, animation);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendAnimation", result1, Telegram::MediaType::VIDEO,
+                                                          animation);
+                    } else {
+                        payload1["animation"] = animation;
+                    }
                 }
 
 // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as <a href="#audio">Audio</a> or <a href="#document">Document</a>). On success, the sent <a href="#message">Message</a> is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
                 inline void
-                sendVoice(int chat_id, std::string voice, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
+                sendVoice(int chat_id, MediaSource source, std::string voice,
+                          std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                           bool protect_content = false, bool disable_notification = false, int duration = 0,
                           std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
@@ -446,11 +470,15 @@ namespace Telegram {
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendVoice", result1, Telegram::MediaType::AUDIO, voice);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendVoice", result1, Telegram::MediaType::AUDIO, voice);
+                    } else {
+                        payload1["voice"] = voice;
+                    }
                 }
 
 // As of <a href="https://telegram.org/blog/video-messages-and-telescope">v.4.0</a>, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent <a href="#message">Message</a> is returned.
-                inline void sendVideoNote(int chat_id, std::string video_note,
+                inline void sendVideoNote(int chat_id, MediaSource source, std::string video_note,
                                           std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
                                           bool protect_content = false, bool disable_notification = false,
@@ -475,15 +503,20 @@ namespace Telegram {
                     payload1["duration"] = duration;
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
-                    auto response = request->sendFile("/sendVideoNote", result1, Telegram::MediaType::VIDEO,
-                                                      video_note);
+                    if (source == MediaSource::LOCAL) {
+                        auto response = request->sendFile("/sendVideoNote", result1, Telegram::MediaType::VIDEO,
+                                                          video_note);
+                    } else {
+                        payload1["video_note"] = video_note;
+                    }
                 }
 
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of <a href="#message">Messages</a> that were sent is returned.
-                inline void sendMediaGroup(int chat_id, std::vector<std::shared_ptr<InputMediaAudio>> media,
-                                           bool allow_sending_without_reply = false, int reply_to_message_id = 0,
-                                           bool protect_content = false, bool disable_notification = false,
-                                           int message_thread_id = 0) const {
+                inline void
+                sendMediaGroup(int chat_id, MediaSource source, std::vector<std::shared_ptr<InputMediaAudio>> media,
+                               bool allow_sending_without_reply = false, int reply_to_message_id = 0,
+                               bool protect_content = false, bool disable_notification = false,
+                               int message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
                     json j1 = json::object();
