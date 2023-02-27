@@ -26,21 +26,21 @@ Telegram::Bot::Types::HTTPrequest::sendFile(const std::string &query, const std:
                                             const std::string &thumb, const std::string &thumbpath) {
     std::string r;
     std::string type_string;
-    std::map<MediaType, std::string> stringToFruit{
+    std::map<MediaType, std::string> stringToMedia{
             {PHOTO,    "photo"},
             {VIDEO,    "video"},
             {DOCUMENT, "document"},
     };
     if (thumb != "") {
         r = cpr::Get(cpr::Url{link + query}, cpr::Body{body},
-                     cpr::Multipart{{stringToFruit[type] + "=", "1"},
-                                    {stringToFruit[type],       cpr::File{path}},
+                     cpr::Multipart{{stringToMedia[type] + "=", "1"},
+                                    {stringToMedia[type],       cpr::File{path}},
                                     {thumb + "=",               "1"},
                                     {thumb,                     cpr::File{thumbpath}}}).text;
     } else {
         r = cpr::Get(cpr::Url{link + query},
-                     cpr::Multipart{{stringToFruit[type] + "=", "1"},
-                                    {stringToFruit[type],       cpr::File{path}}}).text;
+                     cpr::Multipart{{stringToMedia[type] + "=", "1"},
+                                    {stringToMedia[type],       cpr::File{path}}}).text;
     }
     if (r.find("\"ok\":false") != std::string::npos) {
         throw Telegram::Bot::Types::Error(r);
