@@ -13,6 +13,7 @@ void sendSomething(const Telegram::Bot::Types::API &api, const Message &message)
 }
 
 int main(int argc, char **argv) {
+    
     try {
         Telegram::Bot::Connector handler(argv[1]);//Insert here your token
         handler.callback(sendSomething);
