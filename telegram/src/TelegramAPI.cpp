@@ -24,8 +24,7 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token
     }
 }
 
-void Telegram::Bot::Connector::callback(
-        const std::function<void(const Telegram::Bot::Types::API &, const Message &)> &func) {
+void Telegram::Bot::Connector::callback() {
     m_offset = 0;
     std::thread threadupdate;
     threadupdate = std::thread(&Telegram::Bot::Connector::update, this);
@@ -40,7 +39,7 @@ void Telegram::Bot::Connector::callback(
             values2 = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            func(*m_api, values2);
+            m_message(*m_api, values2);
         }
     }
 }
@@ -63,6 +62,15 @@ void Telegram::Bot::Connector::update() {
             m_block.unlock();
         }
     }
+}
+
+void Telegram::Bot::Connector::onInline(
+        std::function<void(const Telegram::Bot::Types::API &, const InlineQueryResult &)> func) {
+    m_inline=func;
+}
+
+void Telegram::Bot::Connector::onMessage(std::function<void(const Telegram::Bot::Types::API &, const Message &)> func) {
+    m_message=func;
 }
 
 Telegram::Bot::Connector::~Connector() = default;

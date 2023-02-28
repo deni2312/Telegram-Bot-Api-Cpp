@@ -16,7 +16,8 @@ int main(int argc, char **argv) {
 
     try {
         Telegram::Bot::Connector handler(argv[1]);//Insert here your token
-        handler.callback(sendSomething);
+        handler.onMessage(sendSomething);
+        handler.callback();
     }
     catch (Telegram::Bot::Types::Error &error) {
         std::cerr << error.what();

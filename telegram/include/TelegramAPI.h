@@ -27,8 +27,9 @@ namespace Telegram {
             Connector &operator=(const Connector &connector) = delete;
 
             explicit Connector(std::string token);
-
-            void callback(const std::function<void(const Telegram::Bot::Types::API &, const Message &)> &func);
+            void onMessage(std::function<void(const Telegram::Bot::Types::API &, const Message &)> func);
+            void onInline(std::function<void(const Telegram::Bot::Types::API &, const InlineQueryResult &)> func);
+            void callback();
 
             ~Connector();
 
@@ -40,6 +41,8 @@ namespace Telegram {
             std::shared_ptr<Telegram::Bot::Types::API> m_api;
             void update();
             std::shared_ptr<Types::Network> m_request;
+            std::function<void(const Telegram::Bot::Types::API &, const Message &)> m_message;
+            std::function<void(const Telegram::Bot::Types::API &, const InlineQueryResult &)> m_inline;
         };
     }
 }
