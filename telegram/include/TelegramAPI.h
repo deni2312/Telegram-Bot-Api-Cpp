@@ -34,7 +34,7 @@ namespace Telegram {
             ~Connector();
 
         private:
-            std::queue<Message> m_values;
+            std::queue<nlohmann::json> m_values;
             std::string m_token;
             long long int m_offset;
             std::mutex m_block;

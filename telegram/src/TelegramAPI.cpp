@@ -34,12 +34,20 @@ void Telegram::Bot::Connector::callback() {
         auto size = m_values.size();
         m_block.unlock();
         if (size > 0) {
-            Message values2;
+            nlohmann::json values2;
             m_block.lock();
             values2 = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            m_message(*m_api, values2);
+            if(values2.contains("message")) {
+                Message message;
+                from_json(values2["message"], message);
+                m_message(*m_api, values2);
+            }else if(values2.contains("inline_query")) {
+                Message message;
+                from_json(values2["inline_query"], message);
+                m_message(*m_api, values2);
+            }
         }
     }
 }
@@ -56,9 +64,7 @@ void Telegram::Bot::Connector::update() {
         if (parsed["ok"] == true && !parsed["result"][0]["update_id"].empty()) {
             m_offset = parsed["result"][0]["update_id"];
             m_block.lock();
-            Message message;
-            from_json(parsed["result"][0]["message"], message);
-            m_values.push(std::move(message));
+            m_values.push(std::move(parsed["result"][0]));
             m_block.unlock();
         }
     }
