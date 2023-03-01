@@ -18,8 +18,7 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token
     if (!updates.empty()) {
         m_offset = updates.at(0).update_id;
     }
-    m_message = [](const Telegram::Bot::Types::API &, const Message &) {};
-    m_inline = [](const Telegram::Bot::Types::API &, const InlineQuery &) {};
+    m_update = [](const Telegram::Bot::Types::API &, const Update &) {};
 }
 
 void Telegram::Bot::Connector::callback() {
@@ -37,11 +36,7 @@ void Telegram::Bot::Connector::callback() {
             update = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            if (update.message) {
-                m_message(*m_api, *update.message);
-            } else if (update.inline_query) {
-                m_inline(*m_api, *update.inline_query);
-            }
+            m_update(*m_api, update);
         }
     }
 }
@@ -58,13 +53,8 @@ void Telegram::Bot::Connector::update() {
     }
 }
 
-void Telegram::Bot::Connector::onInline(
-        std::function<void(const Telegram::Bot::Types::API &, const InlineQuery &)> func) {
-    m_inline = func;
-}
-
-void Telegram::Bot::Connector::onMessage(std::function<void(const Telegram::Bot::Types::API &, const Message &)> func) {
-    m_message = func;
+void Telegram::Bot::Connector::onUpdate(std::function<void(const Telegram::Bot::Types::API &, const Update &)> func) {
+    m_update = func;
 }
 
 Telegram::Bot::Connector::~Connector() = default;

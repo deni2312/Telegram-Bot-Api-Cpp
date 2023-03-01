@@ -2,9 +2,9 @@
 
 #include "telegram/include/TelegramAPI.h"
 
-void sendSomething(const Telegram::Bot::Types::API &api, const Message &message) {
+void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
     try {
-        Chat chat = api.getChat(message.chat->id);
+        Chat chat = api.getChat(update.message->chat->id);
         std::cout << "Your chat first name is: " + chat.first_name << std::endl;
     }
     catch (Telegram::Bot::Types::Error &error) {
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
 
     try {
         Telegram::Bot::Connector handler(argv[1]);//Insert here your token
-        handler.onMessage(sendSomething);
+        handler.onUpdate(sendSomething);
         handler.callback();
     }
     catch (Telegram::Bot::Types::Error &error) {

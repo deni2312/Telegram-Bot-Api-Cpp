@@ -28,9 +28,7 @@ namespace Telegram {
 
             explicit Connector(std::string token);
 
-            void onMessage(std::function<void(const Telegram::Bot::Types::API &, const Message &)> func);
-
-            void onInline(std::function<void(const Telegram::Bot::Types::API &, const InlineQuery &)> func);
+            void onUpdate(std::function<void(const Telegram::Bot::Types::API &, const Update &)> func);
 
             void callback();
 
@@ -46,8 +44,7 @@ namespace Telegram {
             void update();
 
             std::shared_ptr<Types::Network> m_request;
-            std::function<void(const Telegram::Bot::Types::API &, const Message &)> m_message;
-            std::function<void(const Telegram::Bot::Types::API &, const InlineQuery &)> m_inline;
+            std::function<void(const Telegram::Bot::Types::API &, const Update &)> m_update;
         };
     }
 }
