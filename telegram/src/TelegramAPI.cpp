@@ -39,13 +39,13 @@ void Telegram::Bot::Connector::callback() {
             values2 = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            if(values2.contains("message")) {
+            if (values2.contains("message")) {
                 Message message;
                 from_json(values2["message"], message);
-                m_message(*m_api, values2);
-            }else if(values2.contains("inline_query")) {
-                Message message;
-                from_json(values2["inline_query"], message);
+                m_message(*m_api, message);
+            } else if (values2.contains("inline_query")) {
+                InlineQueryResult inlineQueryResult;
+                from_json(values2["inline_query"], inlineQueryResult);
                 m_message(*m_api, values2);
             }
         }
@@ -72,11 +72,11 @@ void Telegram::Bot::Connector::update() {
 
 void Telegram::Bot::Connector::onInline(
         std::function<void(const Telegram::Bot::Types::API &, const InlineQueryResult &)> func) {
-    m_inline=func;
+    m_inline = func;
 }
 
 void Telegram::Bot::Connector::onMessage(std::function<void(const Telegram::Bot::Types::API &, const Message &)> func) {
-    m_message=func;
+    m_message = func;
 }
 
 Telegram::Bot::Connector::~Connector() = default;
