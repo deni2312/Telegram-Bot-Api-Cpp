@@ -23,6 +23,26 @@ namespace Telegram {
                 API(std::string link, std::shared_ptr<Network> &request) : generalToken(link),
                                                                            request{request} {};
 
+// Use this method to receive incoming updates using long polling (<a href="https://en.wikipedia.org/wiki/Push_technology#Long_polling">wiki</a>). Returns an Array of <a href="#update">Update</a> objects.
+                inline std::vector<Update>
+                getUpdates(std::string allowed_updates = "", int timeout = 0, int limit = 0, int offset = 0) const {
+                    json payload1;
+                    payload1["allowed_updates"] = allowed_updates;
+                    payload1["timeout"] = timeout;
+                    payload1["limit"] = limit;
+                    payload1["offset"] = offset;
+                    auto result1 = payload1.dump();
+                    auto response = request->sendHttp("/getUpdates", result1);
+                    std::vector<Update> u;
+                    auto response_u = json::parse(response)["result"];
+                    for (const auto &a: response_u) {
+                        Update u2;
+                        from_json(a, u2);
+                        u.push_back(u2);
+                    }
+                    return u;
+                }
+
 // Use this method to log out from the cloud Bot API server before launching the bot locally. You <strong>must</strong> log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns <em>True</em> on success. Requires no parameters.
                 inline void
                 logOut(int chat_id, std::string text, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,

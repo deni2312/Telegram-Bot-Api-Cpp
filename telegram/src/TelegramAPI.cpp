@@ -14,14 +14,12 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token
     std::string readBuffer;
     std::string update;
     std::cout << "The bot has started successfully!" << std::endl;
-    update = "/getUpdates";
-    readBuffer = m_request->sendHttp(update, "", false);
-    nlohmann::json parsed;
-    parsed = nlohmann::json::object();
-    parsed = nlohmann::json::parse(readBuffer);
-    if (parsed["ok"] == true && !parsed["result"][0]["update_id"].empty()) {
-        m_offset = parsed["result"][0]["update_id"];
+    std::vector<Update> updates = m_api->getUpdates();
+    if (!updates.empty()) {
+        m_offset = updates.at(0).update_id;
     }
+    m_message = [](const Telegram::Bot::Types::API &, const Message &) {};
+    m_inline = [](const Telegram::Bot::Types::API &, const InlineQuery &) {};
 }
 
 void Telegram::Bot::Connector::callback() {
@@ -34,19 +32,15 @@ void Telegram::Bot::Connector::callback() {
         auto size = m_values.size();
         m_block.unlock();
         if (size > 0) {
-            nlohmann::json values2;
+            Update update;
             m_block.lock();
-            values2 = std::move(m_values.front());
+            update = std::move(m_values.front());
             m_values.pop();
             m_block.unlock();
-            if (values2.contains("message")) {
-                Message message;
-                from_json(values2["message"], message);
-                m_message(*m_api, message);
-            } else if (values2.contains("inline_query")) {
-                InlineQueryResult inlineQueryResult;
-                from_json(values2["inline_query"], inlineQueryResult);
-                m_message(*m_api, values2);
+            if (update.message) {
+                m_message(*m_api, *update.message);
+            } else if (update.inline_query) {
+                m_inline(*m_api, *update.inline_query);
             }
         }
     }
@@ -54,24 +48,18 @@ void Telegram::Bot::Connector::callback() {
 
 void Telegram::Bot::Connector::update() {
     while (1) {
-        nlohmann::json parsed;
-        std::string readBuffer;
-        std::string aghl;
-        aghl = "/getUpdates?offset=" + std::to_string(m_offset + 1);
-        readBuffer = m_request->sendHttp(aghl, "", false);
-        parsed = nlohmann::json::object();
-        parsed = nlohmann::json::parse(readBuffer);
-        if (parsed["ok"] == true && !parsed["result"][0]["update_id"].empty()) {
-            m_offset = parsed["result"][0]["update_id"];
+        std::vector<Update> updates = m_api->getUpdates("", 0, 0, m_offset + 1);
+        if (!updates.empty()) {
+            m_offset = updates.at(0).update_id;
             m_block.lock();
-            m_values.push(std::move(parsed["result"][0]));
+            m_values.push(std::move(updates.at(0)));
             m_block.unlock();
         }
     }
 }
 
 void Telegram::Bot::Connector::onInline(
-        std::function<void(const Telegram::Bot::Types::API &, const InlineQueryResult &)> func) {
+        std::function<void(const Telegram::Bot::Types::API &, const InlineQuery &)> func) {
     m_inline = func;
 }
 
