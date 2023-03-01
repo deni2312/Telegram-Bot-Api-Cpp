@@ -12,7 +12,7 @@
 
 #include <queue>
 
-#include "types.h"
+#include "methods.h"
 #include "../include/network/HTTPrequest.h"
 
 #include <iostream>
