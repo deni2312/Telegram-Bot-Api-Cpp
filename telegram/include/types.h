@@ -20,6 +20,57 @@ namespace Telegram{
 
                 API(std::string link, std::shared_ptr<Network> &request) : generalToken(link),
                                                                                   request{request} {};
+// Use this method to receive incoming updates using long polling (<a href="https://en.wikipedia.org/wiki/Push_technology#Long_polling">wiki</a>). Returns an Array of <a href="#update">Update</a> objects.
+inline void getUpdates(std::string allowed_updates="" ,int timeout=0 ,int limit=0 ,int offset=0 ) const{
+	json payload1; 
+	payload1["allowed_updates"] = allowed_updates;
+	payload1["timeout"] = timeout;
+	payload1["limit"] = limit;
+	payload1["offset"] = offset;
+	auto result1=payload1.dump();
+auto response = sendHttp("/getUpdates",result1);
+}
+
+// Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized <a href="#update">Update</a>. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns <em>True</em> on success.
+inline void setWebhook(std::string url ,std::string secret_token="" ,bool drop_pending_updates=false ,std::string allowed_updates="" ,int max_connections=0 ,std::string ip_address="" ,std::shared_ptr<InputFile> certificate=nullptr ) const{
+	json payload1; 
+	payload1["url"] = url;
+	payload1["secret_token"] = secret_token;
+	payload1["drop_pending_updates"] = drop_pending_updates;
+	payload1["allowed_updates"] = allowed_updates;
+	payload1["max_connections"] = max_connections;
+	payload1["ip_address"] = ip_address;
+if(certificate!=nullptr){	json j6;
+ 	to_json(j6,*certificate);
+	payload1["certificate"] = j6;
+}	auto result1=payload1.dump();
+auto response = sendHttp("/setWebhook",result1);
+}
+
+// Use this method to remove webhook integration if you decide to switch back to <a href="#getupdates">getUpdates</a>. Returns <em>True</em> on success.
+inline void deleteWebhook(bool drop_pending_updates=false ) const{
+	json payload1; 
+	payload1["drop_pending_updates"] = drop_pending_updates;
+	auto result1=payload1.dump();
+auto response = sendHttp("/deleteWebhook",result1);
+}
+
+// Use this method to get current webhook status. Requires no parameters. On success, returns a <a href="#webhookinfo">WebhookInfo</a> object. If the bot is using <a href="#getupdates">getUpdates</a>, will return an object with the <em>url</em> field empty.
+inline void getWebhookInfo(std::string allowed_updates="" ,int max_connections=0 ,int last_synchronization_error_date=0 ,std::string last_error_message="" ,int last_error_date=0 ,std::string ip_address="" ,int pending_update_count=0 ,bool has_custom_certificate=false ,std::string url="" ) const{
+	json payload1; 
+	payload1["allowed_updates"] = allowed_updates;
+	payload1["max_connections"] = max_connections;
+	payload1["last_synchronization_error_date"] = last_synchronization_error_date;
+	payload1["last_error_message"] = last_error_message;
+	payload1["last_error_date"] = last_error_date;
+	payload1["ip_address"] = ip_address;
+	payload1["pending_update_count"] = pending_update_count;
+	payload1["has_custom_certificate"] = has_custom_certificate;
+	payload1["url"] = url;
+	auto result1=payload1.dump();
+auto response = sendHttp("/getWebhookInfo",result1);
+}
+
 // Use this method to log out from the cloud Bot API server before launching the bot locally. You <strong>must</strong> log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns <em>True</em> on success. Requires no parameters.
 inline void logOut(int chat_id ,std::string text ,std::shared_ptr<InlineKeyboardMarkup> reply_markup=nullptr ,bool allow_sending_without_reply=false ,int reply_to_message_id=0 ,bool protect_content=false ,bool disable_notification=false ,bool disable_web_page_preview=false ,std::vector<std::shared_ptr<MessageEntity>> entities=std::vector<std::shared_ptr<MessageEntity>>() ,std::string parse_mode="" ,int message_thread_id=0 ) const{
 	json payload1; 

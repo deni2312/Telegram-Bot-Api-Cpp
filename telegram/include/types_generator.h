@@ -4,6 +4,8 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+struct Update;
+struct WebhookInfo;
 struct User;
 struct Chat;
 struct Message;
@@ -150,6 +152,38 @@ struct Games;
 struct Game;
 struct CallbackGame;
 struct GameHighScore;
+
+//This <a href="#available-types">object</a> represents an incoming update.<br>At most <strong>one</strong> of the optional parameters can be present in any given update.
+struct Update{
+	int update_id;
+	std::shared_ptr<Message> message;
+	std::shared_ptr<Message> edited_message;
+	std::shared_ptr<Message> channel_post;
+	std::shared_ptr<Message> edited_channel_post;
+	std::shared_ptr<InlineQuery> inline_query;
+	std::shared_ptr<ChosenInlineResult> chosen_inline_result;
+	std::shared_ptr<CallbackQuery> callback_query;
+	std::shared_ptr<ShippingQuery> shipping_query;
+	std::shared_ptr<PreCheckoutQuery> pre_checkout_query;
+	std::shared_ptr<Poll> poll;
+	std::shared_ptr<PollAnswer> poll_answer;
+	std::shared_ptr<ChatMemberUpdated> my_chat_member;
+	std::shared_ptr<ChatMemberUpdated> chat_member;
+	std::shared_ptr<ChatJoinRequest> chat_join_request;
+};
+
+//Describes the current status of a webhook.
+struct WebhookInfo{
+	std::string url;
+	bool has_custom_certificate;
+	int pending_update_count;
+	std::string ip_address;
+	int last_error_date;
+	std::string last_error_message;
+	int last_synchronization_error_date;
+	int max_connections;
+	std::string allowed_updates;
+};
 
 //This object represents a Telegram user or bot.
 struct User{
@@ -1617,6 +1651,10 @@ struct GameHighScore{
 	int score;
 };
 
+inline void from_json(const json& j, Update& name);
+inline void to_json(json&  j,const Update& name);
+inline void from_json(const json& j, WebhookInfo& name);
+inline void to_json(json&  j,const WebhookInfo& name);
 inline void from_json(const json& j, User& name);
 inline void to_json(json&  j,const User& name);
 inline void from_json(const json& j, Chat& name);
@@ -1909,6 +1947,64 @@ inline void from_json(const json& j, CallbackGame& name);
 inline void to_json(json&  j,const CallbackGame& name);
 inline void from_json(const json& j, GameHighScore& name);
 inline void to_json(json&  j,const GameHighScore& name);
+inline void from_json(const json& j, Update& name){
+	name.update_id=j.contains("update_id")?j.at("update_id").get<int>() : 0 ;
+	name.message=j.contains("message")?std::make_shared<Message >(j.at("message").get<Message>()) : nullptr ;
+	name.edited_message=j.contains("edited_message")?std::make_shared<Message >(j.at("edited_message").get<Message>()) : nullptr ;
+	name.channel_post=j.contains("channel_post")?std::make_shared<Message >(j.at("channel_post").get<Message>()) : nullptr ;
+	name.edited_channel_post=j.contains("edited_channel_post")?std::make_shared<Message >(j.at("edited_channel_post").get<Message>()) : nullptr ;
+	name.inline_query=j.contains("inline_query")?std::make_shared<InlineQuery >(j.at("inline_query").get<InlineQuery>()) : nullptr ;
+	name.chosen_inline_result=j.contains("chosen_inline_result")?std::make_shared<ChosenInlineResult >(j.at("chosen_inline_result").get<ChosenInlineResult>()) : nullptr ;
+	name.callback_query=j.contains("callback_query")?std::make_shared<CallbackQuery >(j.at("callback_query").get<CallbackQuery>()) : nullptr ;
+	name.shipping_query=j.contains("shipping_query")?std::make_shared<ShippingQuery >(j.at("shipping_query").get<ShippingQuery>()) : nullptr ;
+	name.pre_checkout_query=j.contains("pre_checkout_query")?std::make_shared<PreCheckoutQuery >(j.at("pre_checkout_query").get<PreCheckoutQuery>()) : nullptr ;
+	name.poll=j.contains("poll")?std::make_shared<Poll >(j.at("poll").get<Poll>()) : nullptr ;
+	name.poll_answer=j.contains("poll_answer")?std::make_shared<PollAnswer >(j.at("poll_answer").get<PollAnswer>()) : nullptr ;
+	name.my_chat_member=j.contains("my_chat_member")?std::make_shared<ChatMemberUpdated >(j.at("my_chat_member").get<ChatMemberUpdated>()) : nullptr ;
+	name.chat_member=j.contains("chat_member")?std::make_shared<ChatMemberUpdated >(j.at("chat_member").get<ChatMemberUpdated>()) : nullptr ;
+	name.chat_join_request=j.contains("chat_join_request")?std::make_shared<ChatJoinRequest >(j.at("chat_join_request").get<ChatJoinRequest>()) : nullptr ;
+}
+inline void to_json(json& j,const Update& name){
+	j=json::object();
+	j ["update_id"]=name.update_id;
+	to_json(j["message"],*name . message);
+	to_json(j["edited_message"],*name . edited_message);
+	to_json(j["channel_post"],*name . channel_post);
+	to_json(j["edited_channel_post"],*name . edited_channel_post);
+	to_json(j["inline_query"],*name . inline_query);
+	to_json(j["chosen_inline_result"],*name . chosen_inline_result);
+	to_json(j["callback_query"],*name . callback_query);
+	to_json(j["shipping_query"],*name . shipping_query);
+	to_json(j["pre_checkout_query"],*name . pre_checkout_query);
+	to_json(j["poll"],*name . poll);
+	to_json(j["poll_answer"],*name . poll_answer);
+	to_json(j["my_chat_member"],*name . my_chat_member);
+	to_json(j["chat_member"],*name . chat_member);
+	to_json(j["chat_join_request"],*name . chat_join_request);
+}
+inline void from_json(const json& j, WebhookInfo& name){
+	name.url=j.contains("url")?j.at("url").get<std::string>() : "" ;
+	name.has_custom_certificate=j.contains("has_custom_certificate")?j.at("has_custom_certificate").get<bool>() : false ;
+	name.pending_update_count=j.contains("pending_update_count")?j.at("pending_update_count").get<int>() : 0 ;
+	name.ip_address=j.contains("ip_address")?j.at("ip_address").get<std::string>() : "" ;
+	name.last_error_date=j.contains("last_error_date")?j.at("last_error_date").get<int>() : 0 ;
+	name.last_error_message=j.contains("last_error_message")?j.at("last_error_message").get<std::string>() : "" ;
+	name.last_synchronization_error_date=j.contains("last_synchronization_error_date")?j.at("last_synchronization_error_date").get<int>() : 0 ;
+	name.max_connections=j.contains("max_connections")?j.at("max_connections").get<int>() : 0 ;
+	name.allowed_updates=j.contains("allowed_updates")?j.at("allowed_updates").get<std::string>() : "" ;
+}
+inline void to_json(json& j,const WebhookInfo& name){
+	j=json::object();
+	j ["url"]=name.url;
+	j ["has_custom_certificate"]=name.has_custom_certificate;
+	j ["pending_update_count"]=name.pending_update_count;
+	j ["ip_address"]=name.ip_address;
+	j ["last_error_date"]=name.last_error_date;
+	j ["last_error_message"]=name.last_error_message;
+	j ["last_synchronization_error_date"]=name.last_synchronization_error_date;
+	j ["max_connections"]=name.max_connections;
+	j ["allowed_updates"]=name.allowed_updates;
+}
 inline void from_json(const json& j, User& name){
 	name.id=j.contains("id")?j.at("id").get<int>() : 0 ;
 	name.is_bot=j.contains("is_bot")?j.at("is_bot").get<bool>() : false ;

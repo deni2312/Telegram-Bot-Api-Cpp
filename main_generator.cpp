@@ -116,7 +116,7 @@ std::string gets_default(std::string type) {
 void type_generator() {
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text = r.text;
-    auto types = text.substr(text.find("Available types"), text.size() - text.find("Available types"));
+    auto types = text.substr(text.find("Getting updates"), text.size() - text.find("Getting updates"));
     types_telegram typeTelegram;
     while (types.find("<i class=\"anchor-icon\"></i></a>") != std::string::npos) {
         type line;
@@ -131,7 +131,8 @@ void type_generator() {
         if (description.find("Currently holds no information") == std::string::npos &&
             (description.find("This object") != std::string::npos ||
              description.find("Represents") != std::string::npos ||
-             description.find("Describes") != std::string::npos)) {
+             description.find("Describes") != std::string::npos ||
+             description.find("This <a href=\"#available-types\">object</a>") != std::string::npos)) {
             std::string tbody = types.substr(types.find("<tbody>", types.find("<i class=\"anchor-icon\"></i></a>")),
                                              types.find("</tbody>", types.find("<i class=\"anchor-icon\"></i></a>")) -
                                              types.find("<tbody>", types.find("<i class=\"anchor-icon\"></i></a>")));
@@ -238,7 +239,7 @@ int main(int argc, char **argv) {
     type_generator();
     cpr::Response r = cpr::Get(cpr::Url{"https://core.telegram.org/bots/api"});
     auto text = r.text;
-    auto types = text.substr(text.find("Available types"), text.size() - text.find("Available types"));
+    auto types = text.substr(text.find("Getting updates"), text.size() - text.find("Getting updates"));
     types_telegram typeTelegram;
     while (types.find("<i class=\"anchor-icon\"></i></a>") != std::string::npos) {
         type line;
