@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include <nlohmann/json.hpp>
-#include "types.h"
+#include "Types.h"
 #include <cpr/cpr.h>
 #include "network/Network.h"
 
