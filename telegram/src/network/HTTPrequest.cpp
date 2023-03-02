@@ -38,7 +38,11 @@ Telegram::Bot::Types::HTTPrequest::sendFile(const std::string &query, const std:
     // Iterate over the JSON object
     for (auto it = j.begin(); it != j.end(); ++it) {
         // Check if the current element is an object
-        part.parts.push_back({it.key().c_str(), to_string(it.value())});
+        if (!it.value().is_string()) {
+            part.parts.push_back({it.key().c_str(), to_string(it.value())});
+        } else {
+            part.parts.push_back({it.key().c_str(), (std::string) it.value()});
+        }
     }
     part.parts.push_back({stringToMedia[type], cpr::File{path}});
     if (thumb != "") {

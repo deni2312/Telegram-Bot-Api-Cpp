@@ -4,8 +4,7 @@
 
 void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
     try {
-        Chat chat = api.getChat(update.message->chat->id);
-        std::cout << "Your chat first name is: " + chat.first_name << std::endl;
+        api.sendMessage(update.message->chat->id, "Hello world");
     }
     catch (Telegram::Bot::Types::Error &error) {
         std::cerr << error.what();
