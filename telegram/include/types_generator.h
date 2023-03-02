@@ -1967,20 +1967,20 @@ inline void from_json(const json& j, Update& name){
 inline void to_json(json& j,const Update& name){
 	j=json::object();
 	j ["update_id"]=name.update_id;
-	to_json(j["message"],*name . message);
-	to_json(j["edited_message"],*name . edited_message);
-	to_json(j["channel_post"],*name . channel_post);
-	to_json(j["edited_channel_post"],*name . edited_channel_post);
-	to_json(j["inline_query"],*name . inline_query);
-	to_json(j["chosen_inline_result"],*name . chosen_inline_result);
-	to_json(j["callback_query"],*name . callback_query);
-	to_json(j["shipping_query"],*name . shipping_query);
-	to_json(j["pre_checkout_query"],*name . pre_checkout_query);
-	to_json(j["poll"],*name . poll);
-	to_json(j["poll_answer"],*name . poll_answer);
-	to_json(j["my_chat_member"],*name . my_chat_member);
-	to_json(j["chat_member"],*name . chat_member);
-	to_json(j["chat_join_request"],*name . chat_join_request);
+	if(name.message){to_json(j["message"],*name . message);}
+	if(name.edited_message){to_json(j["edited_message"],*name . edited_message);}
+	if(name.channel_post){to_json(j["channel_post"],*name . channel_post);}
+	if(name.edited_channel_post){to_json(j["edited_channel_post"],*name . edited_channel_post);}
+	if(name.inline_query){to_json(j["inline_query"],*name . inline_query);}
+	if(name.chosen_inline_result){to_json(j["chosen_inline_result"],*name . chosen_inline_result);}
+	if(name.callback_query){to_json(j["callback_query"],*name . callback_query);}
+	if(name.shipping_query){to_json(j["shipping_query"],*name . shipping_query);}
+	if(name.pre_checkout_query){to_json(j["pre_checkout_query"],*name . pre_checkout_query);}
+	if(name.poll){to_json(j["poll"],*name . poll);}
+	if(name.poll_answer){to_json(j["poll_answer"],*name . poll_answer);}
+	if(name.my_chat_member){to_json(j["my_chat_member"],*name . my_chat_member);}
+	if(name.chat_member){to_json(j["chat_member"],*name . chat_member);}
+	if(name.chat_join_request){to_json(j["chat_join_request"],*name . chat_join_request);}
 }
 inline void from_json(const json& j, WebhookInfo& name){
 	name.url=j.contains("url")?j.at("url").get<std::string>() : "" ;
@@ -2071,7 +2071,7 @@ inline void to_json(json& j,const Chat& name){
 	j ["first_name"]=name.first_name;
 	j ["last_name"]=name.last_name;
 	j ["is_forum"]=name.is_forum;
-	to_json(j["photo"],*name . photo);
+	if(name.photo){to_json(j["photo"],*name . photo);}
 	j ["active_usernames"]=name.active_usernames;
 	j ["emoji_status_custom_emoji_id"]=name.emoji_status_custom_emoji_id;
 	j ["bio"]=name.bio;
@@ -2081,8 +2081,8 @@ inline void to_json(json& j,const Chat& name){
 	j ["join_by_request"]=name.join_by_request;
 	j ["description"]=name.description;
 	j ["invite_link"]=name.invite_link;
-	to_json(j["pinned_message"],*name . pinned_message);
-	to_json(j["permissions"],*name . permissions);
+	if(name.pinned_message){to_json(j["pinned_message"],*name . pinned_message);}
+	if(name.permissions){to_json(j["permissions"],*name . permissions);}
 	j ["slow_mode_delay"]=name.slow_mode_delay;
 	j ["message_auto_delete_time"]=name.message_auto_delete_time;
 	j ["has_aggressive_anti_spam_enabled"]=name.has_aggressive_anti_spam_enabled;
@@ -2091,7 +2091,7 @@ inline void to_json(json& j,const Chat& name){
 	j ["sticker_set_name"]=name.sticker_set_name;
 	j ["can_set_sticker_set"]=name.can_set_sticker_set;
 	j ["linked_chat_id"]=name.linked_chat_id;
-	to_json(j["location"],*name . location);
+	if(name.location){to_json(j["location"],*name . location);}
 }
 inline void from_json(const json& j, Message& name){
 	name.message_id=j.contains("message_id")?j.at("message_id").get<int>() : 0 ;
@@ -2200,20 +2200,20 @@ inline void to_json(json& j,const Message& name){
 	j=json::object();
 	j ["message_id"]=name.message_id;
 	j ["message_thread_id"]=name.message_thread_id;
-	to_json(j["from"],*name . from);
-	to_json(j["sender_chat"],*name . sender_chat);
+	if(name.from){to_json(j["from"],*name . from);}
+	if(name.sender_chat){to_json(j["sender_chat"],*name . sender_chat);}
 	j ["date"]=name.date;
-	to_json(j["chat"],*name . chat);
-	to_json(j["forward_from"],*name . forward_from);
-	to_json(j["forward_from_chat"],*name . forward_from_chat);
+	if(name.chat){to_json(j["chat"],*name . chat);}
+	if(name.forward_from){to_json(j["forward_from"],*name . forward_from);}
+	if(name.forward_from_chat){to_json(j["forward_from_chat"],*name . forward_from_chat);}
 	j ["forward_from_message_id"]=name.forward_from_message_id;
 	j ["forward_signature"]=name.forward_signature;
 	j ["forward_sender_name"]=name.forward_sender_name;
 	j ["forward_date"]=name.forward_date;
 	j ["is_topic_message"]=name.is_topic_message;
 	j ["is_automatic_forward"]=name.is_automatic_forward;
-	to_json(j["reply_to_message"],*name . reply_to_message);
-	to_json(j["via_bot"],*name . via_bot);
+	if(name.reply_to_message){to_json(j["reply_to_message"],*name . reply_to_message);}
+	if(name.via_bot){to_json(j["via_bot"],*name . via_bot);}
 	j ["edit_date"]=name.edit_date;
 	j ["has_protected_content"]=name.has_protected_content;
 	j ["media_group_id"]=name.media_group_id;
@@ -2224,18 +2224,18 @@ inline void to_json(json& j,const Message& name){
 		to_json(u,a) ;
 		j["entities"].push_back(u);
 	}
-	to_json(j["animation"],*name . animation);
-	to_json(j["audio"],*name . audio);
-	to_json(j["document"],*name . document);
+	if(name.animation){to_json(j["animation"],*name . animation);}
+	if(name.audio){to_json(j["audio"],*name . audio);}
+	if(name.document){to_json(j["document"],*name . document);}
 	for(auto a:j.at("photo").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
 		to_json(u,a) ;
 		j["photo"].push_back(u);
 	}
-	to_json(j["sticker"],*name . sticker);
-	to_json(j["video"],*name . video);
-	to_json(j["video_note"],*name . video_note);
-	to_json(j["voice"],*name . voice);
+	if(name.sticker){to_json(j["sticker"],*name . sticker);}
+	if(name.video){to_json(j["video"],*name . video);}
+	if(name.video_note){to_json(j["video_note"],*name . video_note);}
+	if(name.voice){to_json(j["voice"],*name . voice);}
 	j ["caption"]=name.caption;
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
@@ -2243,18 +2243,18 @@ inline void to_json(json& j,const Message& name){
 		j["caption_entities"].push_back(u);
 	}
 	j ["has_media_spoiler"]=name.has_media_spoiler;
-	to_json(j["contact"],*name . contact);
-	to_json(j["dice"],*name . dice);
-	to_json(j["game"],*name . game);
-	to_json(j["poll"],*name . poll);
-	to_json(j["venue"],*name . venue);
-	to_json(j["location"],*name . location);
+	if(name.contact){to_json(j["contact"],*name . contact);}
+	if(name.dice){to_json(j["dice"],*name . dice);}
+	if(name.game){to_json(j["game"],*name . game);}
+	if(name.poll){to_json(j["poll"],*name . poll);}
+	if(name.venue){to_json(j["venue"],*name . venue);}
+	if(name.location){to_json(j["location"],*name . location);}
 	for(auto a:j.at("new_chat_members").get<std::vector<User>>()){
 		auto u=json::object();
 		to_json(u,a) ;
 		j["new_chat_members"].push_back(u);
 	}
-	to_json(j["left_chat_member"],*name . left_chat_member);
+	if(name.left_chat_member){to_json(j["left_chat_member"],*name . left_chat_member);}
 	j ["new_chat_title"]=name.new_chat_title;
 	for(auto a:j.at("new_chat_photo").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
@@ -2265,30 +2265,30 @@ inline void to_json(json& j,const Message& name){
 	j ["group_chat_created"]=name.group_chat_created;
 	j ["supergroup_chat_created"]=name.supergroup_chat_created;
 	j ["channel_chat_created"]=name.channel_chat_created;
-	to_json(j["message_auto_delete_timer_changed"],*name . message_auto_delete_timer_changed);
+	if(name.message_auto_delete_timer_changed){to_json(j["message_auto_delete_timer_changed"],*name . message_auto_delete_timer_changed);}
 	j ["migrate_to_chat_id"]=name.migrate_to_chat_id;
 	j ["migrate_from_chat_id"]=name.migrate_from_chat_id;
-	to_json(j["pinned_message"],*name . pinned_message);
-	to_json(j["invoice"],*name . invoice);
-	to_json(j["successful_payment"],*name . successful_payment);
-	to_json(j["user_shared"],*name . user_shared);
-	to_json(j["chat_shared"],*name . chat_shared);
+	if(name.pinned_message){to_json(j["pinned_message"],*name . pinned_message);}
+	if(name.invoice){to_json(j["invoice"],*name . invoice);}
+	if(name.successful_payment){to_json(j["successful_payment"],*name . successful_payment);}
+	if(name.user_shared){to_json(j["user_shared"],*name . user_shared);}
+	if(name.chat_shared){to_json(j["chat_shared"],*name . chat_shared);}
 	j ["connected_website"]=name.connected_website;
-	to_json(j["write_access_allowed"],*name . write_access_allowed);
-	to_json(j["passport_data"],*name . passport_data);
-	to_json(j["proximity_alert_triggered"],*name . proximity_alert_triggered);
-	to_json(j["forum_topic_created"],*name . forum_topic_created);
-	to_json(j["forum_topic_edited"],*name . forum_topic_edited);
-	to_json(j["forum_topic_closed"],*name . forum_topic_closed);
-	to_json(j["forum_topic_reopened"],*name . forum_topic_reopened);
-	to_json(j["general_forum_topic_hidden"],*name . general_forum_topic_hidden);
-	to_json(j["general_forum_topic_unhidden"],*name . general_forum_topic_unhidden);
-	to_json(j["video_chat_scheduled"],*name . video_chat_scheduled);
-	to_json(j["video_chat_started"],*name . video_chat_started);
-	to_json(j["video_chat_ended"],*name . video_chat_ended);
-	to_json(j["video_chat_participants_invited"],*name . video_chat_participants_invited);
-	to_json(j["web_app_data"],*name . web_app_data);
-	to_json(j["reply_markup"],*name . reply_markup);
+	if(name.write_access_allowed){to_json(j["write_access_allowed"],*name . write_access_allowed);}
+	if(name.passport_data){to_json(j["passport_data"],*name . passport_data);}
+	if(name.proximity_alert_triggered){to_json(j["proximity_alert_triggered"],*name . proximity_alert_triggered);}
+	if(name.forum_topic_created){to_json(j["forum_topic_created"],*name . forum_topic_created);}
+	if(name.forum_topic_edited){to_json(j["forum_topic_edited"],*name . forum_topic_edited);}
+	if(name.forum_topic_closed){to_json(j["forum_topic_closed"],*name . forum_topic_closed);}
+	if(name.forum_topic_reopened){to_json(j["forum_topic_reopened"],*name . forum_topic_reopened);}
+	if(name.general_forum_topic_hidden){to_json(j["general_forum_topic_hidden"],*name . general_forum_topic_hidden);}
+	if(name.general_forum_topic_unhidden){to_json(j["general_forum_topic_unhidden"],*name . general_forum_topic_unhidden);}
+	if(name.video_chat_scheduled){to_json(j["video_chat_scheduled"],*name . video_chat_scheduled);}
+	if(name.video_chat_started){to_json(j["video_chat_started"],*name . video_chat_started);}
+	if(name.video_chat_ended){to_json(j["video_chat_ended"],*name . video_chat_ended);}
+	if(name.video_chat_participants_invited){to_json(j["video_chat_participants_invited"],*name . video_chat_participants_invited);}
+	if(name.web_app_data){to_json(j["web_app_data"],*name . web_app_data);}
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
 }
 inline void from_json(const json& j, MessageId& name){
 	name.message_id=j.contains("message_id")?j.at("message_id").get<int>() : 0 ;
@@ -2312,7 +2312,7 @@ inline void to_json(json& j,const MessageEntity& name){
 	j ["offset"]=name.offset;
 	j ["length"]=name.length;
 	j ["url"]=name.url;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["language"]=name.language;
 	j ["custom_emoji_id"]=name.custom_emoji_id;
 }
@@ -2349,7 +2349,7 @@ inline void to_json(json& j,const Animation& name){
 	j ["width"]=name.width;
 	j ["height"]=name.height;
 	j ["duration"]=name.duration;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 	j ["file_name"]=name.file_name;
 	j ["mime_type"]=name.mime_type;
 	j ["file_size"]=name.file_size;
@@ -2375,7 +2375,7 @@ inline void to_json(json& j,const Audio& name){
 	j ["file_name"]=name.file_name;
 	j ["mime_type"]=name.mime_type;
 	j ["file_size"]=name.file_size;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 }
 inline void from_json(const json& j, Document& name){
 	name.file_id=j.contains("file_id")?j.at("file_id").get<std::string>() : "" ;
@@ -2389,7 +2389,7 @@ inline void to_json(json& j,const Document& name){
 	j=json::object();
 	j ["file_id"]=name.file_id;
 	j ["file_unique_id"]=name.file_unique_id;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 	j ["file_name"]=name.file_name;
 	j ["mime_type"]=name.mime_type;
 	j ["file_size"]=name.file_size;
@@ -2412,7 +2412,7 @@ inline void to_json(json& j,const Video& name){
 	j ["width"]=name.width;
 	j ["height"]=name.height;
 	j ["duration"]=name.duration;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 	j ["file_name"]=name.file_name;
 	j ["mime_type"]=name.mime_type;
 	j ["file_size"]=name.file_size;
@@ -2431,7 +2431,7 @@ inline void to_json(json& j,const VideoNote& name){
 	j ["file_unique_id"]=name.file_unique_id;
 	j ["length"]=name.length;
 	j ["duration"]=name.duration;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 	j ["file_size"]=name.file_size;
 }
 inline void from_json(const json& j, Voice& name){
@@ -2490,7 +2490,7 @@ inline void from_json(const json& j, PollAnswer& name){
 inline void to_json(json& j,const PollAnswer& name){
 	j=json::object();
 	j ["poll_id"]=name.poll_id;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["option_ids"]=name.option_ids;
 }
 inline void from_json(const json& j, Poll& name){
@@ -2572,7 +2572,7 @@ inline void from_json(const json& j, Venue& name){
 }
 inline void to_json(json& j,const Venue& name){
 	j=json::object();
-	to_json(j["location"],*name . location);
+	if(name.location){to_json(j["location"],*name . location);}
 	j ["title"]=name.title;
 	j ["address"]=name.address;
 	j ["foursquare_id"]=name.foursquare_id;
@@ -2596,8 +2596,8 @@ inline void from_json(const json& j, ProximityAlertTriggered& name){
 }
 inline void to_json(json& j,const ProximityAlertTriggered& name){
 	j=json::object();
-	to_json(j["traveler"],*name . traveler);
-	to_json(j["watcher"],*name . watcher);
+	if(name.traveler){to_json(j["traveler"],*name . traveler);}
+	if(name.watcher){to_json(j["watcher"],*name . watcher);}
 	j ["distance"]=name.distance;
 }
 inline void from_json(const json& j, MessageAutoDeleteTimerChanged& name){
@@ -2784,12 +2784,12 @@ inline void from_json(const json& j, KeyboardButton& name){
 inline void to_json(json& j,const KeyboardButton& name){
 	j=json::object();
 	j ["text"]=name.text;
-	to_json(j["request_user"],*name . request_user);
-	to_json(j["request_chat"],*name . request_chat);
+	if(name.request_user){to_json(j["request_user"],*name . request_user);}
+	if(name.request_chat){to_json(j["request_chat"],*name . request_chat);}
 	j ["request_contact"]=name.request_contact;
 	j ["request_location"]=name.request_location;
-	to_json(j["request_poll"],*name . request_poll);
-	to_json(j["web_app"],*name . web_app);
+	if(name.request_poll){to_json(j["request_poll"],*name . request_poll);}
+	if(name.web_app){to_json(j["web_app"],*name . web_app);}
 }
 inline void from_json(const json& j, KeyboardButtonRequestUser& name){
 	name.request_id=j.contains("request_id")?j.at("request_id").get<int>() : 0 ;
@@ -2819,8 +2819,8 @@ inline void to_json(json& j,const KeyboardButtonRequestChat& name){
 	j ["chat_is_forum"]=name.chat_is_forum;
 	j ["chat_has_username"]=name.chat_has_username;
 	j ["chat_is_created"]=name.chat_is_created;
-	to_json(j["user_administrator_rights"],*name . user_administrator_rights);
-	to_json(j["bot_administrator_rights"],*name . bot_administrator_rights);
+	if(name.user_administrator_rights){to_json(j["user_administrator_rights"],*name . user_administrator_rights);}
+	if(name.bot_administrator_rights){to_json(j["bot_administrator_rights"],*name . bot_administrator_rights);}
 	j ["bot_is_member"]=name.bot_is_member;
 }
 inline void from_json(const json& j, KeyboardButtonPollType& name){
@@ -2868,11 +2868,11 @@ inline void to_json(json& j,const InlineKeyboardButton& name){
 	j ["text"]=name.text;
 	j ["url"]=name.url;
 	j ["callback_data"]=name.callback_data;
-	to_json(j["web_app"],*name . web_app);
-	to_json(j["login_url"],*name . login_url);
+	if(name.web_app){to_json(j["web_app"],*name . web_app);}
+	if(name.login_url){to_json(j["login_url"],*name . login_url);}
 	j ["switch_inline_query"]=name.switch_inline_query;
 	j ["switch_inline_query_current_chat"]=name.switch_inline_query_current_chat;
-	to_json(j["callback_game"],*name . callback_game);
+	if(name.callback_game){to_json(j["callback_game"],*name . callback_game);}
 	j ["pay"]=name.pay;
 }
 inline void from_json(const json& j, LoginUrl& name){
@@ -2900,8 +2900,8 @@ inline void from_json(const json& j, CallbackQuery& name){
 inline void to_json(json& j,const CallbackQuery& name){
 	j=json::object();
 	j ["id"]=name.id;
-	to_json(j["from"],*name . from);
-	to_json(j["message"],*name . message);
+	if(name.from){to_json(j["from"],*name . from);}
+	if(name.message){to_json(j["message"],*name . message);}
 	j ["inline_message_id"]=name.inline_message_id;
 	j ["chat_instance"]=name.chat_instance;
 	j ["data"]=name.data;
@@ -2939,7 +2939,7 @@ inline void from_json(const json& j, ChatInviteLink& name){
 inline void to_json(json& j,const ChatInviteLink& name){
 	j=json::object();
 	j ["invite_link"]=name.invite_link;
-	to_json(j["creator"],*name . creator);
+	if(name.creator){to_json(j["creator"],*name . creator);}
 	j ["creates_join_request"]=name.creates_join_request;
 	j ["is_primary"]=name.is_primary;
 	j ["is_revoked"]=name.is_revoked;
@@ -2986,7 +2986,7 @@ inline void from_json(const json& j, ChatMember& name){
 inline void to_json(json& j,const ChatMember& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["is_anonymous"]=name.is_anonymous;
 	j ["custom_title"]=name.custom_title;
 }
@@ -2999,7 +2999,7 @@ inline void from_json(const json& j, ChatMemberOwner& name){
 inline void to_json(json& j,const ChatMemberOwner& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["is_anonymous"]=name.is_anonymous;
 	j ["custom_title"]=name.custom_title;
 }
@@ -3024,7 +3024,7 @@ inline void from_json(const json& j, ChatMemberAdministrator& name){
 inline void to_json(json& j,const ChatMemberAdministrator& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["can_be_edited"]=name.can_be_edited;
 	j ["is_anonymous"]=name.is_anonymous;
 	j ["can_manage_chat"]=name.can_manage_chat;
@@ -3047,7 +3047,7 @@ inline void from_json(const json& j, ChatMemberMember& name){
 inline void to_json(json& j,const ChatMemberMember& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 }
 inline void from_json(const json& j, ChatMemberRestricted& name){
 	name.status=j.contains("status")?j.at("status").get<std::string>() : "" ;
@@ -3072,7 +3072,7 @@ inline void from_json(const json& j, ChatMemberRestricted& name){
 inline void to_json(json& j,const ChatMemberRestricted& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["is_member"]=name.is_member;
 	j ["can_send_messages"]=name.can_send_messages;
 	j ["can_send_audios"]=name.can_send_audios;
@@ -3097,7 +3097,7 @@ inline void from_json(const json& j, ChatMemberLeft& name){
 inline void to_json(json& j,const ChatMemberLeft& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 }
 inline void from_json(const json& j, ChatMemberBanned& name){
 	name.status=j.contains("status")?j.at("status").get<std::string>() : "" ;
@@ -3107,7 +3107,7 @@ inline void from_json(const json& j, ChatMemberBanned& name){
 inline void to_json(json& j,const ChatMemberBanned& name){
 	j=json::object();
 	j ["status"]=name.status;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["until_date"]=name.until_date;
 }
 inline void from_json(const json& j, ChatMemberUpdated& name){
@@ -3120,12 +3120,12 @@ inline void from_json(const json& j, ChatMemberUpdated& name){
 }
 inline void to_json(json& j,const ChatMemberUpdated& name){
 	j=json::object();
-	to_json(j["chat"],*name . chat);
-	to_json(j["from"],*name . from);
+	if(name.chat){to_json(j["chat"],*name . chat);}
+	if(name.from){to_json(j["from"],*name . from);}
 	j ["date"]=name.date;
-	to_json(j["old_chat_member"],*name . old_chat_member);
-	to_json(j["new_chat_member"],*name . new_chat_member);
-	to_json(j["invite_link"],*name . invite_link);
+	if(name.old_chat_member){to_json(j["old_chat_member"],*name . old_chat_member);}
+	if(name.new_chat_member){to_json(j["new_chat_member"],*name . new_chat_member);}
+	if(name.invite_link){to_json(j["invite_link"],*name . invite_link);}
 }
 inline void from_json(const json& j, ChatJoinRequest& name){
 	name.chat=j.contains("chat")?std::make_shared<Chat >(j.at("chat").get<Chat>()) : nullptr ;
@@ -3137,12 +3137,12 @@ inline void from_json(const json& j, ChatJoinRequest& name){
 }
 inline void to_json(json& j,const ChatJoinRequest& name){
 	j=json::object();
-	to_json(j["chat"],*name . chat);
-	to_json(j["from"],*name . from);
+	if(name.chat){to_json(j["chat"],*name . chat);}
+	if(name.from){to_json(j["from"],*name . from);}
 	j ["user_chat_id"]=name.user_chat_id;
 	j ["date"]=name.date;
 	j ["bio"]=name.bio;
-	to_json(j["invite_link"],*name . invite_link);
+	if(name.invite_link){to_json(j["invite_link"],*name . invite_link);}
 }
 inline void from_json(const json& j, ChatPermissions& name){
 	name.can_send_messages=j.contains("can_send_messages")?j.at("can_send_messages").get<bool>() : false ;
@@ -3183,7 +3183,7 @@ inline void from_json(const json& j, ChatLocation& name){
 }
 inline void to_json(json& j,const ChatLocation& name){
 	j=json::object();
-	to_json(j["location"],*name . location);
+	if(name.location){to_json(j["location"],*name . location);}
 	j ["address"]=name.address;
 }
 inline void from_json(const json& j, ForumTopic& name){
@@ -3295,7 +3295,7 @@ inline void to_json(json& j,const MenuButtonWebApp& name){
 	j=json::object();
 	j ["type"]=name.type;
 	j ["text"]=name.text;
-	to_json(j["web_app"],*name . web_app);
+	if(name.web_app){to_json(j["web_app"],*name . web_app);}
 }
 inline void from_json(const json& j, MenuButtonDefault& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3536,7 +3536,7 @@ inline void to_json(json& j,const InputFile& name){
 	j ["protect_content"]=name.protect_content;
 	j ["reply_to_message_id"]=name.reply_to_message_id;
 	j ["allow_sending_without_reply"]=name.allow_sending_without_reply;
-	to_json(j["reply_markup"],*name . reply_markup);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
 }
 inline void from_json(const json& j, Stickers& name){
 }
@@ -3568,11 +3568,11 @@ inline void to_json(json& j,const Sticker& name){
 	j ["height"]=name.height;
 	j ["is_animated"]=name.is_animated;
 	j ["is_video"]=name.is_video;
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 	j ["emoji"]=name.emoji;
 	j ["set_name"]=name.set_name;
-	to_json(j["premium_animation"],*name . premium_animation);
-	to_json(j["mask_position"],*name . mask_position);
+	if(name.premium_animation){to_json(j["premium_animation"],*name . premium_animation);}
+	if(name.mask_position){to_json(j["mask_position"],*name . mask_position);}
 	j ["custom_emoji_id"]=name.custom_emoji_id;
 	j ["file_size"]=name.file_size;
 }
@@ -3603,7 +3603,7 @@ inline void to_json(json& j,const StickerSet& name){
 		to_json(u,a) ;
 		j["stickers"].push_back(u);
 	}
-	to_json(j["thumb"],*name . thumb);
+	if(name.thumb){to_json(j["thumb"],*name . thumb);}
 }
 inline void from_json(const json& j, MaskPosition& name){
 	name.point=j.contains("point")?j.at("point").get<std::string>() : "" ;
@@ -3629,11 +3629,11 @@ inline void from_json(const json& j, InlineQuery& name){
 inline void to_json(json& j,const InlineQuery& name){
 	j=json::object();
 	j ["id"]=name.id;
-	to_json(j["from"],*name . from);
+	if(name.from){to_json(j["from"],*name . from);}
 	j ["query"]=name.query;
 	j ["offset"]=name.offset;
 	j ["chat_type"]=name.chat_type;
-	to_json(j["location"],*name . location);
+	if(name.location){to_json(j["location"],*name . location);}
 }
 inline void from_json(const json& j, InlineQueryResult& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3653,8 +3653,8 @@ inline void to_json(json& j,const InlineQueryResult& name){
 	j ["type"]=name.type;
 	j ["id"]=name.id;
 	j ["title"]=name.title;
-	to_json(j["input_message_content"],*name . input_message_content);
-	to_json(j["reply_markup"],*name . reply_markup);
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
 	j ["url"]=name.url;
 	j ["hide_url"]=name.hide_url;
 	j ["description"]=name.description;
@@ -3680,8 +3680,8 @@ inline void to_json(json& j,const InlineQueryResultArticle& name){
 	j ["type"]=name.type;
 	j ["id"]=name.id;
 	j ["title"]=name.title;
-	to_json(j["input_message_content"],*name . input_message_content);
-	to_json(j["reply_markup"],*name . reply_markup);
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
 	j ["url"]=name.url;
 	j ["hide_url"]=name.hide_url;
 	j ["description"]=name.description;
@@ -3727,8 +3727,8 @@ inline void to_json(json& j,const InlineQueryResultPhoto& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultGif& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3770,8 +3770,8 @@ inline void to_json(json& j,const InlineQueryResultGif& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultMpeg4Gif& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3813,8 +3813,8 @@ inline void to_json(json& j,const InlineQueryResultMpeg4Gif& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultVideo& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3858,8 +3858,8 @@ inline void to_json(json& j,const InlineQueryResultVideo& name){
 	j ["video_height"]=name.video_height;
 	j ["video_duration"]=name.video_duration;
 	j ["description"]=name.description;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultAudio& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3895,8 +3895,8 @@ inline void to_json(json& j,const InlineQueryResultAudio& name){
 	}
 	j ["performer"]=name.performer;
 	j ["audio_duration"]=name.audio_duration;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultVoice& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3930,8 +3930,8 @@ inline void to_json(json& j,const InlineQueryResultVoice& name){
 		j["caption_entities"].push_back(u);
 	}
 	j ["voice_duration"]=name.voice_duration;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultDocument& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -3970,8 +3970,8 @@ inline void to_json(json& j,const InlineQueryResultDocument& name){
 	j ["document_url"]=name.document_url;
 	j ["mime_type"]=name.mime_type;
 	j ["description"]=name.description;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 	j ["thumb_url"]=name.thumb_url;
 	j ["thumb_width"]=name.thumb_width;
 	j ["thumb_height"]=name.thumb_height;
@@ -4003,8 +4003,8 @@ inline void to_json(json& j,const InlineQueryResultLocation& name){
 	j ["live_period"]=name.live_period;
 	j ["heading"]=name.heading;
 	j ["proximity_alert_radius"]=name.proximity_alert_radius;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 	j ["thumb_url"]=name.thumb_url;
 	j ["thumb_width"]=name.thumb_width;
 	j ["thumb_height"]=name.thumb_height;
@@ -4038,8 +4038,8 @@ inline void to_json(json& j,const InlineQueryResultVenue& name){
 	j ["foursquare_type"]=name.foursquare_type;
 	j ["google_place_id"]=name.google_place_id;
 	j ["google_place_type"]=name.google_place_type;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 	j ["thumb_url"]=name.thumb_url;
 	j ["thumb_width"]=name.thumb_width;
 	j ["thumb_height"]=name.thumb_height;
@@ -4065,8 +4065,8 @@ inline void to_json(json& j,const InlineQueryResultContact& name){
 	j ["first_name"]=name.first_name;
 	j ["last_name"]=name.last_name;
 	j ["vcard"]=name.vcard;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 	j ["thumb_url"]=name.thumb_url;
 	j ["thumb_width"]=name.thumb_width;
 	j ["thumb_height"]=name.thumb_height;
@@ -4082,7 +4082,7 @@ inline void to_json(json& j,const InlineQueryResultGame& name){
 	j ["type"]=name.type;
 	j ["id"]=name.id;
 	j ["game_short_name"]=name.game_short_name;
-	to_json(j["reply_markup"],*name . reply_markup);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedPhoto& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4116,8 +4116,8 @@ inline void to_json(json& j,const InlineQueryResultCachedPhoto& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedGif& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4149,8 +4149,8 @@ inline void to_json(json& j,const InlineQueryResultCachedGif& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedMpeg4Gif& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4182,8 +4182,8 @@ inline void to_json(json& j,const InlineQueryResultCachedMpeg4Gif& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedSticker& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4197,8 +4197,8 @@ inline void to_json(json& j,const InlineQueryResultCachedSticker& name){
 	j ["type"]=name.type;
 	j ["id"]=name.id;
 	j ["sticker_file_id"]=name.sticker_file_id;
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedDocument& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4232,8 +4232,8 @@ inline void to_json(json& j,const InlineQueryResultCachedDocument& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedVideo& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4267,8 +4267,8 @@ inline void to_json(json& j,const InlineQueryResultCachedVideo& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedVoice& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4300,8 +4300,8 @@ inline void to_json(json& j,const InlineQueryResultCachedVoice& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InlineQueryResultCachedAudio& name){
 	name.type=j.contains("type")?j.at("type").get<std::string>() : "" ;
@@ -4331,8 +4331,8 @@ inline void to_json(json& j,const InlineQueryResultCachedAudio& name){
 		to_json(u,a) ;
 		j["caption_entities"].push_back(u);
 	}
-	to_json(j["reply_markup"],*name . reply_markup);
-	to_json(j["input_message_content"],*name . input_message_content);
+	if(name.reply_markup){to_json(j["reply_markup"],*name . reply_markup);}
+	if(name.input_message_content){to_json(j["input_message_content"],*name . input_message_content);}
 }
 inline void from_json(const json& j, InputMessageContent& name){
 	name.message_text=j.contains("message_text")?j.at("message_text").get<std::string>() : "" ;
@@ -4496,8 +4496,8 @@ inline void from_json(const json& j, ChosenInlineResult& name){
 inline void to_json(json& j,const ChosenInlineResult& name){
 	j=json::object();
 	j ["result_id"]=name.result_id;
-	to_json(j["from"],*name . from);
-	to_json(j["location"],*name . location);
+	if(name.from){to_json(j["from"],*name . from);}
+	if(name.location){to_json(j["location"],*name . location);}
 	j ["inline_message_id"]=name.inline_message_id;
 	j ["query"]=name.query;
 }
@@ -4565,7 +4565,7 @@ inline void to_json(json& j,const OrderInfo& name){
 	j ["name"]=name.name;
 	j ["phone_number"]=name.phone_number;
 	j ["email"]=name.email;
-	to_json(j["shipping_address"],*name . shipping_address);
+	if(name.shipping_address){to_json(j["shipping_address"],*name . shipping_address);}
 }
 inline void from_json(const json& j, ShippingOption& name){
 	name.id=j.contains("id")?j.at("id").get<std::string>() : "" ;
@@ -4603,7 +4603,7 @@ inline void to_json(json& j,const SuccessfulPayment& name){
 	j ["total_amount"]=name.total_amount;
 	j ["invoice_payload"]=name.invoice_payload;
 	j ["shipping_option_id"]=name.shipping_option_id;
-	to_json(j["order_info"],*name . order_info);
+	if(name.order_info){to_json(j["order_info"],*name . order_info);}
 	j ["telegram_payment_charge_id"]=name.telegram_payment_charge_id;
 	j ["provider_payment_charge_id"]=name.provider_payment_charge_id;
 }
@@ -4616,9 +4616,9 @@ inline void from_json(const json& j, ShippingQuery& name){
 inline void to_json(json& j,const ShippingQuery& name){
 	j=json::object();
 	j ["id"]=name.id;
-	to_json(j["from"],*name . from);
+	if(name.from){to_json(j["from"],*name . from);}
 	j ["invoice_payload"]=name.invoice_payload;
-	to_json(j["shipping_address"],*name . shipping_address);
+	if(name.shipping_address){to_json(j["shipping_address"],*name . shipping_address);}
 }
 inline void from_json(const json& j, PreCheckoutQuery& name){
 	name.id=j.contains("id")?j.at("id").get<std::string>() : "" ;
@@ -4632,12 +4632,12 @@ inline void from_json(const json& j, PreCheckoutQuery& name){
 inline void to_json(json& j,const PreCheckoutQuery& name){
 	j=json::object();
 	j ["id"]=name.id;
-	to_json(j["from"],*name . from);
+	if(name.from){to_json(j["from"],*name . from);}
 	j ["currency"]=name.currency;
 	j ["total_amount"]=name.total_amount;
 	j ["invoice_payload"]=name.invoice_payload;
 	j ["shipping_option_id"]=name.shipping_option_id;
-	to_json(j["order_info"],*name . order_info);
+	if(name.order_info){to_json(j["order_info"],*name . order_info);}
 }
 inline void from_json(const json& j, PassportData& name){
 	std::vector<std::shared_ptr<EncryptedPassportElement>> data;
@@ -4656,7 +4656,7 @@ inline void to_json(json& j,const PassportData& name){
 		to_json(u,a) ;
 		j["data"].push_back(u);
 	}
-	to_json(j["credentials"],*name . credentials);
+	if(name.credentials){to_json(j["credentials"],*name . credentials);}
 }
 inline void from_json(const json& j, PassportFile& name){
 	name.file_id=j.contains("file_id")?j.at("file_id").get<std::string>() : "" ;
@@ -4706,9 +4706,9 @@ inline void to_json(json& j,const EncryptedPassportElement& name){
 		to_json(u,a) ;
 		j["files"].push_back(u);
 	}
-	to_json(j["front_side"],*name . front_side);
-	to_json(j["reverse_side"],*name . reverse_side);
-	to_json(j["selfie"],*name . selfie);
+	if(name.front_side){to_json(j["front_side"],*name . front_side);}
+	if(name.reverse_side){to_json(j["reverse_side"],*name . reverse_side);}
+	if(name.selfie){to_json(j["selfie"],*name . selfie);}
 	for(auto a:j.at("translation").get<std::vector<PassportFile>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4901,7 +4901,7 @@ inline void to_json(json& j,const Game& name){
 		to_json(u,a) ;
 		j["text_entities"].push_back(u);
 	}
-	to_json(j["animation"],*name . animation);
+	if(name.animation){to_json(j["animation"],*name . animation);}
 }
 inline void from_json(const json& j, CallbackGame& name){
 }
@@ -4916,6 +4916,6 @@ inline void from_json(const json& j, GameHighScore& name){
 inline void to_json(json& j,const GameHighScore& name){
 	j=json::object();
 	j ["position"]=name.position;
-	to_json(j["user"],*name . user);
+	if(name.user){to_json(j["user"],*name . user);}
 	j ["score"]=name.score;
 }

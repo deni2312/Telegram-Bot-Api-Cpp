@@ -211,7 +211,8 @@ void type_generator() {
                       "\"].push_back(u);\n\t}\n";
             } else {
                 if (normalize_type(pa.name_type).find("std::shared") != std::string::npos) {
-                    out = out + "\tto_json(j[\"" + pa.parameter + "\"],*name . " + pa.parameter + ");\n";
+                    out = out + "\tif(name." + pa.parameter + "){to_json(j[\"" + pa.parameter + "\"],*name . " +
+                          pa.parameter + ");}\n";
                 } else {
                     out = out + "\tj [\"" + pa.parameter + "\"]=name." + pa.parameter + ";\n";
                 }
