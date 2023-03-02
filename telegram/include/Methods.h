@@ -1655,7 +1655,6 @@ namespace Telegram {
                     payload1["cache_time"] = cache_time;
                     auto result1 = payload1.dump();
                     auto response = request->sendHttp("/answerInlineQuery", result1);
-                    std::cout << response;
                 }
 
 // Use this method to set the result of an int64_teraction with a <a href="/bots/webapps">Web App</a> and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a <a href="#sentwebappmessage">SentWebAppMessage</a> object is returned.
