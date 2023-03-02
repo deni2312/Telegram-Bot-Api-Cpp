@@ -4,15 +4,7 @@
 
 void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
     try {
-        std::vector<std::shared_ptr<InlineQueryResult>> results;
-        std::shared_ptr<InlineQueryResult> result = std::make_shared<InlineQueryResult>();
-        result->type = "article";
-        result->id = "first";
-        result->title = "hey";
-        result->input_message_content = std::make_shared<InputMessageContent>();
-        result->input_message_content->message_text = "Hey";
-        results.push_back(result);
-        api.answerInlineQuery(update.inline_query->id, results);
+        api.sendMessage(update.message->chat->id, "Hello world!");
     }
     catch (Telegram::Bot::Types::Error &error) {
         std::cerr << error.what();

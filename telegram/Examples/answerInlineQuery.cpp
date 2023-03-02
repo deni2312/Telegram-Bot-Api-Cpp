@@ -1,23 +1,32 @@
-#include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
+#include "telegram/include/TelegramAPI.h"
 
-	try {
-		Json::Value toSend;
-		toSend[0]["type"] = "article";
-		toSend[0]["id"] = "first";
-		toSend[0]["title"] = "hey";
-		toSend[0]["input_message_content"]["message_text"] = "hey";
-		api.answerInlineQuery(toSend, message["id"].asString());
-	}
-	catch (std::string& error) {
-		std::cerr << error;
-	}
+void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
+    try {
+        std::vector<std::shared_ptr<InlineQueryResult>> results;
+        std::shared_ptr<InlineQueryResult> result = std::make_shared<InlineQueryResult>();
+        result->type = "article";
+        result->id = "first";
+        result->title = "hey";
+        result->input_message_content = std::make_shared<InputMessageContent>();
+        result->input_message_content->message_text = "Hey";
+        results.push_back(result);
+        api.answerInlineQuery(update.inline_query->id, results);
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
 
-int main()
-{
-	Telegram::Bot::Connector handler("your-token");
-	handler.callback(sendSomething);
+int main(int argc, char **argv) {
+
+    try {
+        Telegram::Bot::Connector handler(argv[1]);//Insert here your token
+        handler.onUpdate(sendSomething);
+        handler.callback();
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }

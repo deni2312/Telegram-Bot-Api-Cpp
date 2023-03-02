@@ -62,7 +62,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!entities.empty()) {
                         for (const auto a: entities) {
                             json j9 = json::object();
@@ -98,7 +98,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!entities.empty()) {
                         for (const auto a: entities) {
                             json j9 = json::object();
@@ -135,7 +135,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!entities.empty()) {
                         for (const auto a: entities) {
                             json j9 = json::object();
@@ -186,7 +186,7 @@ namespace Telegram {
                     payload1["reply_to_message_id"] = reply_to_message_id;
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j9 = json::object();
@@ -222,7 +222,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["has_spoiler"] = has_spoiler;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j9 = json::object();
@@ -271,7 +271,7 @@ namespace Telegram {
                     payload1["title"] = title;
                     payload1["performer"] = performer;
                     payload1["duration"] = duration;
-                    json j11 = json::object();
+                    json j11 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j12 = json::object();
@@ -317,7 +317,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["disable_content_type_detection"] = disable_content_type_detection;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j9 = json::object();
@@ -370,7 +370,7 @@ namespace Telegram {
                     payload1["disable_notification"] = disable_notification;
                     payload1["supports_streaming"] = supports_streaming;
                     payload1["has_spoiler"] = has_spoiler;
-                    json j9 = json::object();
+                    json j9 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j10 = json::object();
@@ -423,7 +423,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["has_spoiler"] = has_spoiler;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j9 = json::object();
@@ -475,7 +475,7 @@ namespace Telegram {
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
                     payload1["duration"] = duration;
-                    json j8 = json::object();
+                    json j8 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j9 = json::object();
@@ -541,7 +541,7 @@ namespace Telegram {
                                int64_t message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
-                    json j1 = json::object();
+                    json j1 = json::array();
                     if (!media.empty()) {
                         for (const auto a: media) {
                             json j2 = json::object();
@@ -717,7 +717,7 @@ namespace Telegram {
                     payload1["is_closed"] = is_closed;
                     payload1["close_date"] = close_date;
                     payload1["open_period"] = open_period;
-                    json j11 = json::object();
+                    json j11 = json::array();
                     if (!explanation_entities.empty()) {
                         for (const auto a: explanation_entities) {
                             json j12 = json::object();
@@ -1250,7 +1250,7 @@ namespace Telegram {
                 setMyCommands(std::vector<std::shared_ptr<BotCommand>> commands, std::string language_code = "",
                               std::shared_ptr<BotCommandScope> scope = nullptr) const {
                     json payload1;
-                    json j0 = json::object();
+                    json j0 = json::array();
                     if (!commands.empty()) {
                         for (const auto a: commands) {
                             json j1 = json::object();
@@ -1364,7 +1364,7 @@ namespace Telegram {
                         payload1["reply_markup"] = j1;
                     }
                     payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j3 = json::object();
+                    json j3 = json::array();
                     if (!entities.empty()) {
                         for (const auto a: entities) {
                             json j4 = json::object();
@@ -1393,7 +1393,7 @@ namespace Telegram {
                         to_json(j0, *reply_markup);
                         payload1["reply_markup"] = j0;
                     }
-                    json j1 = json::object();
+                    json j1 = json::array();
                     if (!caption_entities.empty()) {
                         for (const auto a: caption_entities) {
                             json j2 = json::object();
@@ -1645,8 +1645,7 @@ namespace Telegram {
                             to_json(j2, *a);
                             j1.push_back(j2);
                         }
-                        payload1["results"] = json::array();
-                        payload1["results"].push_back(j1);
+                        payload1["results"] = j1;
                     }
                     payload1["switch_pm_parameter"] = switch_pm_parameter;
                     payload1["switch_pm_text"] = switch_pm_text;
@@ -1693,7 +1692,7 @@ namespace Telegram {
                     payload1["payload"] = payload;
                     payload1["provider_token"] = provider_token;
                     payload1["currency"] = currency;
-                    json j6 = json::object();
+                    json j6 = json::array();
                     if (!prices.empty()) {
                         for (const auto a: prices) {
                             json j7 = json::object();
@@ -1748,7 +1747,7 @@ namespace Telegram {
                     payload1["payload"] = payload;
                     payload1["provider_token"] = provider_token;
                     payload1["currency"] = currency;
-                    json j5 = json::object();
+                    json j5 = json::array();
                     if (!prices.empty()) {
                         for (const auto a: prices) {
                             json j6 = json::object();
@@ -1782,7 +1781,7 @@ namespace Telegram {
                     payload1["shipping_query_id"] = shipping_query_id;
                     payload1["ok"] = ok;
                     payload1["error_message"] = error_message;
-                    json j3 = json::object();
+                    json j3 = json::array();
                     if (!shipping_options.empty()) {
                         for (const auto a: shipping_options) {
                             json j4 = json::object();
@@ -1812,7 +1811,7 @@ namespace Telegram {
                                       std::vector<std::shared_ptr<PassportElementError>> errors) const {
                     json payload1;
                     payload1["user_id"] = user_id;
-                    json j1 = json::object();
+                    json j1 = json::array();
                     if (!errors.empty()) {
                         for (const auto a: errors) {
                             json j2 = json::object();
