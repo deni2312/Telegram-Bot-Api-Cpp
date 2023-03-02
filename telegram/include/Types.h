@@ -155,7 +155,7 @@ struct GameHighScore;
 
 //This <a href="#available-types">object</a> represents an incoming update.<br>At most <strong>one</strong> of the optional parameters can be present in any given update.
 struct Update {
-    int update_id;
+    int64_t update_id;
     std::shared_ptr<Message> message;
     std::shared_ptr<Message> edited_message;
     std::shared_ptr<Message> channel_post;
@@ -174,7 +174,7 @@ struct Update {
 
 //This object represents a Telegram user or bot.
 struct User {
-    int id;
+    int64_t id;
     bool is_bot;
     std::string first_name;
     std::string last_name;
@@ -189,7 +189,7 @@ struct User {
 
 //This object represents a chat.
 struct Chat {
-    int id;
+    int64_t id;
     std::string type;
     std::string title;
     std::string username;
@@ -208,36 +208,36 @@ struct Chat {
     std::string invite_link;
     std::shared_ptr<Message> pinned_message;
     std::shared_ptr<ChatPermissions> permissions;
-    int slow_mode_delay;
-    int message_auto_delete_time;
+    int64_t slow_mode_delay;
+    int64_t message_auto_delete_time;
     bool has_aggressive_anti_spam_enabled;
     bool has_hidden_members;
     bool has_protected_content;
     std::string sticker_set_name;
     bool can_set_sticker_set;
-    int linked_chat_id;
+    int64_t linked_chat_id;
     std::shared_ptr<ChatLocation> location;
 };
 
 //This object represents a message.
 struct Message {
-    int message_id;
-    int message_thread_id;
+    int64_t message_id;
+    int64_t message_thread_id;
     std::shared_ptr<User> from;
     std::shared_ptr<Chat> sender_chat;
-    int date;
+    int64_t date;
     std::shared_ptr<Chat> chat;
     std::shared_ptr<User> forward_from;
     std::shared_ptr<Chat> forward_from_chat;
-    int forward_from_message_id;
+    int64_t forward_from_message_id;
     std::string forward_signature;
     std::string forward_sender_name;
-    int forward_date;
+    int64_t forward_date;
     bool is_topic_message;
     bool is_automatic_forward;
     std::shared_ptr<Message> reply_to_message;
     std::shared_ptr<User> via_bot;
-    int edit_date;
+    int64_t edit_date;
     bool has_protected_content;
     std::string media_group_id;
     std::string author_signature;
@@ -269,8 +269,8 @@ struct Message {
     bool supergroup_chat_created;
     bool channel_chat_created;
     std::shared_ptr<MessageAutoDeleteTimerChanged> message_auto_delete_timer_changed;
-    int migrate_to_chat_id;
-    int migrate_from_chat_id;
+    int64_t migrate_to_chat_id;
+    int64_t migrate_from_chat_id;
     std::shared_ptr<Message> pinned_message;
     std::shared_ptr<Invoice> invoice;
     std::shared_ptr<SuccessfulPayment> successful_payment;
@@ -296,14 +296,14 @@ struct Message {
 
 //This object represents a unique message identifier.
 struct MessageId {
-    int message_id;
+    int64_t message_id;
 };
 
 //This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
 struct MessageEntity {
     std::string type;
-    int offset;
-    int length;
+    int64_t offset;
+    int64_t length;
     std::string url;
     std::shared_ptr<User> user;
     std::string language;
@@ -314,34 +314,34 @@ struct MessageEntity {
 struct PhotoSize {
     std::string file_id;
     std::string file_unique_id;
-    int width;
-    int height;
-    int file_size;
+    int64_t width;
+    int64_t height;
+    int64_t file_size;
 };
 
 //This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
 struct Animation {
     std::string file_id;
     std::string file_unique_id;
-    int width;
-    int height;
-    int duration;
+    int64_t width;
+    int64_t height;
+    int64_t duration;
     std::shared_ptr<PhotoSize> thumb;
     std::string file_name;
     std::string mime_type;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents an audio file to be treated as music by the Telegram clients.
 struct Audio {
     std::string file_id;
     std::string file_unique_id;
-    int duration;
+    int64_t duration;
     std::string performer;
     std::string title;
     std::string file_name;
     std::string mime_type;
-    int file_size;
+    int64_t file_size;
     std::shared_ptr<PhotoSize> thumb;
 };
 
@@ -352,39 +352,39 @@ struct Document {
     std::shared_ptr<PhotoSize> thumb;
     std::string file_name;
     std::string mime_type;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents a video file.
 struct Video {
     std::string file_id;
     std::string file_unique_id;
-    int width;
-    int height;
-    int duration;
+    int64_t width;
+    int64_t height;
+    int64_t duration;
     std::shared_ptr<PhotoSize> thumb;
     std::string file_name;
     std::string mime_type;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents a <a href="https://telegram.org/blog/video-messages-and-telescope">video message</a> (available in Telegram apps as of <a href="https://telegram.org/blog/video-messages-and-telescope">v.4.0</a>).
 struct VideoNote {
     std::string file_id;
     std::string file_unique_id;
-    int length;
-    int duration;
+    int64_t length;
+    int64_t duration;
     std::shared_ptr<PhotoSize> thumb;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents a voice note.
 struct Voice {
     std::string file_id;
     std::string file_unique_id;
-    int duration;
+    int64_t duration;
     std::string mime_type;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents a phone contact.
@@ -392,27 +392,27 @@ struct Contact {
     std::string phone_number;
     std::string first_name;
     std::string last_name;
-    int user_id;
+    int64_t user_id;
     std::string vcard;
 };
 
 //This object represents an animated emoji that displays a random value.
 struct Dice {
     std::string emoji;
-    int value;
+    int64_t value;
 };
 
 //This object contains information about one answer option in a poll.
 struct PollOption {
     std::string text;
-    int voter_count;
+    int64_t voter_count;
 };
 
 //This object represents an answer of a user in a non-anonymous poll.
 struct PollAnswer {
     std::string poll_id;
     std::shared_ptr<User> user;
-    int option_ids;
+    int64_t option_ids;
 };
 
 //This object contains information about a poll.
@@ -420,26 +420,26 @@ struct Poll {
     std::string id;
     std::string question;
     std::vector<std::shared_ptr<PollOption>> options;
-    int total_voter_count;
+    int64_t total_voter_count;
     bool is_closed;
     bool is_anonymous;
     std::string type;
     bool allows_multiple_answers;
-    int correct_option_id;
+    int64_t correct_option_id;
     std::string explanation;
     std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
-    int open_period;
-    int close_date;
+    int64_t open_period;
+    int64_t close_date;
 };
 
-//This object represents a point on the map.
+//This object represents a point64_t on the map.
 struct Location {
     float longitude;
     float latitude;
     float horizontal_accuracy;
-    int live_period;
-    int heading;
-    int proximity_alert_radius;
+    int64_t live_period;
+    int64_t heading;
+    int64_t proximity_alert_radius;
 };
 
 //This object represents a venue.
@@ -463,18 +463,18 @@ struct WebAppData {
 struct ProximityAlertTriggered {
     std::shared_ptr<User> traveler;
     std::shared_ptr<User> watcher;
-    int distance;
+    int64_t distance;
 };
 
 //This object represents a service message about a change in auto-delete timer settings.
 struct MessageAutoDeleteTimerChanged {
-    int message_auto_delete_time;
+    int64_t message_auto_delete_time;
 };
 
 //This object represents a service message about a new forum topic created in the chat.
 struct ForumTopicCreated {
     std::string name;
-    int icon_color;
+    int64_t icon_color;
     std::string icon_custom_emoji_id;
 };
 
@@ -502,14 +502,14 @@ struct GeneralForumTopicUnhidden {
 
 //This object contains information about the user whose identifier was shared with the bot using a <a href="#keyboardbuttonrequestuser">KeyboardButtonRequestUser</a> button.
 struct UserShared {
-    int request_id;
-    int user_id;
+    int64_t request_id;
+    int64_t user_id;
 };
 
 //This object contains information about the chat whose identifier was shared with the bot using a <a href="#keyboardbuttonrequestchat">KeyboardButtonRequestChat</a> button.
 struct ChatShared {
-    int request_id;
-    int chat_id;
+    int64_t request_id;
+    int64_t chat_id;
 };
 
 //This object represents a service message about a user allowing a bot added to the attachment menu to write messages. Currently holds no information.
@@ -518,7 +518,7 @@ struct WriteAccessAllowed {
 
 //This object represents a service message about a video chat scheduled in the chat.
 struct VideoChatScheduled {
-    int start_date;
+    int64_t start_date;
 };
 
 //This object represents a service message about a video chat started in the chat. Currently holds no information.
@@ -527,7 +527,7 @@ struct VideoChatStarted {
 
 //This object represents a service message about a video chat ended in the chat.
 struct VideoChatEnded {
-    int duration;
+    int64_t duration;
 };
 
 //This object represents a service message about new members invited to a video chat.
@@ -537,7 +537,7 @@ struct VideoChatParticipantsInvited {
 
 //This object represent a user&#39;s profile pictures.
 struct UserProfilePhotos {
-    int total_count;
+    int64_t total_count;
     std::vector<std::shared_ptr<PhotoSize>> photos;
 };
 
@@ -545,7 +545,7 @@ struct UserProfilePhotos {
 struct File {
     std::string file_id;
     std::string file_unique_id;
-    int file_size;
+    int64_t file_size;
     std::string file_path;
 };
 
@@ -554,7 +554,7 @@ struct WebAppInfo {
     std::string url;
 };
 
-//This object represents a <a href="/bots/features#keyboards">custom keyboard</a> with reply options (see <a href="/bots/features#keyboards">Introduction to bots</a> for details and examples).
+//This object represents a <a href="/bots/features#keyboards">custom keyboard</a> with reply options (see <a href="/bots/features#keyboards">int64_troduction to bots</a> for details and examples).
 struct ReplyKeyboardMarkup {
     std::vector<std::shared_ptr<KeyboardButton>> keyboard;
     bool is_persistent;
@@ -577,14 +577,14 @@ struct KeyboardButton {
 
 //This object defines the criteria used to request a suitable user. The identifier of the selected user will be shared with the bot when the corresponding button is pressed.
 struct KeyboardButtonRequestUser {
-    int request_id;
+    int64_t request_id;
     bool user_is_bot;
     bool user_is_premium;
 };
 
 //This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
 struct KeyboardButtonRequestChat {
-    int request_id;
+    int64_t request_id;
     bool chat_is_channel;
     bool chat_is_forum;
     bool chat_has_username;
@@ -640,7 +640,7 @@ struct CallbackQuery {
     std::string game_short_name;
 };
 
-//Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot&#39;s message and tapped &#39;Reply&#39;). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice <a href="/bots/features#privacy-mode">privacy mode</a>.
+//Upon receiving a message with this object, Telegram clients will display a reply int64_terface to the user (act as if the user has selected the bot&#39;s message and tapped &#39;Reply&#39;). This can be extremely useful if you want to create user-friendly step-by-step int64_terfaces without having to sacrifice <a href="/bots/features#privacy-mode">privacy mode</a>.
 struct ForceReply {
 };
 
@@ -660,9 +660,9 @@ struct ChatInviteLink {
     bool is_primary;
     bool is_revoked;
     std::string name;
-    int expire_date;
-    int member_limit;
-    int pending_join_request_count;
+    int64_t expire_date;
+    int64_t member_limit;
+    int64_t pending_join_request_count;
 };
 
 //Represents the rights of an administrator in a chat.
@@ -742,7 +742,7 @@ struct ChatMemberRestricted {
     bool can_invite_users;
     bool can_pin_messages;
     bool can_manage_topics;
-    int until_date;
+    int64_t until_date;
 };
 
 //Represents a <a href="#chatmember">chat member</a> that isn&#39;t currently a member of the chat, but may join it themselves.
@@ -755,14 +755,14 @@ struct ChatMemberLeft {
 struct ChatMemberBanned {
     std::string status;
     std::shared_ptr<User> user;
-    int until_date;
+    int64_t until_date;
 };
 
 //This object represents changes in the status of a chat member.
 struct ChatMemberUpdated {
     std::shared_ptr<Chat> chat;
     std::shared_ptr<User> from;
-    int date;
+    int64_t date;
     std::shared_ptr<ChatMember> old_chat_member;
     std::shared_ptr<ChatMember> new_chat_member;
     std::shared_ptr<ChatInviteLink> invite_link;
@@ -772,8 +772,8 @@ struct ChatMemberUpdated {
 struct ChatJoinRequest {
     std::shared_ptr<Chat> chat;
     std::shared_ptr<User> from;
-    int user_chat_id;
-    int date;
+    int64_t user_chat_id;
+    int64_t date;
     std::string bio;
     std::shared_ptr<ChatInviteLink> invite_link;
 };
@@ -804,9 +804,9 @@ struct ChatLocation {
 
 //This object represents a forum topic.
 struct ForumTopic {
-    int message_thread_id;
+    int64_t message_thread_id;
     std::string name;
-    int icon_color;
+    int64_t icon_color;
     std::string icon_custom_emoji_id;
 };
 
@@ -844,20 +844,20 @@ struct BotCommandScopeAllChatAdministrators {
 //Represents the <a href="#botcommandscope">scope</a> of bot commands, covering a specific chat.
 struct BotCommandScopeChat {
     std::string type;
-    int chat_id;
+    int64_t chat_id;
 };
 
 //Represents the <a href="#botcommandscope">scope</a> of bot commands, covering all administrators of a specific group or supergroup chat.
 struct BotCommandScopeChatAdministrators {
     std::string type;
-    int chat_id;
+    int64_t chat_id;
 };
 
 //Represents the <a href="#botcommandscope">scope</a> of bot commands, covering a specific member of a group or supergroup chat.
 struct BotCommandScopeChatMember {
     std::string type;
-    int chat_id;
-    int user_id;
+    int64_t chat_id;
+    int64_t user_id;
 };
 
 //This object describes the bot&#39;s menu button in a private chat. It should be one of
@@ -884,8 +884,8 @@ struct MenuButtonDefault {
 
 //Describes why a request was unsuccessful.
 struct ResponseParameters {
-    int migrate_to_chat_id;
-    int retry_after;
+    int64_t migrate_to_chat_id;
+    int64_t retry_after;
 };
 
 //This object represents the content of a media message to be sent. It should be one of
@@ -916,9 +916,9 @@ struct InputMediaVideo {
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-    int width;
-    int height;
-    int duration;
+    int64_t width;
+    int64_t height;
+    int64_t duration;
     bool supports_streaming;
     bool has_spoiler;
 };
@@ -931,9 +931,9 @@ struct InputMediaAnimation {
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-    int width;
-    int height;
-    int duration;
+    int64_t width;
+    int64_t height;
+    int64_t duration;
     bool has_spoiler;
 };
 
@@ -945,7 +945,7 @@ struct InputMediaAudio {
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-    int duration;
+    int64_t duration;
     std::string performer;
     std::string title;
 };
@@ -963,15 +963,15 @@ struct InputMediaDocument {
 
 //This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
 struct InputFile {
-    int chat_id;
-    int message_thread_id;
+    int64_t chat_id;
+    int64_t message_thread_id;
     std::string text;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> entities;
     bool disable_web_page_preview;
     bool disable_notification;
     bool protect_content;
-    int reply_to_message_id;
+    int64_t reply_to_message_id;
     bool allow_sending_without_reply;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
 };
@@ -985,8 +985,8 @@ struct Sticker {
     std::string file_id;
     std::string file_unique_id;
     std::string type;
-    int width;
-    int height;
+    int64_t width;
+    int64_t height;
     bool is_animated;
     bool is_video;
     std::shared_ptr<PhotoSize> thumb;
@@ -995,7 +995,7 @@ struct Sticker {
     std::shared_ptr<File> premium_animation;
     std::shared_ptr<MaskPosition> mask_position;
     std::string custom_emoji_id;
-    int file_size;
+    int64_t file_size;
 };
 
 //This object represents a sticker set.
@@ -1011,7 +1011,7 @@ struct StickerSet {
 
 //This object describes the position on faces where a mask should be placed by default.
 struct MaskPosition {
-    std::string point;
+    std::string point64_t;
     float x_shift;
     float y_shift;
     float scale;
@@ -1038,8 +1038,8 @@ struct InlineQueryResult {
     bool hide_url;
     std::string description;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a link to an article or web page.
@@ -1053,8 +1053,8 @@ struct InlineQueryResultArticle {
     bool hide_url;
     std::string description;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the photo.
@@ -1063,8 +1063,8 @@ struct InlineQueryResultPhoto {
     std::string id;
     std::string photo_url;
     std::string thumb_url;
-    int photo_width;
-    int photo_height;
+    int64_t photo_width;
+    int64_t photo_height;
     std::string title;
     std::string description;
     std::string caption;
@@ -1079,9 +1079,9 @@ struct InlineQueryResultGif {
     std::string type;
     std::string id;
     std::string gif_url;
-    int gif_width;
-    int gif_height;
-    int gif_duration;
+    int64_t gif_width;
+    int64_t gif_height;
+    int64_t gif_duration;
     std::string thumb_url;
     std::string thumb_mime_type;
     std::string title;
@@ -1097,9 +1097,9 @@ struct InlineQueryResultMpeg4Gif {
     std::string type;
     std::string id;
     std::string mpeg4_url;
-    int mpeg4_width;
-    int mpeg4_height;
-    int mpeg4_duration;
+    int64_t mpeg4_width;
+    int64_t mpeg4_height;
+    int64_t mpeg4_duration;
     std::string thumb_url;
     std::string thumb_mime_type;
     std::string title;
@@ -1121,9 +1121,9 @@ struct InlineQueryResultVideo {
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-    int video_width;
-    int video_height;
-    int video_duration;
+    int64_t video_width;
+    int64_t video_height;
+    int64_t video_duration;
     std::string description;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
@@ -1139,7 +1139,7 @@ struct InlineQueryResultAudio {
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
     std::string performer;
-    int audio_duration;
+    int64_t audio_duration;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1153,7 +1153,7 @@ struct InlineQueryResultVoice {
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
-    int voice_duration;
+    int64_t voice_duration;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
 };
@@ -1172,8 +1172,8 @@ struct InlineQueryResultDocument {
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the location.
@@ -1184,14 +1184,14 @@ struct InlineQueryResultLocation {
     float longitude;
     std::string title;
     float horizontal_accuracy;
-    int live_period;
-    int heading;
-    int proximity_alert_radius;
+    int64_t live_period;
+    int64_t heading;
+    int64_t proximity_alert_radius;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the venue.
@@ -1209,8 +1209,8 @@ struct InlineQueryResultVenue {
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the contact.
@@ -1224,8 +1224,8 @@ struct InlineQueryResultContact {
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
     std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    int64_t thumb_width;
+    int64_t thumb_height;
 };
 
 //Represents a <a href="#games">Game</a>.
@@ -1359,9 +1359,9 @@ struct InputLocationMessageContent {
     float latitude;
     float longitude;
     float horizontal_accuracy;
-    int live_period;
-    int heading;
-    int proximity_alert_radius;
+    int64_t live_period;
+    int64_t heading;
+    int64_t proximity_alert_radius;
 };
 
 //Represents the <a href="#inputmessagecontent">content</a> of a venue message to be sent as the result of an inline query.
@@ -1392,13 +1392,13 @@ struct InputInvoiceMessageContent {
     std::string provider_token;
     std::string currency;
     std::vector<std::shared_ptr<LabeledPrice>> prices;
-    int max_tip_amount;
-    int suggested_tip_amounts;
+    int64_t max_tip_amount;
+    int64_t suggested_tip_amounts;
     std::string provider_data;
     std::string photo_url;
-    int photo_size;
-    int photo_width;
-    int photo_height;
+    int64_t photo_size;
+    int64_t photo_width;
+    int64_t photo_height;
     bool need_name;
     bool need_phone_number;
     bool need_email;
@@ -1422,14 +1422,14 @@ struct SentWebAppMessage {
     std::string inline_message_id;
 };
 
-//Your bot can accept payments from Telegram users. Please see the <a href="/bots/payments">introduction to payments</a> for more details on the process and how to set up payments for your bot. Please note that users will need Telegram v.4.0 or higher to use payments (released on May 18, 2017).
+//Your bot can accept payments from Telegram users. Please see the <a href="/bots/payments">int64_troduction to payments</a> for more details on the process and how to set up payments for your bot. Please note that users will need Telegram v.4.0 or higher to use payments (released on May 18, 2017).
 struct Payments {
 };
 
 //This object represents a portion of the price for goods or services.
 struct LabeledPrice {
     std::string label;
-    int amount;
+    int64_t amount;
 };
 
 //This object contains basic information about an invoice.
@@ -1438,7 +1438,7 @@ struct Invoice {
     std::string description;
     std::string start_parameter;
     std::string currency;
-    int total_amount;
+    int64_t total_amount;
 };
 
 //This object represents a shipping address.
@@ -1469,7 +1469,7 @@ struct ShippingOption {
 //This object contains basic information about a successful payment.
 struct SuccessfulPayment {
     std::string currency;
-    int total_amount;
+    int64_t total_amount;
     std::string invoice_payload;
     std::string shipping_option_id;
     std::shared_ptr<OrderInfo> order_info;
@@ -1490,7 +1490,7 @@ struct PreCheckoutQuery {
     std::string id;
     std::shared_ptr<User> from;
     std::string currency;
-    int total_amount;
+    int64_t total_amount;
     std::string invoice_payload;
     std::string shipping_option_id;
     std::shared_ptr<OrderInfo> order_info;
@@ -1506,8 +1506,8 @@ struct PassportData {
 struct PassportFile {
     std::string file_id;
     std::string file_unique_id;
-    int file_size;
-    int file_date;
+    int64_t file_size;
+    int64_t file_date;
 };
 
 //Describes documents or other Telegram Passport elements shared with the bot by the user.
@@ -1633,9 +1633,9 @@ struct CallbackGame {
 
 //This object represents one row of the high scores table for a game.
 struct GameHighScore {
-    int position;
+    int64_t position;
     std::shared_ptr<User> user;
-    int score;
+    int64_t score;
 };
 
 inline void from_json(const json &j, Update &name);
@@ -2227,7 +2227,7 @@ inline void from_json(const json &j, GameHighScore &name);
 inline void to_json(json &j, const GameHighScore &name);
 
 inline void from_json(const json &j, Update &name) {
-    name.update_id = j.contains("update_id") ? j.at("update_id").get<int>() : 0;
+    name.update_id = j.contains("update_id") ? j.at("update_id").get<int64_t>() : 0;
     name.message = j.contains("message") ? std::make_shared<Message>(j.at("message").get<Message>()) : nullptr;
     name.edited_message = j.contains("edited_message") ? std::make_shared<Message>(
             j.at("edited_message").get<Message>()) : nullptr;
@@ -2276,7 +2276,7 @@ inline void to_json(json &j, const Update &name) {
 }
 
 inline void from_json(const json &j, User &name) {
-    name.id = j.contains("id") ? j.at("id").get<int>() : 0;
+    name.id = j.contains("id") ? j.at("id").get<int64_t>() : 0;
     name.is_bot = j.contains("is_bot") ? j.at("is_bot").get<bool>() : false;
     name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
     name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
@@ -2308,7 +2308,7 @@ inline void to_json(json &j, const User &name) {
 }
 
 inline void from_json(const json &j, Chat &name) {
-    name.id = j.contains("id") ? j.at("id").get<int>() : 0;
+    name.id = j.contains("id") ? j.at("id").get<int64_t>() : 0;
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.username = j.contains("username") ? j.at("username").get<std::string>() : "";
@@ -2333,8 +2333,9 @@ inline void from_json(const json &j, Chat &name) {
             j.at("pinned_message").get<Message>()) : nullptr;
     name.permissions = j.contains("permissions") ? std::make_shared<ChatPermissions>(
             j.at("permissions").get<ChatPermissions>()) : nullptr;
-    name.slow_mode_delay = j.contains("slow_mode_delay") ? j.at("slow_mode_delay").get<int>() : 0;
-    name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at("message_auto_delete_time").get<int>()
+    name.slow_mode_delay = j.contains("slow_mode_delay") ? j.at("slow_mode_delay").get<int64_t>() : 0;
+    name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at(
+            "message_auto_delete_time").get<int64_t>()
                                                                            : 0;
 
 }
@@ -2372,26 +2373,27 @@ inline void to_json(json &j, const Chat &name) {
 }
 
 inline void from_json(const json &j, Message &name) {
-    name.message_id = j.contains("message_id") ? j.at("message_id").get<int>() : 0;
-    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+    name.message_id = j.contains("message_id") ? j.at("message_id").get<int64_t>() : 0;
+    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int64_t>() : 0;
     name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
     name.sender_chat = j.contains("sender_chat") ? std::make_shared<Chat>(j.at("sender_chat").get<Chat>()) : nullptr;
-    name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+    name.date = j.contains("date") ? j.at("date").get<int64_t>() : 0;
     name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
     name.forward_from = j.contains("forward_from") ? std::make_shared<User>(j.at("forward_from").get<User>()) : nullptr;
     name.forward_from_chat = j.contains("forward_from_chat") ? std::make_shared<Chat>(
             j.at("forward_from_chat").get<Chat>()) : nullptr;
-    name.forward_from_message_id = j.contains("forward_from_message_id") ? j.at("forward_from_message_id").get<int>()
+    name.forward_from_message_id = j.contains("forward_from_message_id") ? j.at(
+            "forward_from_message_id").get<int64_t>()
                                                                          : 0;
     name.forward_signature = j.contains("forward_signature") ? j.at("forward_signature").get<std::string>() : "";
     name.forward_sender_name = j.contains("forward_sender_name") ? j.at("forward_sender_name").get<std::string>() : "";
-    name.forward_date = j.contains("forward_date") ? j.at("forward_date").get<int>() : 0;
+    name.forward_date = j.contains("forward_date") ? j.at("forward_date").get<int64_t>() : 0;
     name.is_topic_message = j.contains("is_topic_message") ? j.at("is_topic_message").get<bool>() : false;
     name.is_automatic_forward = j.contains("is_automatic_forward") ? j.at("is_automatic_forward").get<bool>() : false;
     name.reply_to_message = j.contains("reply_to_message") ? std::make_shared<Message>(
             j.at("reply_to_message").get<Message>()) : nullptr;
     name.via_bot = j.contains("via_bot") ? std::make_shared<User>(j.at("via_bot").get<User>()) : nullptr;
-    name.edit_date = j.contains("edit_date") ? j.at("edit_date").get<int>() : 0;
+    name.edit_date = j.contains("edit_date") ? j.at("edit_date").get<int64_t>() : 0;
     name.has_protected_content = j.contains("has_protected_content") ? j.at("has_protected_content").get<bool>()
                                                                      : false;
     name.media_group_id = j.contains("media_group_id") ? j.at("media_group_id").get<std::string>() : "";
@@ -2460,8 +2462,8 @@ inline void from_json(const json &j, Message &name) {
     name.message_auto_delete_timer_changed = j.contains("message_auto_delete_timer_changed")
                                              ? std::make_shared<MessageAutoDeleteTimerChanged>(
                     j.at("message_auto_delete_timer_changed").get<MessageAutoDeleteTimerChanged>()) : nullptr;
-    name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int>() : 0;
-    name.migrate_from_chat_id = j.contains("migrate_from_chat_id") ? j.at("migrate_from_chat_id").get<int>() : 0;
+    name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int64_t>() : 0;
+    name.migrate_from_chat_id = j.contains("migrate_from_chat_id") ? j.at("migrate_from_chat_id").get<int64_t>() : 0;
     name.pinned_message = j.contains("pinned_message") ? std::make_shared<Message>(
             j.at("pinned_message").get<Message>()) : nullptr;
     name.invoice = j.contains("invoice") ? std::make_shared<Invoice>(j.at("invoice").get<Invoice>()) : nullptr;
@@ -2604,7 +2606,7 @@ inline void to_json(json &j, const Message &name) {
 }
 
 inline void from_json(const json &j, MessageId &name) {
-    name.message_id = j.contains("message_id") ? j.at("message_id").get<int>() : 0;
+    name.message_id = j.contains("message_id") ? j.at("message_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const MessageId &name) {
@@ -2614,8 +2616,8 @@ inline void to_json(json &j, const MessageId &name) {
 
 inline void from_json(const json &j, MessageEntity &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
-    name.offset = j.contains("offset") ? j.at("offset").get<int>() : 0;
-    name.length = j.contains("length") ? j.at("length").get<int>() : 0;
+    name.offset = j.contains("offset") ? j.at("offset").get<int64_t>() : 0;
+    name.length = j.contains("length") ? j.at("length").get<int64_t>() : 0;
     name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
     name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
     name.language = j.contains("language") ? j.at("language").get<std::string>() : "";
@@ -2636,9 +2638,9 @@ inline void to_json(json &j, const MessageEntity &name) {
 inline void from_json(const json &j, PhotoSize &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const PhotoSize &name) {
@@ -2653,13 +2655,13 @@ inline void to_json(json &j, const PhotoSize &name) {
 inline void from_json(const json &j, Animation &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Animation &name) {
@@ -2678,12 +2680,12 @@ inline void to_json(json &j, const Animation &name) {
 inline void from_json(const json &j, Audio &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
 }
 
@@ -2706,7 +2708,7 @@ inline void from_json(const json &j, Document &name) {
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Document &name) {
@@ -2722,13 +2724,13 @@ inline void to_json(json &j, const Document &name) {
 inline void from_json(const json &j, Video &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Video &name) {
@@ -2747,10 +2749,10 @@ inline void to_json(json &j, const Video &name) {
 inline void from_json(const json &j, VideoNote &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.length = j.contains("length") ? j.at("length").get<int>() : 0;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.length = j.contains("length") ? j.at("length").get<int64_t>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const VideoNote &name) {
@@ -2766,9 +2768,9 @@ inline void to_json(json &j, const VideoNote &name) {
 inline void from_json(const json &j, Voice &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Voice &name) {
@@ -2784,7 +2786,7 @@ inline void from_json(const json &j, Contact &name) {
     name.phone_number = j.contains("phone_number") ? j.at("phone_number").get<std::string>() : "";
     name.first_name = j.contains("first_name") ? j.at("first_name").get<std::string>() : "";
     name.last_name = j.contains("last_name") ? j.at("last_name").get<std::string>() : "";
-    name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
+    name.user_id = j.contains("user_id") ? j.at("user_id").get<int64_t>() : 0;
     name.vcard = j.contains("vcard") ? j.at("vcard").get<std::string>() : "";
 }
 
@@ -2799,7 +2801,7 @@ inline void to_json(json &j, const Contact &name) {
 
 inline void from_json(const json &j, Dice &name) {
     name.emoji = j.contains("emoji") ? j.at("emoji").get<std::string>() : "";
-    name.value = j.contains("value") ? j.at("value").get<int>() : 0;
+    name.value = j.contains("value") ? j.at("value").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Dice &name) {
@@ -2810,7 +2812,7 @@ inline void to_json(json &j, const Dice &name) {
 
 inline void from_json(const json &j, PollOption &name) {
     name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
-    name.voter_count = j.contains("voter_count") ? j.at("voter_count").get<int>() : 0;
+    name.voter_count = j.contains("voter_count") ? j.at("voter_count").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const PollOption &name) {
@@ -2822,7 +2824,7 @@ inline void to_json(json &j, const PollOption &name) {
 inline void from_json(const json &j, PollAnswer &name) {
     name.poll_id = j.contains("poll_id") ? j.at("poll_id").get<std::string>() : "";
     name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
-    name.option_ids = j.contains("option_ids") ? j.at("option_ids").get<int>() : 0;
+    name.option_ids = j.contains("option_ids") ? j.at("option_ids").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const PollAnswer &name) {
@@ -2842,13 +2844,13 @@ inline void from_json(const json &j, Poll &name) {
         }
     }
     name.options = options;
-    name.total_voter_count = j.contains("total_voter_count") ? j.at("total_voter_count").get<int>() : 0;
+    name.total_voter_count = j.contains("total_voter_count") ? j.at("total_voter_count").get<int64_t>() : 0;
     name.is_closed = j.contains("is_closed") ? j.at("is_closed").get<bool>() : false;
     name.is_anonymous = j.contains("is_anonymous") ? j.at("is_anonymous").get<bool>() : false;
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.allows_multiple_answers = j.contains("allows_multiple_answers") ? j.at("allows_multiple_answers").get<bool>()
                                                                          : false;
-    name.correct_option_id = j.contains("correct_option_id") ? j.at("correct_option_id").get<int>() : 0;
+    name.correct_option_id = j.contains("correct_option_id") ? j.at("correct_option_id").get<int64_t>() : 0;
     name.explanation = j.contains("explanation") ? j.at("explanation").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> explanation_entities;
     if (j.contains("explanation_entities")) {
@@ -2857,8 +2859,8 @@ inline void from_json(const json &j, Poll &name) {
         }
     }
     name.explanation_entities = explanation_entities;
-    name.open_period = j.contains("open_period") ? j.at("open_period").get<int>() : 0;
-    name.close_date = j.contains("close_date") ? j.at("close_date").get<int>() : 0;
+    name.open_period = j.contains("open_period") ? j.at("open_period").get<int64_t>() : 0;
+    name.close_date = j.contains("close_date") ? j.at("close_date").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Poll &name) {
@@ -2890,9 +2892,10 @@ inline void from_json(const json &j, Location &name) {
     name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
     name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
     name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
-    name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
-    name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
-    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>() : 0;
+    name.live_period = j.contains("live_period") ? j.at("live_period").get<int64_t>() : 0;
+    name.heading = j.contains("heading") ? j.at("heading").get<int64_t>() : 0;
+    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int64_t>()
+                                                                       : 0;
 }
 
 inline void to_json(json &j, const Location &name) {
@@ -2940,7 +2943,7 @@ inline void to_json(json &j, const WebAppData &name) {
 inline void from_json(const json &j, ProximityAlertTriggered &name) {
     name.traveler = j.contains("traveler") ? std::make_shared<User>(j.at("traveler").get<User>()) : nullptr;
     name.watcher = j.contains("watcher") ? std::make_shared<User>(j.at("watcher").get<User>()) : nullptr;
-    name.distance = j.contains("distance") ? j.at("distance").get<int>() : 0;
+    name.distance = j.contains("distance") ? j.at("distance").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ProximityAlertTriggered &name) {
@@ -2951,7 +2954,8 @@ inline void to_json(json &j, const ProximityAlertTriggered &name) {
 }
 
 inline void from_json(const json &j, MessageAutoDeleteTimerChanged &name) {
-    name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at("message_auto_delete_time").get<int>()
+    name.message_auto_delete_time = j.contains("message_auto_delete_time") ? j.at(
+            "message_auto_delete_time").get<int64_t>()
                                                                            : 0;
 }
 
@@ -2962,7 +2966,7 @@ inline void to_json(json &j, const MessageAutoDeleteTimerChanged &name) {
 
 inline void from_json(const json &j, ForumTopicCreated &name) {
     name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
-    name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int>() : 0;
+    name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int64_t>() : 0;
     name.icon_custom_emoji_id = j.contains("icon_custom_emoji_id") ? j.at("icon_custom_emoji_id").get<std::string>()
                                                                    : "";
 }
@@ -3015,8 +3019,8 @@ inline void to_json(json &j, const GeneralForumTopicUnhidden &name) {
 }
 
 inline void from_json(const json &j, UserShared &name) {
-    name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
-    name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
+    name.request_id = j.contains("request_id") ? j.at("request_id").get<int64_t>() : 0;
+    name.user_id = j.contains("user_id") ? j.at("user_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const UserShared &name) {
@@ -3026,8 +3030,8 @@ inline void to_json(json &j, const UserShared &name) {
 }
 
 inline void from_json(const json &j, ChatShared &name) {
-    name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
-    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
+    name.request_id = j.contains("request_id") ? j.at("request_id").get<int64_t>() : 0;
+    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ChatShared &name) {
@@ -3044,7 +3048,7 @@ inline void to_json(json &j, const WriteAccessAllowed &name) {
 }
 
 inline void from_json(const json &j, VideoChatScheduled &name) {
-    name.start_date = j.contains("start_date") ? j.at("start_date").get<int>() : 0;
+    name.start_date = j.contains("start_date") ? j.at("start_date").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const VideoChatScheduled &name) {
@@ -3060,7 +3064,7 @@ inline void to_json(json &j, const VideoChatStarted &name) {
 }
 
 inline void from_json(const json &j, VideoChatEnded &name) {
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const VideoChatEnded &name) {
@@ -3088,7 +3092,7 @@ inline void to_json(json &j, const VideoChatParticipantsInvited &name) {
 }
 
 inline void from_json(const json &j, UserProfilePhotos &name) {
-    name.total_count = j.contains("total_count") ? j.at("total_count").get<int>() : 0;
+    name.total_count = j.contains("total_count") ? j.at("total_count").get<int64_t>() : 0;
     std::vector<std::shared_ptr<PhotoSize>> photos;
     if (j.contains("photos")) {
         for (const auto &a: j.at("photos").get<std::vector<PhotoSize>>()) {
@@ -3111,7 +3115,7 @@ inline void to_json(json &j, const UserProfilePhotos &name) {
 inline void from_json(const json &j, File &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
     name.file_path = j.contains("file_path") ? j.at("file_path").get<std::string>() : "";
 }
 
@@ -3187,7 +3191,7 @@ inline void to_json(json &j, const KeyboardButton &name) {
 }
 
 inline void from_json(const json &j, KeyboardButtonRequestUser &name) {
-    name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+    name.request_id = j.contains("request_id") ? j.at("request_id").get<int64_t>() : 0;
     name.user_is_bot = j.contains("user_is_bot") ? j.at("user_is_bot").get<bool>() : false;
     name.user_is_premium = j.contains("user_is_premium") ? j.at("user_is_premium").get<bool>() : false;
 }
@@ -3200,7 +3204,7 @@ inline void to_json(json &j, const KeyboardButtonRequestUser &name) {
 }
 
 inline void from_json(const json &j, KeyboardButtonRequestChat &name) {
-    name.request_id = j.contains("request_id") ? j.at("request_id").get<int>() : 0;
+    name.request_id = j.contains("request_id") ? j.at("request_id").get<int64_t>() : 0;
     name.chat_is_channel = j.contains("chat_is_channel") ? j.at("chat_is_channel").get<bool>() : false;
     name.chat_is_forum = j.contains("chat_is_forum") ? j.at("chat_is_forum").get<bool>() : false;
     name.chat_has_username = j.contains("chat_has_username") ? j.at("chat_has_username").get<bool>() : false;
@@ -3353,10 +3357,10 @@ inline void from_json(const json &j, ChatInviteLink &name) {
     name.is_primary = j.contains("is_primary") ? j.at("is_primary").get<bool>() : false;
     name.is_revoked = j.contains("is_revoked") ? j.at("is_revoked").get<bool>() : false;
     name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
-    name.expire_date = j.contains("expire_date") ? j.at("expire_date").get<int>() : 0;
-    name.member_limit = j.contains("member_limit") ? j.at("member_limit").get<int>() : 0;
+    name.expire_date = j.contains("expire_date") ? j.at("expire_date").get<int64_t>() : 0;
+    name.member_limit = j.contains("member_limit") ? j.at("member_limit").get<int64_t>() : 0;
     name.pending_join_request_count = j.contains("pending_join_request_count") ? j.at(
-            "pending_join_request_count").get<int>() : 0;
+            "pending_join_request_count").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ChatInviteLink &name) {
@@ -3505,7 +3509,7 @@ inline void from_json(const json &j, ChatMemberRestricted &name) {
     name.can_invite_users = j.contains("can_invite_users") ? j.at("can_invite_users").get<bool>() : false;
     name.can_pin_messages = j.contains("can_pin_messages") ? j.at("can_pin_messages").get<bool>() : false;
     name.can_manage_topics = j.contains("can_manage_topics") ? j.at("can_manage_topics").get<bool>() : false;
-    name.until_date = j.contains("until_date") ? j.at("until_date").get<int>() : 0;
+    name.until_date = j.contains("until_date") ? j.at("until_date").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ChatMemberRestricted &name) {
@@ -3544,7 +3548,7 @@ inline void to_json(json &j, const ChatMemberLeft &name) {
 inline void from_json(const json &j, ChatMemberBanned &name) {
     name.status = j.contains("status") ? j.at("status").get<std::string>() : "";
     name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
-    name.until_date = j.contains("until_date") ? j.at("until_date").get<int>() : 0;
+    name.until_date = j.contains("until_date") ? j.at("until_date").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ChatMemberBanned &name) {
@@ -3557,7 +3561,7 @@ inline void to_json(json &j, const ChatMemberBanned &name) {
 inline void from_json(const json &j, ChatMemberUpdated &name) {
     name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
     name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
-    name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+    name.date = j.contains("date") ? j.at("date").get<int64_t>() : 0;
     name.old_chat_member = j.contains("old_chat_member") ? std::make_shared<ChatMember>(
             j.at("old_chat_member").get<ChatMember>()) : nullptr;
     name.new_chat_member = j.contains("new_chat_member") ? std::make_shared<ChatMember>(
@@ -3579,8 +3583,8 @@ inline void to_json(json &j, const ChatMemberUpdated &name) {
 inline void from_json(const json &j, ChatJoinRequest &name) {
     name.chat = j.contains("chat") ? std::make_shared<Chat>(j.at("chat").get<Chat>()) : nullptr;
     name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
-    name.user_chat_id = j.contains("user_chat_id") ? j.at("user_chat_id").get<int>() : 0;
-    name.date = j.contains("date") ? j.at("date").get<int>() : 0;
+    name.user_chat_id = j.contains("user_chat_id") ? j.at("user_chat_id").get<int64_t>() : 0;
+    name.date = j.contains("date") ? j.at("date").get<int64_t>() : 0;
     name.bio = j.contains("bio") ? j.at("bio").get<std::string>() : "";
     name.invite_link = j.contains("invite_link") ? std::make_shared<ChatInviteLink>(
             j.at("invite_link").get<ChatInviteLink>()) : nullptr;
@@ -3645,9 +3649,9 @@ inline void to_json(json &j, const ChatLocation &name) {
 }
 
 inline void from_json(const json &j, ForumTopic &name) {
-    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int64_t>() : 0;
     name.name = j.contains("name") ? j.at("name").get<std::string>() : "";
-    name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int>() : 0;
+    name.icon_color = j.contains("icon_color") ? j.at("icon_color").get<int64_t>() : 0;
     name.icon_custom_emoji_id = j.contains("icon_custom_emoji_id") ? j.at("icon_custom_emoji_id").get<std::string>()
                                                                    : "";
 }
@@ -3718,7 +3722,7 @@ inline void to_json(json &j, const BotCommandScopeAllChatAdministrators &name) {
 
 inline void from_json(const json &j, BotCommandScopeChat &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
-    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
+    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const BotCommandScopeChat &name) {
@@ -3729,7 +3733,7 @@ inline void to_json(json &j, const BotCommandScopeChat &name) {
 
 inline void from_json(const json &j, BotCommandScopeChatAdministrators &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
-    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
+    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const BotCommandScopeChatAdministrators &name) {
@@ -3740,8 +3744,8 @@ inline void to_json(json &j, const BotCommandScopeChatAdministrators &name) {
 
 inline void from_json(const json &j, BotCommandScopeChatMember &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
-    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
-    name.user_id = j.contains("user_id") ? j.at("user_id").get<int>() : 0;
+    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int64_t>() : 0;
+    name.user_id = j.contains("user_id") ? j.at("user_id").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const BotCommandScopeChatMember &name) {
@@ -3792,8 +3796,8 @@ inline void to_json(json &j, const MenuButtonDefault &name) {
 }
 
 inline void from_json(const json &j, ResponseParameters &name) {
-    name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int>() : 0;
-    name.retry_after = j.contains("retry_after") ? j.at("retry_after").get<int>() : 0;
+    name.migrate_to_chat_id = j.contains("migrate_to_chat_id") ? j.at("migrate_to_chat_id").get<int64_t>() : 0;
+    name.retry_after = j.contains("retry_after") ? j.at("retry_after").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const ResponseParameters &name) {
@@ -3873,9 +3877,9 @@ inline void from_json(const json &j, InputMediaVideo &name) {
         }
     }
     name.caption_entities = caption_entities;
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.supports_streaming = j.contains("supports_streaming") ? j.at("supports_streaming").get<bool>() : false;
     name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
 }
@@ -3912,9 +3916,9 @@ inline void from_json(const json &j, InputMediaAnimation &name) {
         }
     }
     name.caption_entities = caption_entities;
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.has_spoiler = j.contains("has_spoiler") ? j.at("has_spoiler").get<bool>() : false;
 }
 
@@ -3949,7 +3953,7 @@ inline void from_json(const json &j, InputMediaAudio &name) {
         }
     }
     name.caption_entities = caption_entities;
-    name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
+    name.duration = j.contains("duration") ? j.at("duration").get<int64_t>() : 0;
     name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
 }
@@ -4004,8 +4008,8 @@ inline void to_json(json &j, const InputMediaDocument &name) {
 }
 
 inline void from_json(const json &j, InputFile &name) {
-    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int>() : 0;
-    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int>() : 0;
+    name.chat_id = j.contains("chat_id") ? j.at("chat_id").get<int64_t>() : 0;
+    name.message_thread_id = j.contains("message_thread_id") ? j.at("message_thread_id").get<int64_t>() : 0;
     name.text = j.contains("text") ? j.at("text").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> entities;
@@ -4019,7 +4023,7 @@ inline void from_json(const json &j, InputFile &name) {
             "disable_web_page_preview").get<bool>() : false;
     name.disable_notification = j.contains("disable_notification") ? j.at("disable_notification").get<bool>() : false;
     name.protect_content = j.contains("protect_content") ? j.at("protect_content").get<bool>() : false;
-    name.reply_to_message_id = j.contains("reply_to_message_id") ? j.at("reply_to_message_id").get<int>() : 0;
+    name.reply_to_message_id = j.contains("reply_to_message_id") ? j.at("reply_to_message_id").get<int64_t>() : 0;
     name.allow_sending_without_reply = j.contains("allow_sending_without_reply") ? j.at(
             "allow_sending_without_reply").get<bool>() : false;
     name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
@@ -4056,8 +4060,8 @@ inline void from_json(const json &j, Sticker &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
-    name.width = j.contains("width") ? j.at("width").get<int>() : 0;
-    name.height = j.contains("height") ? j.at("height").get<int>() : 0;
+    name.width = j.contains("width") ? j.at("width").get<int64_t>() : 0;
+    name.height = j.contains("height") ? j.at("height").get<int64_t>() : 0;
     name.is_animated = j.contains("is_animated") ? j.at("is_animated").get<bool>() : false;
     name.is_video = j.contains("is_video") ? j.at("is_video").get<bool>() : false;
     name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
@@ -4068,7 +4072,7 @@ inline void from_json(const json &j, Sticker &name) {
     name.mask_position = j.contains("mask_position") ? std::make_shared<MaskPosition>(
             j.at("mask_position").get<MaskPosition>()) : nullptr;
     name.custom_emoji_id = j.contains("custom_emoji_id") ? j.at("custom_emoji_id").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Sticker &name) {
@@ -4121,7 +4125,7 @@ inline void to_json(json &j, const StickerSet &name) {
 }
 
 inline void from_json(const json &j, MaskPosition &name) {
-    name.point = j.contains("point") ? j.at("point").get<std::string>() : "";
+    name.point64_t = j.contains("point64_t") ? j.at("point64_t").get<std::string>() : "";
     name.x_shift = j.contains("x_shift") ? j.at("x_shift").get<float>() : 0;
     name.y_shift = j.contains("y_shift") ? j.at("y_shift").get<float>() : 0;
     name.scale = j.contains("scale") ? j.at("scale").get<float>() : 0;
@@ -4129,7 +4133,7 @@ inline void from_json(const json &j, MaskPosition &name) {
 
 inline void to_json(json &j, const MaskPosition &name) {
     j = json::object();
-    j["point"] = name.point;
+    j["point64_t"] = name.point64_t;
     j["x_shift"] = name.x_shift;
     j["y_shift"] = name.y_shift;
     j["scale"] = name.scale;
@@ -4166,8 +4170,8 @@ inline void from_json(const json &j, InlineQueryResult &name) {
     name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResult &name) {
@@ -4197,8 +4201,8 @@ inline void from_json(const json &j, InlineQueryResultArticle &name) {
     name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultArticle &name) {
@@ -4221,8 +4225,8 @@ inline void from_json(const json &j, InlineQueryResultPhoto &name) {
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.photo_url = j.contains("photo_url") ? j.at("photo_url").get<std::string>() : "";
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int>() : 0;
-    name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int>() : 0;
+    name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int64_t>() : 0;
+    name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int64_t>() : 0;
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
@@ -4265,9 +4269,9 @@ inline void from_json(const json &j, InlineQueryResultGif &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.gif_url = j.contains("gif_url") ? j.at("gif_url").get<std::string>() : "";
-    name.gif_width = j.contains("gif_width") ? j.at("gif_width").get<int>() : 0;
-    name.gif_height = j.contains("gif_height") ? j.at("gif_height").get<int>() : 0;
-    name.gif_duration = j.contains("gif_duration") ? j.at("gif_duration").get<int>() : 0;
+    name.gif_width = j.contains("gif_width") ? j.at("gif_width").get<int64_t>() : 0;
+    name.gif_height = j.contains("gif_height") ? j.at("gif_height").get<int64_t>() : 0;
+    name.gif_duration = j.contains("gif_duration") ? j.at("gif_duration").get<int64_t>() : 0;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
     name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
@@ -4312,9 +4316,9 @@ inline void from_json(const json &j, InlineQueryResultMpeg4Gif &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.mpeg4_url = j.contains("mpeg4_url") ? j.at("mpeg4_url").get<std::string>() : "";
-    name.mpeg4_width = j.contains("mpeg4_width") ? j.at("mpeg4_width").get<int>() : 0;
-    name.mpeg4_height = j.contains("mpeg4_height") ? j.at("mpeg4_height").get<int>() : 0;
-    name.mpeg4_duration = j.contains("mpeg4_duration") ? j.at("mpeg4_duration").get<int>() : 0;
+    name.mpeg4_width = j.contains("mpeg4_width") ? j.at("mpeg4_width").get<int64_t>() : 0;
+    name.mpeg4_height = j.contains("mpeg4_height") ? j.at("mpeg4_height").get<int64_t>() : 0;
+    name.mpeg4_duration = j.contains("mpeg4_duration") ? j.at("mpeg4_duration").get<int64_t>() : 0;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
     name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
@@ -4371,9 +4375,9 @@ inline void from_json(const json &j, InlineQueryResultVideo &name) {
         }
     }
     name.caption_entities = caption_entities;
-    name.video_width = j.contains("video_width") ? j.at("video_width").get<int>() : 0;
-    name.video_height = j.contains("video_height") ? j.at("video_height").get<int>() : 0;
-    name.video_duration = j.contains("video_duration") ? j.at("video_duration").get<int>() : 0;
+    name.video_width = j.contains("video_width") ? j.at("video_width").get<int64_t>() : 0;
+    name.video_height = j.contains("video_height") ? j.at("video_height").get<int64_t>() : 0;
+    name.video_duration = j.contains("video_duration") ? j.at("video_duration").get<int64_t>() : 0;
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
@@ -4419,7 +4423,7 @@ inline void from_json(const json &j, InlineQueryResultAudio &name) {
     }
     name.caption_entities = caption_entities;
     name.performer = j.contains("performer") ? j.at("performer").get<std::string>() : "";
-    name.audio_duration = j.contains("audio_duration") ? j.at("audio_duration").get<int>() : 0;
+    name.audio_duration = j.contains("audio_duration") ? j.at("audio_duration").get<int64_t>() : 0;
     name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
@@ -4459,7 +4463,7 @@ inline void from_json(const json &j, InlineQueryResultVoice &name) {
         }
     }
     name.caption_entities = caption_entities;
-    name.voice_duration = j.contains("voice_duration") ? j.at("voice_duration").get<int>() : 0;
+    name.voice_duration = j.contains("voice_duration") ? j.at("voice_duration").get<int64_t>() : 0;
     name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
@@ -4505,8 +4509,8 @@ inline void from_json(const json &j, InlineQueryResultDocument &name) {
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultDocument &name) {
@@ -4538,16 +4542,17 @@ inline void from_json(const json &j, InlineQueryResultLocation &name) {
     name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
-    name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
-    name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
-    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>() : 0;
+    name.live_period = j.contains("live_period") ? j.at("live_period").get<int64_t>() : 0;
+    name.heading = j.contains("heading") ? j.at("heading").get<int64_t>() : 0;
+    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int64_t>()
+                                                                       : 0;
     name.reply_markup = j.contains("reply_markup") ? std::make_shared<InlineKeyboardMarkup>(
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultLocation &name) {
@@ -4584,8 +4589,8 @@ inline void from_json(const json &j, InlineQueryResultVenue &name) {
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultVenue &name) {
@@ -4619,8 +4624,8 @@ inline void from_json(const json &j, InlineQueryResultContact &name) {
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
     name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int64_t>() : 0;
+    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultContact &name) {
@@ -4992,9 +4997,10 @@ inline void from_json(const json &j, InputLocationMessageContent &name) {
     name.latitude = j.contains("latitude") ? j.at("latitude").get<float>() : 0;
     name.longitude = j.contains("longitude") ? j.at("longitude").get<float>() : 0;
     name.horizontal_accuracy = j.contains("horizontal_accuracy") ? j.at("horizontal_accuracy").get<float>() : 0;
-    name.live_period = j.contains("live_period") ? j.at("live_period").get<int>() : 0;
-    name.heading = j.contains("heading") ? j.at("heading").get<int>() : 0;
-    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int>() : 0;
+    name.live_period = j.contains("live_period") ? j.at("live_period").get<int64_t>() : 0;
+    name.heading = j.contains("heading") ? j.at("heading").get<int64_t>() : 0;
+    name.proximity_alert_radius = j.contains("proximity_alert_radius") ? j.at("proximity_alert_radius").get<int64_t>()
+                                                                       : 0;
 }
 
 inline void to_json(json &j, const InputLocationMessageContent &name) {
@@ -5058,13 +5064,13 @@ inline void from_json(const json &j, InputInvoiceMessageContent &name) {
         }
     }
     name.prices = prices;
-    name.max_tip_amount = j.contains("max_tip_amount") ? j.at("max_tip_amount").get<int>() : 0;
-    name.suggested_tip_amounts = j.contains("suggested_tip_amounts") ? j.at("suggested_tip_amounts").get<int>() : 0;
+    name.max_tip_amount = j.contains("max_tip_amount") ? j.at("max_tip_amount").get<int64_t>() : 0;
+    name.suggested_tip_amounts = j.contains("suggested_tip_amounts") ? j.at("suggested_tip_amounts").get<int64_t>() : 0;
     name.provider_data = j.contains("provider_data") ? j.at("provider_data").get<std::string>() : "";
     name.photo_url = j.contains("photo_url") ? j.at("photo_url").get<std::string>() : "";
-    name.photo_size = j.contains("photo_size") ? j.at("photo_size").get<int>() : 0;
-    name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int>() : 0;
-    name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int>() : 0;
+    name.photo_size = j.contains("photo_size") ? j.at("photo_size").get<int64_t>() : 0;
+    name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int64_t>() : 0;
+    name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int64_t>() : 0;
     name.need_name = j.contains("need_name") ? j.at("need_name").get<bool>() : false;
     name.need_phone_number = j.contains("need_phone_number") ? j.at("need_phone_number").get<bool>() : false;
     name.need_email = j.contains("need_email") ? j.at("need_email").get<bool>() : false;
@@ -5140,7 +5146,7 @@ inline void to_json(json &j, const Payments &name) {
 
 inline void from_json(const json &j, LabeledPrice &name) {
     name.label = j.contains("label") ? j.at("label").get<std::string>() : "";
-    name.amount = j.contains("amount") ? j.at("amount").get<int>() : 0;
+    name.amount = j.contains("amount") ? j.at("amount").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const LabeledPrice &name) {
@@ -5154,7 +5160,7 @@ inline void from_json(const json &j, Invoice &name) {
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
     name.start_parameter = j.contains("start_parameter") ? j.at("start_parameter").get<std::string>() : "";
     name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
-    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
+    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const Invoice &name) {
@@ -5226,7 +5232,7 @@ inline void to_json(json &j, const ShippingOption &name) {
 
 inline void from_json(const json &j, SuccessfulPayment &name) {
     name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
-    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
+    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int64_t>() : 0;
     name.invoice_payload = j.contains("invoice_payload") ? j.at("invoice_payload").get<std::string>() : "";
     name.shipping_option_id = j.contains("shipping_option_id") ? j.at("shipping_option_id").get<std::string>() : "";
     name.order_info = j.contains("order_info") ? std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>())
@@ -5268,7 +5274,7 @@ inline void from_json(const json &j, PreCheckoutQuery &name) {
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.from = j.contains("from") ? std::make_shared<User>(j.at("from").get<User>()) : nullptr;
     name.currency = j.contains("currency") ? j.at("currency").get<std::string>() : "";
-    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int>() : 0;
+    name.total_amount = j.contains("total_amount") ? j.at("total_amount").get<int64_t>() : 0;
     name.invoice_payload = j.contains("invoice_payload") ? j.at("invoice_payload").get<std::string>() : "";
     name.shipping_option_id = j.contains("shipping_option_id") ? j.at("shipping_option_id").get<std::string>() : "";
     name.order_info = j.contains("order_info") ? std::make_shared<OrderInfo>(j.at("order_info").get<OrderInfo>())
@@ -5311,8 +5317,8 @@ inline void to_json(json &j, const PassportData &name) {
 inline void from_json(const json &j, PassportFile &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
-    name.file_date = j.contains("file_date") ? j.at("file_date").get<int>() : 0;
+    name.file_size = j.contains("file_size") ? j.at("file_size").get<int64_t>() : 0;
+    name.file_date = j.contains("file_date") ? j.at("file_date").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const PassportFile &name) {
@@ -5594,9 +5600,9 @@ inline void to_json(json &j, const CallbackGame &name) {
 }
 
 inline void from_json(const json &j, GameHighScore &name) {
-    name.position = j.contains("position") ? j.at("position").get<int>() : 0;
+    name.position = j.contains("position") ? j.at("position").get<int64_t>() : 0;
     name.user = j.contains("user") ? std::make_shared<User>(j.at("user").get<User>()) : nullptr;
-    name.score = j.contains("score") ? j.at("score").get<int>() : 0;
+    name.score = j.contains("score") ? j.at("score").get<int64_t>() : 0;
 }
 
 inline void to_json(json &j, const GameHighScore &name) {

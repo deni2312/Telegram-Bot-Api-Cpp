@@ -1,22 +1,25 @@
-#include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(const Telegram::Bot::Types::API& api, const Telegram::Bot::Types::MessageReceive& message) {
-	try {//if the second peremeter is a void string it will send the link of the photo, otherwise it will takes as third peremeter the directory of the photo
-		Json::Value file;
-		file = api.getFile("your-file-id");
-		std::cout << file;
-	}
-	catch (std::string& error) {
-		std::cerr << error;
-	}
+#include "telegram/include/TelegramAPI.h"
+
+void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
+    try {
+        auto file = api.getFile(update.message->document->file_id);
+        std::cout << file.file_id;
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
 
-int main()
-{
+int main(int argc, char **argv) {
 
-	Telegram::Bot::Connector handler("your-token");
-	handler.callback(sendSomething);
+    try {
+        Telegram::Bot::Connector handler(argv[1]);//Insert here your token
+        handler.onUpdate(sendSomething);
+        handler.callback();
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
-
-
