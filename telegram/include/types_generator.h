@@ -2219,6 +2219,7 @@ inline void to_json(json& j,const Message& name){
 	j ["media_group_id"]=name.media_group_id;
 	j ["author_signature"]=name.author_signature;
 	j ["text"]=name.text;
+j["entities"]=json::array();
 	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2227,6 +2228,7 @@ inline void to_json(json& j,const Message& name){
 	if(name.animation){to_json(j["animation"],*name . animation);}
 	if(name.audio){to_json(j["audio"],*name . audio);}
 	if(name.document){to_json(j["document"],*name . document);}
+j["photo"]=json::array();
 	for(auto a:j.at("photo").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2237,6 +2239,7 @@ inline void to_json(json& j,const Message& name){
 	if(name.video_note){to_json(j["video_note"],*name . video_note);}
 	if(name.voice){to_json(j["voice"],*name . voice);}
 	j ["caption"]=name.caption;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2249,6 +2252,7 @@ inline void to_json(json& j,const Message& name){
 	if(name.poll){to_json(j["poll"],*name . poll);}
 	if(name.venue){to_json(j["venue"],*name . venue);}
 	if(name.location){to_json(j["location"],*name . location);}
+j["new_chat_members"]=json::array();
 	for(auto a:j.at("new_chat_members").get<std::vector<User>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2256,6 +2260,7 @@ inline void to_json(json& j,const Message& name){
 	}
 	if(name.left_chat_member){to_json(j["left_chat_member"],*name . left_chat_member);}
 	j ["new_chat_title"]=name.new_chat_title;
+j["new_chat_photo"]=json::array();
 	for(auto a:j.at("new_chat_photo").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2524,6 +2529,7 @@ inline void to_json(json& j,const Poll& name){
 	j=json::object();
 	j ["id"]=name.id;
 	j ["question"]=name.question;
+j["options"]=json::array();
 	for(auto a:j.at("options").get<std::vector<PollOption>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2536,6 +2542,7 @@ inline void to_json(json& j,const Poll& name){
 	j ["allows_multiple_answers"]=name.allows_multiple_answers;
 	j ["correct_option_id"]=name.correct_option_id;
 	j ["explanation"]=name.explanation;
+j["explanation_entities"]=json::array();
 	for(auto a:j.at("explanation_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2700,6 +2707,7 @@ inline void from_json(const json& j, VideoChatParticipantsInvited& name){
 }
 inline void to_json(json& j,const VideoChatParticipantsInvited& name){
 	j=json::object();
+j["users"]=json::array();
 	for(auto a:j.at("users").get<std::vector<User>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2719,6 +2727,7 @@ inline void from_json(const json& j, UserProfilePhotos& name){
 inline void to_json(json& j,const UserProfilePhotos& name){
 	j=json::object();
 	j ["total_count"]=name.total_count;
+j["photos"]=json::array();
 	for(auto a:j.at("photos").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2761,6 +2770,7 @@ inline void from_json(const json& j, ReplyKeyboardMarkup& name){
 }
 inline void to_json(json& j,const ReplyKeyboardMarkup& name){
 	j=json::object();
+j["keyboard"]=json::array();
 	for(auto a:j.at("keyboard").get<std::vector<KeyboardButton>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -2846,6 +2856,7 @@ inline void from_json(const json& j, InlineKeyboardMarkup& name){
 }
 inline void to_json(json& j,const InlineKeyboardMarkup& name){
 	j=json::object();
+j["inline_keyboard"]=json::array();
 	for(auto a:j.at("inline_keyboard").get<std::vector<InlineKeyboardButton>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3333,6 +3344,7 @@ inline void to_json(json& j,const InputMedia& name){
 	j ["media"]=name.media;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3360,6 +3372,7 @@ inline void to_json(json& j,const InputMediaPhoto& name){
 	j ["media"]=name.media;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3393,6 +3406,7 @@ inline void to_json(json& j,const InputMediaVideo& name){
 	j ["thumb"]=name.thumb;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3429,6 +3443,7 @@ inline void to_json(json& j,const InputMediaAnimation& name){
 	j ["thumb"]=name.thumb;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3463,6 +3478,7 @@ inline void to_json(json& j,const InputMediaAudio& name){
 	j ["thumb"]=name.thumb;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3494,6 +3510,7 @@ inline void to_json(json& j,const InputMediaDocument& name){
 	j ["thumb"]=name.thumb;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3526,6 +3543,7 @@ inline void to_json(json& j,const InputFile& name){
 	j ["message_thread_id"]=name.message_thread_id;
 	j ["text"]=name.text;
 	j ["parse_mode"]=name.parse_mode;
+j["entities"]=json::array();
 	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3598,6 +3616,7 @@ inline void to_json(json& j,const StickerSet& name){
 	j ["sticker_type"]=name.sticker_type;
 	j ["is_animated"]=name.is_animated;
 	j ["is_video"]=name.is_video;
+j["stickers"]=json::array();
 	for(auto a:j.at("stickers").get<std::vector<Sticker>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3722,6 +3741,7 @@ inline void to_json(json& j,const InlineQueryResultPhoto& name){
 	j ["description"]=name.description;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3765,6 +3785,7 @@ inline void to_json(json& j,const InlineQueryResultGif& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3808,6 +3829,7 @@ inline void to_json(json& j,const InlineQueryResultMpeg4Gif& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3849,6 +3871,7 @@ inline void to_json(json& j,const InlineQueryResultVideo& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3888,6 +3911,7 @@ inline void to_json(json& j,const InlineQueryResultAudio& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3924,6 +3948,7 @@ inline void to_json(json& j,const InlineQueryResultVoice& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -3962,6 +3987,7 @@ inline void to_json(json& j,const InlineQueryResultDocument& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4111,6 +4137,7 @@ inline void to_json(json& j,const InlineQueryResultCachedPhoto& name){
 	j ["description"]=name.description;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4144,6 +4171,7 @@ inline void to_json(json& j,const InlineQueryResultCachedGif& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4177,6 +4205,7 @@ inline void to_json(json& j,const InlineQueryResultCachedMpeg4Gif& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4227,6 +4256,7 @@ inline void to_json(json& j,const InlineQueryResultCachedDocument& name){
 	j ["description"]=name.description;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4262,6 +4292,7 @@ inline void to_json(json& j,const InlineQueryResultCachedVideo& name){
 	j ["description"]=name.description;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4295,6 +4326,7 @@ inline void to_json(json& j,const InlineQueryResultCachedVoice& name){
 	j ["title"]=name.title;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4326,6 +4358,7 @@ inline void to_json(json& j,const InlineQueryResultCachedAudio& name){
 	j ["audio_file_id"]=name.audio_file_id;
 	j ["caption"]=name.caption;
 	j ["parse_mode"]=name.parse_mode;
+j["caption_entities"]=json::array();
 	for(auto a:j.at("caption_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4350,6 +4383,7 @@ inline void to_json(json& j,const InputMessageContent& name){
 	j=json::object();
 	j ["message_text"]=name.message_text;
 	j ["parse_mode"]=name.parse_mode;
+j["entities"]=json::array();
 	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4373,6 +4407,7 @@ inline void to_json(json& j,const InputTextMessageContent& name){
 	j=json::object();
 	j ["message_text"]=name.message_text;
 	j ["parse_mode"]=name.parse_mode;
+j["entities"]=json::array();
 	for(auto a:j.at("entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4466,6 +4501,7 @@ inline void to_json(json& j,const InputInvoiceMessageContent& name){
 	j ["payload"]=name.payload;
 	j ["provider_token"]=name.provider_token;
 	j ["currency"]=name.currency;
+j["prices"]=json::array();
 	for(auto a:j.at("prices").get<std::vector<LabeledPrice>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4582,6 +4618,7 @@ inline void to_json(json& j,const ShippingOption& name){
 	j=json::object();
 	j ["id"]=name.id;
 	j ["title"]=name.title;
+j["prices"]=json::array();
 	for(auto a:j.at("prices").get<std::vector<LabeledPrice>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4651,6 +4688,7 @@ inline void from_json(const json& j, PassportData& name){
 }
 inline void to_json(json& j,const PassportData& name){
 	j=json::object();
+j["data"]=json::array();
 	for(auto a:j.at("data").get<std::vector<EncryptedPassportElement>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4701,6 +4739,7 @@ inline void to_json(json& j,const EncryptedPassportElement& name){
 	j ["data"]=name.data;
 	j ["phone_number"]=name.phone_number;
 	j ["email"]=name.email;
+j["files"]=json::array();
 	for(auto a:j.at("files").get<std::vector<PassportFile>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4709,6 +4748,7 @@ inline void to_json(json& j,const EncryptedPassportElement& name){
 	if(name.front_side){to_json(j["front_side"],*name . front_side);}
 	if(name.reverse_side){to_json(j["reverse_side"],*name . reverse_side);}
 	if(name.selfie){to_json(j["selfie"],*name . selfie);}
+j["translation"]=json::array();
 	for(auto a:j.at("translation").get<std::vector<PassportFile>>()){
 		auto u=json::object();
 		to_json(u,a) ;
@@ -4890,12 +4930,14 @@ inline void to_json(json& j,const Game& name){
 	j=json::object();
 	j ["title"]=name.title;
 	j ["description"]=name.description;
+j["photo"]=json::array();
 	for(auto a:j.at("photo").get<std::vector<PhotoSize>>()){
 		auto u=json::object();
 		to_json(u,a) ;
 		j["photo"].push_back(u);
 	}
 	j ["text"]=name.text;
+j["text_entities"]=json::array();
 	for(auto a:j.at("text_entities").get<std::vector<MessageEntity>>()){
 		auto u=json::object();
 		to_json(u,a) ;

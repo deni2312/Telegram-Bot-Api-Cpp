@@ -206,7 +206,9 @@ void type_generator() {
         out = out + "\tj=json::object();\n";
         for (const auto &pa: nm.n) {
             if (normalize_type(pa.name_type).find("std::vector") != std::string::npos) {
-                out = out + "\tfor(auto a:j.at(\"" + pa.parameter + "\").get<" + normalize_type1(pa.name_type) +
+                out = out + "j[\"" + pa.parameter + "\"]=json::array();\n\tfor(auto a:j.at(\"" + pa.parameter +
+                      "\").get<" +
+                      normalize_type1(pa.name_type) +
                       ">()){\n\t\tauto u=json::object();\n\t\tto_json(u,a) ;\n\t\tj[\"" + pa.parameter +
                       "\"].push_back(u);\n\t}\n";
             } else {
