@@ -3,7 +3,7 @@
 
 
 
-<p align="left">A header-only version of  <a href="https://core.telegram.org/bots/api">Telegram Bot API</a> in C++, updated to <b>5.0</b>
+<p align="left">A header-only version of  <a href="https://core.telegram.org/bots/api">Telegram Bot API</a> in C++, updated to <b>latest version</b>
   
   * [Getting started.](#getting-started)
   * [Writing your first bot](#writing-your-first-bot)
@@ -25,7 +25,7 @@ This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
 git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
 bootstrap-vcpkg.bat
-vcpkg install jsoncpp
+vcpkg install nlohmann-json
 vcpkg install cpr
 vcpkg integrate install
 ```  
@@ -42,7 +42,7 @@ Files->Open->CMake->Telegram Directory
 ### Linux 
 Install on linux with vcpkg:  
   * Dependencies
-    * Jsoncpp
+    * nlohmann-json
     * cpr  
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
