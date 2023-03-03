@@ -21,8 +21,9 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token
     m_update = [](const Telegram::Bot::Types::API &, const Update &) {};
 }
 
-void Telegram::Bot::Connector::callback() {
+void Telegram::Bot::Connector::callback(unsigned int timeout) {
     m_offset = 0;
+    m_timeout=timeout;
     std::thread threadupdate;
     threadupdate = std::thread(&Telegram::Bot::Connector::update, this);
     threadupdate.detach();
@@ -43,7 +44,7 @@ void Telegram::Bot::Connector::callback() {
 
 void Telegram::Bot::Connector::update() {
     while (1) {
-        std::vector<Update> updates = m_api->getUpdates("", 0, 0, m_offset + 1);
+        std::vector<Update> updates = m_api->getUpdates("", m_timeout, 0, m_offset + 1);
         if (!updates.empty()) {
             m_offset = updates.at(0).update_id;
             m_block.lock();

@@ -30,7 +30,7 @@ namespace Telegram {
 
             void onUpdate(std::function<void(const Telegram::Bot::Types::API &, const Update &)> func);
 
-            void callback();
+            void callback(unsigned int timeout=0);
 
             ~Connector();
 
@@ -45,6 +45,7 @@ namespace Telegram {
 
             std::shared_ptr<Types::Network> m_request;
             std::function<void(const Telegram::Bot::Types::API &, const Update &)> m_update;
+            unsigned int m_timeout;
         };
     }
 }
