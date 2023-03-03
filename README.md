@@ -48,7 +48,7 @@ Install on linux with vcpkg:
 git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
 ./bootstrap-vcpkg.sh
-./vcpkg install jsoncpp
+./vcpkg install nlohmann-json
 ./vcpkg install cpr
 ./vcpkg integrate install
 ```  
