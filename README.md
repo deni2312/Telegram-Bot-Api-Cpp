@@ -69,23 +69,31 @@ Change vcpkgdirectory with the relative or absolute path of vcpkg
 <h3>Hello World!</h3>
 
 ```c++
-#include "include/TelegramAPI.h"
 #include <iostream>
 
-void sendSomething(Telegram::Bot::Types::API &api, Telegram::Bot::Types::MessageReceive &message) {
-	try {
-		api.sendMessage(message["chat"]["id"].asString(),"Hello World!");
-	}
-	catch (Telegram::Bot::Types::Error &error) {
-		std::cerr << error.what();
-	}
+#include "telegram/include/TelegramAPI.h"
+
+void sendSomething(const Telegram::Bot::Types::API &api, const Update &update) {
+    try {
+        api.sendMessage(update.message->chat->id, "Hello world!");
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
 
-int main()
-{
-	Telegram::Bot::Connector handler("your-token");
-	handler.callback(sendSomething);
+int main(int argc, char **argv) {
+
+    try {
+        Telegram::Bot::Connector handler(argv[1]);//Insert here your token
+        handler.onUpdate(sendSomething);
+        handler.callback();
+    }
+    catch (Telegram::Bot::Types::Error &error) {
+        std::cerr << error.what();
+    }
 }
+
 
 ```
 
@@ -94,28 +102,13 @@ int main()
 
 ### Usage
 
-The **api** paramater contains all methods of Telegram APIs, and **message** paramater contains the message sent by the user.  
-The **message** paramater is the JSON rappresentation of the message sent by the user, and for example if you need to access the chat-id paramater you can simply type : 
+The **api** paramater contains all methods of Telegram APIs, and **update** paramater contains the message sent by the user.  
+The **update** paramater is the JSON rappresentation of the message sent by the user, and for example if you need to access the chat-id paramater you can simply type : 
 ```c++
-message["chat"]["id"]
+update.message->chat->id
  ```
-By the <a href="https://core.telegram.org/bots/api">documentation</a>:  
-sendMessage requires `chat_id`:
 
-<p align="left">
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image4.PNG" width="600" alt="accessibility text">
-</p>
-
-Then:
-
-<p align="left">
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image5.PNG" width="600" alt="accessibility text">
-</p>
-
-<p align="left">
-  <img src="https://github.com/deni2312/Telegram-Bot-Api-Cpp/blob/master/bin/Image6.PNG" width="600" alt="accessibility text">
-</p>
-Or check the examples folder.
+You can check the examples folder for further information.
 
 ### Error Handling
 
