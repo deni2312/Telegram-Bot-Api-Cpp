@@ -30,7 +30,7 @@ vcpkg install cpr
 vcpkg integrate install
 ```  
 
-####Windows x64
+#### Windows x64
 Most Windows machines are x64 now, but by default vcpkg uses x86 triplets (and installs x86 dependencies, if other is not set on your machine).
 If you are not using Virtual Machine, then you need to make sure you have installed appropriate dependencies:
 ```bash
