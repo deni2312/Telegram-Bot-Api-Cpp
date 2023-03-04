@@ -16,7 +16,7 @@
 
 <h2> Steps </h2>
 
-This API is tested with C++ 17, on linux g++ and on Visual Studio 2017/2019.
+This API uses C++ 17, it supports Linux (g++) and Windows (Visual Studio 2019/2022).
  
 ### Windows
 
