@@ -3,7 +3,7 @@
 
 
 
-<p align="left">This is a C++ library for interacting with the Telegram Bot API. It provides a simple and convenient way to send and receive messages, manage chats and users, and perform other bot-related tasks using the C++ programming language. It's updated to <b>latest version</b>
+<p align="left">This is a C++ library for interacting with the Telegram Bot API. It provides a simple and convenient way to send and receive messages, manage chats and users, and perform other bot-related tasks using the C++ programming language.  It's updated to <b>latest version</b>.
     
   
   * [Features](#features)
