@@ -26,8 +26,6 @@
 
 ## Getting started.
 
-<h2> Steps </h2>
-
 This API uses C++ 17, it supports Linux (g++) and Windows (Visual Studio 2019/2022).
  
 ### Windows
