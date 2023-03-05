@@ -35,6 +35,5 @@ jobs:
       - name: Build library
         run: |
           mkdir build
-          cd build
           cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build build/
