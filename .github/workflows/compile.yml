@@ -29,7 +29,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd vcpkg
-          ./vcpkg install $(cat ../vcpkg.json | jq -r 'keys[]')
+          ./vcpkg install nlohmann-json
+          ./vcpkg install cpr
 
       - name: Build library
         run: |
