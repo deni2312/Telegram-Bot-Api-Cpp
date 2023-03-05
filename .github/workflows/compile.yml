@@ -1,39 +1,20 @@
-name: Compile
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
+name: compile
+on: [push]
 jobs:
-  build:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache vcpkg dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/vcpkg/installed
-          key: vcpkg-dependencies-${{ hashFiles('vcpkg.json') }}
-          restore-keys: vcpkg-dependencies-
-
-      - name: Install vcpkg
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg
-          ./bootstrap-vcpkg.sh
-          ./vcpkg integrate install
-
-      - name: Install dependencies
-        run: |
-          cd vcpkg
-          ./vcpkg install nlohmann-json
-          ./vcpkg install cpr
-
-      - name: Build library
-        run: |
-          mkdir build
-          cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
-          cmake --build build/
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: git clone https://github.com/Microsoft/vcpkg.git
+      
+      - run: sudo ./vcpkg/bootstrap-vcpkg.sh
+      - run: sudo ./vcpkg/vcpkg integrate install
+      - run: sudo ./vcpkg/vcpkg install cpr
+      - run: sudo ./vcpkg/vcpkg install jsoncpp
+      - run: sudo ./vcpkg/vcpkg install nlohmann-json
+      - run: mkdir build
+      - run: cmake -B build/ -S . -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
+      - run: cmake --build build/
+      - run: echo ""
