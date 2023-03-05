@@ -3,7 +3,17 @@
 
 
 
-<p align="left">A header-only version of  <a href="https://core.telegram.org/bots/api">Telegram Bot API</a> in C++, updated to <b>latest version</b>
+<p align="left">This is a C++ library for interacting with the Telegram Bot API. It provides a simple and convenient way to send and receive messages, manage chats and users, and perform other bot-related tasks using the C++ programming language. It's updated to <b>latest version</b>
+  
+  ## Features
+
+- Easy-to-use interface for sending and receiving messages, photos, videos, and other types of media
+- Simple and intuitive methods for managing chats and users, including sending messages to groups and channels
+- Comprehensive support for all Telegram Bot API methods, including message editing, inline queries, and more
+- Built-in support for long polling and webhook-based updates
+- Lightweight and efficient, with minimal dependencies
+  
+  
   
   * [Getting started.](#getting-started)
   * [Writing your first bot](#writing-your-first-bot)
