@@ -1,0 +1,14 @@
+{
+  "name": "telegram-bot-api-cpp",
+  "version-string": "1.0.0",
+  "dependencies": [
+    {
+      "name": "nlohmann-json",
+      "features": ["no-asm"]
+    },
+    {
+      "name": "cpr",
+      "version": "1.9.4"
+    }
+  ]
+}
