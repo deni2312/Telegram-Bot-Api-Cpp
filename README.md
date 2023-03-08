@@ -63,7 +63,7 @@ Install on linux with vcpkg:
     * nlohmann-json
     * cpr  
     
-You can install it through our **install.sh** script or manually:
+You can install it through our **install.sh**(remember to give it right permissions) script or manually:
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
