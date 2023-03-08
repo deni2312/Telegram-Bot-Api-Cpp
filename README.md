@@ -62,6 +62,8 @@ Install on linux with vcpkg:
   * Dependencies
     * nlohmann-json
     * cpr  
+    
+You can install it through our **install.sh** script or manually:
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
 cd vcpkg
