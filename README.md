@@ -18,9 +18,9 @@
   ## Features
 
 - Easy-to-use interface for sending and receiving messages, photos, videos, and other types of media
-- Simple and intuitive methods for managing chats and users, including sending messages to groups and channels
+- Simple and intuitive methods for managing chats and users, including sending messages to groups
 - Comprehensive support for all Telegram Bot API methods, including message editing, inline queries, and more
-- Built-in support for long polling and webhook-based updates
+- Built-in support for long polling
 - Lightweight and efficient, with minimal dependencies
   
 
