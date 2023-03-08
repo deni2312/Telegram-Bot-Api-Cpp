@@ -72,7 +72,7 @@ cd vcpkg
 ./vcpkg install cpr
 ./vcpkg integrate install
 ```  
-With CMake:  
+And you can run it with our **run.sh** or with CMake:  
 ```bash
 cd Telegram-Bot-Api-Cpp
 mkdir build
