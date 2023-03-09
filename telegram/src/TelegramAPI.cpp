@@ -2,11 +2,6 @@
 
 #include "../include/TelegramAPI.h"
 
-inline size_t WriteaCallback(char *contents, size_t size, size_t nmemb, void *userp) {
-    ((std::string *) userp)->append((char *) contents, size * nmemb);
-    return size * nmemb;
-}
-
 Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token)}, m_request{
         std::make_shared<Types::HTTPrequest>("https://api.telegram.org/bot" + m_token)},
                                                          m_api{std::make_shared<Telegram::Bot::Types::API>(
