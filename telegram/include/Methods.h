@@ -43,74 +43,14 @@ namespace Telegram {
 
 // Use this method to log out from the cloud Bot API server before launching the bot locally. You <strong>must</strong> log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns <em>True</em> on success. Requires no parameters.
                 inline void
-                logOut(int64_t chat_id, std::string text, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
-                       bool allow_sending_without_reply = false, int64_t reply_to_message_id = 0,
-                       bool protect_content = false, bool disable_notification = false,
-                       bool disable_web_page_preview = false,
-                       std::vector<std::shared_ptr<MessageEntity>> entities = std::vector<std::shared_ptr<MessageEntity>>(),
-                       std::string parse_mode = "", int64_t message_thread_id = 0) const {
-                    json payload1;
-                    payload1["chat_id"] = chat_id;
-                    payload1["text"] = text;
-                    if (reply_markup != nullptr) {
-                        json j2;
-                        to_json(j2, *reply_markup);
-                        payload1["reply_markup"] = j2;
-                    }
-                    payload1["allow_sending_without_reply"] = allow_sending_without_reply;
-                    payload1["reply_to_message_id"] = reply_to_message_id;
-                    payload1["protect_content"] = protect_content;
-                    payload1["disable_notification"] = disable_notification;
-                    payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j8 = json::array();
-                    if (!entities.empty()) {
-                        for (const auto a: entities) {
-                            json j9 = json::object();
-                            to_json(j9, *a);
-                            j8.push_back(j9);
-                        }
-                        payload1["entities"] = j8;
-                    }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["message_thread_id"] = message_thread_id;
-                    auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/logOut", result1);
+                logOut() const {
+                    auto response = request->sendHttp("/logOut", "");
                 }
 
 // Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn&#39;t launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns <em>True</em> on success. Requires no parameters.
                 inline void
-                close(int64_t chat_id, std::string text, std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
-                      bool allow_sending_without_reply = false, int64_t reply_to_message_id = 0,
-                      bool protect_content = false, bool disable_notification = false,
-                      bool disable_web_page_preview = false,
-                      std::vector<std::shared_ptr<MessageEntity>> entities = std::vector<std::shared_ptr<MessageEntity>>(),
-                      std::string parse_mode = "", int64_t message_thread_id = 0) const {
-                    json payload1;
-                    payload1["chat_id"] = chat_id;
-                    payload1["text"] = text;
-                    if (reply_markup != nullptr) {
-                        json j2;
-                        to_json(j2, *reply_markup);
-                        payload1["reply_markup"] = j2;
-                    }
-                    payload1["allow_sending_without_reply"] = allow_sending_without_reply;
-                    payload1["reply_to_message_id"] = reply_to_message_id;
-                    payload1["protect_content"] = protect_content;
-                    payload1["disable_notification"] = disable_notification;
-                    payload1["disable_web_page_preview"] = disable_web_page_preview;
-                    json j8 = json::array();
-                    if (!entities.empty()) {
-                        for (const auto a: entities) {
-                            json j9 = json::object();
-                            to_json(j9, *a);
-                            j8.push_back(j9);
-                        }
-                        payload1["entities"] = j8;
-                    }
-                    payload1["parse_mode"] = parse_mode;
-                    payload1["message_thread_id"] = message_thread_id;
-                    auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/close", result1);
+                close() const {
+                    auto response = request->sendHttp("/close", "");
                 }
 
 // Use this method to send text messages. On success, the sent <a href="#message">Message</a> is returned.
