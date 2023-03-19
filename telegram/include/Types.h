@@ -1,6 +1,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -324,7 +325,7 @@ struct MessageEntity {
     std::string custom_emoji_id;
 };
 
-//This object represents one size of a photo or a <a href="#document">file</a> / <a href="#sticker">sticker</a> thumbnail.
+//This object represents one size of a photo or a <a href="#document">file</a> / <a href="#sticker">sticker</a> thumbnailnail.
 struct PhotoSize {
     std::string file_id;
     std::string file_unique_id;
@@ -340,7 +341,7 @@ struct Animation {
     int width;
     int height;
     int duration;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
     std::string file_name;
     std::string mime_type;
     int file_size;
@@ -356,14 +357,14 @@ struct Audio {
     std::string file_name;
     std::string mime_type;
     int file_size;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
 };
 
 //This object represents a general file (as opposed to <a href="#photosize">photos</a>, <a href="#voice">voice messages</a> and <a href="#audio">audio files</a>).
 struct Document {
     std::string file_id;
     std::string file_unique_id;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
     std::string file_name;
     std::string mime_type;
     int file_size;
@@ -376,7 +377,7 @@ struct Video {
     int width;
     int height;
     int duration;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
     std::string file_name;
     std::string mime_type;
     int file_size;
@@ -388,7 +389,7 @@ struct VideoNote {
     std::string file_unique_id;
     int length;
     int duration;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
     int file_size;
 };
 
@@ -926,7 +927,7 @@ struct InputMediaPhoto {
 struct InputMediaVideo {
     std::string type;
     std::string media;
-    std::string thumb;
+    std::string thumbnail;
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -941,7 +942,7 @@ struct InputMediaVideo {
 struct InputMediaAnimation {
     std::string type;
     std::string media;
-    std::string thumb;
+    std::string thumbnail;
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -955,7 +956,7 @@ struct InputMediaAnimation {
 struct InputMediaAudio {
     std::string type;
     std::string media;
-    std::string thumb;
+    std::string thumbnail;
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -968,7 +969,7 @@ struct InputMediaAudio {
 struct InputMediaDocument {
     std::string type;
     std::string media;
-    std::string thumb;
+    std::string thumbnail;
     std::string caption;
     std::string parse_mode;
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -1003,7 +1004,7 @@ struct Sticker {
     int height;
     bool is_animated;
     bool is_video;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
     std::string emoji;
     std::string set_name;
     std::shared_ptr<File> premium_animation;
@@ -1020,7 +1021,7 @@ struct StickerSet {
     bool is_animated;
     bool is_video;
     std::vector<std::shared_ptr<Sticker>> stickers;
-    std::shared_ptr<PhotoSize> thumb;
+    std::shared_ptr<PhotoSize> thumbnail;
 };
 
 //This object describes the position on faces where a mask should be placed by default.
@@ -1051,9 +1052,9 @@ struct InlineQueryResult {
     std::string url;
     bool hide_url;
     std::string description;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a link to an article or web page.
@@ -1066,9 +1067,9 @@ struct InlineQueryResultArticle {
     std::string url;
     bool hide_url;
     std::string description;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the photo.
@@ -1076,7 +1077,7 @@ struct InlineQueryResultPhoto {
     std::string type;
     std::string id;
     std::string photo_url;
-    std::string thumb_url;
+    std::string thumbnail_url;
     int photo_width;
     int photo_height;
     std::string title;
@@ -1096,8 +1097,8 @@ struct InlineQueryResultGif {
     int gif_width;
     int gif_height;
     int gif_duration;
-    std::string thumb_url;
-    std::string thumb_mime_type;
+    std::string thumbnail_url;
+    std::string thumbnail_mime_type;
     std::string title;
     std::string caption;
     std::string parse_mode;
@@ -1114,8 +1115,8 @@ struct InlineQueryResultMpeg4Gif {
     int mpeg4_width;
     int mpeg4_height;
     int mpeg4_duration;
-    std::string thumb_url;
-    std::string thumb_mime_type;
+    std::string thumbnail_url;
+    std::string thumbnail_mime_type;
     std::string title;
     std::string caption;
     std::string parse_mode;
@@ -1130,7 +1131,7 @@ struct InlineQueryResultVideo {
     std::string id;
     std::string video_url;
     std::string mime_type;
-    std::string thumb_url;
+    std::string thumbnail_url;
     std::string title;
     std::string caption;
     std::string parse_mode;
@@ -1185,9 +1186,9 @@ struct InlineQueryResultDocument {
     std::string description;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the location.
@@ -1203,9 +1204,9 @@ struct InlineQueryResultLocation {
     int proximity_alert_radius;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the venue.
@@ -1222,9 +1223,9 @@ struct InlineQueryResultVenue {
     std::string google_place_type;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use <em>input_message_content</em> to send a message with the specified content instead of the contact.
@@ -1237,9 +1238,9 @@ struct InlineQueryResultContact {
     std::string vcard;
     std::shared_ptr<InlineKeyboardMarkup> reply_markup;
     std::shared_ptr<InputMessageContent> input_message_content;
-    std::string thumb_url;
-    int thumb_width;
-    int thumb_height;
+    std::string thumbnail_url;
+    int thumbnail_width;
+    int thumbnail_height;
 };
 
 //Represents a <a href="#games">Game</a>.
@@ -2720,7 +2721,8 @@ inline void from_json(const json &j, Animation &name) {
     name.width = j.contains("width") ? j.at("width").get<int>() : 0;
     name.height = j.contains("height") ? j.at("height").get<int>() : 0;
     name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
     name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
@@ -2733,7 +2735,7 @@ inline void to_json(json &j, const Animation &name) {
     j["width"] = name.width;
     j["height"] = name.height;
     j["duration"] = name.duration;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
     j["file_name"] = name.file_name;
     j["mime_type"] = name.mime_type;
     j["file_size"] = name.file_size;
@@ -2748,7 +2750,8 @@ inline void from_json(const json &j, Audio &name) {
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
     name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
 }
 
 inline void to_json(json &j, const Audio &name) {
@@ -2761,13 +2764,14 @@ inline void to_json(json &j, const Audio &name) {
     j["file_name"] = name.file_name;
     j["mime_type"] = name.mime_type;
     j["file_size"] = name.file_size;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
 }
 
 inline void from_json(const json &j, Document &name) {
     name.file_id = j.contains("file_id") ? j.at("file_id").get<std::string>() : "";
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
     name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
@@ -2777,7 +2781,7 @@ inline void to_json(json &j, const Document &name) {
     j = json::object();
     j["file_id"] = name.file_id;
     j["file_unique_id"] = name.file_unique_id;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
     j["file_name"] = name.file_name;
     j["mime_type"] = name.mime_type;
     j["file_size"] = name.file_size;
@@ -2789,7 +2793,8 @@ inline void from_json(const json &j, Video &name) {
     name.width = j.contains("width") ? j.at("width").get<int>() : 0;
     name.height = j.contains("height") ? j.at("height").get<int>() : 0;
     name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
     name.file_name = j.contains("file_name") ? j.at("file_name").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
     name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
@@ -2802,7 +2807,7 @@ inline void to_json(json &j, const Video &name) {
     j["width"] = name.width;
     j["height"] = name.height;
     j["duration"] = name.duration;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
     j["file_name"] = name.file_name;
     j["mime_type"] = name.mime_type;
     j["file_size"] = name.file_size;
@@ -2813,7 +2818,8 @@ inline void from_json(const json &j, VideoNote &name) {
     name.file_unique_id = j.contains("file_unique_id") ? j.at("file_unique_id").get<std::string>() : "";
     name.length = j.contains("length") ? j.at("length").get<int>() : 0;
     name.duration = j.contains("duration") ? j.at("duration").get<int>() : 0;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
     name.file_size = j.contains("file_size") ? j.at("file_size").get<int>() : 0;
 }
 
@@ -2823,7 +2829,7 @@ inline void to_json(json &j, const VideoNote &name) {
     j["file_unique_id"] = name.file_unique_id;
     j["length"] = name.length;
     j["duration"] = name.duration;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
     j["file_size"] = name.file_size;
 }
 
@@ -3935,7 +3941,7 @@ inline void to_json(json &j, const InputMediaPhoto &name) {
 inline void from_json(const json &j, InputMediaVideo &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
-    name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+    name.thumbnail = j.contains("thumbnail") ? j.at("thumbnail").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -3956,7 +3962,7 @@ inline void to_json(json &j, const InputMediaVideo &name) {
     j = json::object();
     j["type"] = name.type;
     j["media"] = name.media;
-    j["thumb"] = name.thumb;
+    j["thumbnail"] = name.thumbnail;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
     j["caption_entities"] = json::array();
@@ -3975,7 +3981,7 @@ inline void to_json(json &j, const InputMediaVideo &name) {
 inline void from_json(const json &j, InputMediaAnimation &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
-    name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+    name.thumbnail = j.contains("thumbnail") ? j.at("thumbnail").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -3995,7 +4001,7 @@ inline void to_json(json &j, const InputMediaAnimation &name) {
     j = json::object();
     j["type"] = name.type;
     j["media"] = name.media;
-    j["thumb"] = name.thumb;
+    j["thumbnail"] = name.thumbnail;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
     j["caption_entities"] = json::array();
@@ -4013,7 +4019,7 @@ inline void to_json(json &j, const InputMediaAnimation &name) {
 inline void from_json(const json &j, InputMediaAudio &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
-    name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+    name.thumbnail = j.contains("thumbnail") ? j.at("thumbnail").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -4032,7 +4038,7 @@ inline void to_json(json &j, const InputMediaAudio &name) {
     j = json::object();
     j["type"] = name.type;
     j["media"] = name.media;
-    j["thumb"] = name.thumb;
+    j["thumbnail"] = name.thumbnail;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
     j["caption_entities"] = json::array();
@@ -4049,7 +4055,7 @@ inline void to_json(json &j, const InputMediaAudio &name) {
 inline void from_json(const json &j, InputMediaDocument &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.media = j.contains("media") ? j.at("media").get<std::string>() : "";
-    name.thumb = j.contains("thumb") ? j.at("thumb").get<std::string>() : "";
+    name.thumbnail = j.contains("thumbnail") ? j.at("thumbnail").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
     std::vector<std::shared_ptr<MessageEntity>> caption_entities;
@@ -4067,7 +4073,7 @@ inline void to_json(json &j, const InputMediaDocument &name) {
     j = json::object();
     j["type"] = name.type;
     j["media"] = name.media;
-    j["thumb"] = name.thumb;
+    j["thumbnail"] = name.thumbnail;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
     j["caption_entities"] = json::array();
@@ -4137,7 +4143,8 @@ inline void from_json(const json &j, Sticker &name) {
     name.height = j.contains("height") ? j.at("height").get<int>() : 0;
     name.is_animated = j.contains("is_animated") ? j.at("is_animated").get<bool>() : false;
     name.is_video = j.contains("is_video") ? j.at("is_video").get<bool>() : false;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
     name.emoji = j.contains("emoji") ? j.at("emoji").get<std::string>() : "";
     name.set_name = j.contains("set_name") ? j.at("set_name").get<std::string>() : "";
     name.premium_animation = j.contains("premium_animation") ? std::make_shared<File>(
@@ -4157,7 +4164,7 @@ inline void to_json(json &j, const Sticker &name) {
     j["height"] = name.height;
     j["is_animated"] = name.is_animated;
     j["is_video"] = name.is_video;
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
     j["emoji"] = name.emoji;
     j["set_name"] = name.set_name;
     if (name.premium_animation) { to_json(j["premium_animation"], *name.premium_animation); }
@@ -4179,7 +4186,8 @@ inline void from_json(const json &j, StickerSet &name) {
         }
     }
     name.stickers = stickers;
-    name.thumb = j.contains("thumb") ? std::make_shared<PhotoSize>(j.at("thumb").get<PhotoSize>()) : nullptr;
+    name.thumbnail = j.contains("thumbnail") ? std::make_shared<PhotoSize>(j.at("thumbnail").get<PhotoSize>())
+                                             : nullptr;
 }
 
 inline void to_json(json &j, const StickerSet &name) {
@@ -4195,7 +4203,7 @@ inline void to_json(json &j, const StickerSet &name) {
         to_json(u, a);
         j["stickers"].push_back(u);
     }
-    if (name.thumb) { to_json(j["thumb"], *name.thumb); }
+    if (name.thumbnail) { to_json(j["thumbnail"], *name.thumbnail); }
 }
 
 inline void from_json(const json &j, MaskPosition &name) {
@@ -4243,9 +4251,9 @@ inline void from_json(const json &j, InlineQueryResult &name) {
     name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
     name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResult &name) {
@@ -4258,9 +4266,9 @@ inline void to_json(json &j, const InlineQueryResult &name) {
     j["url"] = name.url;
     j["hide_url"] = name.hide_url;
     j["description"] = name.description;
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultArticle &name) {
@@ -4274,9 +4282,9 @@ inline void from_json(const json &j, InlineQueryResultArticle &name) {
     name.url = j.contains("url") ? j.at("url").get<std::string>() : "";
     name.hide_url = j.contains("hide_url") ? j.at("hide_url").get<bool>() : false;
     name.description = j.contains("description") ? j.at("description").get<std::string>() : "";
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultArticle &name) {
@@ -4289,16 +4297,16 @@ inline void to_json(json &j, const InlineQueryResultArticle &name) {
     j["url"] = name.url;
     j["hide_url"] = name.hide_url;
     j["description"] = name.description;
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultPhoto &name) {
     name.type = j.contains("type") ? j.at("type").get<std::string>() : "";
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.photo_url = j.contains("photo_url") ? j.at("photo_url").get<std::string>() : "";
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
     name.photo_width = j.contains("photo_width") ? j.at("photo_width").get<int>() : 0;
     name.photo_height = j.contains("photo_height") ? j.at("photo_height").get<int>() : 0;
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
@@ -4323,7 +4331,7 @@ inline void to_json(json &j, const InlineQueryResultPhoto &name) {
     j["type"] = name.type;
     j["id"] = name.id;
     j["photo_url"] = name.photo_url;
-    j["thumb_url"] = name.thumb_url;
+    j["thumbnail_url"] = name.thumbnail_url;
     j["photo_width"] = name.photo_width;
     j["photo_height"] = name.photo_height;
     j["title"] = name.title;
@@ -4347,8 +4355,8 @@ inline void from_json(const json &j, InlineQueryResultGif &name) {
     name.gif_width = j.contains("gif_width") ? j.at("gif_width").get<int>() : 0;
     name.gif_height = j.contains("gif_height") ? j.at("gif_height").get<int>() : 0;
     name.gif_duration = j.contains("gif_duration") ? j.at("gif_duration").get<int>() : 0;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_mime_type = j.contains("thumbnail_mime_type") ? j.at("thumbnail_mime_type").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
@@ -4373,8 +4381,8 @@ inline void to_json(json &j, const InlineQueryResultGif &name) {
     j["gif_width"] = name.gif_width;
     j["gif_height"] = name.gif_height;
     j["gif_duration"] = name.gif_duration;
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_mime_type"] = name.thumb_mime_type;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_mime_type"] = name.thumbnail_mime_type;
     j["title"] = name.title;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
@@ -4395,8 +4403,8 @@ inline void from_json(const json &j, InlineQueryResultMpeg4Gif &name) {
     name.mpeg4_width = j.contains("mpeg4_width") ? j.at("mpeg4_width").get<int>() : 0;
     name.mpeg4_height = j.contains("mpeg4_height") ? j.at("mpeg4_height").get<int>() : 0;
     name.mpeg4_duration = j.contains("mpeg4_duration") ? j.at("mpeg4_duration").get<int>() : 0;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_mime_type = j.contains("thumb_mime_type") ? j.at("thumb_mime_type").get<std::string>() : "";
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_mime_type = j.contains("thumbnail_mime_type") ? j.at("thumbnail_mime_type").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
@@ -4421,8 +4429,8 @@ inline void to_json(json &j, const InlineQueryResultMpeg4Gif &name) {
     j["mpeg4_width"] = name.mpeg4_width;
     j["mpeg4_height"] = name.mpeg4_height;
     j["mpeg4_duration"] = name.mpeg4_duration;
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_mime_type"] = name.thumb_mime_type;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_mime_type"] = name.thumbnail_mime_type;
     j["title"] = name.title;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
@@ -4441,7 +4449,7 @@ inline void from_json(const json &j, InlineQueryResultVideo &name) {
     name.id = j.contains("id") ? j.at("id").get<std::string>() : "";
     name.video_url = j.contains("video_url") ? j.at("video_url").get<std::string>() : "";
     name.mime_type = j.contains("mime_type") ? j.at("mime_type").get<std::string>() : "";
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
     name.title = j.contains("title") ? j.at("title").get<std::string>() : "";
     name.caption = j.contains("caption") ? j.at("caption").get<std::string>() : "";
     name.parse_mode = j.contains("parse_mode") ? j.at("parse_mode").get<std::string>() : "";
@@ -4468,7 +4476,7 @@ inline void to_json(json &j, const InlineQueryResultVideo &name) {
     j["id"] = name.id;
     j["video_url"] = name.video_url;
     j["mime_type"] = name.mime_type;
-    j["thumb_url"] = name.thumb_url;
+    j["thumbnail_url"] = name.thumbnail_url;
     j["title"] = name.title;
     j["caption"] = name.caption;
     j["parse_mode"] = name.parse_mode;
@@ -4588,9 +4596,9 @@ inline void from_json(const json &j, InlineQueryResultDocument &name) {
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultDocument &name) {
@@ -4611,9 +4619,9 @@ inline void to_json(json &j, const InlineQueryResultDocument &name) {
     j["description"] = name.description;
     if (name.reply_markup) { to_json(j["reply_markup"], *name.reply_markup); }
     if (name.input_message_content) { to_json(j["input_message_content"], *name.input_message_content); }
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultLocation &name) {
@@ -4630,9 +4638,9 @@ inline void from_json(const json &j, InlineQueryResultLocation &name) {
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultLocation &name) {
@@ -4648,9 +4656,9 @@ inline void to_json(json &j, const InlineQueryResultLocation &name) {
     j["proximity_alert_radius"] = name.proximity_alert_radius;
     if (name.reply_markup) { to_json(j["reply_markup"], *name.reply_markup); }
     if (name.input_message_content) { to_json(j["input_message_content"], *name.input_message_content); }
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultVenue &name) {
@@ -4668,9 +4676,9 @@ inline void from_json(const json &j, InlineQueryResultVenue &name) {
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultVenue &name) {
@@ -4687,9 +4695,9 @@ inline void to_json(json &j, const InlineQueryResultVenue &name) {
     j["google_place_type"] = name.google_place_type;
     if (name.reply_markup) { to_json(j["reply_markup"], *name.reply_markup); }
     if (name.input_message_content) { to_json(j["input_message_content"], *name.input_message_content); }
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultContact &name) {
@@ -4703,9 +4711,9 @@ inline void from_json(const json &j, InlineQueryResultContact &name) {
             j.at("reply_markup").get<InlineKeyboardMarkup>()) : nullptr;
     name.input_message_content = j.contains("input_message_content") ? std::make_shared<InputMessageContent>(
             j.at("input_message_content").get<InputMessageContent>()) : nullptr;
-    name.thumb_url = j.contains("thumb_url") ? j.at("thumb_url").get<std::string>() : "";
-    name.thumb_width = j.contains("thumb_width") ? j.at("thumb_width").get<int>() : 0;
-    name.thumb_height = j.contains("thumb_height") ? j.at("thumb_height").get<int>() : 0;
+    name.thumbnail_url = j.contains("thumbnail_url") ? j.at("thumbnail_url").get<std::string>() : "";
+    name.thumbnail_width = j.contains("thumbnail_width") ? j.at("thumbnail_width").get<int>() : 0;
+    name.thumbnail_height = j.contains("thumbnail_height") ? j.at("thumbnail_height").get<int>() : 0;
 }
 
 inline void to_json(json &j, const InlineQueryResultContact &name) {
@@ -4718,9 +4726,9 @@ inline void to_json(json &j, const InlineQueryResultContact &name) {
     j["vcard"] = name.vcard;
     if (name.reply_markup) { to_json(j["reply_markup"], *name.reply_markup); }
     if (name.input_message_content) { to_json(j["input_message_content"], *name.input_message_content); }
-    j["thumb_url"] = name.thumb_url;
-    j["thumb_width"] = name.thumb_width;
-    j["thumb_height"] = name.thumb_height;
+    j["thumbnail_url"] = name.thumbnail_url;
+    j["thumbnail_width"] = name.thumbnail_width;
+    j["thumbnail_height"] = name.thumbnail_height;
 }
 
 inline void from_json(const json &j, InlineQueryResultGame &name) {

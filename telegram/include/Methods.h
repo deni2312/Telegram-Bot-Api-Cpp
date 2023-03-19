@@ -191,7 +191,7 @@ namespace Telegram {
                 sendAudio(int64_t chat_id, MediaSource source, std::string audio,
                           std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                           bool allow_sending_without_reply = false, int64_t reply_to_message_id = 0,
-                          bool protect_content = false, bool disable_notification = false, std::string thumb = "",
+                          bool protect_content = false, bool disable_notification = false, std::string thumbnail = "",
                           std::string title = "", std::string performer = "", int64_t duration = 0,
                           std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
                           std::string parse_mode = "", std::string caption = "", int64_t message_thread_id = 0) const {
@@ -207,7 +207,7 @@ namespace Telegram {
                     payload1["reply_to_message_id"] = reply_to_message_id;
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
-                    payload1["thumb"] = thumb;
+                    payload1["thumbnail"] = thumbnail;
                     payload1["title"] = title;
                     payload1["performer"] = performer;
                     payload1["duration"] = duration;
@@ -242,7 +242,8 @@ namespace Telegram {
                                          bool protect_content = false, bool disable_notification = false,
                                          bool disable_content_type_detection = false,
                                          std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
-                                         std::string parse_mode = "", std::string caption = "", std::string thumb = "",
+                                         std::string parse_mode = "", std::string caption = "",
+                                         std::string thumbnail = "",
                                          int64_t message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
@@ -272,8 +273,8 @@ namespace Telegram {
                     if (caption != "") {
                         payload1["caption"] = caption;
                     }
-                    if (thumb != "") {
-                        payload1["thumb"] = thumb;
+                    if (thumbnail != "") {
+                        payload1["thumbnail"] = thumbnail;
                     }
                     payload1["message_thread_id"] = message_thread_id;
                     auto result1 = payload1.dump();
@@ -293,7 +294,7 @@ namespace Telegram {
                           bool protect_content = false, bool disable_notification = false,
                           bool supports_streaming = false, bool has_spoiler = false,
                           std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
-                          std::string parse_mode = "", std::string caption = "", std::string thumb = "",
+                          std::string parse_mode = "", std::string caption = "", std::string thumbnail = "",
                           int64_t height = 0,
                           int64_t width = 0, int64_t duration = 0, int64_t message_thread_id = 0) const {
                     json payload1;
@@ -325,8 +326,8 @@ namespace Telegram {
                     if (caption != "") {
                         payload1["caption"] = caption;
                     }
-                    if (thumb != "") {
-                        payload1["thumb"] = thumb;
+                    if (thumbnail != "") {
+                        payload1["thumbnail"] = thumbnail;
                     }
                     payload1["height"] = height;
                     payload1["width"] = width;
@@ -347,7 +348,8 @@ namespace Telegram {
                                           bool protect_content = false, bool disable_notification = false,
                                           bool has_spoiler = false,
                                           std::vector<std::shared_ptr<MessageEntity>> caption_entities = std::vector<std::shared_ptr<MessageEntity>>(),
-                                          std::string parse_mode = "", std::string caption = "", std::string thumb = "",
+                                          std::string parse_mode = "", std::string caption = "",
+                                          std::string thumbnail = "",
                                           int64_t height = 0, int64_t width = 0, int64_t duration = 0,
                                           int64_t message_thread_id = 0) const {
                     json payload1;
@@ -378,8 +380,8 @@ namespace Telegram {
                     if (caption != "") {
                         payload1["caption"] = caption;
                     }
-                    if (thumb != "") {
-                        payload1["thumb"] = thumb;
+                    if (thumbnail != "") {
+                        payload1["thumbnail"] = thumbnail;
                     }
                     payload1["height"] = height;
                     payload1["width"] = width;
@@ -444,7 +446,7 @@ namespace Telegram {
                                           std::shared_ptr<InlineKeyboardMarkup> reply_markup = nullptr,
                                           bool allow_sending_without_reply = false, int64_t reply_to_message_id = 0,
                                           bool protect_content = false, bool disable_notification = false,
-                                          std::string thumb = "", int64_t length = 0, int64_t duration = 0,
+                                          std::string thumbnail = "", int64_t length = 0, int64_t duration = 0,
                                           int64_t message_thread_id = 0) const {
                     json payload1;
                     payload1["chat_id"] = chat_id;
@@ -458,8 +460,8 @@ namespace Telegram {
                     payload1["reply_to_message_id"] = reply_to_message_id;
                     payload1["protect_content"] = protect_content;
                     payload1["disable_notification"] = disable_notification;
-                    if (thumb != "") {
-                        payload1["thumb"] = thumb;
+                    if (thumbnail != "") {
+                        payload1["thumbnail"] = thumbnail;
                     }
                     payload1["length"] = length;
                     payload1["duration"] = duration;
@@ -1561,13 +1563,14 @@ namespace Telegram {
                 }
 
 // Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns <em>True</em> on success.
-                inline void setStickerSetThumb(std::string name, int64_t user_id, std::string thumb = "") const {
+                inline void
+                setStickerSetthumbnail(std::string name, int64_t user_id, std::string thumbnail = "") const {
                     json payload1;
                     payload1["name"] = name;
                     payload1["user_id"] = user_id;
-                    payload1["thumb"] = thumb;
+                    payload1["thumbnail"] = thumbnail;
                     auto result1 = payload1.dump();
-                    auto response = request->sendHttp("/setStickerSetThumb", result1);
+                    auto response = request->sendHttp("/setStickerSetthumbnail", result1);
                 }
 
 // Use this method to send answers to an inline query. On success, <em>True</em> is returned.<br>No more than <strong>50</strong> results per query are allowed.
