@@ -26,11 +26,11 @@ namespace Telegram {
 
             Connector &operator=(const Connector &connector) = delete;
 
-            explicit Connector(std::string token);
+            explicit Connector(std::string token, std::string local = "https://api.telegram.org");
 
             void onUpdate(std::function<void(const Telegram::Bot::Types::API &, const Update &)> func);
 
-            void callback(unsigned int timeout=0);
+            void callback(unsigned int timeout = 0);
 
             ~Connector();
 

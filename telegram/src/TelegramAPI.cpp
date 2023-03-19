@@ -2,10 +2,13 @@
 
 #include "../include/TelegramAPI.h"
 
-Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token)}, m_request{
-        std::make_shared<Types::HTTPrequest>("https://api.telegram.org/bot" + m_token)},
-                                                         m_api{std::make_shared<Telegram::Bot::Types::API>(
-                                                                 "https://api.telegram.org/bot" + m_token, m_request)} {
+Telegram::Bot::Connector::Connector(std::string token, std::string local) : m_token{
+        std::move(token)}, m_request{
+        std::make_shared<Types::HTTPrequest>(local + "/bot" + m_token)},
+                                                                            m_api{std::make_shared<Telegram::Bot::Types::API>(
+                                                                                    local + "/bot" +
+                                                                                    m_token,
+                                                                                    m_request)} {
     std::string readBuffer;
     std::string update;
     std::cout << "The bot has started successfully!" << std::endl;
@@ -18,7 +21,7 @@ Telegram::Bot::Connector::Connector(std::string token) : m_token{std::move(token
 
 void Telegram::Bot::Connector::callback(unsigned int timeout) {
     m_offset = 0;
-    m_timeout=timeout;
+    m_timeout = timeout;
     std::thread threadupdate;
     threadupdate = std::thread(&Telegram::Bot::Connector::update, this);
     threadupdate.detach();
