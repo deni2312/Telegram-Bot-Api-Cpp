@@ -121,8 +121,9 @@ int main(int argc, char **argv) {
 
 ### Usage
 
-The **api** paramater contains all methods of Telegram APIs, and **update** paramater contains the message sent by the user.  
-The **update** paramater is the JSON rappresentation of the update sent by the user, and for example if you need to access the chat-id paramater you can simply type : 
+The **api** paramater contains all methods of Telegram APIs.  
+The **update** paramater is the JSON rappresentation of the update sent by the user.  
+Here's an example where we access to the chat-id paramater taken by Telegram APIs documentation: 
 ```c++
 update.message->chat->id
  ```
